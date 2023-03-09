@@ -1,0 +1,5 @@
+## code to prepare `Percent_of_Employed_Population_with_Travel_Time_to_Work_of_45_Minutes_and_Over` dataset goes here
+
+Percent_of_Employed_Population_with_Travel_Time_to_Work_of_45_Minutes_and_Over <- subset(Percent_of_Employed_Population_with_Travel_Time_to_Work_of_45_Minutes_and_Over, select=-c(OBJECTID, Shape__Area, Shape__Length))
+
+usethis::use_data(Percent_of_Employed_Population_with_Travel_Time_to_Work_of_45_Minutes_and_Over, overwrite = TRUE)
