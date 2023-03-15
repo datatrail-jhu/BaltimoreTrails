@@ -4,6 +4,8 @@ library(devtools)
 library(roxygen2)
 
 
+####### BNIA DATASETS (EASY TO WRANGLE) #######
+
 ####### EDUCATION #######
 # Adding Raw EDUCATION Data 1
 use_data_raw("Perc_Pop_School_Employed")
@@ -53,4 +55,6 @@ use_data_raw("Infant_Mortality_Rate")
 
 # Adding Raw Health Data 5
 use_data_raw("Teen_Birth_Rate_per_1000_Females")
+
+####### Open Baltimore (EASY TO WRANGLE) #######
 

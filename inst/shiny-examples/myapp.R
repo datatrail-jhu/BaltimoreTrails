@@ -14,9 +14,9 @@ ui <- dashboardPage(
   ## Sidebar content
   dashboardSidebar(
     sidebarMenu(
-      menuItem("Interactive Data Tool", tabName = "dataview", icon = icon("table")),
-      menuItem("Data By Baltimore City Region", tabName = "map", icon = icon("map")),
-      menuItem("Interactive Plotting", tabName = "plotting", icon = icon("hand"))
+      menuItem("Data and Plotting Tools", tabName = "dataview", icon = icon("table")),
+      menuItem("Mapped Baltimore City Data", tabName = "map", icon = icon("map")),
+      menuItem("Interactive Learning", tabName = "learning", icon = icon("hand"))
     )
   ),
 
@@ -28,7 +28,7 @@ ui <- dashboardPage(
       tabItem(tabName = "dataview",
               h1("Data Viewing and Downloading Tool"),
               fluidRow(align = "center",
-
+                column(3),
                 box(width = 6, align = "center", status = "primary", height = 200,
                   br(),
                   fluidRow(
@@ -41,31 +41,33 @@ ui <- dashboardPage(
                     ),
                   ),
                 ),
-
-                box(width = 6, status = "primary", height = 200,
-                    h2('3. Download Edited Data'),
-                    br(),
-                    actionButton("save_data", "Save Data", width = '50%'),
-                    ),
               ),
 
               fluidRow(
                 box(width = 12, status = "primary",
-                  h2('2. View and Edit Data', align = "center"),
+                  h2('2. Edit, Download, and Univariate Data Plots', align = "center"),
                   uiOutput("modals"),
                   dataTableOutput("table")
                 ),
               ),
+
+              fluidRow(
+                box(width = 12, status = "primary",
+                    h2('3. Multivariate Data Plots', align = "center"),
+                ),
+              ),
+
+
       ),
 
       # Second tab content
       tabItem(tabName = "map",
-              h2("TAB 2")
+              h1("Interactive Baltimore City Map")
       ),
 
       # Third tab content
-      tabItem(tabName = "plotting",
-              h2("TAB 3")
+      tabItem(tabName = "learning",
+              h1("Interactive Learning")
       )
     )
   )
@@ -111,9 +113,20 @@ server <- function(input, output) {
             tableFooter(c("", buttons))
           )
           datatable(
-            Dat, container = sketch,
+            Dat,
+            editable = TRUE,
+            extensions = "Buttons",
+            container = sketch,
+            class = "compact",
             options =
               list(
+                paging = TRUE,
+                scrollX=TRUE,
+                searching = TRUE,
+                ordering = TRUE,
+                pageLength = 10,
+                dom = 'Bfrtip',
+                buttons = c('copy', 'csv', 'excel', 'pdf'),
                 columnDefs = list(
                   list(
                     className = "dt-center",
@@ -121,7 +134,9 @@ server <- function(input, output) {
                   )
                 )
               )
-          )
+          ) %>%
+            formatRound(c(1:ncol(Dat)), 4) %>%
+            formatStyle(columns = c(1:ncol(Dat)), 'text-align' = 'center')
         })
 
         # modals ####
@@ -187,16 +202,6 @@ server <- function(input, output) {
       }
     }
   )
-
-  # output$data_table <- renderDataTable({
-  #   dataset <- input$data_select
-  #   if (!is.null(dataset)){
-  #     if(dataset != ""){
-  #       dataset <- eval(as.symbol(dataset))
-  #       dataset
-  #     }
-  #   }
-  # })
 }
 
 shinyApp(ui, server)
