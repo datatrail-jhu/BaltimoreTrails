@@ -1,2 +1,2 @@
 # BaltimoreTrails
-Preliminary first package for DataTrails Baltimore Data Integration
+Package and Dashboard for Baltimore Data Integration, Manipulation, Visualization, and interactive access.
