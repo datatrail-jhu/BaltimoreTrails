@@ -1,0 +1,14 @@
+#' Baltimore City Employee Salaries
+#'
+#' This dataset includes Baltimore City employee salaries and gross pay from fiscal year 2011 through last fiscal year and includes employees who were employed on June 30 of the last fiscal year. For fiscal years 2020 and prior, data are extracted from the ADP payroll system. For fiscal year 2022, the data are combined from the ADP system and the Workday enterprise resource planning system which now includes payroll.
+#'
+#' @format ## `Baltimore_City_Employee_Salaries`
+#' A data frame with BLA rows and BLA columns:
+#' \describe{
+#'   \item{BLA}{BLA}
+#'   \item{BLA, BLA}{BLABLABLA}
+#'   \item{BLA}{BLA}
+#'   ...
+#' }
+#' @source <https://data.baltimorecity.gov/datasets/baltimore::baltimore-city-employee-salaries-2/about>
+"Baltimore_City_Employee_Salaries"

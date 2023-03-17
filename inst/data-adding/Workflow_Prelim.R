@@ -56,5 +56,21 @@ use_data_raw("Infant_Mortality_Rate")
 # Adding Raw Health Data 5
 use_data_raw("Teen_Birth_Rate_per_1000_Females")
 
-####### Open Baltimore (EASY TO WRANGLE) #######
+####### Open Baltimore (Medium/Hard TO WRANGLE) #######
 
+# Adding City Data 1
+use_data_raw("Baltimore_City_Employee_Salaries")
+
+# Adding City Data 2
+use_data_raw("Open_Checkbook_FY2020_Dataset")
+
+# Adding City Data 3
+use_data_raw("Customer_Service_Requests_2018")
+
+# Adding City Data 4
+#names(Surface_Water_Quality_Data_1995_through_September_2022) <- Surface_Water_Quality_Data_1995_through_September_2022[1, ]
+#Surface_Water_Quality_Data_1995_through_September_2022 <- Surface_Water_Quality_Data_1995_through_September_2022[-1, ]
+use_data_raw("Surface_Water_Quality_Data_1995_through_September_2022")
+
+# Adding City Data 5
+use_data_raw("Racial_Diversity_Index")
