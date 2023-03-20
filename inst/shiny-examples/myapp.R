@@ -27,20 +27,17 @@ ui <- dashboardPage(
       # First tab content
       tabItem(tabName = "dataview",
               h1("Data Viewing and Downloading Tool"),
-              fluidRow(align = "center",
-                column(3),
-                box(width = 6, align = "center", status = "primary", height = 200,
-                  br(),
-                  fluidRow(
-                    column(2),
-                    column(8,
-                      selectizeInput(
-                        'data_select', h2('1. Select Dataset'),
-                         choices = data_names$results[,3]
-                      ),
-                    ),
+              fluidRow( align = "center",
+                  box(status = "primary", height = 200,
+                    br(),
+                        selectizeInput(
+                          'data_select', h2('1. Select Dataset'),
+                           choices = data_names$results[,3]
+                        ),
                   ),
-                ),
+                  box(status = "primary", height = 200,
+                    h2('2. Dataset Information'),
+                  ),
               ),
 
               fluidRow(
@@ -112,6 +109,13 @@ server <- function(input, output) {
             tableHeader(c("", names(Dat))),
             tableFooter(c("", buttons))
           )
+
+          # Quick fix for loading of large dataset by random sampling subset of 1000
+          if (nrow(Dat) > 1000){
+            Dat <- Dat[sample(nrow(Dat), 1000),]
+          }
+
+
           datatable(
             Dat,
             editable = TRUE,
@@ -137,6 +141,8 @@ server <- function(input, output) {
           ) %>%
             formatRound(c(1:ncol(Dat)), 4) %>%
             formatStyle(columns = c(1:ncol(Dat)), 'text-align' = 'center')
+
+
         })
 
         # modals ####
