@@ -4,6 +4,7 @@ library(shinyjs)
 library(shinyBS)
 library(DT)
 library(ggplot2)
+library(radiant)
 
 #Pre-load all dataset names into app
 data_names <- data(package="BaltimoreTrails")
@@ -44,13 +45,31 @@ ui <- dashboardPage(
                 box(width = 12, status = "primary",
                   h2('2. Edit, Download, and Univariate Data Plots', align = "center"),
                   uiOutput("modals"),
-                  dataTableOutput("table")
+                  dataTableOutput("mytable")
                 ),
               ),
 
               fluidRow(
                 box(width = 12, status = "primary",
                     h2('3. Multivariate Data Plots', align = "center"),
+
+                    # Select input for x-axis variable
+                    selectInput("xvar", "X-axis variable:", choices = c()),
+
+                    # Select input for plot type
+                    selectInput("type", "Plot type:", choices = c("scatter", "density")),
+
+                    # Select input for y-axis variable
+                    selectInput("yvar", "Y-axis variable (Optional):", choices = c()),
+
+                    # Select input for facet rows by variable
+                    selectInput("facet_row", "Facet rows by variable (Optional):", choices = c()),
+
+                    # Select input for color by variable
+                    selectInput("color", "Color by variable (Optional):", choices = c()),
+
+                    # Output radiant plot
+                    plotOutput("radiant_plot")
                 ),
               ),
 
@@ -71,7 +90,7 @@ ui <- dashboardPage(
 
 )
 
-server <- function(input, output) {
+server <- function(input, output, session) {
 
   dat <- reactive({
       if (!is.null(input$data_select)){
@@ -103,7 +122,7 @@ server <- function(input, output) {
           )
         })
 
-        output[["table"]] <- renderDT({
+        output[["mytable"]] <- renderDT({
           sketch <- tags$table(
             class = "row-border stripe hover compact",
             tableHeader(c("", names(Dat))),
@@ -113,6 +132,40 @@ server <- function(input, output) {
           # Quick fix for loading of large dataset by random sampling subset of 1000
           if (nrow(Dat) > 1000){
             Dat <- Dat[sample(nrow(Dat), 1000),]
+          }
+
+          updateSelectInput(session, "xvar",choices = colnames(Dat))
+          updateSelectInput(session, "yvar",choices = c("",colnames(Dat)), selected = "")
+          updateSelectInput(session, "facet_row",choices = c("",colnames(Dat)), selected = "")
+          updateSelectInput(session, "color",choices = c("",colnames(Dat)), selected = "")
+
+          if (!is.null(Dat)){
+            if(length(Dat) > 0){
+              if (input$yvar == ""){
+                updateSelectInput(session, "type",choices = c("Distribution" = "dist",
+                                                              "Density" = "density",
+                                                              "Box-plot" = "box"
+                                                              ))
+              } else if (input$facet_row == "" && input$color == ""){
+                updateSelectInput(session, "type",choices = c("Scatter" = "scatter",
+                                                              "Line" = "line",
+                                                              "Bar" = "bar",
+                                                              "Box-plot" = "box"
+                ))
+              } else if (input$facet_row != "" && input$color == ""){
+                updateSelectInput(session, "type",choices = c("Scatter" = "scatter",
+                                                              "Line" = "line",
+                                                              "Bar" = "bar",
+                                                              "Box-plot" = "box"
+                ))
+              } else if (input$facet_row == "" && input$color != "") {
+                updateSelectInput(session, "type",choices = c("Scatter" = "scatter",
+                                                              "Line" = "line",
+                                                              "Bar" = "bar",
+                                                              "Box-plot" = "box"
+                ))
+              }
+            }
           }
 
 
@@ -208,6 +261,60 @@ server <- function(input, output) {
       }
     }
   )
+
+  output$radiant_plot <- renderPlot({
+
+    Dat <- dat()
+
+    if (nrow(Dat) > 1000){
+      Dat <- Dat[sample(nrow(Dat), 1000),]
+    }
+
+    # Create a scatterplot using the visualize() function
+    if (!is.null(Dat)){
+      if(length(Dat) > 0){
+        # Call visualize function from radiant package
+
+        # Cases of different optional parameters left out
+        if (input$yvar == ""){
+          visualize(
+            dataset = Dat,
+            xvar = input$xvar,
+            type = input$type,
+            shiny = TRUE
+          )
+        } else if (input$facet_row == "" && input$color == ""){
+          visualize(
+            dataset = Dat,
+            xvar = input$xvar,
+            yvar = input$yvar,
+            type = input$type,
+            shiny = TRUE
+          )
+        } else if (input$facet_row != "" && input$color == ""){
+          visualize(
+            dataset = Dat,
+            xvar = input$xvar,
+            yvar = input$yvar,
+            type = input$type,
+            facet_row = input$facet_row,
+            shiny = TRUE
+          )
+        } else if (input$facet_row == "" && input$color != "") {
+          visualize(
+            dataset = Dat,
+            xvar = input$xvar,
+            yvar = input$yvar,
+            type = input$type,
+            color = input$color,
+            shiny = TRUE
+          )
+        }
+      }
+    }
+
+  })
+
 }
 
 shinyApp(ui, server)

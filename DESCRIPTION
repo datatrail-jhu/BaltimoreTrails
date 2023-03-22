@@ -16,9 +16,7 @@ Imports:
     shinyjs,
     shinyBS,
     ggplot2,
-    dslabs,
-    gapminder,
-    babynames
+    radiant
 Depends: 
     R (>= 2.10)
 Suggests: 
