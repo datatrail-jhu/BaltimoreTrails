@@ -4,8 +4,9 @@ library(shinyjs)
 library(shinyBS)
 library(DT)
 library(ggplot2)
-library(radiant)
 library(learnr)
+library(esquisse)
+library(BaltimoreTrails)
 
 # Pre-load all dataset names into app
 data_names <- data(package = "BaltimoreTrails")
@@ -17,7 +18,6 @@ ui <- dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Data and Plotting Tools", tabName = "dataview", icon = icon("table")),
-      menuItem("Mapped Baltimore City Data", tabName = "map", icon = icon("map")),
       menuItem("Interactive Learning", tabName = "learning", icon = icon("hand"))
     )
   ),
@@ -33,7 +33,7 @@ ui <- dashboardPage(
         fluidRow(
           align = "center",
           box(
-            status = "primary", height = 200,
+            status = "primary", height = 300,
             br(),
             selectizeInput(
               "data_select", h2("1. Select Dataset"),
@@ -41,14 +41,15 @@ ui <- dashboardPage(
             ),
           ),
           box(
-            status = "primary", height = 200,
+            status = "primary", height = 300,
             h2("2. Dataset Information"),
+            uiOutput("dataset_information")
           ),
         ),
         fluidRow(
           box(
             width = 12, status = "primary",
-            h2("2. Edit, Download, and Univariate Data Plots", align = "center"),
+            h2("3. Edit, Download, and Univariate Data Plots", align = "center"),
             uiOutput("modals"),
             dataTableOutput("mytable")
           ),
@@ -56,33 +57,13 @@ ui <- dashboardPage(
         fluidRow(
           box(
             width = 12, status = "primary",
-            h2("3. Multivariate Data Plots", align = "center"),
 
-            # Select input for x-axis variable
-            selectInput("xvar", "X-axis variable:", choices = c()),
-
-            # Select input for plot type
-            selectInput("type", "Plot type:", choices = c("scatter", "density")),
-
-            # Select input for y-axis variable
-            selectInput("yvar", "Y-axis variable (Optional):", choices = c()),
-
-            # Select input for facet rows by variable
-            selectInput("facet_row", "Facet rows by variable (Optional):", choices = c()),
-
-            # Select input for color by variable
-            selectInput("color", "Color by variable (Optional):", choices = c()),
-
-            # Output radiant plot
-            plotOutput("radiant_plot")
+            h2("4. Multivariate Data Plots with esquisse", align = "center"),
+            esquisse_ui(id = "esquisse",
+                        header = FALSE
+            )
           ),
         ),
-      ),
-
-      # Second tab content
-      tabItem(
-        tabName = "map",
-        h1("Interactive Baltimore City Map")
       ),
 
       # Third tab content
@@ -92,9 +73,9 @@ ui <- dashboardPage(
         selectInput(
           "chapter_select", "Select Chapter to Practice",
           c(
-            "Chapter 1: BLA" = "ch1",
-            "Chapter 2: BLABLA" = "ch2",
-            "Chapter 3: BLABLABLA" = "ch3"
+            "Chapter 1: Plotting" = "ch1",
+            "Chapter 2: Regression" = "ch2",
+            "Chapter 3: Data Management" = "ch3"
           )
         ),
         fluidRow(
@@ -113,6 +94,29 @@ server <- function(input, output, session) {
         dat <- eval(as.symbol(input$data_select))
         dat
       }
+    }
+  })
+
+  # Generate temporary dataset information
+  observeEvent(input$data_select, {
+    output$dataset_info <- renderText({
+      paste0("Dataset: ", input$data_select, "\n\n",
+             "Link: https://example.com/datasets/", tolower(input$data_select), "\n\n",
+             "Title: Example Dataset Title\n\n",
+             "Background: This is an example background of the selected dataset. ",
+             "It contains information about the dataset's origin, collection methods, ",
+             "and other relevant details. This section will be populated with the actual ",
+             "information when the app is connected to the data source.\n\n",
+             "Interesting aspects: This section highlights some interesting aspects of ",
+             "the selected dataset, such as unique patterns, trends, or insights that ",
+             "can be gained from the data.")
+    })
+  })
+
+  # Display dataset information
+  output$dataset_information <- renderUI({
+    if (!is.null(input$data_select)) {
+      verbatimTextOutput("dataset_info")
     }
   })
 
@@ -147,42 +151,16 @@ server <- function(input, output, session) {
             Dat <- Dat[sample(nrow(Dat), 1000), ]
           }
 
+          data_rv <- reactiveValues(data = Dat, name = input$data_select)
 
-          # Have Selectinputs for xvar and plot type be updated when new dataset is selected
-          # (but have other inputs be seperately reactively dependent of xvar)
-          updateSelectInput(session, "xvar", choices = colnames(Dat))
+          print(names(Dat))
 
-          if (!is.null(Dat)) {
-            if (length(Dat) > 0) {
-              if (input$yvar == "") {
-                updateSelectInput(session, "type", choices = c(
-                  "Distribution" = "dist",
-                  "Density" = "density"
-                ))
-              } else if (input$facet_row == "" && input$color == "") {
-                updateSelectInput(session, "type", choices = c(
-                  "Scatter" = "scatter",
-                  "Line" = "line",
-                  "Bar" = "bar",
-                  "Box-plot" = "box"
-                ))
-              } else if (input$facet_row != "" && input$color == "") {
-                updateSelectInput(session, "type", choices = c(
-                  "Scatter" = "scatter",
-                  "Line" = "line",
-                  "Bar" = "bar",
-                  "Box-plot" = "box"
-                ))
-              } else if (input$facet_row == "" && input$color != "") {
-                updateSelectInput(session, "type", choices = c(
-                  "Scatter" = "scatter",
-                  "Line" = "line",
-                  "Bar" = "bar",
-                  "Box-plot" = "box"
-                ))
-              }
-            }
-          }
+          esquisse::esquisse_server(
+            id = "esquisse",
+            data = data_rv
+            #data_name = reactive({ req(input$data_select); input$data_select })
+          )
+
 
           datatable(
             Dat,
@@ -289,101 +267,11 @@ server <- function(input, output, session) {
     }
   )
 
-  output$radiant_plot <- renderPlot({
-    Dat <- dat()
 
-    if (nrow(Dat) > 1000) {
-      Dat <- Dat[sample(nrow(Dat), 1000), ]
-    }
 
-    # Create a scatterplot using the visualize() function
-    if (!is.null(Dat)) {
-      if (length(Dat) > 0) {
-        # Call visualize function from radiant package
-
-        # Cases of different optional parameters left out
-        if (input$yvar == "") {
-          visualize(
-            dataset = Dat,
-            xvar = input$xvar,
-            type = input$type,
-            shiny = TRUE
-          )
-        } else if (input$facet_row == "" && input$color == "") {
-          visualize(
-            dataset = Dat,
-            xvar = input$xvar,
-            yvar = input$yvar,
-            type = input$type,
-            shiny = TRUE
-          )
-        } else if (input$facet_row != "" && input$color == "") {
-          visualize(
-            dataset = Dat,
-            xvar = input$xvar,
-            yvar = input$yvar,
-            type = input$type,
-            facet_row = input$facet_row,
-            shiny = TRUE
-          )
-        } else if (input$facet_row == "" && input$color != "") {
-          visualize(
-            dataset = Dat,
-            xvar = input$xvar,
-            yvar = input$yvar,
-            type = input$type,
-            color = input$color,
-            shiny = TRUE
-          )
-        }
-      }
-    }
-  })
-
-  # Generate Multivariate Plot based on inputs
-  observeEvent(input$generate_plot_button, {
-    updateSelectInput(session, "xvar", choices = colnames(Dat))
-    updateSelectInput(session, "yvar", choices = c("", colnames(Dat)))
-    updateSelectInput(session, "facet_row", choices = c("", colnames(Dat)))
-    updateSelectInput(session, "color", choices = c("", colnames(Dat)))
-
-    if (!is.null(Dat)) {
-      if (length(Dat) > 0) {
-        if (input$yvar == "") {
-          updateSelectInput(session, "type", choices = c(
-            "Distribution" = "dist",
-            "Density" = "density"
-          ))
-        } else if (input$facet_row == "" && input$color == "") {
-          updateSelectInput(session, "type", choices = c(
-            "Scatter" = "scatter",
-            "Line" = "line",
-            "Bar" = "bar",
-            "Box-plot" = "box"
-          ))
-        } else if (input$facet_row != "" && input$color == "") {
-          updateSelectInput(session, "type", choices = c(
-            "Scatter" = "scatter",
-            "Line" = "line",
-            "Bar" = "bar",
-            "Box-plot" = "box"
-          ))
-        } else if (input$facet_row == "" && input$color != "") {
-          updateSelectInput(session, "type", choices = c(
-            "Scatter" = "scatter",
-            "Line" = "line",
-            "Bar" = "bar",
-            "Box-plot" = "box"
-          ))
-        }
-      }
-    }
-  })
 
   ##### TAB 2 -- Data and Plotting Tools #####
-
-  ##### TAB 3 -- Data and Plotting Tools #####
-  # Generate Tab 3 Interactive LearnR frame (based on input selection later)
+  # Generate Tab 2 Interactive LearnR frame (based on input selection later)
   output$frame <- renderUI({
     tags$iframe(
       src = "https://jjallaire.shinyapps.io/learnr-tutorial-03a-data-manip-filter/", width = 1280, height = 720
