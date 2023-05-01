@@ -16,7 +16,9 @@ Imports:
     shinyjs,
     shinyBS,
     ggplot2,
-    radiant
+    esquisse,
+    learnr,
+    DT
 Depends: 
     R (>= 2.10)
 Suggests: 

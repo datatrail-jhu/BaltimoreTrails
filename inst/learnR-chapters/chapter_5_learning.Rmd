@@ -1,0 +1,318 @@
+---
+title: "Chapter 5: Account Setup"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.checker = NULL)
+```
+
+
+## Chapter 5: Account Setup
+
+Before we can get started doing fun things with data we need to make sure you are set up to use all of the different accounts that you will need throughout the course. We will tell you briefly what each of these accounts is used for and how to set it up now. If you don't know what each of these accounts is for exactly, don't worry! We will walk you through everything you need to know.
+
+### 5.0.1 Choosing a Username
+
+```{r quiz0, echo=FALSE}
+quiz(
+  question("What should you consider when choosing a username?",
+    answer("Use a nickname", correct = FALSE),
+    answer("Use profanity", correct = FALSE),
+    answer("Use a combination of your first and last name", correct = TRUE),
+    answer("Make it as short as possible", correct = FALSE)
+  )
+)
+```
+
+### 5.0.2 Using a Consistent Username
+
+```{r quiz1, echo=FALSE}
+quiz(
+  question("Why is using a consistent username across different accounts beneficial?",
+    answer("It looks professional", correct = FALSE),
+    answer("It is easier to remember", correct = TRUE),
+    answer("It is required by most websites", correct = FALSE),
+    answer("It prevents others from using the same username", correct = FALSE)
+  )
+)
+```
+
+
+### 5.0.3 Accounts
+
+```{r quiz2, echo=FALSE}
+quiz(
+  question("Which of the following accounts is NOT mentioned in this chapter?",
+    answer("LinkedIn", correct = FALSE),
+    answer("Twitter", correct = FALSE),
+    answer("Basecamp", correct = FALSE),
+    answer("Instagram", correct = TRUE)
+  )
+)
+```
+
+
+## 5.1 Google Account Setup
+
+```{r quiz3, echo=FALSE}
+quiz(
+  question("Why is a Google account important in this course?",
+    answer("It provides access to free Google products", correct = TRUE),
+    answer("It is the only email service allowed", correct = FALSE),
+    answer("It is required for accessing the course materials", correct = FALSE),
+    answer("It is necessary for all online communication", correct = FALSE)
+  )
+)
+```
+
+
+## 5.2 Using Gmail for Email Communications
+
+```{r quiz4, echo=FALSE}
+quiz(
+  question("Which feature of Gmail is especially useful for organizing email conversations?",
+    answer("Attachment options", correct = FALSE),
+    answer("Formatting options", correct = FALSE),
+    answer("Conversational threads", correct = TRUE),
+    answer("Tabs for different categories", correct = FALSE)
+  )
+)
+```
+
+
+### 5.2.4 Searching for specific messages
+
+```{r quiz5, echo=FALSE}
+quiz(
+  question("Which of the following can you search by in Gmail?",
+    answer("A word in the subject"),
+    answer("The sender's name"),
+    answer("The content of the email"),
+    answer("All of the above", correct = TRUE)
+  )
+)
+```
+
+
+### 5.2.5 More specifics on using Gmail
+
+```{r quiz6, echo=FALSE}
+quiz(
+  question("Where can you find beginner tutorials on using Gmail?",
+    answer("YouTube"),
+    answer("Google Workspace Learning Center"),
+    answer("Both", correct = TRUE),
+    answer("Neither")
+  )
+)
+```
+
+
+## 5.3 Google Drive
+
+```{r quiz7, echo=FALSE}
+quiz(
+  question("What is Google Drive primarily used for?",
+    answer("Storing and editing files online", correct = TRUE),
+    answer("Sending emails"),
+    answer("Video chatting"),
+    answer("Setting calendar events")
+  )
+)
+```
+
+
+### 5.3.1 Accessing your Google Drive account
+
+```{r quiz8, echo=FALSE}
+quiz(
+  question("Which of the following is NOT included with your Google Account?",
+    answer("Gmail"),
+    answer("Calendar"),
+    answer("Google Drive"),
+    answer("Microsoft Word", correct = TRUE)
+  )
+)
+```
+
+
+### 5.3.2 Organizing files in Google Drive
+
+```{r quiz9, echo=FALSE}
+quiz(
+  question("Why should you create folders in Google Drive?",
+    answer("To keep similar files together", correct = TRUE),
+    answer("To change the color of files"),
+    answer("To automatically delete files"),
+    answer("To make files available offline")
+  )
+)
+```
+
+
+### 5.3.3 Creating files in Google Drive
+
+```{r quiz10, echo=FALSE}
+quiz(
+  question("How do you create a new file in Google Drive?",
+    answer("Click the 'New' button and select the type of file", correct = TRUE),
+    answer("Drag a file from your computer"),
+    answer("Press Ctrl+N")
+  )
+)
+```
+
+
+### 5.3.4 Creating files in Google Drive
+
+```{r quiz11, echo=FALSE}
+question("What do you click to upload a file or folder to Google Drive?",
+  answer("New", correct = TRUE),
+  answer("Upload"),
+  answer("File"),
+  answer("Folder")
+)
+```
+
+
+### 5.3.5 Deleting Files and folders
+
+```{r quiz12, echo=FALSE}
+question("How do you delete a file on Google Drive?",
+  answer("Right-click and choose Remove", correct = TRUE),
+  answer("Double-click and press Delete key"),
+  answer("Drag the file to Trash folder"),
+  answer("Click the file and press Delete key")
+)
+```
+
+### 5.3.6 File Recovery
+
+```{r quiz13, echo=FALSE}
+question("Where do deleted files go on Google Drive?",
+  answer("Trash folder", correct = TRUE),
+  answer("Recycle Bin"),
+  answer("Deleted Files folder"),
+  answer("Archive")
+)
+```
+
+
+### 5.3.7 File Sharing
+
+```{r quiz14, echo=FALSE}
+question("How do you share a file on Google Drive?",
+  answer("Right-click and choose Share", correct = TRUE),
+  answer("Double-click and press Share key"),
+  answer("Drag the file to Shared folder"),
+  answer("Click the file and press Share key")
+)
+```
+
+
+### 5.3.8 Working Offline
+
+```{r quiz15, echo=FALSE}
+question("How can you access Google Drive files offline?",
+  answer("Install Google Docs Offline extension and enable offline access in settings", correct = TRUE),
+  answer("Download all files to your local computer"),
+  answer("Use a third-party app"),
+  answer("You cannot access Google Drive files offline")
+)
+```
+
+
+### 5.3.9 Storage limit
+
+```{r quiz16, echo=FALSE}
+question("How much free storage does Google Drive provide?",
+  answer("15GB", correct = TRUE),
+  answer("5GB"),
+  answer("50GB"),
+  answer("100GB")
+)
+```
+
+
+### 5.3.10 Security
+
+```{r quiz17, echo=FALSE}
+question("What is the recommended method to secure your files on Google Drive?",
+  answer("Two-step verification", correct = TRUE),
+  answer("Strong password only"),
+  answer("Using a VPN"),
+  answer("Private browsing mode")
+)
+```
+
+### 5.3.11 More specifics on using Google Drive
+
+```{r quiz18, echo=FALSE}
+question("Where can you find more tutorials on using Google Drive?",
+  answer("YouTube.com", correct = TRUE),
+  answer("Netflix"),
+  answer("Hulu"),
+  answer("Amazon Prime Video")
+)
+```
+
+
+## 5.4 Other Accounts Setup
+
+### 5.4.1 LinkedIn Account
+
+```{r quiz19, echo=FALSE}
+question("What is the primary purpose of LinkedIn?",
+  answer("Social networking for employment", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+### 5.4.2 Twitter Account
+
+```{r quiz20, echo=FALSE}
+question("What is the primary purpose of Twitter?",
+  answer("Posting and interacting with messages called 'tweets'", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+### 5.4.3 Basecamp Account
+
+```{r quiz21, echo=FALSE}
+question("What is the primary purpose of Basecamp?",
+  answer("Communicating and working together on projects", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+### 5.4.4 RStudio Cloud Account
+
+```{r quiz22, echo=FALSE}
+question("What is the primary purpose of RStudio Cloud?",
+  answer("Working with R programming language for statistical computing and graphics", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+
+
+## Congratulations!
+
+That's it for the interactive tutorial on Chapter 5: Account Setup. We hope you found it informative and engaging. Good luck with the rest of the course!
