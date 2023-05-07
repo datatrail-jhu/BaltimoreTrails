@@ -1,5 +1,5 @@
 ---
-title: "Chapter 5: Account Setup"
+title: "Chapter 6: Remote work and task management"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -11,308 +11,318 @@ tutorial_options(exercise.checker = NULL)
 ```
 
 
-## Chapter 5: Account Setup
+## Chapter 6: Remote work and task management
 
-Before we can get started doing fun things with data we need to make sure you are set up to use all of the different accounts that you will need throughout the course. We will tell you briefly what each of these accounts is used for and how to set it up now. If you don't know what each of these accounts is for exactly, don't worry! We will walk you through everything you need to know.
+In this tutorial, we will explore best practices and ideas for how to work remotely in a way that promotes not only your productivity but also your well being.
 
-### 5.0.1 Choosing a Username
+### 6.0.1 Goals for working remotely
 
 ```{r quiz0, echo=FALSE}
 quiz(
-  question("What should you consider when choosing a username?",
-    answer("Use a nickname", correct = FALSE),
-    answer("Use profanity", correct = FALSE),
-    answer("Use a combination of your first and last name", correct = TRUE),
-    answer("Make it as short as possible", correct = FALSE)
+  question("Which one of these is not a goal for working remotely?",
+    answer("Creating a comfortable and conducive work area"),
+    answer("Being healthy"),
+    answer("Being unproductive", correct = TRUE),
+    answer("Being productive")
   )
 )
 ```
 
-### 5.0.2 Using a Consistent Username
+
+## 6.1 How to be healthy
+
+To promote the healthiest version of yourself, ask yourself what you need to spend more time doing and what things you need to do less of. Some aspects of being healthy include:
+
+* Adequate sleep and sleep patterns
+* Balance and energetic meal plans
+* Spending time with loving and supportive individuals
+* Working reasonable hours - setting up boundaries
+* Spending some time doing things you enjoy that refill your energy
 
 ```{r quiz1, echo=FALSE}
 quiz(
-  question("Why is using a consistent username across different accounts beneficial?",
-    answer("It looks professional", correct = FALSE),
-    answer("It is easier to remember", correct = TRUE),
-    answer("It is required by most websites", correct = FALSE),
-    answer("It prevents others from using the same username", correct = FALSE)
+  question("Which one of these is not a part of being healthy?",
+    answer("Adequate sleep and sleep patterns"),
+    answer("Skipping meals", correct = TRUE),
+    answer("Working reasonable hours"),
+    answer("Spending time with loving and supportive individuals")
   )
 )
 ```
 
 
-### 5.0.3 Accounts
+### 6.1.1 Define success
+
+To set yourself up for success in regards to your health, you will need to start by defining what looks and feels healthy for you. Identify what steps are needed to create a healthier version of yourself.
 
 ```{r quiz2, echo=FALSE}
 quiz(
-  question("Which of the following accounts is NOT mentioned in this chapter?",
-    answer("LinkedIn", correct = FALSE),
-    answer("Twitter", correct = FALSE),
-    answer("Basecamp", correct = FALSE),
-    answer("Instagram", correct = TRUE)
+  question("Which one of these is a part of defining success?",
+    answer("Ignoring your well-being"),
+    answer("Following an unhealthy diet"),
+    answer("Identifying what steps are needed to create a healthier version of yourself", correct = TRUE),
+    answer("Neglecting sleep")
   )
 )
 ```
 
 
-## 5.1 Google Account Setup
+### 6.1.2 Form healthy habits
+
+To change habits, we need to make goals that are SMART:
+
+* Specific
+* Measurable
+* Achievable
+* Relevant
+* Time-bound
 
 ```{r quiz3, echo=FALSE}
 quiz(
-  question("Why is a Google account important in this course?",
-    answer("It provides access to free Google products", correct = TRUE),
-    answer("It is the only email service allowed", correct = FALSE),
-    answer("It is required for accessing the course materials", correct = FALSE),
-    answer("It is necessary for all online communication", correct = FALSE)
+  question("Which one of these is not a part of SMART goals?",
+    answer("Specific"),
+    answer("Immeasurable", correct = TRUE),
+    answer("Achievable"),
+    answer("Time-bound")
   )
 )
 ```
 
 
-## 5.2 Using Gmail for Email Communications
+### 6.1.3 Know yourself
+
+Remote work can be super powerful for being healthy but what is healthy might vary for different individuals. Remote work is great in that it can lend you flexibility to find routines and patterns that work best for promoting the healthiest form of you.
 
 ```{r quiz4, echo=FALSE}
 quiz(
-  question("Which feature of Gmail is especially useful for organizing email conversations?",
-    answer("Attachment options", correct = FALSE),
-    answer("Formatting options", correct = FALSE),
-    answer("Conversational threads", correct = TRUE),
-    answer("Tabs for different categories", correct = FALSE)
+  question("What is the benefit of remote work?",
+    answer("It allows you to work without any breaks"),
+    answer("It can lend you flexibility to find routines and patterns that work best for promoting the healthiest form of you", correct = TRUE),
+    answer("It makes you work longer hours"),
+    answer("It isolates you from others")
   )
 )
 ```
 
 
-### 5.2.4 Searching for specific messages
+### 6.1.4 Self-reevaluate
+
+Examine your workday and identify variables within your control that may have contributed to a good or bad day. Learn from your experiences and try to replicate what went well or make changes to improve the next day.
 
 ```{r quiz5, echo=FALSE}
 quiz(
-  question("Which of the following can you search by in Gmail?",
-    answer("A word in the subject"),
-    answer("The sender's name"),
-    answer("The content of the email"),
-    answer("All of the above", correct = TRUE)
+  question("What should you do to self-reevaluate?",
+    answer("Dwell on the past"),
+    answer("Ignore your experiences"),
+    answer("Examine your workday and identify variables within your control that may have contributed to a good or bad day", correct = TRUE),
+    answer("Do not make any changes")
   )
 )
 ```
 
 
-### 5.2.5 More specifics on using Gmail
+### 6.1.5 Reach out for help
 
 ```{r quiz6, echo=FALSE}
 quiz(
-  question("Where can you find beginner tutorials on using Gmail?",
-    answer("YouTube"),
-    answer("Google Workspace Learning Center"),
-    answer("Both", correct = TRUE),
-    answer("Neither")
+  question("What is one of the most meaningful things you can do to promote your own healthy living?",
+    answer("Ignore your problems"),
+    answer("Keep everything to yourself"),
+    answer("Avoid talking to others"),
+    answer("Asking for help", correct = TRUE)
   )
 )
 ```
 
+## 6.2 How to be productive
 
-## 5.3 Google Drive
+### 6.2.1 Write things down
 
 ```{r quiz7, echo=FALSE}
 quiz(
-  question("What is Google Drive primarily used for?",
-    answer("Storing and editing files online", correct = TRUE),
-    answer("Sending emails"),
-    answer("Video chatting"),
-    answer("Setting calendar events")
+  question("Why is it important to write things down?",
+    answer("To remember important tasks and goals", correct = TRUE),
+    answer("To create more work for yourself"),
+    answer("To practice handwriting"),
+    answer("To have something to do")
   )
 )
 ```
 
 
-### 5.3.1 Accessing your Google Drive account
+### 6.2.2 Define success
 
 ```{r quiz8, echo=FALSE}
 quiz(
-  question("Which of the following is NOT included with your Google Account?",
-    answer("Gmail"),
-    answer("Calendar"),
-    answer("Google Drive"),
-    answer("Microsoft Word", correct = TRUE)
+  question("What is the first step in setting up your work life for success?",
+    answer("Ignoring your goals"),
+    answer("Defining what success looks like in your career", correct = TRUE),
+    answer("Focusing only on the negative aspects of your work"),
+    answer("Copying someone else's career path")
   )
 )
 ```
 
 
-### 5.3.2 Organizing files in Google Drive
+### 6.2.3 Identifying tasks
 
 ```{r quiz9, echo=FALSE}
 quiz(
-  question("Why should you create folders in Google Drive?",
-    answer("To keep similar files together", correct = TRUE),
-    answer("To change the color of files"),
-    answer("To automatically delete files"),
-    answer("To make files available offline")
+  question("What should you do to identify tasks that will help you reach your career goals?",
+    answer("Ignore your goals"),
+    answer("Research and talk to mentors about what you need to do to reach your desired career", correct = TRUE),
+    answer("Focus only on the most difficult tasks"),
+    answer("Avoid planning and let things happen")
   )
 )
 ```
 
-
-### 5.3.3 Creating files in Google Drive
+### 6.2.4 Break down tasks into bite-size chunks
 
 ```{r quiz10, echo=FALSE}
 quiz(
-  question("How do you create a new file in Google Drive?",
-    answer("Click the 'New' button and select the type of file", correct = TRUE),
-    answer("Drag a file from your computer"),
-    answer("Press Ctrl+N")
+  question("Why is it important to break down tasks into smaller, more manageable pieces?",
+    answer("To make the task more intimidating"),
+    answer("To avoid getting any work done"),
+    answer("To make it easier to procrastinate"),
+    answer("To make the task less overwhelming and more achievable", correct = TRUE)
   )
 )
 ```
 
 
-### 5.3.4 Creating files in Google Drive
+### 6.2.5 Form productive habits
 
 ```{r quiz11, echo=FALSE}
-question("What do you click to upload a file or folder to Google Drive?",
-  answer("New", correct = TRUE),
-  answer("Upload"),
-  answer("File"),
-  answer("Folder")
+quiz(
+  question("What is an important aspect of being productive and successful?",
+    answer("Avoiding routines and habits"),
+    answer("Engaging in a lot of mundane and repetitive habits", correct = TRUE),
+    answer("Procrastinating as much as possible"),
+    answer("Focusing only on the exciting aspects of work")
+  )
 )
 ```
 
 
-### 5.3.5 Deleting Files and folders
+### 6.2.6 Time Budgeting
 
 ```{r quiz12, echo=FALSE}
-question("How do you delete a file on Google Drive?",
-  answer("Right-click and choose Remove", correct = TRUE),
-  answer("Double-click and press Delete key"),
-  answer("Drag the file to Trash folder"),
-  answer("Click the file and press Delete key")
+quiz(
+  question("What should you do to effectively budget your time?",
+    answer("Ignore your calendar and tasks"),
+    answer("Plan tasks for the week and for the day", correct = TRUE),
+    answer("Overload your schedule with unrealistic goals"),
+    answer("Avoid setting up a schedule")
+  )
 )
 ```
 
-### 5.3.6 File Recovery
+#### 6.2.6.2 Put in one-time items
 
 ```{r quiz13, echo=FALSE}
-question("Where do deleted files go on Google Drive?",
-  answer("Trash folder", correct = TRUE),
-  answer("Recycle Bin"),
-  answer("Deleted Files folder"),
-  answer("Archive")
+quiz(
+  question("What should you do when you make an appointment?",
+    answer("Ignore it"),
+    answer("Put it in your calendar", correct = TRUE),
+    answer("Write it on a piece of paper")
+  )
 )
 ```
 
 
-### 5.3.7 File Sharing
+#### 6.2.6.2 Put in one-time items
 
 ```{r quiz14, echo=FALSE}
-question("How do you share a file on Google Drive?",
-  answer("Right-click and choose Share", correct = TRUE),
-  answer("Double-click and press Share key"),
-  answer("Drag the file to Shared folder"),
-  answer("Click the file and press Share key")
+quiz(
+  question("What should you fill the remaining time in your calendar with?",
+    answer("Random events"),
+    answer("Data science work", correct = TRUE),
+    answer("Hobbies")
+  )
 )
 ```
 
 
-### 5.3.8 Working Offline
+### 6.2.7 Set up your workplace
 
 ```{r quiz15, echo=FALSE}
-question("How can you access Google Drive files offline?",
-  answer("Install Google Docs Offline extension and enable offline access in settings", correct = TRUE),
-  answer("Download all files to your local computer"),
-  answer("Use a third-party app"),
-  answer("You cannot access Google Drive files offline")
+quiz(
+  question("Which of the following is NOT an ideal feature for a remote workplace?",
+    answer("A good WiFi signal"),
+    answer("A reliable power source"),
+    answer("A distracting environment", correct = TRUE)
+  )
 )
 ```
 
 
-### 5.3.9 Storage limit
+### 6.2.8 Plan out your tasks
 
 ```{r quiz16, echo=FALSE}
-question("How much free storage does Google Drive provide?",
-  answer("15GB", correct = TRUE),
-  answer("5GB"),
-  answer("50GB"),
-  answer("100GB")
+quiz(
+  question("What is the first thing you should do when you sit down to do your data science work?",
+    answer("Start working immediately"),
+    answer("Take a break"),
+    answer("Determine what tasks you would like to accomplish", correct = TRUE)
+  )
 )
 ```
 
 
-### 5.3.10 Security
+### 6.2.9 Do the task
 
 ```{r quiz17, echo=FALSE}
-question("What is the recommended method to secure your files on Google Drive?",
-  answer("Two-step verification", correct = TRUE),
-  answer("Strong password only"),
-  answer("Using a VPN"),
-  answer("Private browsing mode")
+quiz(
+  question("What is a good way to stay focused on your task?",
+    answer("Multitask"),
+    answer("Using a timer to track your time", correct = TRUE),
+    answer("Taking long breaks")
+  )
 )
 ```
 
-### 5.3.11 More specifics on using Google Drive
+
+### 6.2.10 Stick to it (you can do it!)
 
 ```{r quiz18, echo=FALSE}
-question("Where can you find more tutorials on using Google Drive?",
-  answer("YouTube.com", correct = TRUE),
-  answer("Netflix"),
-  answer("Hulu"),
-  answer("Amazon Prime Video")
+quiz(
+  question("What should you focus on while working on creating habits?",
+    answer("Failures"),
+    answer("Improvement", correct = TRUE),
+    answer("Other people's progress")
+  )
 )
 ```
 
 
-## 5.4 Other Accounts Setup
-
-### 5.4.1 LinkedIn Account
+### 6.2.11 Self-reevaluate
 
 ```{r quiz19, echo=FALSE}
-question("What is the primary purpose of LinkedIn?",
-  answer("Social networking for employment", correct = TRUE),
-  answer("Sharing personal photos"),
-  answer("Watching videos"),
-  answer("Finding recipes")
+quiz(
+  question("What should you do at the end of each day or week?",
+    answer("Ignore your progress"),
+    answer("Reflect on your task list and what you got done", correct = TRUE),
+    answer("Focus only on your failures")
+  )
 )
 ```
 
 
-### 5.4.2 Twitter Account
+### 6.2.12 Reach out for help
 
 ```{r quiz20, echo=FALSE}
-question("What is the primary purpose of Twitter?",
-  answer("Posting and interacting with messages called 'tweets'", correct = TRUE),
-  answer("Sharing personal photos"),
-  answer("Watching videos"),
-  answer("Finding recipes")
+quiz(
+  question("What should you do if you are stuck on a particular task?",
+    answer("Give up"),
+    answer("Ask for help", correct = TRUE),
+    answer("Wait for the solution to come")
+  )
 )
 ```
-
-
-### 5.4.3 Basecamp Account
-
-```{r quiz21, echo=FALSE}
-question("What is the primary purpose of Basecamp?",
-  answer("Communicating and working together on projects", correct = TRUE),
-  answer("Sharing personal photos"),
-  answer("Watching videos"),
-  answer("Finding recipes")
-)
-```
-
-
-### 5.4.4 RStudio Cloud Account
-
-```{r quiz22, echo=FALSE}
-question("What is the primary purpose of RStudio Cloud?",
-  answer("Working with R programming language for statistical computing and graphics", correct = TRUE),
-  answer("Sharing personal photos"),
-  answer("Watching videos"),
-  answer("Finding recipes")
-)
-```
-
 
 
 
 ## Congratulations!
 
-That's it for the interactive tutorial on Chapter 5: Account Setup. We hope you found it informative and engaging. Good luck with the rest of the course!
+Congratulations! You have completed the tutorial on remote work and task management. Remember to always prioritize your well-being and strive for a healthy work-life balance while working remotely.

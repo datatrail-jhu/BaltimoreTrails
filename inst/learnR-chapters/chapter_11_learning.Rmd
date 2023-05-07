@@ -1,0 +1,135 @@
+---
+title: "Chapter 11 RStudio and Projects"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(tidyr)
+library(dplyr)
+knitr::opts_chunk$set(echo = TRUE)
+tutorial_options(exercise.checker = NULL)
+```
+
+
+## Chapter 11 RStudio and Projects
+
+In this interactive tutorial, we will go through Chapter 11 of the course, focusing on RStudio and Projects.
+
+### Logging in to RStudio Cloud
+
+```{r quiz0, echo=FALSE}
+quiz(
+  question("What is RStudio Cloud?",
+    answer("A cloud-based version of RStudio", correct = TRUE),
+    answer("A cloud-based version of R"),
+    answer("A data storage service"),
+    answer("A data visualization tool"),
+    allow_retry = TRUE
+  ),
+  question("How do you log in to RStudio Cloud for this course?",
+    answer("Using your Google account", correct = TRUE),
+    answer("Using your GitHub account"),
+    answer("Using your Microsoft account"),
+    answer("Creating a new RStudio Cloud account")
+  ),
+  question("How do you create a new RStudio project?",
+    answer("Click on the 'New Project' button", correct = TRUE),
+    answer("Press Ctrl + N"),
+    answer("Go to File > New Project"),
+    answer("Right-click on the workspace and select 'New Project'")
+  ),
+  question("How do you open a new R script?",
+    answer("Go to File > New File > R Script", correct = TRUE),
+    answer("Press Ctrl + R"),
+    answer("Click on the 'New R Script' button"),
+    answer("Right-click on the workspace and select 'New R Script'")
+  ),
+  question("What is the purpose of the Console in RStudio?",
+    answer("To type and execute commands", correct = TRUE),
+    answer("To store your data"),
+    answer("To write and edit code"),
+    answer("To visualize your data")
+  )
+)
+```
+
+
+### Logging in to RStudio Cloud
+
+```{r quiz1, echo=FALSE}
+quiz(
+  question("What should you see in the Environment quadrant?",
+    answer("An object called 'example'", correct = TRUE),
+    answer("An object called 'matrix'"),
+    answer("An error message"),
+    answer("Nothing")
+  ),
+  question("Which tab in the Environment quadrant contains the commands that have been run in this session?",
+    answer("Data"),
+    answer("History", correct = TRUE),
+    answer("Packages"),
+    answer("Files")
+  )
+)
+```
+
+
+### Making a new folder
+
+```{r quiz2, echo=FALSE}
+quiz(
+  question("Where can you create a new folder in RStudio?",
+    answer("In the Source panel"),
+    answer("In the Console panel"),
+    answer("In the Environment panel"),
+    answer("In the Files pane", correct = TRUE)
+  )
+)
+```
+
+
+### Files/Help/Plots/Packages/Viewer
+
+```{r quiz3, echo=FALSE}
+quiz(
+  question("Where do generated plots appear in RStudio?",
+    answer("In the Source panel"),
+    answer("In the Console panel"),
+    answer("In the Environment panel"),
+    answer("In the Plots tab", correct = TRUE)
+  ),
+  question("Where can you find the documentation for R packages and functions?",
+    answer("In the Source panel"),
+    answer("In the Console panel"),
+    answer("In the Help tab", correct = TRUE),
+    answer("In the Viewer tab")
+  )
+)
+```
+
+
+### Swirl
+
+
+```{r quiz4, echo=FALSE}
+quiz(
+  question("What does the swirl() function do?",
+    answer("It starts a swirl module", correct = TRUE),
+    answer("It installs the swirl package"),
+    answer("It creates a new project in RStudio"),
+    answer("It generates a plot")
+  ),
+  question("What is the keyboard shortcut to run a line of code in RStudio?",
+    answer("Alt + Enter"),
+    answer("Ctrl + Shift + Enter"),
+    answer("Ctrl + Enter", correct = TRUE),
+    answer("Shift + Enter")
+  )
+)
+```
+
+
+
+Now that you've completed the quiz, you should have a better understanding of RStudio, how to create projects and work with R scripts, and the purpose of the Console. Keep practicing and exploring RStudio to become more familiar with its features and functionalities. Happy coding!

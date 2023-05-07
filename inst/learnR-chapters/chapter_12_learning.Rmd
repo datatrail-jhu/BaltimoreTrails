@@ -1,0 +1,52 @@
+---
+title: "Chapter 12: Your First Data Science Project"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+## Chapter 12: Your First Data Science Project
+
+In this interactive tutorial, we will go through Chapter 11 of the course, focusing on RStudio and Projects.
+
+### Conclusions
+
+```{r quiz0, echo=FALSE}
+quiz(
+  question("What is the first step in any data science project?",
+    answer("Collecting and cleaning data"),
+    answer("Creating models"),
+    answer("Asking a question that can be answered with data", correct = TRUE),
+    answer("Sharing the answer with other people")
+  ),
+  question("Which RStudio feature allows you to run a specific line or block of code?",
+    answer("Shift + Enter"),
+    answer("Ctrl + Enter", correct = TRUE),
+    answer("Alt + Enter"),
+    answer("Cmd + Enter")
+  ),
+  question("What is the correct file extension for an R Markdown file?",
+    answer(".R"),
+    answer(".Rmd", correct = TRUE),
+    answer(".html"),
+    answer(".md")
+  ),
+  question("Which file should you upload to your assignment folder?",
+    answer("first_project.R"),
+    answer("first_project.html"),
+    answer("Both first_project.R and first_project.html"),
+    answer("first_project.Rmd and first_project.nb.html", correct = TRUE)
+  ),
+  question("What is the purpose of the Conclusions section in a data science project?",
+    answer("To document the data collection process"),
+    answer("To write up responses to questions posed in the project and summarize findings", correct = TRUE),
+    answer("To create models to help understand and answer the question"),
+    answer("To share the code used in the project")
+  )
+)
+```

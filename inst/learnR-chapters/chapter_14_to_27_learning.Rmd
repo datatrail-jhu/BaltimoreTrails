@@ -1,0 +1,2394 @@
+---
+title: "What is R"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(ggplot2)
+library(tidycensus)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 14: What is R
+
+
+### 14.0.1 Introduction to R
+
+In this interactive tutorial, you'll get an introduction to R, RStudio, and RStudio Cloud. We'll go through some history, concepts, and exercises to help you familiarize yourself with the R programming language and its environment.
+
+#### Exercise 1: Using R as a calculator
+
+Try using R as a calculator. Type the simple arithmetic operation 3 + 7 to see the result.
+
+```{r ex1, exercise = TRUE}
+# Type a simple arithmetic operation
+
+```
+
+#### Check your answer
+
+```{r ex1-check}
+grade_result(
+  pass_if(~identical(.result, 10))
+)
+```
+
+
+### 14.0.1 Introduction to R
+
+RStudio is a powerful and user-friendly environment for working with R. This section will introduce you to its main components.
+
+
+#### Exercise 2: Creating a variable
+
+Create a variable called x and assign it the value 5.
+
+
+```{r ex2, exercise=TRUE}
+# Create a variable called x and assign it the value 5
+
+```
+
+#### Check your answer
+
+```{r ex2-check}
+grade_result(
+  pass_if(~identical(.result, x <- 5))
+)
+```
+
+
+### 14.0.3 RStudio Cloud
+
+RStudio Cloud is a version of RStudio that can run in the cloud, allowing you to access your R projects from any computer.
+
+
+#### Exercise 3: Creating a vector
+
+Create a vector called `my_vector` containing the numbers 1, 2, 3, 4, and 5.
+
+```{r ex3, exercise=TRUE}
+# Create a vector called my_vector containing the numbers 1, 2, 3, 4, and 5
+
+```
+
+#### Check your answer
+
+```{r ex3-check}
+grade_result(
+  pass_if(~identical(.result, my_vector <- c(1,2,3,4,5)))
+)
+```
+
+
+### 14.0.4 Basic History
+
+This section gives you a brief overview of the history of R, RStudio, and RStudio Cloud.
+
+#### Exercise 4: Creating a function
+
+Create a function called `square` that takes a single argument x and returns its square.
+
+```{r ex4, exercise=TRUE}
+# Create a function called square that takes a single argument x and returns its square
+
+```
+
+#### Check your answer
+
+```{r ex4-solution}
+square <- function(x) x^2
+```
+
+
+### 14.0.5 Learning R
+
+Learning R can be challenging, but it's important to remember that frustration is normal, and failure is inevitable. Keep practicing and asking questions to improve your skills.
+
+#### Exercise 5: Using your function
+
+Use the `square` function you created earlier to find the square of 6.
+
+```{r ex5, exercise=TRUE}
+# Use the square function to find the square of 6
+
+```
+
+#### Check your answer
+
+```{r ex5-setup}
+square <- function(x) x^2
+```
+
+```{r ex5-check}
+grade_result(
+  pass_if(~identical(.result, square(6)))
+)
+```
+
+Congratulations! You have completed the interactive tutorial on "What is R". Keep exploring and learning about R and its environment to enhance your skills.
+
+## Chapter 15: Objects in R
+
+### 15.0.1 What is an object?
+
+An object in R is something that contains information. In R there are a number of basic classes and types of objects.
+
+Classes - tell us what kind of data is being stored? Is it a number? A category? A word?
+
+Types - tell us what shape the data are being stored as. Is it a table? A series of items together (called a vector)? Or something with a different structure all together.
+
+### 15.0.2 Storing objects
+
+In R, as with all programming languages, it is important to be able to store objects that we create so that we can use them in later code. The process of storing an object is called assignment, and it entails giving an object a name. For example, the following code creates an object called min_age and stores inside that object the value 21. It is equivalent to saying that min_age is equal to 21.
+
+```{r}
+min_age <- 21
+```
+
+The `<-` operator is called the assignment operator. After you run this code in R, you will see the object min_age show up in your Environment panel.
+
+#### Exercise 1: Assignment
+
+Assign the value 42 to a new variable called `my_variable`.
+
+```{r ex6, exercise=TRUE}
+# Assign the value 42 to my_variable
+
+```
+
+```{r ex6-setup}
+```
+
+```{r ex6-check}
+grade_result(
+  pass_if(~identical(.result, my_variable <- 42))
+)
+```
+
+### 15.0.3 Printing objects
+
+Often we will want to print the contents of an object to see the information it contains. We can do this by clicking in the Console in RStudio Cloud (bottom left corner). The R prompt is indicated by the > in the Console. This indicates that R is ready to accept a command from you. If we simply enter the number 21 at the R prompt, the 21 object will be printed, but you will not see an object come up under the Environment pane (top right corner).
+
+#### Exercise 2: Printing an object
+
+Print the value of `my_variable` that you created in the previous exercise.
+
+```{r ex7, exercise=TRUE}
+# Print the value of my_variable
+
+```
+
+```{r ex7-setup}
+my_variable <- 42
+```
+
+```{r ex7-check}
+grade_result(
+  pass_if(~identical(.result, 42))
+)
+```
+
+#### 15.0.3.1 Classes of objects
+
+Five classes that you'll be working with commonly are:
+
+1. Character - e.g. "sharon" "marcus"
+2. Integer - e.g. 1, 4 (whole numbers)
+3. Numeric - e.g. 1.2, 3.4, 4
+4. Logical - only two options: TRUE or FALSE.
+5. Factor - red, red, blue, yellow (categories that could be repeated).
+
+We will describe each of these classes in more detail but first, why are these important anyway?
+
+#### 15.0.3.2 Why are classes important?
+
+Let's discuss an example.
+
+If we asked:What is Blue divided by 2 equal?" You would rightly tell us that question doesn't even make sense and you can't answer it.
+
+But if we asked: "What is 4 divided by 2 equal?", then you could easily tell us 4/2 = 2. In the same way, R will throw errors at us if we ask it nonsensical questions or things that its not built to do.
+
+Because of this, we need to keep an eye on what kind of data classes we have, and what kinds of things we are asking R to do to make sure that those things make sense together.
+
+### 15.0.4 Character
+
+Character objects in R can be created by surrounding a string in either double quotes or single quotes as in the following two examples.
+
+"This is a character object."
+
+'This is also a character object.'
+
+#### Exercise 3: Create a character object
+
+Create a character object called `my_char` containing the string "R is fun!".
+
+```{r ex8, exercise=TRUE}
+# Create a character object called my_char with the value "R is fun!"
+
+```
+
+```{r ex8-setup}
+```
+
+```{r ex8-check}
+grade_result(
+  pass_if(~identical(.result, "R is fun!"))
+)
+```
+
+
+#### 15.0.5 Integer
+
+Integers are whole numbers, such as 1, 23, or 1000. 1.2 is not an integer, as it contains a fraction of a number. Integer objects in R can be created by specifying an integer number followed by the letter "L". The following creates an integer object called num and stores the value 1.
+
+```{r}
+num <- 1L
+```
+
+
+#### Exercise 4: Create an integer object
+
+Create an integer object called `my_int` containing the value 5.
+
+
+```{r ex9, exercise=TRUE}
+# Create an integer object called my_int with the value 5
+
+```
+
+```{r ex9-setup}
+```
+
+```{r ex9-check}
+grade_result(
+  pass_if(~identical(.result, 5L))
+)
+```
+
+We can create an integer vector with multiple items using the c function, the concatenation function. The following creates an integer vector of length 3 with the numbers 1, 10, and 3.
+
+```{r}
+num_vec <- c(1L, 10L, 3L)
+```
+
+We can also create an integer vector with the colon operator. The colon operator specifies to include all numbers between the value before the colon and the value after the colon. The following command creates an integer vector with the numbers 2, 3, 4, and 5.
+
+```{r}
+num_vec2 <- 2:5
+```
+
+#### Exercise 5: Create an integer vector
+
+Create an integer vector called `my_int_vec` containing the numbers 1 to 10.
+
+```{r ex10, exercise=TRUE}
+# Create an integer vector called my_int_vec containing the numbers 1 to 10
+
+```
+
+```{r ex10-setup}
+```
+
+```{r ex10-check}
+grade_result(
+  pass_if(~identical(.result, 1:10))
+)
+```
+
+### 15.0.6 Numeric
+
+Numeric objects in R represent real numbers and are created by simply entering a number.
+
+```{r}
+num1 <- 1
+num2 <- 1.2
+```
+
+We can create a numeric vector with multiple items using the c function.
+
+```{r}
+num_vec <- c(1.2, 9.8)
+```
+
+#### Exercise 6: Create a numeric object
+
+Create a numeric object called `my_num` containing the value 3.14.
+
+```{r ex11, exercise=TRUE}
+# Create a numeric object called my_num with the value 3.14
+
+```
+
+```{r ex11-setup}
+```
+
+```{r ex11-check}
+grade_result(
+  pass_if(~identical(.result, 3.14))
+)
+```
+
+### 15.0.7 Logical
+
+Logical objects in R represent true or false conditions and can be created by typing "TRUE" or "FALSE".
+
+```{r}
+check_condition <- TRUE
+check_condition <- FALSE
+```
+
+We can create a logical vector with multiple items using the c function.
+
+```{r}
+check_condition <- c(TRUE, TRUE, FALSE)
+```
+
+#### Exercise 7: Create a logical vector
+
+Create a logical vector called my_logi_vec containing the values TRUE, FALSE, and TRUE.
+
+```{r ex12, exercise=TRUE}
+# Create a logical vector called my_logi_vec containing the values TRUE, FALSE, and TRUE
+
+```
+
+```{r ex12-setup}
+my_logi_vec <- c(TRUE, FALSE, TRUE)
+
+```
+
+```{r ex12-check}
+grade_result(
+  pass_if(~identical(.result, c(TRUE, FALSE, TRUE)))
+)
+```
+
+### 15.0.8 Factor
+
+To create a factor object from a character vector, we can use the `factor` function or the `as.factor` function.
+
+```{r}
+colors <- c("red", "red", "blue", "red", "blue")
+colors_factor1 <- factor(colors, levels = c("red", "blue"))
+colors_factor2 <- as.factor(colors)
+```
+
+#### Exercise 8: Create a factor object
+
+Create a factor object called `my_factor` from the character vector `fruits` provided below. The levels should be "apple", "banana", and "orange".
+
+```{r ex13, exercise=TRUE}
+# Create a factor object called my_factor from the character vector fruits with the levels "apple", "banana", and "orange"
+
+fruits <- c("apple", "banana", "apple", "orange", "banana")
+
+```
+
+```{r ex13-setup}
+fruits <- c("apple", "banana", "apple", "orange", "banana")
+
+```
+
+```{r ex13-check}
+grade_result(
+  pass_if(~identical(.result, factor(fruits, levels = c("apple", "banana", "orange"))))
+)
+```
+
+
+#### 15.0.9 Data frames
+
+Data frames are a more complex data type than simple vectors. They organize data into a rectangular format where each column corresponds to a single variable and each row corresponds to an observation. You will learn more about working with data frames in subsequent chapters.
+
+#### 15.0.10 Missing values
+
+Missing values are encoded with NA in R. Below are some examples of creating objects of various basic types that contain missing values.
+
+```{r}
+char_vec <- c(NA, "two", "four")
+num_vec <- c(1L, 10L, NA, 3L)
+logi_vec <- c(TRUE, NA, FALSE, FALSE)
+factor_vec <- as.factor(c(NA, "apple", "banana"))
+
+```
+
+#### Exercise 9: Create a character vector with missing values
+
+Create a character vector called `my_missing_chars` containing the values "hello", NA, "world", and NA.
+
+```{r ex14, exercise=TRUE}
+# Create a character vector called my_missing_chars containing the values "hello", NA, "world", and NA
+
+```
+
+```{r ex14-setup}
+```
+
+```{r ex14-check}
+grade_result(
+  pass_if(~identical(.result, c("hello", NA, "world", NA)))
+)
+```
+
+#### 15.0.11 Determining the class and shape of an object
+
+To determine the class of an object, you can use the `class()` function:
+
+```{r}
+min_age <- 21
+class(min_age)
+```
+
+You can use the `str()` function to determine the structure of an object:
+
+```{r}
+colors <- c("red", "red", "blue", "red", "blue")
+str(colors)
+```
+
+#### Exercise 10: Determine the class of an object
+
+Determine the class of the object my_factor created earlier in the tutorial.
+
+```{r ex15, exercise=TRUE}
+# Determine the class of the object my_factor
+
+```
+
+```{r ex15-setup}
+fruits <- c("apple", "banana", "apple", "orange", "banana")
+my_factor <- factor(fruits, levels = c("apple", "banana", "orange"))
+```
+
+```{r ex15-check}
+grade_result(
+  pass_if(~identical(.result, "factor"))
+)
+```
+
+With these exercises, you have learned about different types of objects in R, including numeric, logical, factor, and data frames. You've also learned how to create objects with missing values and determine the class and structure of objects in R. This knowledge will serve as a foundation for your further learning in R programming.
+
+
+## Chapter 16: Working with Logicals
+
+Earlier in this course, you learned that one of the basic classes of objects in R is the class of logical objects which contain TRUE and FALSE values. Logicals come up very frequently in data management and analysis because they form the basis of conditional operations (if a condition is met, perform a task) and are instrumental in data exploration, visualization, and analysis. In this lesson, we will cover the tools you will need to work with logical values in R.
+
+As you work through this lesson, you'll be inundated with TRUE and FALSE a lot. That is because there are only two options when it comes to logicals. However, these are incredibly important and helpful class of objects. So, take your time to understand each example. Copying and pasting the code into your own RStudio, running it, and spending time to understand the output will really help you understand how to work with logicals!
+
+### 16.0.1 Logical operators
+
+One of the most common ways to create and combine logical objects is to use logical operators. Logical operators in R perform actions relating to logic checking and include the following:
+
+`!`: the "not" operator
+`&`: the "and" operator
+`|`: the "or" operator
+`==`: the "equals" operator
+`!=`: the "not equal" operator
+`>`: the "greater than" operator
+`>=`: the "greater than or equal to" operator
+`<:` the "less than" operator
+`<=`: the "less than or equal to" operator
+`%in%`: the "contained in" operator
+
+Now let's dive into some exercises to familiarize ourselves with logical operators.
+
+#### Exercise 1: Use logical operators
+
+Create a logical vector `result` using the logical operators `&` and `>` with the given numeric vectors `x` and `y`. The result should contain `TRUE` when the corresponding elements of `x` are greater than 2 and `y` are greater than 3.
+
+
+```{r ex16, exercise=TRUE}
+x <- c(1, 2, 3, 4, 5)
+y <- c(2, 4, 6, 8, 10)
+
+# Create the logical vector result
+```
+
+```{r ex16-setup}
+#result <- x > 2 & y > 3
+```
+
+```{r ex16-check}
+grade_result(
+  pass_if(~identical(.result, c(FALSE, FALSE, TRUE, TRUE, TRUE)))
+)
+```
+
+
+#### Exercise 2: Use the "not" operator
+
+Create a logical vector `not_result` that contains the negation of the `result` vector from the previous exercise.
+
+
+```{r ex17, exercise=TRUE}
+# Create the logical vector not_result
+
+```
+
+```{r ex17-setup}
+x <- c(1, 2, 3, 4, 5)
+y <- c(2, 4, 6, 8, 10)
+result <- x > 2 & y > 3
+#not_result <- !result
+```
+
+```{r ex17-check}
+grade_result(
+  pass_if(~identical(.result, c(TRUE, TRUE, FALSE, FALSE, FALSE)))
+)
+```
+
+
+#### Exercise 3: Use the "contained in" operator
+
+Create a logical vector `colors_result` that contains `TRUE` for each element in the `colors` vector that is either `"red"` or `"green"`.
+
+```{r ex18, exercise=TRUE}
+# Create the logical vector not_result
+colors <- c("red", "blue", "green","orange", "red")
+```
+
+```{r ex18-setup}
+#colors_result <- colors %in% c("red", "green")
+```
+
+```{r ex18-check}
+grade_result(
+  pass_if(~identical(.result, c(TRUE, FALSE, TRUE, FALSE, TRUE)))
+)
+```
+
+#### Exercise 4: Compare character objects
+
+Create a logical vector `is_red` that contains `TRUE` for each element in the `colors` vector that is equal to `"red"`.
+
+
+```{r ex19, exercise=TRUE}
+# Create the logical vector is_red
+
+```
+
+```{r ex19-setup}
+colors <- c("red", "blue", "green","orange", "red")
+#is_red <- colors == "red"
+```
+
+```{r ex19-check}
+grade_result(
+  pass_if(~identical(.result, c(TRUE, FALSE, FALSE, FALSE, TRUE)))
+)
+```
+
+
+#### Exercise 5: Use multiple logical operators
+
+Using the given `ages` and `cutoff` vectors, create a logical vector `result2` that contains `TRUE` when the corresponding elements of `ages` are greater than or equal to the elements in `cutoff` and less than 20.
+
+```{r ex20, exercise=TRUE}
+ages <- c(12, 17, 16, 13, 14)
+cutoff <- c(12, 12, 14, 14, 14)
+
+# Create the logical vector result2
+
+```
+
+```{r ex20-setup}
+#result2 <- ages >= cutoff & ages < 20
+```
+
+```{r ex20-check}
+grade_result(
+  pass_if(~identical(.result, c(TRUE, TRUE, TRUE, FALSE, TRUE)))
+)
+```
+
+
+### 16.0.2 Logical functions
+
+So far we have used logical operators to ask yes/no questions on a unit-by-unit basis. That is, asking the question for each data observation. This has given us TRUE/FALSE answers for each unit. We might also want to summarize the results of these multiple responses with questions such as "Do all units meet the condition?" or "Do any (at least one) units meet the condition?"
+
+For the first question, "Do all units meet the condition?", we can use the `all` function. The `all` function takes a logical object as input and returns `TRUE` if all values in the logical object are `TRUE`, and it returns `FALSE` otherwise. Are all student ages equal to the individual cutoffs? Are all ages greater than or equal to zero?
+
+```{r}
+ages <- c(12, 17, 16, 13, 14)
+indiv_cutoffs <- c(12, 12, 14, 14, 14)
+common_cutoff <- 14
+
+all(ages == indiv_cutoffs)
+all(ages >= 0)
+```
+
+For the second question, "Do any units meet the condition?", we can use the `any` function. The `any` function takes a logical object as input and returns `TRUE` if at least one of the values in the logical object is `TRUE`, and it returns `FALSE` otherwise. Are any of the student ages equal to the common cutoff? Are any ages greater than 100?
+
+```{r}
+any(ages == common_cutoff)
+any(ages > 100)
+```
+
+#### Exercise 6: Using the `any` function
+
+Given the `colors` vector below, use the `any` function to check if any color is in the set `c("purple", "yellow")`.
+
+```{r ex21, exercise=TRUE}
+colors <- c("red", "green", "blue", "purple", "yellow")
+
+# Use the any function
+
+```
+
+```{r ex21-setup}
+#any(colors %in% c("purple", "yellow"))
+```
+
+```{r ex21-check}
+# grade_result(
+#   pass_if(~identical(.result, TRUE)),
+# )
+grade_result(
+  pass_if(~identical(.result, c(TRUE)))
+)
+```
+
+### 16.0.3 Summary
+
+This lesson walked you through how to work with operators and logical objects. This will be incredibly helpful as you start to manipulate and clean data. Having a thorough understanding of this class of objects and how to work with them will serve you well going forward.
+
+#### Exercise 7: Use the which function
+
+Given the `colors` vector below, use the `which` function to find the indices of colors that are in the set `c("red", "green", "blue")`.
+
+```{r ex22, exercise=TRUE}
+colors <- c("red", "green", "blue", "purple", "yellow")
+
+# Use the which function
+
+```
+
+```{r ex22-solution}
+colors <- c("red", "green", "blue", "purple", "yellow")
+
+# Use the which function
+which(colors %in% c("red", "green", "blue"))
+```
+
+```{r ex22-check}
+grade_code()
+```
+
+### Working with Logicals: Recap
+
+In this tutorial, we have covered the following logical functions:
+
+* `all` function: returns `TRUE` if all values in the input logical object are `TRUE`, and it returns `FALSE` otherwise.
+* `any` function: returns `TRUE` if at least one of the values in the input logical object is `TRUE`, and it returns `FALSE` otherwise.
+* `which` function: returns the indices of `TRUE` values in the input logical object.
+
+These functions are essential when working with logical objects and manipulating data. A solid understanding of how to work with these objects will be beneficial as you progress in your data analysis journey.
+
+Feel free to revisit the tutorial and practice the exercises as needed to reinforce your understanding of these logical functions. Good luck with your future data analysis projects!
+
+## Chapter 17: Data Frames
+
+A majority of the time that you are working with data in R, you will have it in the form of a data frame. Data frames can contain different types of variables in a rectangular format, much like how spreadsheets are. A data frame's size can be described in terms of rows (across) and columns (up/down). Rows are often called observations, and columns are called variables.
+
+In this tutorial, we will cover the following:
+
+1. Exploring data frames
+2. Subsetting data frames
+
+### Exploring data frames
+
+In R, there are built-in data frames that you can use to play with. In this lesson, we will use some of these to get comfortable with data frames.
+
+#### Exercise 1: Explore the iris data frame
+
+Explore the iris data frame using the following functions:
+
+* `head()`
+* `tail()`
+* `names()`
+* `nrow()`
+* `ncol()`
+
+```{r ex23, exercise=TRUE}
+# Explore the iris data frame using the functions mentioned above
+```
+
+```{r ex23-setup}
+
+```
+
+```{r ex23-check}
+grade_result(
+  pass_if(~identical(.result, head(iris))),
+  fail_if(~is.null(.result), "Please use one of the functions mentioned.")
+)
+
+```
+
+
+#### Exercise 2: Using summary() and str()
+
+Use the `summary()` and `str()` functions to explore the overall properties of the `iris` data frame.
+
+```{r ex24, exercise=TRUE}
+# Use the summary() and str() functions to explore the iris data frame
+```
+
+```{r ex24-setup}
+
+```
+
+```{r ex24-check}
+grade_result(
+  pass_if(~identical(.result, summary(iris))),
+  fail_if(~is.null(.result), "Please use one of the functions mentioned.")
+)
+```
+
+### Subsetting data frames
+
+There are multiple ways you can subset your data frame if you want to only look at certain parts of it.
+
+#### Exercise 3: Extracting columns using `$`
+
+Extract the `Species` column from the `iris` data frame using the `$` operator.
+
+```{r ex25, exercise=TRUE}
+# Extract the Species column from the iris data frame
+```
+
+```{r ex25-setup}
+
+```
+
+```{r ex25-check}
+grade_result(
+  pass_if(~identical(.result, iris$Species)),
+  fail_if(~is.null(.result), "Please use the $ operator to extract the Species column.")
+)
+```
+
+### Brackets for indexing
+
+Brackets can be used to index data frames or other objects. In the case of data frames, you can subset data frames like below:
+
+#### Example 1
+
+This example will extract the second row's data and the 1st column.
+
+```{r}
+iris[2, 1]
+```
+
+Subsetting always goes [row, column].
+
+#### Example 2
+In this example, the first row and all the columns of that row will be extracted.
+
+```{r}
+iris[1, ]
+```
+
+#### Example 3
+
+In this example, all rows of the 3rd column will be extracted.
+
+```{r}
+iris[, 3]
+```
+
+#### Interactive Exercise 1
+
+Now it's your turn! Subset the iris dataset to extract the first 10 rows and the first 2 columns.
+
+```{r ex26, exercise = TRUE}
+iris[1:10, 1:2]
+```
+
+
+#### Interactive Exercise 2
+
+Subset the iris dataset to extract the data for the 5th row only.
+
+```{r ex27, exercise = TRUE}
+iris[5, ]
+```
+
+
+#### First plot!
+
+Now that we have some basics down, let's preview how we can easily make visuals with R. "A picture is worth a thousand words" is also true when it comes to data!
+
+In this quick plot example, we can show how Sepal Length is related to Sepal Width by extracting the data using `$`. Additionally, we can color code the data points by Species by using the col argument.
+
+```{r ex28, exercise = TRUE}
+plot(iris$Sepal.Length, iris$Sepal.Width, col = iris$Species)
+```
+
+Don't worry too much about the specifics of plotting. We will go into much more detail about how to make visuals of your data later. This is just to illustrate how R makes data visuals easy to make!
+
+### What about matrices and tibbles?
+
+At this point, we should mention some cousins of the data frame: matrices and tibbles.
+
+All three of these types of objects: data frames, matrices, and tibbles contain two dimensions: rows and columns. And often you may be able to handle them similarly. But, they do have some differences that are worth knowing about!
+
+#### What's a matrix?
+
+A matrix is like a data frame but it needs to contain all the same data type. So it can be all numeric, all character, or etc.
+
+A data frame by contrast can have one column that is string, another that is factor, and so on.
+
+Let's experiment with what this means in practical terms and start out by making a very small data frame.
+
+```{r ex29, exercise = TRUE}
+df <- data.frame(num = 1:4, y = c("red", "blue", "green", "purple"))
+
+df
+```
+
+We've made our data frame with two types of data: a numeric (integer) column and a character column.
+
+#### What's a tibble?
+
+A tibble is super similar to a data frame. It's the tidyverse brand of data frame. They are similar enough, that for most instances, especially when you are working with tidyverse functions, you can treat them the same. However, if you get a peculiar error when trying to use a tibble with a non-tidyverse function, you may need to use the as.data.frame() function to coerce your tibble to a data frame. But you shouldn't encounter this problem too often.
+
+Now that we've covered the basics of data frames, matrices, and tibbles, you should have a better understanding of how to manipulate and work with these data structures in R. Practice indexing, subsetting, and plotting with different datasets to solidify your understanding and improve your skills!
+
+## Chapter 18: Basic Commands in R
+
+### Functions in R
+
+In R, functions are used to perform tasks. Functions have a name followed by a set of parentheses containing inputs, also known as arguments. Some functions have default arguments, which are used if you don't specify them.
+
+```{r ex31, exercise = TRUE}
+mean(1:10, trim = 0.1)
+
+```
+
+#### Exercise 1: Functions
+
+Calculate the mean of the numbers 1 through 20 without any trimming. Enter your answer in the code chunk below.
+
+```{r ex32, exercise=TRUE}
+
+```
+
+```{r ex32-solution}
+mean(1:20)
+```
+
+```{r ex32-check}
+grade_code()
+```
+
+### Inspecting Objects in R
+
+We often need to know more about the objects we are working with in R. Functions like `class()`, `str()`, and `length()` can help us gather information about an object's class, structure, and length, respectively.
+
+#### Exercise 2: Inspecting Objects
+
+Create a numeric vector `x` containing the numbers 1 through 5. Then, find the class and length of `x` in the code chunk below.
+
+```{r ex33, exercise=TRUE}
+x <- 1:5
+# find the class of x
+```
+
+```{r ex33-solution}
+class(x)
+```
+
+```{r ex33-check}
+grade_code()
+```
+
+
+```{r ex34, exercise=TRUE}
+x <- 1:5
+# find the length of x
+```
+
+```{r ex34-solution}
+length(x)
+```
+
+```{r ex34-check}
+grade_code()
+```
+
+### Working with Named Objects
+
+In R, objects can have components, which are designated with names. We can use functions like `names()`, `colnames()`, and `rownames()` to inspect and manipulate these names.
+
+#### Exercise 3: Named Objects
+
+Create a named vector `grades` with the names "Alice", "Bob", and "Charlie" and the corresponding grades 90, 85, and 95. Then, print the names of the grades vector in the code chunk below.
+
+```{r ex35, exercise=TRUE}
+
+```
+
+```{r ex35-solution}
+grades <- c(Alice = 90, Bob = 85, Charlie = 95)
+names(grades)
+```
+
+```{r ex35-check}
+grade_code()
+```
+
+### Exploring objects
+
+When working with objects in R, we sometimes want to see the information they contain. Let's explore some useful functions for this purpose.
+
+
+#### print(), head(), and tail()
+
+The `print()` function displays the entire contents of an object. However, printing the whole object might not be advisable for large objects. Instead, you can use `head()` and `tail()` functions to display the first and last 6 items of an object, respectively.
+
+Let's create a data frame and explore it:
+
+```{r}
+data <- data.frame(x = 1:10, y = 11:20)
+print(data)
+head(data)
+tail(data)
+```
+
+#### summary() and unique()
+
+`summary()` computes summary statistics for numeric data and tabulations for categorical data. Meanwhile, `unique()` shows only the unique elements of an object.
+
+Let's apply these functions to our `data`:
+
+```{r}
+summary(data)
+unique(data$x)
+```
+
+### Errors, Warnings, and Messages
+
+R might return three types of information: errors, warnings, and messages. Understanding the difference between them is essential.
+
+#### Errors
+
+Errors indicate that the code did not run successfully. If you receive an error message, you should carefully look back at your code to see what went wrong.
+
+Let's see an example of an error:
+
+```{r}
+data$nonexistent_column
+```
+
+
+#### Warnings
+
+Warnings are generated when the code executes but produces something unexpected. You should read the warning message and decide whether the code needs to be re-written or not.
+
+Let's see an example of a warning:
+
+```{r}
+log(-1)
+```
+
+#### Messages
+
+Messages provide you with more information and do not indicate that you have done anything wrong.
+
+### Interactive Questions
+
+#### Question 1
+
+Display the first 3 items of the `data` object using the `head()` function.
+
+```{r ex36, exercise=TRUE}
+# Write your code here
+```
+
+```{r ex36-setup}
+data <- data.frame(x = 1:10, y = 11:20)
+```
+
+```{r ex36-solution}
+head(data, 3)
+```
+
+```{r ex36-check}
+grade_code()
+```
+
+
+#### Question 2
+
+Calculate the mean of the `x` column in the `data` object.
+
+```{r ex37, exercise=TRUE}
+# Write your code here
+```
+
+```{r ex37-setup}
+data <- data.frame(x = 1:10, y = 11:20)
+```
+
+```{r ex37-solution}
+mean(data$x)
+```
+
+```{r ex37-check}
+grade_code()
+```
+
+### Summary
+
+In this tutorial, we explored some basic R commands to work with objects and learned about errors, warnings, and messages. Keep practicing to improve your R skills!
+
+## Chapter 19: Getting Help in R
+
+### Introduction
+
+In this interactive tutorial, you will learn about getting help in R, including accessing R documentation, debugging code, and asking questions effectively. Let's dive into the world of R and explore the resources available to enhance your programming skills!
+
+### Accessing R Documentation
+
+R documentation provides information on the usage and examples of functions. You can access R documentation directly within RStudio by typing a question mark (?) followed by the function or object name in the R console.
+
+#### Exercise: Accessing R Documentation
+
+Use the provided code below to access the documentation for the mean() function. Replace the "function_name" with the correct function name.
+
+```{r ex38, exercise=TRUE}
+# Write your code here
+?function_name
+```
+
+```{r ex38-setup}
+```
+
+```{r ex38-solution}
+?mean
+```
+
+```{r ex38-check}
+grade_this_code()
+```
+
+### Debugging Code
+
+Debugging is an essential skill in programming. Even the most experienced programmers encounter errors or unexpected results. In this section, we will go through some tips on how to debug your code effectively.
+
+#### Exercise: Debugging Code
+
+Read through the tips below and then answer the following question.
+
+Tips for debugging code:
+
+1. Carefully read error messages.
+2. Identify the source of the error.
+3. Ensure your code has run successfully and in the correct order.
+4. Google the error message.
+5. Consult function documentation to ensure correct usage.
+6. Try different search terms when googling the error message.
+7. Ask for help from peers or online communities.
+
+Which of the following is NOT a good debugging tip?
+
+A. Ignoring error messages
+B. Consulting function documentation
+C. Google the error message
+D. Asking for help
+
+```{r ex39, exercise=TRUE}
+# Replace the "X" with the correct option (A, B, C, or D)
+answer <- "X"
+```
+
+```{r ex39-setup}
+```
+
+```{r ex39-solution}
+answer <- "A"
+```
+
+```{r ex39-check}
+grade_code()
+```
+
+### Asking Questions Effectively
+
+Asking questions is crucial to learning programming and data science. Remember that the R community is welcoming and helpful, so don't hesitate to reach out for help when you encounter challenges.
+
+#### Exercise: Preparing a Good Question
+
+Read the following guidelines and then answer the question below.
+
+Guidelines for asking questions effectively:
+
+1. Clearly state the goal of your code.
+2. Identify the problematic code and error.
+3. Share the error message or problematic outcome.
+4. Provide a reproducible example (reprex) of your issue.
+
+Which of these guidelines is NOT part of asking an effective question?
+
+A. Clearly state the goal of your code
+B. Ignore error messages
+C. Share the error message or problematic outcome
+D. Provide a reproducible example (reprex)
+
+
+```{r ex40, exercise=TRUE}
+# Replace the "X" with the correct option (A, B, C, or D)
+answer <- "X"
+```
+
+```{r ex40-setup}
+```
+
+```{r ex40-solution}
+answer <- "B"
+```
+
+```{r ex40-check}
+grade_this({
+  if (identical(.result, "B")) {
+    pass("Great job! Ignoring error messages is NOT part of asking an effective question.")
+  } else {
+    fail("Incorrect. Try again!")
+  }
+})
+```
+
+### Summary
+
+Congratulations! You've completed the interactive tutorial on getting help in R. Now you know how to access R documentation, debug code, and ask questions effectively. Remember that the R community is a valuable resource, and you can always find support from your peers and online communities. Keep practicing and enhancing your R programming skills!
+
+Happy coding!
+
+## Chapter 20: Managing Files
+
+### Introduction
+
+In this interactive tutorial, you'll learn how to manage files using R. As a data scientist, you'll find it useful to automate the management and organization of files. R can help you handle files in complex situations, allowing you to manage them more efficiently than using the Terminal alone.
+
+### Console in RStudio Cloud
+
+When you open a project in RStudio Cloud, you'll see a Console pane next to the Terminal pane. The `>` symbol in the R console is the R prompt, where you can type and enter R commands.
+
+### Important Functions
+
+Let's learn some key R functions for managing files.
+
+#### 1. Get the Working Directory
+
+To find your working directory in R, use the `getwd()` function.
+
+```{r}
+getwd()
+```
+
+#### 2. Set the Working Directory
+
+To change the working directory in R, use the `setwd()` function.
+
+```{r}
+# setwd("path/to/your/directory")
+```
+
+#### 3. List Files in a Directory
+
+To list the files in a directory, use the `list.files()` function.
+
+```{r}
+list.files()
+```
+
+Now, let's practice with some interactive exercises.
+
+#### Exercise 1: Get the Working Directory
+
+Use the getwd() function to find your current working directory.
+
+```{r ex41, exercise=TRUE}
+```
+
+```{r ex41-setup}
+```
+
+```{r ex41-solution}
+getwd()
+```
+
+```{r ex41-check}
+grade_code()
+```
+
+#### Exercise 2: Set the Working Directory
+
+Change the working directory to a subfolder named "example_folder". Use the `setwd()` function and then use `getwd()` to check if the working directory has changed.
+
+```{r ex42, exercise=TRUE}
+```
+
+```{r ex42-setup}
+```
+
+```{r ex42-solution}
+setwd("example_folder")
+getwd()
+```
+
+#### Exercise 3: List Files in a Directory
+
+List the files in the current working directory using the `list.files()` function.
+
+```{r ex43, exercise=TRUE}
+```
+
+```{r ex43-setup}
+```
+
+```{r ex43-solution}
+list.files()
+```
+
+```{r ex43-check}
+grade_code()
+```
+
+### Managing Files in the Terminal
+
+Being a productive data scientist involves staying organized, and file management plays a crucial role in that process. In this tutorial, we will focus on using the Terminal to navigate and manipulate files.
+
+#### What is the Terminal?
+
+The Terminal is an interface that allows users to interact with a computer's operating system using text-based commands. In RStudio, the Terminal is located in the tab next to the Console. It is an essential tool for efficient file management and is also widely used for version control systems and working with GitHub.
+
+#### Terminal Commands for File Management
+
+Before we begin, let's review some basic vocabulary related to file systems:
+
+* File path: A string specifying a sequence of folders to traverse to reach a destination. File paths can be relative or absolute.
+* Working directory: The current folder you are in.
+
+Now, let's learn some essential Terminal commands for managing files:
+
+1. `pwd`: Print the current working directory.
+2. `ls`: List the files and folders in the current directory. Use `ls -lh` for a more detailed output.
+3. `cd`: Change the current working directory.
+
+Keep in mind that file paths should be typed accurately (capitalization, spaces, punctuation, etc.) for commands to work correctly. Using the tab completion feature in the Terminal can help ensure that file paths are entered correctly.
+
+```{r quiz0, echo=FALSE}
+quiz(
+  question("What is the command to print the current working directory?",
+    answer("`pwd`", correct = TRUE),
+    answer("`ls`"),
+    answer("`cd`"),
+    answer("`mdir`"),
+    allow_retry = TRUE
+  ),
+  question("What is the command to list the contents of the current directory?",
+    answer("`pwd`"),
+    answer("`ls`", correct = TRUE),
+    answer("`cd`"),
+    answer("`mdir`"),
+    allow_retry = TRUE
+  )
+)
+```
+
+### Terminal Commands: Practice
+
+Let's practice using these Terminal commands with some interactive questions.
+
+#### Question 1: Finding the current working directory
+
+Suppose you want to find your current working directory. Write the command that would achieve this:
+
+
+```{r ex44, exercise=TRUE}
+#Enter the command to print the current working directory by replacing the three dots below
+"..."
+```
+
+```{r ex44-setup}
+```
+
+```{r ex44-solution}
+"pwd"
+```
+
+```{r ex44-check}
+grade_code()
+```
+
+
+#### Question 2: Changing directories
+
+Imagine you are currently in the `/home/user/documents` directory and want to move to the `/home/user/pictures directory`. Write the command to change the working directory:
+
+
+```{r ex45, exercise=TRUE}
+#Enter the command to change the working directory to `/home/user/pictures` by replacing the three dots below
+"..."
+```
+
+```{r ex45-setup}
+```
+
+```{r ex45-solution}
+"cd ../pictures"
+```
+
+```{r ex45-check}
+grade_code()
+```
+
+Congratulations! You have completed the interactive tutorial on managing files in the Terminal. Remember to use these commands for efficient file navigation and manipulation in your data science projects.
+
+## Chapter 21: R Packages
+
+Welcome to this interactive tutorial on R packages! In this tutorial, you'll learn about what R packages are, where to find them, and how to install them from different repositories. Let's dive in!
+
+### What is an R package?
+
+R packages are collections of functions, data, and code that extend the functionality of the base R system. They are developed and published by the R community, and there are currently over 17,600 available packages. These packages are stored in repositories, which are central locations where you can download and install packages. Some popular repositories for R packages include CRAN, BioConductor, and GitHub.
+
+```{r ex46, echo=FALSE}
+quiz(
+  question("What is an R package?",
+    answer("A collection of functions, data, and code that extends R's functionality", correct = TRUE),
+    answer("A programming language"),
+    answer("A type of data visualization"),
+    answer("A library")
+  ),
+  question("Which of the following is a popular repository for R packages?",
+    answer("CRAN", correct = TRUE),
+    answer("GitLab"),
+    answer("Bitbucket"),
+    answer("Google Drive")
+  )
+)
+
+```
+
+### Finding the right package
+
+There are various ways to find the right package for your needs. Some methods include browsing CRAN's Task Views, using R Documentation's search engine, or simply Googling your task followed by "R package." You can also explore tutorials, vignettes, and forums to find relevant packages.
+
+Now let's learn how to install packages from different repositories.
+
+### Installing packages
+
+#### Installing from CRAN
+
+To install a package from CRAN, use the `install.packages()` function with the package name in quotes. For example, to install the `ggplot2` package, you would run:
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+```
+
+Try installing the `ggplot2` package in the code chunk below.
+
+```{r ex47, exercise=TRUE}
+
+```
+
+```{r ex47-setup}
+r = getOption("repos")
+r["CRAN"] = "http://cran.us.r-project.org"
+options(repos = r)
+```
+
+```{r ex47-solution}
+install.packages("ggplot2")
+```
+
+```{r ex47-check}
+grade_code()
+```
+
+#### Installing from BioConductor
+
+To install a package from BioConductor, first, install the `BiocManager` package using `install.packages("BiocManager")`. Then, use the `BiocManager::install()` function to install the desired package. For example, to install the `GenomicFeatures package`, you would run:
+
+```{r, eval=FALSE}
+install.packages("BiocManager")
+BiocManager::install("GenomicFeatures")
+```
+
+#### Installing from GitHub
+
+To install a package from GitHub, first, install the `devtools` package using `install.packages("devtools")`. Then, use the `install_github()` function from the `devtools` library, providing the author's GitHub username and the package name. For example, to install a package named "mypackage" from an author with the GitHub username "myusername", you would run:
+
+```{r, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("myusername/mypackage")
+```
+
+```{r ex48, echo=FALSE}
+quiz(
+  question(
+    "Which function is used to install packages from CRAN?",
+    answer("install.packages()", correct = TRUE),
+    answer("install_github()"),
+    answer("BiocManager::install()"),
+    answer("library()")
+  ),
+  question(
+    "Which package should you install to use functions for installing packages from BioConductor?",
+    answer("devtools"),
+    answer("BiocManager", correct = TRUE),
+    answer("ggplot2"),
+    answer("GitHub")
+  ),
+  question(
+    "Which package should you install to use functions for installing packages from GitHub?",
+    answer("devtools", correct = TRUE),
+    answer("BiocManager"),
+    answer("ggplot2"),
+    answer("BioConductor")
+  )
+)
+
+```
+
+### Loading Packages
+
+After installing a package, you need to load it to access its functions. You can do this in two ways:
+
+1. Use the `library()` function. To use the `write_csv()` function from the `readr` package, first run `library(readr)`, then you can call the `write_csv()` function.
+
+```{r, eval=FALSE}
+library(readr)
+write_csv(iris, "iris.csv")
+```
+
+2. Use the :: notation. If you only need one function from a package, you can call it directly without loading the whole package. For example, you can call the write_csv() function from the readr package without loading it first:
+
+```{r, eval=FALSE}
+readr::write_csv(iris, "iris.csv")
+```
+
+Now, let's try an exercise to test your understanding of loading packages.
+
+```{r ex49, echo=FALSE}
+quiz(
+  question("Which function should you use to load a package?",
+    answer("install.packages()"),
+    answer("library()", correct = TRUE),
+    answer("load()"),
+    answer("::")
+  ),
+  question("How can you call a function from a package without loading the entire package?",
+    answer("install.packages()"),
+    answer("library()"),
+    answer("load()"),
+    answer("::", correct = TRUE)
+  )
+)
+```
+
+### Dependencies and Updating Packages
+
+Some packages depend on other packages to function properly. These are called dependencies. When you install a package, R automatically installs any required dependencies as well.
+
+To update all installed packages, use `update.packages()`. To update a specific package, use `install.packages("packagename")`.
+
+
+```{r, eval=FALSE}
+example_update <- "update.packages()"
+example_specific <- "install.packages('readr')"
+code_feedback(
+  "Try running update.packages() to update all packages or install.packages('packagename') to update a specific package.",
+  list(example_update, example_specific)
+)
+```
+
+Now, let's do an exercise to practice updating packages.
+
+```{r ex50, exercise=TRUE}
+# Update all packages
+'YOUR CODE HERE'
+
+# Update only the readr package
+'YOUR CODE HERE'
+```
+
+```{r ex50-setup}
+r = getOption("repos")
+r["CRAN"] = "http://cran.us.r-project.org"
+options(repos = r)
+```
+
+```{r ex50-solution}
+# Update all packages
+'update.packages()'
+
+# Update only the readr package
+'install.packages("readr")'
+```
+
+```{r ex50-check}
+grade_code()
+```
+
+#### Unloading and Uninstalling Packages
+
+To unload a package, use the `detach()` function. For example, to unload the `ggplot2` package, use `detach("package:ggplot2", unload = TRUE)`.
+
+To uninstall a package, use the remove.packages() function. For example, to uninstall the ggplot2 package, use remove.packages("ggplot2").
+
+Now, let's do an exercise to practice unloading and uninstalling packages.
+
+```{r ex51, exercise=TRUE}
+# Update all packages
+'YOUR CODE HERE'
+
+# Update only the readr package
+'YOUR CODE HERE'
+```
+
+```{r ex51-setup}
+r = getOption("repos")
+r["CRAN"] = "http://cran.us.r-project.org"
+options(repos = r)
+```
+
+```{r ex51-solution}
+# Update all packages
+'detach("package:ggplot2", unload = TRUE)'
+
+# Update only the readr package
+'remove.packages("ggplot2")'
+```
+
+```{r ex51-check}
+grade_code()
+```
+
+### Summary
+
+In this tutorial, you've learned about R packages and how to work with them. You've practiced installing, loading, and using packages and their functions. You've also learned about dependencies, updating, unloading, and uninstalling packages.
+
+Keep practicing and exploring different packages to enhance your R skills and solve a wide variety of problems. Good luck!
+
+## Chapter 22: R Markdown
+
+R Markdown is a versatile document format that combines plain text, code, and the results of code execution in one place. This makes sharing your work, analyses, and findings much easier and more reproducible.
+
+### What is R Markdown?
+
+R Markdown documents can have either a `.Rmd` or `.rmd` file extension, indicating that they are R Markdown files. These files can be rendered into different output formats such as HTML, PDF, Word documents, or slides.
+
+### Why use R Markdown?
+
+Using R Markdown has several advantages, including:
+
+1. Reproducibility: By combining text, code, and results, you can share your work in a way that allows others to reproduce your results and understand your thought process.
+2. Documentation: R Markdown documents serve as a record of your work, helping you remember what you did and why you did it.
+3. Version control: R Markdown files are plain text, making them easy to track with version control systems like git and GitHub.
+
+Now that we know the benefits of R Markdown, let's dive in and create our first R Markdown document!
+
+### Creating an R Markdown Document
+
+To create a new R Markdown document in RStudio, go to File > New File > R Markdown.
+
+If prompted to install required packages, click "Yes" to install them.
+
+You'll then see a window where you can enter the document title and your name as the author. Click "OK" to create the document.
+
+```{r ex52, echo=FALSE}
+quiz(
+  question("What is the main advantage of using R Markdown?",
+    answer("Reproducibility"),
+    answer("Ease of use", correct = TRUE),
+    answer("Speed of execution")
+  ),
+  question("Which file extension is used for R Markdown documents?",
+    answer(".R"),
+    answer(".md"),
+    answer(".Rmd", correct = TRUE)
+  )
+)
+```
+
+#### The Structure of an R Markdown Document
+
+An R Markdown document consists of three main sections:
+
+1. __YAML header__: This is where you can specify details like the title, author, date, and output format. It is enclosed by three dashes (---).
+2. __Text__: Text in an R Markdown document is written using Markdown formatting.
+3. __Code chunks__: These are pieces of R code enclosed by triple backticks (```). The code in these chunks can be executed directly from the document, and the output is included when the document is rendered.
+
+To see the final output of your R Markdown document, you can "Knit" it.
+
+### Knitting R Markdown Documents
+
+"Knitting" an R Markdown document means rendering the plain text and code into the final output format. To knit a document, click the "Knit" button at the top of the RStudio source panel.
+
+```{r ex53, echo=FALSE}
+quiz(
+  question("What does 'Knitting' an R Markdown document mean?",
+    answer("Compiling the document"),
+    answer("Combining text, code, and output in the final format", correct = TRUE),
+    answer("Saving the document")
+  ),
+  question("How can you knit an R Markdown document in RStudio?",
+    answer("Click the 'Knit' button at the top of the source panel", correct = TRUE),
+    answer("Press Ctrl + K"),
+    answer("Use the knit() function in the console")
+  )
+)
+```
+
+
+### Creating Headers
+
+Headers are used to separate sections of your document. To create a header, add a `#` before the text. The more `#` symbols you add, the smaller the header.
+
+### Practice: Creating Headers
+
+Create a main header and a subheader below.
+
+```{r ex54, exercise=TRUE}
+# Your header goes here
+## Your subheader goes here
+```
+
+```{r ex54-solution}
+# Main header
+## Subheader
+```
+
+```{r ex54-check}
+grade_code()
+```
+
+### Formatting Text
+
+Bold or italicize text using asterisks. Use `**` for bold and `*` for italics.
+
+### Practice: Formatting Text
+
+Bold the word "bold" and italicize the word "italic" in the sentence below.
+
+```{r ex55, exercise=TRUE, exercise.eval=TRUE}
+"This is bold and this is italic."
+```
+
+```{r ex55-solution}
+"This is **bold** and this is *italic*."
+```
+
+```{r ex55-check}
+grade_code()
+```
+
+### Creating Lists
+
+Create numbered lists with numbers and periods, and bullet lists with `*`, `+`, or `-`.
+
+### Practice: Creating Lists
+
+Create a numbered list with two items and a bullet list with two items below.
+
+```{r ex56, exercise=TRUE}
+# Replace this with your numbered list
+
+# Replace this with your bullet list
+```
+
+```{r ex56-solution}
+#1. First item
+#2. Second item
+
+#- Bullet 1
+#- Bullet 2
+```
+
+```{r ex56-check}
+grade_code()
+```
+
+
+## Chapter 23: Dataset File Types
+
+In this interactive tutorial, we'll learn about some common file types used to store data for use with R, and how to read and write these files using R.
+
+### Tabular Data Files
+
+Tabular data files are data files like those stored in spreadsheets, where information from different variables are stored in columns and each observation is stored in a different row. The values for each observation are stored in their respective cells.
+
+### Special R Data Files
+
+Special R data files are made for use with R. They keep data formatted as you have it in R, so after you import the data, you won't have to do as much manipulation. They aren't generally able to be used outside of R though.
+
+#### CSV Files
+
+Comma-separated values (CSV) files allow us to store tabular data in a simple format. CSVs are plain-text files, which means that all the important information in the file is represented by text (where text is numbers, letters, and symbols you can type on your keyboard).
+
+Let's consider a dataset about the heights and blood types of three individuals. In the CSV format, the values of each column for each person in the data are separated by commas, and each row (each person in our case) is separated by a new line.
+
+```{r}
+csv_example <- "name,height,blood_type\nAlice,170,A\nBob,185,O\nCharlie,175,B"
+cat(csv_example)
+```
+
+CSV files have a `.csv` extension at the end. They are simple and compatible with many different types of software, making them one of the most common file formats used to store tabular data.
+
+#### Reading CSV Files into R
+
+To read CSV files into R, we'll use the `read_csv()` function from the `readr` package. First, let's create a sample CSV file to work with.
+
+```{r, eval=FALSE}
+writeLines(csv_example, "sample_data.csv")
+```
+
+Now, let's read the CSV file into R and store it in a data frame called `df_csv`.
+
+```{r, eval=FALSE}
+library(readr)
+
+df_csv <- read_csv("sample_data.csv")
+```
+
+#### Question 1
+
+What is the height of the second person in the dataset?
+
+```{r ex57, echo=FALSE}
+quiz(
+  question("What is the height of the second person in the dataset?",
+    answer("170"),
+    answer("185", correct = TRUE),
+    answer("175"),
+    answer("None of the above")
+  )
+)
+```
+
+### Excel Files
+
+Excel (or .xls or .xlsx) files hold information in a workbook that comprises both values and formatting (colors, conditional formatting, font size, etc.). While Excel files can only be viewed in specific pieces of software and thus are generally less flexible than CSV files, many people save their data in Excel, so it's important to know how to work with them in R.
+
+#### Reading Excel Files into R
+
+To read Excel files into R, we'll use the `read_excel()` function from the `readxl` package. Let's create a sample Excel file to work with.
+
+### TSV or TXT Files
+
+TSV files store tabular data as plain-text files with values separated by tabs. Like CSV files, TSV files are simple and compatible with many types of software. TXT files can also store tabular data but may store simple text as well.
+
+#### Reading TSV files into R
+
+To read a TSV file into R, you can use the `read_tsv()` function from the `readr` package. First, load the `readr` package using `library(readr)` if you haven't already.
+
+```{r, eval=FALSE}
+library(readr)
+```
+
+Now, let's read a sample TSV file into R and save it as a data frame called `df_tsv`. Make sure to replace `"your_file.tsv"` with the name of your actual TSV file.
+
+```{r, eval=FALSE}
+df_tsv <- read_tsv("your_file.tsv")
+head(df_tsv)
+```
+
+#### Reading TXT files into R
+
+To read a TXT file with tabular data into R, you can use the `read_delim()` function from the `readr` package. First, load the `readr` package using `library(readr)` if you haven't already.
+
+```{r, eval=FALSE}
+library(readr)
+```
+
+Now, let's read a sample TXT file into R and save it as a data frame called `df_txt`. Make sure to replace `"your_file.txt"` with the name of your actual TXT file.
+
+```{r, eval=FALSE}
+df_txt <- read_delim("your_file.txt", delim = "\t")
+head(df_txt)
+```
+
+### Exporting Data Frames to Tabular Files
+
+You may also want to export data from R to a tabular file format. Let's see how to do this for each of the file formats we discussed earlier.
+
+#### Exporting Data Frames to CSV Files
+
+To export a data frame to a CSV file, you can use the `write_csv()` function from the `readr` package. Let's export the data frame df_csv to a CSV file called "output.csv".
+
+```{r, eval=FALSE}
+write_csv(df_csv, "output.csv")
+```
+
+#### Exporting Data Frames to Excel Files
+
+To export a data frame to an Excel file, you can use the `write_xlsx()` function from the `writexl` package. First, install the package if you haven't already, and then load it using `library(writexl)`.
+
+```{r, eval=FALSE}
+#install.packages("writexl")
+library(writexl)
+```
+
+Now, let's export the data frame `df_excel` to an Excel file called `"output.xlsx"`.
+
+```{r, eval=FALSE}
+write_xlsx(df_excel, "output.xlsx")
+```
+
+#### Exporting Data Frames to TSV or TXT Files
+
+To export a data frame to a TSV or TXT file, you can use the `write_tsv()` or `write_delim()` functions from the `readr` package, respectively. 
+
+Let's export the data frame `df_tsv` to a TSV file called `"output.tsv"`.
+
+```{r, eval=FALSE}
+write_tsv(df_tsv, "output.tsv")
+```
+
+To export the data frame `df_txt` to a TXT file called `"output.txt"`, use the `write_delim()` function.
+
+```{r, eval=FALSE}
+write_delim(df_txt, "output.txt", delim = "\t")
+```
+
+
+Congratulations! You've now learned about the most common dataset file types in R and how to import and export them. Keep practicing and exploring different file formats to make the most of your data analysis in R!
+
+#### R Data Files
+
+R has special file types for storing data that are specifically designed for use with R. These file types preserve the data's structure and formatting, making it easier to work with after importing.
+
+There are two main types of special R data files:
+
+1. Saved R objects (.rda, .RData)
+2. Serialized R objects (.rds)
+
+
+#### Saved R Objects
+
+Saved R objects can store multiple R objects in a single file. You can save and load these objects using the `save()` and `load()` functions, respectively.
+
+```{r, eval=FALSE}
+mpg <- mtcars$mpg
+cyl <- mtcars$cyl
+```
+
+To save the objects as an R data file, use the `save()` function:
+
+```{r, eval=FALSE}
+save(mpg, cyl, file = "mtcars_objects.rda")
+```
+
+To load the objects back into R, use the `load()` function:
+
+```{r, eval=FALSE}
+load("mtcars_objects.rda")
+```
+
+#### Serialized R Objects
+
+Serialized R objects store a single R object per file. To save and load these objects, use the saveRDS() and readRDS() functions, respectively.
+
+To save the mpg object as a serialized R object file:
+
+```{r, eval=FALSE}
+saveRDS(mpg, file = "mpg.rds")
+```
+
+To load the serialized R object back into R:
+
+```{r, eval=FALSE}
+mpg_loaded <- readRDS("mpg.rds")
+```
+
+#### Exercise 1: Saving and Loading Objects
+
+Save the `cyl` object as a serialized R object file named "cyl.rds" and load it back into R as a new object named `cyl_loaded`.
+
+```{r ex58, exercise=TRUE}
+# Save the cyl object as a serialized R object file
+'YOUR CODE HERE'
+
+# Load the serialized R object back into R
+'YOUR CODE HERE'
+```
+
+```{r ex58-setup}
+```
+
+```{r ex58-solution}
+# Update all packages
+'saveRDS(cyl, file = "cyl.rds")'
+
+# Update only the readr package
+'cyl_loaded <- readRDS("cyl.rds")'
+```
+
+```{r ex58-check}
+grade_code()
+```
+
+#### Accessing Datasets in R
+
+R has built-in datasets that you can access by typing `data()`. To get more detailed information about a specific dataset, use the help function in R (e.g., `?Orange`).
+
+R packages may also include datasets. To see a list of datasets available in a specific package, use the `data()` function with the `package` argument (e.g., `data(package = "ggplot2")`).
+
+
+#### Exercise 2: Exploring Datasets in R
+
+Load the "ggplot2" package and find the help page for the "msleep" dataset.
+
+```{r ex59, exercise=TRUE}
+# Load the ggplot2 package
+```
+
+```{r ex59-setup}
+```
+
+```{r ex59-solution}
+library(ggplot2)
+```
+
+```{r ex59-check}
+grade_code()
+```
+
+Now, explore the help page for the "msleep" dataset:
+
+```{r ex60, exercise=TRUE}
+# Access the help page for the msleep dataset
+# Your code here:
+```
+
+```{r ex60-setup}
+```
+
+```{r ex60-solution}
+# Access the help page for the msleep dataset
+?msleep
+```
+
+```{r ex60-check}
+grade_code()
+```
+
+### Summary
+
+In this interactive tutorial, you learned about different dataset file types in R, including saved R objects and serialized R objects. You also learned how to access built-in datasets in R and datasets provided by packages. With this knowledge, you can efficiently store, load, and explore various datasets in your R projects.
+
+## Chapter 24: Finding Data
+
+In this interactive tutorial, we'll explore different sources of data for your data science projects, discuss the difference between public and private data, and look at some popular sources of publicly available datasets.
+
+### Public vs Private Data
+
+Data can be classified into two main categories: public and private. Public data are freely available to everyone and are often generated by governments, while private data are restricted to a limited number of people or groups and are usually generated by companies or individuals for specific purposes.
+
+#### Exercise 1: Public vs Private Data
+
+Which of the following is an example of public data?
+
+```{r ex61, echo=FALSE}
+quiz(
+  question("Which of the following is an example of public data?",
+    answer("Customer data from a subscription-based company"),
+    answer("Confidential patient records from a hospital"),
+    answer("Traffic data from a city's transport department", correct = TRUE),
+    answer("Sales data of a private retail store")
+  )
+)
+```
+
+### Publicly Available Data
+
+There are many sources of publicly available data that can be used for your data science projects. Some popular sources include open datasets from companies like Kaggle and data.world, government data from various countries, and city-level data from municipalities across the globe.
+
+#### Exercise 2: Exploring US Census Data
+
+In this exercise, you will use the `tidycensus` package to explore the US Census data. First load the package:
+
+```{r ex62, exercise=TRUE}
+# Load the tidycensus package
+```
+
+```{r ex62-setup}
+```
+
+```{r ex62-solution}
+# Load the tidycensus package
+library(tidycensus)
+```
+
+```{r ex62-check}
+grade_code()
+```
+
+Now, let's explore the US Census data on median household income for the state of California.
+
+
+```{r ex63, exercise=TRUE}
+# Use the get_acs function from the tidycensus package to get the data
+# Hint: You'll need to set the geography, year, and variable parameters
+# Your code here:
+```
+
+```{r ex63-setup}
+library(tidycensus)
+```
+
+```{r ex63-solution}
+# Use the get_acs function from the tidycensus package to get the data
+ca_income_data <- get_acs(
+  geography = "tract",
+  year = 2019,
+  variables = "B19013_001",
+  state = "CA"
+)
+head(ca_income_data)
+```
+
+```{r ex63-check}
+grade_code()
+```
+
+### Working with APIs and Open Source Data
+
+In this interactive tutorial, we will explore different sources of open-source data and learn how to access data using APIs. We will also work with a real-world example by fetching data from a public API.
+
+#### APIs
+
+APIs (Application Programming Interfaces) are a way to access data from websites like Google, Twitter, Facebook, and GitHub. APIs allow you to obtain the dataset you're interested in working with, and they often provide real-time data that's continuously updated.
+
+#### Open Source Data
+
+Apart from APIs, there are numerous sources of open-source data available for you to use in your projects. Some popular sources include:
+
+1. `dslabs` package in R
+2. FiveThirtyEight Data
+3. Kaggle
+
+These sources provide a variety of datasets that can be easily imported and used in R.
+
+#### Exercise 2: Scraping Open Source Data
+
+In this exercise, we will scrape data from a website using the `rvest` package. We will fetch the list of countries and their capitals from the following Wikipedia page: https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_and_their_capitals_in_native_languages
+
+
+```{r ex64, exercise=TRUE}
+# Use the rvest package to read the HTML of the Wikipedia page
+# Hint: You'll need to use the read_html() function and pass the URL as a parameter
+# Your code here:
+```
+
+```{r ex64-setup}
+library(tidycensus)
+```
+
+```{r ex64-solution}
+# Use the rvest package to read the HTML of the Wikipedia page
+page <- rvest::read_html("https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_and_their_capitals_in_native_languages")
+```
+
+```{r ex64-check}
+grade_code()
+```
+
+Now, let's extract the table containing the list of countries and their capitals.
+
+```{r, echo=FALSE}
+library(tidycensus)
+page <- rvest::read_html("https://en.wikipedia.org/wiki/List_of_countries_and_dependencies_and_their_capitals_in_native_languages")
+```
+
+```{r}
+# Using the rvest package to extract the table containing the list of countries and their capitals
+table_nodes <- rvest::html_nodes(page, ".wikitable")
+countries_table <- rvest::html_table(table_nodes[[1]])
+```
+
+Now that you have completed the exercises, you should have a better understanding of how to fetch data using APIs and scrape open-source data from websites. These techniques will help you access a variety of datasets and enrich your data science projects.
+
+
+## Chapter 25: Ethical Data Science
+
+### Introduction
+
+Ethical considerations should be made at every stage of a project, from data collection to analysis, and even after deploying a model or algorithm. The goal is to ensure that data science projects positively impact society without causing harm to any individuals or groups. Let's dive in.
+
+### Data Science Team
+
+When starting a data science project, consider the composition of your team. Make sure you have the right individuals with diverse perspectives and relevant expertise. Involving people who have firsthand knowledge of the context can help reduce biases and improve the accuracy of your project.
+
+### Data Collection
+
+#### Sampling Bias
+
+Sampling bias occurs when the sample of the population collected does not accurately reflect the population as a whole. It is important to avoid sampling bias during data collection and to check for it after the data has been collected. Biases in the data can significantly impact the results of your analysis.
+
+#### Informed Consent
+
+Informed consent is crucial when collecting data. It means that individuals must agree to participate in data collection, knowing what data is being collected, the possible consequences, and any risks or benefits of participation.
+
+#### Privacy and Withdrawal of Consent
+
+Protecting the privacy of personally identifiable information is essential. Data should not be shared without participants' consent and should be stored securely. Moreover, participants should have the right to withdraw their consent and have their data removed.
+
+### Data Analysis
+
+During data analysis, ensure that you understand the data you're working with, its biases, and its limitations. Consider the implications of your work, and make decisions that do not harm any group of people. It is important to be transparent about your analysis and to consider potential negative or unintended consequences.
+
+### After Deployment
+
+If your analysis results in an algorithm or model that continues to be used, you should maintain and update it. Check for biases and update your algorithm if needed.
+
+#### Quiz 1: Ethical Considerations in Data Science
+
+```{r ex65, echo=FALSE}
+quiz(
+  question("Which of the following is NOT an ethical consideration during data collection?",
+    answer("Avoiding sampling bias"),
+    answer("Ensuring informed consent"),
+    answer("Ignoring privacy concerns", correct = TRUE),
+    answer("Providing an option to withdraw consent")
+  ),
+  question("Why is it important to consider the composition of a data science team?",
+    answer("To reduce the workload"),
+    answer("To include diverse perspectives and expertise, reducing biases and improving accuracy", correct = TRUE),
+    answer("To make the team look good"),
+    answer("None of the above")
+  )
+)
+```
+
+#### Interactive Exercise: Identifying Biases
+
+In this exercise, you will practice identifying biases in a hypothetical data collection scenario. Suppose a team of data scientists is studying the effects of a new exercise program on overall health. They collect data from participants who sign up for the program through a website.
+
+
+```{r ex66, echo=FALSE}
+quiz(
+  question("What are some potential biases in this data collection process? Select all that apply.", 
+                 answer("Selection bias", correct = TRUE),
+                 answer("Non-response bias"),
+                 answer("Self-selection bias", correct = TRUE),
+                 answer("Gender bias"),
+  allow_retry = TRUE,
+  incorrect = "Try again. Think about the different ways biases can be introduced in the data collection process."
+))
+```
+
+#### Interactive Exercise: Ensuring Ethical Data Analysis
+
+In this exercise, you will be provided with a simple data analysis scenario. Your task is to identify and address potential ethical concerns in the analysis process.
+
+Imagine you are tasked with analyzing the income distribution of individuals in a city. You are given a dataset containing information about each individual's income, age, gender, race, and education level.
+
+#### Question 2
+
+Given the dataset provided, how can you ensure that your analysis is ethical and doesn't perpetuate any biases or discrimination? Select all that apply.
+
+```{r ex67, echo=FALSE}
+quiz(
+  question("Given the dataset provided, how can you ensure that your analysis is ethical and doesn't perpetuate any biases or discrimination? Select all that apply.",
+                 answer("Remove any biased data points from the dataset."),
+                 answer("Check for sampling bias and ensure the dataset is representative of the population.", correct = TRUE),
+                 answer("Use only income and education level in your analysis, as they are the most relevant variables."),
+                 answer("Assess the potential consequences of your analysis, including any unintended negative impacts.", correct = TRUE),
+  allow_retry = TRUE,
+  incorrect = "Try again. Consider the ethical implications of using different variables in your analysis and the importance of understanding the dataset."
+))
+```
+
+### AI in Military
+
+In 2018, Google collaborated with the US Department of Defense on Project Maven, an initiative aimed at using AI to analyze drone footage for object identification and tracking purposes. Some employees at Google were concerned about the ethical implications of AI being used in military applications, particularly for surveillance purposes. In response, Google declared that the technology would only be used for non-offensive purposes and that the company would develop policies and safeguards.
+
+It's essential to consider ethical implications in AI and data science projects that could negatively impact lives. Transparent discussions and the establishment of guidelines should take place before deploying such technologies.
+
+#### Facial Recognition in Law Enforcement
+
+Amazon partnered with law enforcement agencies to implement their facial recognition technology, Rekognition. While proponents argue that it can help locate and identify criminals more quickly, opponents, such as the ACLU, raise concerns about civil liberties, civil rights, and the potential for abuse.
+
+Concerns about facial recognition technology include:
+
+1. The identification of innocent individuals.
+2. The accuracy of the technology.
+3. The potential for biased outcomes based on gender and race.
+
+```{r ex68, echo=FALSE}
+quiz(
+  question("What was the primary goal of Project Maven?", 
+    answer("To use AI for object identification and tracking in drone footage", correct = TRUE),
+    answer("To improve drone flight efficiency"),
+    answer("To increase the accuracy of facial recognition technology")),
+  question("What are some concerns regarding the use of facial recognition technology in law enforcement?", 
+    answer("It may lead to the identification of innocent individuals", correct = TRUE),
+    answer("It may improve the efficiency of criminal investigations"),
+    answer("It may help locate missing persons"))
+)
+
+```
+
+### Data Privacy
+
+#### What is Data Privacy?
+
+Data privacy can be described as the relationship between the collection and dissemination of data, technology, the public expectation of privacy, and the legal and political issues surrounding them. In simpler terms, it's about keeping personal and private information secure.
+
+Data privacy becomes a concern when personally identifiable information (PII) or sensitive information is collected, stored, used, and eventually destroyed or deleted. When handled correctly, only authorized individuals have access to this information. Mishandling can result in unauthorized access to sensitive information.
+ 
+### Personally Identifiable Information (PII)
+
+#### Quiz: PII Examples
+
+Select all the examples of PII from the list below.
+
+```{r ex69, echo=FALSE}
+quiz(
+  question("Select all the examples of PII from the list below.",
+    answer("First and last name", correct = TRUE),
+    answer("Favorite color"),
+    answer("Email address", correct = TRUE),
+    answer("Social media username", correct = TRUE)
+  )
+)
+```
+
+### Encryption
+
+Encryption is a process that jumbles data into a code that can only be decoded by someone who has the key. It's a security measure to help keep data safe. In the context of data privacy, encryption ensures that sensitive information is protected from unauthorized access.
+
+#### Working with RStudio Cloud
+
+When using RStudio Cloud, data is encrypted both at rest (when stored in your project) and in transit (when uploaded or downloaded). This means that even if the data is intercepted, the interceptor won't be able to decipher the information without the key.
+
+However, if you download data from RStudio Cloud and store it directly on your computer, it's no longer encrypted. Be cautious when working with PII datasets downloaded to your computer.
+
+### Open Science and Data Privacy
+
+Open Science aims to make scientific studies as transparent as possible, providing access to data, programming code, and software necessary to repeat analyses. However, Open Science practitioners are still responsible for protecting PII. Before releasing data to the public, it is crucial to remove individual-level information (names, dates of birth, addresses, etc.) to prevent putting others at risk.
+
+#### Data Breaches
+
+Data breaches occur when unauthorized individuals gain access to sensitive data. To better understand data privacy, we should learn from past mistakes made by various companies in handling data securely.
+
+```{r ex70, echo=FALSE}
+quiz(
+  question("Which of the following is NOT a consequence of a data breach?",
+    answer("Loss of customer trust"),
+    answer("Legal ramifications"),
+    answer("Increased data security", correct = TRUE),
+    answer("Damage to a company's reputation")
+  )
+)
+```
+
+
+### Responsible Data Handling
+
+When working on data science projects, it is crucial to handle data responsibly and ensure data privacy. Here are some tips for responsible data handling:
+
+* Remove PII from datasets before sharing or publishing them
+* Use encryption when transferring sensitive data
+* Make sure to have proper consent when using other people's data
+* Always consider the potential unintended consequences of your work
+
+
+### Summary
+
+In this tutorial, we have explored the importance of data privacy in data science projects, discussed personally identifiable information (PII), encryption, and responsible data handling. Keep these concepts in mind as you work on your data science projects to ensure that you are handling sensitive data responsibly and ethically.
+
+
+## Chapter 26: Google Documents
+
+This interactive tutorial will guide you through the basics of Google Sheets and how to use it in a data science context. We'll be using the learnR and gradethis packages to create a hands-on learning experience. By the end of this tutorial, you'll be familiar with Google Sheets, including setting up a new sheet, entering data, and publishing it to the web.
+
+Let's get started!
+
+
+### Google Sheets
+
+Google Sheets is a free, online spreadsheet program similar to Microsoft Excel. It's useful for storing and organizing data, especially when working on data science projects. In this tutorial, we'll use Google Sheets to store data about bestselling books on the Leanpub platform.
+
+#### What is a spreadsheet?
+
+A spreadsheet is a type of document with rows and columns that form a grid. Each square in the grid is called a 'cell.' In Google Sheets, rows are numbered (1, 2, 3, ...) and columns are labeled with capital letters (A, B, C, ...).
+
+#### Setting up a new Google Sheet
+
+1. Go to the Google Sheets homepage and click on the plus sign to create a new spreadsheet.
+2. Rename the spreadsheet to "leanpub_data."
+3. Add the following column headers to the top row (row 1) of the sheet: "title," "readers," "suggested," and "minimum."
+
+Now, let's test your understanding with a question:
+
+```{r ex71, echo=FALSE}
+quiz(
+  question("Which of the following is a column header in our 'leanpub_data' Google Sheet?",
+    answer("author"),
+    answer("title", correct = TRUE),
+    answer("publisher"),
+    answer("category")
+  )
+)
+```
+
+#### Collecting data
+
+Visit the Leanpub bookstore and collect data on 5 bestselling books. For each book, enter the title, number of readers, suggested price, and minimum price in the corresponding columns of your "leanpub_data" sheet.
+
+Remember:
+
+* Do not use commas in numbers (e.g., enter "1036" instead of "1,036").
+* Do not include dollar signs for prices (e.g., enter "7.99" instead of "$7.99").
+* If a book's minimum price is free, enter "0" in the cell.
+* If the book has no readers, put "0" in the cell.
+* If the book's author opted not to include how many readers their book has, put "NA" in the "readers" column for that book.
+
+#### Publishing to the web
+
+To make your data accessible to others and use it in future data science projects, you need to publish your Google Sheet to the web: 
+
+1. Click on "File" at the top of the Google Sheet.
+2. From the drop-down menu, click on "Publish to the web."
+3. In the window that pops up, click on "Publish."
+4. Confirm by clicking "OK."
+
+#### Sharing the sheet
+
+Lastly, make the sheet accessible to anyone with the link:
+
+1. Click on "Share" in the top right-hand corner of the Google Sheet.
+2. In the "Share with others" box, click on "Get shareable link."
+3. The link is now available, and the document can be viewed by anyone with the link.
+
+Now, let's test your understanding with a final question:
+
+```{r ex72, echo=FALSE}
+quiz(
+  question("Which step is required to make your Google Sheet accessible to anyone with the link?", 
+                 answer("Click on 'Share' and then 'Get shareable link'", correct = TRUE),
+                 answer("Email the spreadsheet to the desired recipients"),
+                 answer("Save the spreadsheet as a PDF"),
+                 answer("Copy and paste the spreadsheet content into a new document")
+           )
+)
+```
+
+Congratulations! You've completed this interactive tutorial on using Google Sheets for data collection in a data science context. You've learned how to set up a new sheet, enter data, publish it to the web, and share it with others. Keep practicing and building your data science skills with more tutorials and hands-on projects. Good luck!
