@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="progressive" content="false" />
+<meta name="allow-skip" content="false" />
+<meta name="learnr-version-prerender" content="0.11.3" />
+
+<title>Cleaning Data</title>
+
+<!-- header-includes START -->
+<!-- HEAD_CONTENT -->
+<!-- header-includes END -->
+<!-- HEAD_CONTENT -->
+
+<!-- highlightjs -->
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+<!-- taken from https://github.com/rstudio/rmarkdown/blob/de8a9c38618903627ca509f5401d50a0876079f7/inst/rmd/h/default.html#L293-L343 -->
+<!-- tabsets -->
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+<!-- end tabsets -->
+
+
+</head>
+
+<body>
+<a class='sr-only sr-only-focusable visually-hidden-focusable' href='#learnr-tutorial-content'>Skip to Tutorial Content</a>
+
+
+
+<div class="pageContent band">
+<main class="bandContent page">
+
+<article class="topics" id="learnr-tutorial-content">
+
+<div id="section-chapter-29-what-is-tidy-data" class="section level2">
+<h2>Chapter 29: What is Tidy Data</h2>
+<div id="section-introduction-to-tidy-data" class="section level3">
+<h3>Introduction to Tidy Data</h3>
+<p>In this interactive tutorial, we will learn about the principles of
+tidy data and how to ensure your datasets follow these principles for
+easier manipulation, modeling, and visualization.</p>
+<div id="section-what-is-tidy-data" class="section level4">
+<h4>What is Tidy Data?</h4>
+<p>Hadley Wickham, a leader in the data science field, formalized the
+concept of tidy data in 2014. Tidy data principles provide a standard
+method for formatting datasets, involving the arrangement of rows,
+columns, and spreadsheets with observations, variables, and types.</p>
+</div>
+<div id="section-why-tidy-data" class="section level4">
+<h4>Why Tidy Data?</h4>
+<p>Tidy datasets are designed to be easier to manipulate, model, and
+visualize. Starting with tidy data or spending time to convert data into
+a tidy format at the beginning of a project simplifies the remaining
+steps of your data science project.</p>
+</div>
+<div id="section-data-terminology" class="section level4">
+<h4>Data Terminology</h4>
+<p>Before we dive into the principles of tidy data, let’s review some
+basic data terminology:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Variables</strong>: These are the different categories of
+data collected or measured for each observation. They are stored in
+columns of the dataset.</li>
+<li><strong>Observations</strong>: These are the individual data points
+or measurements taken for each variable. They are stored in rows of the
+dataset.</li>
+<li><strong>Types</strong>: This term refers to different sources of
+data collected for the same individuals.</li>
+</ol>
+</div>
+<div id="section-principles-of-tidy-data" class="section level4">
+<h4>Principles of Tidy Data</h4>
+<ol style="list-style-type: decimal">
+<li>Each variable should be in one column.</li>
+<li>Each different observation of a variable should be in a different
+row.</li>
+<li>There should be one spreadsheet for each “type” of data.</li>
+<li>If you have multiple spreadsheets, include a column in each (with
+the same column label) that allows them to be joined or merged.</li>
+</ol>
+</div>
+</div>
+<div id="section-interactive-questions" class="section level3">
+<h3>Interactive Questions</h3>
+<p>Now that we’ve covered the basics of tidy data, let’s dive into some
+interactive questions to reinforce your understanding.</p>
+<div id="section-question-1-tidy-data-principles"
+class="section level4">
+<h4>Question 1: Tidy Data Principles</h4>
+<p>Match the following principles of tidy data with their correct
+descriptions:</p>
+<div class="panel-heading tutorial-quiz-title"><span data-i18n="text.quiz">Quiz</span></div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="ex1-1" class="tutorial-question panel-body">
+<div id="ex1-1-answer_container" class="shiny-html-output"></div>
+<div id="ex1-1-message_container" class="shiny-html-output"></div>
+<div id="ex1-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="ex1-2" class="tutorial-question panel-body">
+<div id="ex1-2-answer_container" class="shiny-html-output"></div>
+<div id="ex1-2-message_container" class="shiny-html-output"></div>
+<div id="ex1-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+<div id="section-common-problems-with-messy-data-sets"
+class="section level4">
+<h4>Common Problems with Messy Data Sets</h4>
+<ol style="list-style-type: decimal">
+<li>Column headers are values but should be variable names.</li>
+<li>A single column has multiple variables.</li>
+<li>Variables have been entered in both rows and columns.</li>
+<li>Multiple “types” of data are in the same spreadsheet.</li>
+<li>A single observation is stored across multiple spreadsheets.</li>
+</ol>
+</div>
+<div id="section-question-2-identifying-messy-data-issues"
+class="section level4">
+<h4>Question 2: Identifying Messy Data Issues</h4>
+<div class="panel-heading tutorial-quiz-title"><span data-i18n="text.quiz">Quiz</span></div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="ex2-1" class="tutorial-question panel-body">
+<div id="ex2-1-answer_container" class="shiny-html-output"></div>
+<div id="ex2-1-message_container" class="shiny-html-output"></div>
+<div id="ex2-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="ex2-2" class="tutorial-question panel-body">
+<div id="ex2-2-answer_container" class="shiny-html-output"></div>
+<div id="ex2-2-message_container" class="shiny-html-output"></div>
+<div id="ex2-2-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+<div id="section-tidying-untidy-data" class="section level4">
+<h4>Tidying Untidy Data</h4>
+<p>Depending on the issue with the messy data, you may need to filter,
+transform, modify variables, aggregate data, or sort observations. R
+provides functions to perform these actions, making it easier to tidy
+your data and get it ready for analysis.</p>
+</div>
+<div id="section-question-3-tidying-data-actions"
+class="section level4">
+<h4>Question 3: Tidying Data Actions</h4>
+<div class="panel-heading tutorial-quiz-title"><span data-i18n="text.quiz">Quiz</span></div>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="ex3-1" class="tutorial-question panel-body">
+<div id="ex3-1-answer_container" class="shiny-html-output"></div>
+<div id="ex3-1-message_container" class="shiny-html-output"></div>
+<div id="ex3-1-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+<p>This interactive tutorial has covered the importance of tidy data</p>
+</div>
+</div>
+</div>
+<div id="section-chapter-30-reshaping-data" class="section level2">
+<h2>Chapter 30: Reshaping Data</h2>
+<p>In this interactive tutorial, we will learn how to reshape data
+between wide and long formats using the <code>tidyr</code> package in R.
+We will also briefly cover data transposition using the <code>t()</code>
+function in base R.</p>
+<div id="section-wide-and-long-data" class="section level3">
+<h3>Wide and Long Data</h3>
+<p>Tidy data can be found in two forms: <strong>wide data</strong> and
+<strong>long data</strong>. Wide data has a column for each variable and
+a row for each observation, while long data has one column indicating
+the type of variable contained in that row and a separate row for the
+value for that variable. Each row contains a single observation for a
+single variable.</p>
+<p>Wide data is easy to understand at a glance, while long data is often
+more convenient for analysis. We can easily switch between these two
+formats using the <code>tidyr</code> package.</p>
+<pre class="r"><code>wide_data &lt;- tibble::tribble(
+  ~id, ~height, ~weight, ~age,
+  1,     180,      70,     25,
+  2,     175,      68,     30,
+  3,     178,      72,     28
+)
+wide_data</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"180","3":"70","4":"25"},{"1":"2","2":"175","3":"68","4":"30"},{"1":"3","2":"178","3":"72","4":"28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The wide data above has separate columns for height, weight, and
+age.</p>
+<pre class="r"><code>long_data &lt;- tibble::tribble(
+  ~id, ~variable, ~value,
+  1,   &quot;height&quot;,   180,
+  1,   &quot;weight&quot;,   70,
+  1,   &quot;age&quot;,      25,
+  2,   &quot;height&quot;,   175,
+  2,   &quot;weight&quot;,   68,
+  2,   &quot;age&quot;,      30,
+  3,   &quot;height&quot;,   178,
+  3,   &quot;weight&quot;,   72,
+  3,   &quot;age&quot;,      28
+)
+long_data</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["variable"],"name":[2],"type":["chr"],"align":["left"]},{"label":["value"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"height","3":"180"},{"1":"1","2":"weight","3":"70"},{"1":"1","2":"age","3":"25"},{"1":"2","2":"height","3":"175"},{"1":"2","2":"weight","3":"68"},{"1":"2","2":"age","3":"30"},{"1":"3","2":"height","3":"178"},{"1":"3","2":"weight","3":"72"},{"1":"3","2":"age","3":"28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>The long data above has a single column <code>variable</code>
+indicating the type of variable, and another column <code>value</code>
+for the corresponding values.</p>
+</div>
+<div id="section-reshaping-data-with-tidyr" class="section level3">
+<h3>Reshaping Data with tidyr</h3>
+<p>The <code>tidyr</code> package provides two main functions for
+reshaping data:</p>
+<ol style="list-style-type: decimal">
+<li><code>pivot_longer()</code>: Converts wide data to long data</li>
+<li><code>pivot_wider()</code>: Converts long data to wide data</li>
+</ol>
+<div id="section-pivot_longer" class="section level4">
+<h4>pivot_longer()</h4>
+<p>To convert the <code>wide_data</code> to long format, we can use the
+<code>pivot_longer()</code> function. We specify the columns to pivot
+and the names for the new columns <code>variable</code> and
+<code>value</code>.</p>
+<pre class="r"><code>long_data_example &lt;- wide_data %&gt;%
+  pivot_longer(cols = c(height, weight, age), names_to = &quot;variable&quot;, values_to = &quot;value&quot;)
+long_data_example</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["variable"],"name":[2],"type":["chr"],"align":["left"]},{"label":["value"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"height","3":"180"},{"1":"1","2":"weight","3":"70"},{"1":"1","2":"age","3":"25"},{"1":"2","2":"height","3":"175"},{"1":"2","2":"weight","3":"68"},{"1":"2","2":"age","3":"30"},{"1":"3","2":"height","3":"178"},{"1":"3","2":"weight","3":"72"},{"1":"3","2":"age","3":"28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-pivot_wider" class="section level4">
+<h4>pivot_wider()</h4>
+<p>To convert the <code>long_data</code> back to wide format, we use the
+<code>pivot_wider()</code> function. We specify the columns containing
+the names and values for the new wide format columns.</p>
+<pre class="r"><code>wide_data_example &lt;- long_data %&gt;%
+  pivot_wider(names_from = variable, values_from = value)
+wide_data_example</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["height"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["weight"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["age"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"180","3":"70","4":"25"},{"1":"2","2":"175","3":"68","4":"30"},{"1":"3","2":"178","3":"72","4":"28"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-exercise-1-reshaping-data" class="section level4">
+<h4>Exercise 1: Reshaping Data</h4>
+<p>In this exercise, we will practice reshaping data using the
+<code>tidyr</code> package. We will be working with the
+<code>relig_income</code> dataset available in <code>tidyr</code>.</p>
+<p>First, let’s load the necessary packages and take a look at the
+dataset:</p>
+<pre class="r"><code>library(tidyr)
+library(dplyr)
+
+head(relig_income)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["religion"],"name":[1],"type":["chr"],"align":["left"]},{"label":["<$10k"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["$10-20k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["$20-30k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["$30-40k"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["$40-50k"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["$50-75k"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["$75-100k"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["$100-150k"],"name":[9],"type":["dbl"],"align":["right"]},{"label":[">150k"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Don't know/refused"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"Agnostic","2":"27","3":"34","4":"60","5":"81","6":"76","7":"137","8":"122","9":"109","10":"84","11":"96"},{"1":"Atheist","2":"12","3":"27","4":"37","5":"52","6":"35","7":"70","8":"73","9":"59","10":"74","11":"76"},{"1":"Buddhist","2":"27","3":"21","4":"30","5":"34","6":"33","7":"58","8":"62","9":"39","10":"53","11":"54"},{"1":"Catholic","2":"418","3":"617","4":"732","5":"670","6":"638","7":"1116","8":"949","9":"792","10":"633","11":"1489"},{"1":"Don’t know/refused","2":"15","3":"14","4":"15","5":"11","6":"10","7":"35","8":"21","9":"17","10":"18","11":"116"},{"1":"Evangelical Prot","2":"575","3":"869","4":"1064","5":"982","6":"881","7":"1486","8":"949","9":"723","10":"414","11":"1529"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="section-question-1-converting-wide-data-to-long-data"
+class="section level5">
+<h5>Question 1: Converting Wide Data to Long Data</h5>
+<p>Use the <code>pivot_longer()</code> function to convert the wide
+dataset <code>relig_income</code> into long format. Name the new columns
+“income” and “count”, respectively. Store the result in a new data frame
+called <code>long_relig_income</code>.</p>
+<div class="tutorial-exercise" data-label="ex4" data-completion="1"
+data-diagnostics="1" data-startover="1" data-lines="0">
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="ex4-solution"
+data-completion="1" data-diagnostics="1" data-startover="1"
+data-lines="0">
+<pre class="text"><code>long_relig_income &lt;- relig_income %&gt;%
+  pivot_longer(!religion, names_to = &quot;income&quot;, values_to = &quot;count&quot;)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="section-chapter-31-how-to-tidy-data" class="section level2">
+<h2>Chapter 31: How to Tidy Data</h2>
+<p>In this tutorial, we will learn how to tidy data using the dplyr,
+tidyr, janitor, and skimr packages in R. Tidy data is essential for easy
+analysis and visualization. We will explore several functions for data
+wrangling and transformation.</p>
+<div id="section-packages" class="section level3">
+<h3>Packages</h3>
+<p>First, let’s load the necessary packages. If you haven’t installed
+them yet, please do so using <code>install.packages()</code>.</p>
+<pre class="r"><code>library(dplyr)
+library(tidyr)
+library(janitor)</code></pre>
+<pre><code>## Warning: package &#39;janitor&#39; was built under R version 4.2.3</code></pre>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<pre class="r"><code>library(skimr)</code></pre>
+<pre><code>## Warning: package &#39;skimr&#39; was built under R version 4.2.3</code></pre>
+<pre class="r"><code>library(ggplot2)</code></pre>
+</div>
+<div id="section-the-msleep-dataset" class="section level3">
+<h3>The msleep Dataset</h3>
+<p>We will be using the <code>msleep</code> dataset from the ggplot2
+package. It contains sleep times and weights for various mammals. Run
+the following code to glimpse the dataset:</p>
+<pre class="r"><code>glimpse(msleep)</code></pre>
+<pre><code>## Rows: 83
+## Columns: 11
+## $ name         &lt;chr&gt; &quot;Cheetah&quot;, &quot;Owl monkey&quot;, &quot;Mountain beaver&quot;, &quot;Greater shor…
+## $ genus        &lt;chr&gt; &quot;Acinonyx&quot;, &quot;Aotus&quot;, &quot;Aplodontia&quot;, &quot;Blarina&quot;, &quot;Bos&quot;, &quot;Bra…
+## $ vore         &lt;chr&gt; &quot;carni&quot;, &quot;omni&quot;, &quot;herbi&quot;, &quot;omni&quot;, &quot;herbi&quot;, &quot;herbi&quot;, &quot;carn…
+## $ order        &lt;chr&gt; &quot;Carnivora&quot;, &quot;Primates&quot;, &quot;Rodentia&quot;, &quot;Soricomorpha&quot;, &quot;Art…
+## $ conservation &lt;chr&gt; &quot;lc&quot;, NA, &quot;nt&quot;, &quot;lc&quot;, &quot;domesticated&quot;, NA, &quot;vu&quot;, NA, &quot;dome…
+## $ sleep_total  &lt;dbl&gt; 12.1, 17.0, 14.4, 14.9, 4.0, 14.4, 8.7, 7.0, 10.1, 3.0, 5…
+## $ sleep_rem    &lt;dbl&gt; NA, 1.8, 2.4, 2.3, 0.7, 2.2, 1.4, NA, 2.9, NA, 0.6, 0.8, …
+## $ sleep_cycle  &lt;dbl&gt; NA, NA, NA, 0.1333333, 0.6666667, 0.7666667, 0.3833333, N…
+## $ awake        &lt;dbl&gt; 11.9, 7.0, 9.6, 9.1, 20.0, 9.6, 15.3, 17.0, 13.9, 21.0, 1…
+## $ brainwt      &lt;dbl&gt; NA, 0.01550, NA, 0.00029, 0.42300, NA, NA, NA, 0.07000, 0…
+## $ bodywt       &lt;dbl&gt; 50.000, 0.480, 1.350, 0.019, 600.000, 3.850, 20.490, 0.04…</code></pre>
+</div>
+<div id="section-filtering-data" class="section level3">
+<h3>Filtering Data</h3>
+<div id="section-filtering-rows" class="section level4">
+<h4>Filtering Rows</h4>
+<p>Let’s filter the dataset to include only primates with a total sleep
+time greater than 10 hours. Use the <code>filter()</code> function with
+the appropriate conditions.</p>
+<pre class="r"><code>primates &lt;- msleep %&gt;%
+  filter(order == &quot;Primates&quot;, sleep_total &gt; 10)
+primates</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["genus"],"name":[2],"type":["chr"],"align":["left"]},{"label":["vore"],"name":[3],"type":["chr"],"align":["left"]},{"label":["order"],"name":[4],"type":["chr"],"align":["left"]},{"label":["conservation"],"name":[5],"type":["chr"],"align":["left"]},{"label":["sleep_total"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["sleep_rem"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["sleep_cycle"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["awake"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["brainwt"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["bodywt"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"Owl monkey","2":"Aotus","3":"omni","4":"Primates","5":"NA","6":"17.0","7":"1.8","8":"NA","9":"7.0","10":"0.0155","11":"0.48"},{"1":"Patas monkey","2":"Erythrocebus","3":"omni","4":"Primates","5":"lc","6":"10.9","7":"1.1","8":"NA","9":"13.1","10":"0.1150","11":"10.00"},{"1":"Macaque","2":"Macaca","3":"omni","4":"Primates","5":"NA","6":"10.1","7":"1.2","8":"0.75","9":"13.9","10":"0.1790","11":"6.80"},{"1":"Slow loris","2":"Nyctibeus","3":"carni","4":"Primates","5":"NA","6":"11.0","7":"NA","8":"NA","9":"13.0","10":"0.0125","11":"1.40"},{"1":"Potto","2":"Perodicticus","3":"omni","4":"Primates","5":"lc","6":"11.0","7":"NA","8":"NA","9":"13.0","10":"NA","11":"1.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-filtering-columns" class="section level4">
+<h4>Filtering Columns</h4>
+<p>Now, let’s select specific columns from the <code>primates</code>
+dataset. Use the <code>select()</code> function to choose only the
+<code>name</code>, <code>sleep_total</code>, <code>sleep_rem</code>, and
+<code>sleep_cycle</code> columns.</p>
+<pre class="r"><code>primates_selected &lt;- primates %&gt;%
+  select(name, sleep_total, sleep_rem, sleep_cycle)
+primates_selected</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["sleep_total"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sleep_rem"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sleep_cycle"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Owl monkey","2":"17.0","3":"1.8","4":"NA"},{"1":"Patas monkey","2":"10.9","3":"1.1","4":"NA"},{"1":"Macaque","2":"10.1","3":"1.2","4":"0.75"},{"1":"Slow loris","2":"11.0","3":"NA","4":"NA"},{"1":"Potto","2":"11.0","3":"NA","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="section-exercise-1-filter-the-msleep-dataset"
+class="section level3">
+<h3>Exercise 1: Filter the msleep dataset</h3>
+<p>Filter the <code>msleep</code> dataset to include only mammals in the
+“Carnivora” order with a body weight greater than 1000. Assign the
+result to a new variable called <code>large_carnivores</code>.</p>
+<div class="tutorial-exercise" data-label="ex5" data-completion="1"
+data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Write your code here</code></pre>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="ex5-solution"
+data-completion="1" data-diagnostics="1" data-startover="1"
+data-lines="0">
+<pre class="text"><code>large_carnivores &lt;- msleep %&gt;%
+  filter(order == &quot;Carnivora&quot;, bodywt &gt; 1000)</code></pre>
+</div>
+<div id="section-renaming-columns" class="section level4">
+<h4>Renaming Columns</h4>
+<p>We can rename columns using the <code>rename()</code> function. Let’s
+rename the <code>sleep_total</code> column to
+<code>total_sleep</code>.</p>
+<pre class="r"><code>primates_renamed &lt;- primates_selected %&gt;%
+  rename(total_sleep = sleep_total)
+primates_renamed</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["total_sleep"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sleep_rem"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sleep_cycle"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Owl monkey","2":"17.0","3":"1.8","4":"NA"},{"1":"Patas monkey","2":"10.9","3":"1.1","4":"NA"},{"1":"Macaque","2":"10.1","3":"1.2","4":"0.75"},{"1":"Slow loris","2":"11.0","3":"NA","4":"NA"},{"1":"Potto","2":"11.0","3":"NA","4":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div
+id="section-exercise-2-rename-columns-in-the-large_carnivores-dataset"
+class="section level4">
+<h4>Exercise 2: Rename columns in the large_carnivores dataset</h4>
+<p>Rename the <code>bodywt</code> column to <code>body_weight</code> and
+the <code>brainwt</code> column to <code>brain_weight</code> in the
+<code>large_carnivores</code> dataset. Assign the result to a new
+variable called <code>large_carnivores_renamed</code>.</p>
+<div class="tutorial-exercise" data-label="ex6" data-completion="1"
+data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Write your code here</code></pre>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="ex6-solution"
+data-completion="1" data-diagnostics="1" data-startover="1"
+data-lines="0">
+<pre class="text"><code>large_carnivores_renamed &lt;- large_carnivores %&gt;%
+  rename(body_weight = bodywt, brain_weight = brainwt)</code></pre>
+</div>
+</div>
+<div id="section-reordering-data" class="section level4">
+<h4>Reordering Data</h4>
+<p>In R, you can reorder your data by using functions like
+<code>arrange()</code> from the dplyr package. This function allows you
+to sort the rows of a data frame based on one or more columns. For
+example, to sort a data frame <code>df</code> by the <code>age</code>
+column, you can use the following command:</p>
+<pre class="r"><code>library(dplyr)
+df &lt;- df %&gt;% arrange(age)</code></pre>
+<p>If you want to sort by multiple columns, you can simply add them as
+arguments:</p>
+<pre class="r"><code>df &lt;- df %&gt;% arrange(age, name)</code></pre>
+<p>To sort in descending order, you can use the desc() function:</p>
+<pre class="r"><code>df &lt;- df %&gt;% arrange(desc(age))</code></pre>
+<p>Removing Duplicate Rows: To remove duplicate rows from your data
+frame, you can use the <code>distinct()</code> function from dplyr. For
+example:</p>
+<pre class="r"><code>df &lt;- df %&gt;% distinct()</code></pre>
+<p>By default, this function will consider all columns when identifying
+duplicates. If you want to remove duplicates based on specific columns,
+you can specify them as arguments:</p>
+<pre class="r"><code>df &lt;- df %&gt;% distinct(column1, column2)</code></pre>
+<p>Renaming Columns: To rename columns in a data frame, you can use the
+<code>rename()</code> function from dplyr. Here’s an example:</p>
+<pre class="r"><code>df &lt;- df %&gt;% rename(new_name = old_name)</code></pre>
+<p>Combining Data Frames: If you have multiple data frames that you want
+to combine, you can use functions like <code>bind_rows()</code> and
+<code>bind_cols()</code> from dplyr. <code>bind_rows()</code> combines
+data frames vertically (by rows), while <code>bind_cols()</code>
+combines them horizontally (by columns). For example:</p>
+<pre class="r"><code>df_combined &lt;- bind_rows(df1, df2)</code></pre>
+<p>These are just a few examples of how you can tidy your data in R
+using dplyr. There are many more functions and techniques available to
+help you clean, manipulate, and transform your data to prepare it for
+analysis.</p>
+</div>
+<div id="section-creating-new-columns" class="section level4">
+<h4>Creating New Columns</h4>
+<p>You can create new columns in your data frame using the
+<code>mutate()</code> function from the dplyr package. For example,
+let’s say you have a dataset containing the total sleep time in hours
+for various mammals, and you want to convert the sleep time to minutes.
+You can create a new column using <code>mutate()</code>:</p>
+<pre class="r"><code>msleep %&gt;%
+  mutate(sleep_total_minutes = sleep_total * 60)</code></pre>
+</div>
+<div id="section-separating-columns" class="section level4">
+<h4>Separating Columns</h4>
+<p>Sometimes, you may find that a single column in your data frame
+contains multiple pieces of information that would be better stored in
+separate columns. The <code>separate()</code> function from the tidyr
+package can help you with this task. For example, let’s say you have a
+dataset with a column called “conservation_abbreviation” that contains
+both the abbreviation and the description, separated by an equals sign
+(=). You can separate this column into two new columns using
+<code>separate()</code>:</p>
+<pre class="r"><code>conservation %&gt;%
+  separate(conservation_abbreviation, into = c(&quot;abbreviation&quot;, &quot;description&quot;), sep = &quot; = &quot;)</code></pre>
+<div class="panel panel-default tutorial-question-container">
+<div data-label="ex7" class="tutorial-question panel-body">
+<div id="ex7-answer_container" class="shiny-html-output"></div>
+<div id="ex7-message_container" class="shiny-html-output"></div>
+<div id="ex7-action_button_container" class="shiny-html-output"></div>
+<script>if (Tutorial.triggerMathJax) Tutorial.triggerMathJax()</script>
+</div>
+</div>
+</div>
+<div id="section-merging-columns" class="section level4">
+<h4>Merging Columns</h4>
+<p>The <code>unite()</code> function from the tidyr package allows you
+to merge separate columns into a single column. For example, let’s say
+you have a dataset with two separate columns called “abbreviation” and
+“description”, and you want to merge them into a single column with an
+equals sign (=) between the abbreviation and the description. You can
+use the <code>unite()</code> function to accomplish this:</p>
+<pre class="r"><code>conservation %&gt;%
+  unite(united_column, abbreviation, description, sep = &quot; = &quot;)</code></pre>
+</div>
+</div>
+</div>
+<div id="section-chapter-32-joining-data" class="section level2">
+<h2>Chapter 32: Joining Data</h2>
+<p>In this tutorial, we will explore various methods to combine datasets
+with overlapping information using dplyr’s join functions. These
+functions are useful when you have two datasets containing related
+information, and you want to merge them into a single dataset for easier
+analysis.</p>
+<p>Let’s create two sample datasets, <code>df_a</code> and
+<code>df_b</code>, with some overlapping information:</p>
+<pre class="r"><code>df_a &lt;- data.frame(sample = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;),
+                   number = c(2, 4, 4.4, 3.1))
+df_b &lt;- data.frame(sample = c(&quot;A&quot;, &quot;B&quot;, &quot;E&quot;, &quot;F&quot;),
+                   color = c(&quot;blue&quot;, &quot;blue&quot;, &quot;red&quot;, &quot;green&quot;))</code></pre>
+<p>Here are the contents of <code>df_a</code>:</p>
+<pre class="r"><code>df_a</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"A","2":"2.0"},{"1":"B","2":"4.0"},{"1":"C","2":"4.4"},{"1":"D","2":"3.1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>And here are the contents of <code>df_b</code>:</p>
+<pre class="r"><code>df_b</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["color"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"blue"},{"1":"B","2":"blue"},{"1":"E","2":"red"},{"1":"F","2":"green"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="section-join-functions" class="section level4">
+<h4>Join functions</h4>
+<p>We will explore the following join functions in this tutorial:</p>
+<ul>
+<li><code>inner_join()</code>: Includes only rows with matches in both
+<code>df_a</code> and <code>df_b</code>.</li>
+<li><code>left_join()</code>: Includes all rows in <code>df_a</code>,
+and matches from <code>df_b</code> where available.</li>
+<li><code>right_join()</code>: Includes all rows in <code>df_b</code>,
+and matches from <code>df_a</code> where available.</li>
+<li><code>full_join()</code>: Includes all rows in both
+<code>df_a</code> and <code>df_b</code>, regardless of whether they have
+matches.</li>
+</ul>
+</div>
+<div id="section-inner_join" class="section level4">
+<h4>inner_join()</h4>
+<p><code>inner_join()</code> keeps only rows that have matches in both
+datasets. We specify the column to match on using the <code>by</code>
+argument:</p>
+<pre class="r"><code>library(dplyr)
+
+inner_join(df_a, df_b, by = &quot;sample&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"2","3":"blue"},{"1":"B","2":"4","3":"blue"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-left_join" class="section level4">
+<h4>left_join()</h4>
+<p><code>left_join()</code> keeps all rows in <code>df_a</code> and adds
+matches from <code>df_b</code> where available:</p>
+<pre class="r"><code>left_join(df_a, df_b, by = &quot;sample&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"2.0","3":"blue"},{"1":"B","2":"4.0","3":"blue"},{"1":"C","2":"4.4","3":"NA"},{"1":"D","2":"3.1","3":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-right_join" class="section level4">
+<h4>right_join()</h4>
+<p><code>right_join()</code> keeps all rows in <code>df_b</code> and
+adds matches from <code>df_a</code> where available:</p>
+<pre class="r"><code>right_join(df_a, df_b, by = &quot;sample&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"2","3":"blue"},{"1":"B","2":"4","3":"blue"},{"1":"E","2":"NA","3":"red"},{"1":"F","2":"NA","3":"green"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-full_join" class="section level4">
+<h4>full_join()</h4>
+<p><code>full_join()</code> keeps all rows in both <code>df_a</code> and
+<code>df_b</code>, regardless of whether they have matches:</p>
+<pre class="r"><code>full_join(df_a, df_b, by = &quot;sample&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["color"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"2.0","3":"blue"},{"1":"B","2":"4.0","3":"blue"},{"1":"C","2":"4.4","3":"NA"},{"1":"D","2":"3.1","3":"NA"},{"1":"E","2":"NA","3":"red"},{"1":"F","2":"NA","3":"green"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="section-combining-datasets-with-different-columns"
+class="section level3">
+<h3>Combining datasets with different columns</h3>
+<p>When we have datasets with the same rows but different variables, we
+can use <code>bind_cols()</code>. For this example, we have two datasets
+representing the same samples.</p>
+<pre class="r"><code>df_a &lt;- data.frame(sample = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;),
+                   number = c(2, 4, 4.4, 3.1))
+df_c &lt;- data.frame(sample = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;, &quot;D&quot;),
+                   animal = c(&quot;dog&quot;, &quot;cat&quot;, &quot;bird&quot;, &quot;snake&quot;))</code></pre>
+<p>Before merging these datasets, we need to make sure that our samples
+are in the same order in each dataset.</p>
+<pre class="r"><code>all.equal(df_a$sample, df_c$sample)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<p>Now we can use <code>bind_cols()</code> to merge <code>df_a</code>
+and <code>df_c</code>.</p>
+<pre class="r"><code>bind_cols(df_a, df_c)</code></pre>
+<pre><code>## New names:
+## • `sample` -&gt; `sample...1`
+## • `sample` -&gt; `sample...3`</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample...1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["number"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sample...3"],"name":[3],"type":["chr"],"align":["left"]},{"label":["animal"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"A","2":"2.0","3":"A","4":"dog"},{"1":"B","2":"4.0","3":"B","4":"cat"},{"1":"C","2":"4.4","3":"C","4":"bird"},{"1":"D","2":"3.1","3":"D","4":"snake"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="section-exercise-1-combining-datasets-with-different-columns"
+class="section level4">
+<h4>Exercise 1: Combining datasets with different columns</h4>
+<p>Use <code>bind_cols()</code> to merge <code>df_a</code> and
+<code>df_c</code>, then rename the sample column to “sample” and remove
+the duplicated sample column using <code>select()</code>. Your final
+dataset should have columns “sample”, “number”, and “animal”.</p>
+<div class="tutorial-exercise" data-label="ex8" data-completion="1"
+data-diagnostics="1" data-startover="1" data-lines="0">
+<pre class="text"><code># Combine df_a and df_c, then rename and remove the duplicated sample column</code></pre>
+<script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":true,"caption":"<span data-i18n=\"text.enginecap\" data-i18n-opts=\"{&quot;engine&quot;:&quot;R&quot;}\">R Code<\/span>"}</script>
+</div>
+<div class="tutorial-exercise-support" data-label="ex8-solution"
+data-completion="1" data-diagnostics="1" data-startover="1"
+data-lines="0">
+<pre class="text"><code>bind_cols(df_a, df_c) %&gt;%
+  rename(sample = sample...1) %&gt;%
+  select(-sample...3)</code></pre>
+</div>
+<p>Great job! Now you have learned different ways to combine datasets
+using various join functions and <code>bind_rows()</code> and
+<code>bind_cols()</code>. Remember to choose the appropriate method
+based on the structure of your datasets and the desired outcome.</p>
+<p>
+<script type="application/shiny-prerendered" data-context="server-start">
+library(learnr)
+library(gradethis)
+library(tidyr)
+library(tidyverse)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::register_http_handlers(session, metadata = NULL)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::prepare_tutorial_state(session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::i18n_observe_tutorial_language(input, session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+session$onSessionEnded(function() {
+        learnr:::event_trigger(session, "session_stop")
+      })
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ex1-1", question = structure("Which principle of tidy data states that each variable you measure should be in one column?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_dcfbc6f", 
+    option = "Principle #1", value = "Principle #1", label = structure("Principle #1", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_37c9582", 
+    option = "Principle #2", value = "Principle #2", label = structure("Principle #2", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_813a0c9", 
+    option = "Principle #3", value = "Principle #3", label = structure("Principle #3", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5736389", 
+    option = "Principle #4", value = "Principle #4", label = structure("Principle #4", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "ex1-1-answer", question = "ex1-1"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 2040167579.04997, 
+    options = list()), class = c("learnr_radio", "tutorial_question"
+)), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ex1-2", question = structure("Which principle of tidy data states that there should be one spreadsheet for each ‘type’ of data?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_ac2aa5a", 
+    option = "Principle #1", value = "Principle #1", label = structure("Principle #1", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_8856a7f", 
+    option = "Principle #2", value = "Principle #2", label = structure("Principle #2", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_5c58773", 
+    option = "Principle #3", value = "Principle #3", label = structure("Principle #3", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_bc3399e", 
+    option = "Principle #4", value = "Principle #4", label = structure("Principle #4", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "ex1-2-answer", question = "ex1-2"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1915474348.60804, 
+    options = list()), class = c("learnr_radio", "tutorial_question"
+)), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ex2-1", question = structure("Which common problem with messy data sets is described as: ‘A single column has multiple variables’?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_c2ff3ac", 
+    option = "Problem #1", value = "Problem #1", label = structure("Problem #1", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2854928", 
+    option = "Problem #2", value = "Problem #2", label = structure("Problem #2", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_a21cac6", 
+    option = "Problem #3", value = "Problem #3", label = structure("Problem #3", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_33a6930", 
+    option = "Problem #4", value = "Problem #4", label = structure("Problem #4", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "ex2-1-answer", question = "ex2-1"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1270146792.90854, 
+    options = list()), class = c("learnr_radio", "tutorial_question"
+)), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ex2-2", question = structure("Which common problem with messy data sets is described as: ‘Multiple types of data are in the same spreadsheet’?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_7e0ad5", 
+    option = "Problem #1", value = "Problem #1", label = structure("Problem #1", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e8011cf", 
+    option = "Problem #2", value = "Problem #2", label = structure("Problem #2", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6fa0350", 
+    option = "Problem #3", value = "Problem #3", label = structure("Problem #3", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_64b403b", 
+    option = "Problem #4", value = "Problem #4", label = structure("Problem #4", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "ex2-2-answer", question = "ex2-2"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1884350166.12253, 
+    options = list()), class = c("learnr_radio", "tutorial_question"
+)), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_checkbox", label = "ex3-1", question = structure("Which action can be taken on a dataset to tidy the data?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_24363ec", 
+    option = "Filtering", value = "Filtering", label = structure("Filtering", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_2abf11b", 
+    option = "Transforming", value = "Transforming", label = structure("Transforming", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_6e2162d", 
+    option = "Modifying variables", value = "Modifying variables", 
+    label = structure("Modifying variables", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_9fca1bb", 
+    option = "All of the above", value = "All of the above", 
+    label = structure("All of the above", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "ex3-1-answer", question = "ex3-1"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1667444875.72354, 
+    options = list()), class = c("learnr_checkbox", "tutorial_question"
+)), session = session)
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex4-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex4-code-editor`)), session)
+output$`tutorial-exercise-ex4-output` <- renderUI({
+  `tutorial-exercise-ex4-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex4", global_setup = structure(c("library(learnr)", 
+"library(gradethis)", "library(tidyr)", "library(tidyverse)", 
+"library(dplyr)", "", "knitr::opts_chunk$set(echo = TRUE)", "", 
+"gradethis::gradethis_setup()"), chunk_opts = list(label = "setup", 
+    include = FALSE)), setup = NULL, chunks = list(list(label = "ex4", 
+    code = "\n\n", opts = list(label = "\"ex4\"", exercise = "TRUE"), 
+    engine = "r")), code_check = NULL, error_check = NULL, check = structure("grade_code()", chunk_opts = list(
+    label = "ex4-check")), solution = structure(c("long_relig_income <- relig_income %>%", 
+"  pivot_longer(!religion, names_to = \"income\", values_to = \"count\")"
+), chunk_opts = list(label = "ex4-solution")), tests = NULL, 
+    options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "chapter_28_to_32_learning_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "chapter_28_to_32_learning_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        label = "ex4", exercise = TRUE, out.width.px = 624, out.height.px = 384, 
+        params.src = "ex4, exercise=TRUE", fig.num = 0L, exercise.df_print = "paged"), 
+    engine = "r", version = "4"), class = c("r", "tutorial_exercise"
+)))
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex5-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex5-code-editor`)), session)
+output$`tutorial-exercise-ex5-output` <- renderUI({
+  `tutorial-exercise-ex5-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex5", global_setup = structure(c("library(learnr)", 
+"library(gradethis)", "library(tidyr)", "library(tidyverse)", 
+"library(dplyr)", "", "knitr::opts_chunk$set(echo = TRUE)", "", 
+"gradethis::gradethis_setup()"), chunk_opts = list(label = "setup", 
+    include = FALSE)), setup = NULL, chunks = list(list(label = "ex5", 
+    code = "# Write your code here", opts = list(label = "\"ex5\"", 
+        exercise = "TRUE"), engine = "r")), code_check = NULL, 
+    error_check = NULL, check = structure("grade_code()", chunk_opts = list(
+        label = "ex5-check")), solution = structure(c("large_carnivores <- msleep %>%", 
+    "  filter(order == \"Carnivora\", bodywt > 1000)"), chunk_opts = list(
+        label = "ex5-solution")), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "chapter_28_to_32_learning_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "chapter_28_to_32_learning_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        label = "ex5", exercise = TRUE, code = "# Write your code here", 
+        out.width.px = 624, out.height.px = 384, params.src = "ex5, exercise=TRUE", 
+        fig.num = 0, exercise.df_print = "paged"), engine = "r", 
+    version = "4"), class = c("r", "tutorial_exercise")))
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex6-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex6-code-editor`)), session)
+output$`tutorial-exercise-ex6-output` <- renderUI({
+  `tutorial-exercise-ex6-result`()
+})
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex6", global_setup = structure(c("library(learnr)", 
+"library(gradethis)", "library(tidyr)", "library(tidyverse)", 
+"library(dplyr)", "", "knitr::opts_chunk$set(echo = TRUE)", "", 
+"gradethis::gradethis_setup()"), chunk_opts = list(label = "setup", 
+    include = FALSE)), setup = "large_carnivores <- msleep %>%\n  filter(order == \"Carnivora\", bodywt > 1000)", 
+    chunks = list(list(label = "ex6-setup", code = "large_carnivores <- msleep %>%\n  filter(order == \"Carnivora\", bodywt > 1000)", 
+        opts = list(label = "\"ex6-setup\""), engine = "r"), 
+        list(label = "ex6", code = "# Write your code here", 
+            opts = list(label = "\"ex6\"", exercise = "TRUE"), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = structure("grade_code()", chunk_opts = list(label = "ex6-check")), 
+    solution = structure(c("large_carnivores_renamed <- large_carnivores %>%", 
+    "  rename(body_weight = bodywt, brain_weight = brainwt)"), chunk_opts = list(
+        label = "ex6-solution")), tests = NULL, options = list(
+        eval = FALSE, echo = TRUE, results = "markup", tidy = FALSE, 
+        tidy.opts = NULL, collapse = FALSE, prompt = FALSE, comment = NA, 
+        highlight = FALSE, size = "normalsize", background = "#F7F7F7", 
+        strip.white = TRUE, cache = 0, cache.path = "chapter_28_to_32_learning_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "chapter_28_to_32_learning_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        label = "ex6", exercise = TRUE, code = "# Write your code here", 
+        out.width.px = 624, out.height.px = 384, params.src = "ex6, exercise=TRUE", 
+        fig.num = 0, exercise.df_print = "paged"), engine = "r", 
+    version = "4"), class = c("r", "tutorial_exercise")))
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "ex7", question = structure("What is the purpose of the <code>mutate()<\u002fcode> function in R?", html = TRUE, class = c("html", 
+"character")), answers = list(structure(list(id = "lnr_ans_51db3a4", 
+    option = "To create new columns in a data frame.", value = "To create new columns in a data frame.", 
+    label = structure("To create new columns in a data frame.", html = TRUE, class = c("html", 
+    "character")), correct = TRUE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_f5c8c98", 
+    option = "To separate columns containing multiple pieces of information.", 
+    value = "To separate columns containing multiple pieces of information.", 
+    label = structure("To separate columns containing multiple pieces of information.", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_3f0967a", 
+    option = "To merge separate columns into a single column.", 
+    value = "To merge separate columns into a single column.", 
+    label = structure("To merge separate columns into a single column.", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e476153", 
+    option = "To clean up column names in a data frame.", value = "To clean up column names in a data frame.", 
+    label = structure("To clean up column names in a data frame.", html = TRUE, class = c("html", 
+    "character")), correct = FALSE, message = NULL, type = "literal"), class = c("tutorial_question_answer", 
+"tutorial_quiz_answer"))), button_labels = list(submit = structure("<span data-i18n=\"button.questionsubmit\">Submit Answer<\u002fspan>", html = TRUE, class = c("html", 
+"character")), try_again = structure("<span data-i18n=\"button.questiontryagain\">Try Again<\u002fspan>", html = TRUE, class = c("html", 
+"character"))), messages = list(correct = structure("Correct!", html = TRUE, class = c("html", 
+"character")), try_again = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), incorrect = structure("Incorrect", html = TRUE, class = c("html", 
+"character")), message = NULL, post_message = NULL), ids = list(
+    answer = "ex7-answer", question = "ex7"), loading = NULL, 
+    random_answer_order = FALSE, allow_retry = FALSE, seed = 1852947938.63715, 
+    options = list()), class = c("learnr_radio", "tutorial_question"
+)), session = session)
+</script>
+ 
+<script type="application/shiny-prerendered" data-context="server">
+`tutorial-exercise-ex8-result` <- learnr:::setup_exercise_handler(reactive(req(input$`tutorial-exercise-ex8-code-editor`)), session)
+output$`tutorial-exercise-ex8-output` <- renderUI({
+  `tutorial-exercise-ex8-result`()
+})
+</script>
+
+
+<script type="application/shiny-prerendered" data-context="server">
+learnr:::store_exercise_cache(structure(list(label = "ex8", global_setup = structure(c("library(learnr)", 
+"library(gradethis)", "library(tidyr)", "library(tidyverse)", 
+"library(dplyr)", "", "knitr::opts_chunk$set(echo = TRUE)", "", 
+"gradethis::gradethis_setup()"), chunk_opts = list(label = "setup", 
+    include = FALSE)), setup = "df_a <- data.frame(sample = c(\"A\", \"B\", \"C\", \"D\"),\n                   number = c(2, 4, 4.4, 3.1))\ndf_c <- data.frame(sample = c(\"A\", \"B\", \"C\", \"D\"),\n                   animal = c(\"dog\", \"cat\", \"bird\", \"snake\"))\n", 
+    chunks = list(list(label = "ex8-setup", code = "df_a <- data.frame(sample = c(\"A\", \"B\", \"C\", \"D\"),\n                   number = c(2, 4, 4.4, 3.1))\ndf_c <- data.frame(sample = c(\"A\", \"B\", \"C\", \"D\"),\n                   animal = c(\"dog\", \"cat\", \"bird\", \"snake\"))\n", 
+        opts = list(label = "\"ex8-setup\""), engine = "r"), 
+        list(label = "ex8", code = "# Combine df_a and df_c, then rename and remove the duplicated sample column\n", 
+            opts = list(label = "\"ex8\"", exercise = "TRUE"), 
+            engine = "r")), code_check = NULL, error_check = NULL, 
+    check = structure("grade_code()", chunk_opts = list(label = "ex8-check")), 
+    solution = structure(c("bind_cols(df_a, df_c) %>%", "  rename(sample = sample...1) %>%", 
+    "  select(-sample...3)", ""), chunk_opts = list(label = "ex8-solution")), 
+    tests = NULL, options = list(eval = FALSE, echo = TRUE, results = "markup", 
+        tidy = FALSE, tidy.opts = NULL, collapse = FALSE, prompt = FALSE, 
+        comment = NA, highlight = FALSE, size = "normalsize", 
+        background = "#F7F7F7", strip.white = TRUE, cache = 0, 
+        cache.path = "chapter_28_to_32_learning_cache/html/", 
+        cache.vars = NULL, cache.lazy = TRUE, dependson = NULL, 
+        autodep = FALSE, cache.rebuild = FALSE, fig.keep = "high", 
+        fig.show = "asis", fig.align = "default", fig.path = "chapter_28_to_32_learning_files/figure-html/", 
+        dev = "png", dev.args = NULL, dpi = 192, fig.ext = "png", 
+        fig.width = 6.5, fig.height = 4, fig.env = "figure", 
+        fig.cap = NULL, fig.scap = NULL, fig.lp = "fig:", fig.subcap = NULL, 
+        fig.pos = "", out.width = 624, out.height = NULL, out.extra = NULL, 
+        fig.retina = 2, external = TRUE, sanitize = FALSE, interval = 1, 
+        aniopts = "controls,loop", warning = TRUE, error = FALSE, 
+        message = TRUE, render = NULL, ref.label = NULL, child = NULL, 
+        engine = "r", split = FALSE, include = TRUE, purl = TRUE, 
+        max.print = 1000, exercise.timelimit = 60, exercise.checker = "function (label = NULL, solution_code = NULL, user_code = NULL, \n    check_code = NULL, envir_result = NULL, evaluate_result = NULL, \n    envir_prep = NULL, last_value = NULL, stage = NULL, ..., \n    solution_eval_fn = NULL) \n{\n    (utils::getFromNamespace(\"check_exercise\", \"gradethis\"))(label = label, \n        solution_code = solution_code, user_code = user_code, \n        check_code = check_code, envir_result = envir_result, \n        evaluate_result = evaluate_result, envir_prep = envir_prep, \n        last_value = last_value, stage = stage, ...)\n}", 
+        exercise.error.check.code = "gradethis_error_checker()", 
+        label = "ex8", exercise = TRUE, code = c("# Combine df_a and df_c, then rename and remove the duplicated sample column", 
+        ""), out.width.px = 624, out.height.px = 384, params.src = "ex8, exercise=TRUE", 
+        fig.num = 0, exercise.df_print = "paged"), engine = "r", 
+    version = "4"), class = c("r", "tutorial_exercise")))
+</script>
+</p>
+<!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="dependencies">
+{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["header-attrs"]},{"type":"character","attributes":{},"value":["2.21"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pandoc"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["header-attrs.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.21"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootstrap"]},{"type":"character","attributes":{},"value":["3.3.5"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/bootstrap"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["viewport"]}},"value":[{"type":"character","attributes":{},"value":["width=device-width, initial-scale=1"]}]},{"type":"character","attributes":{},"value":["js/bootstrap.min.js","shim/html5shiv.min.js","shim/respond.min.js"]},{"type":"character","attributes":{},"value":["css/cerulean.min.css"]},{"type":"character","attributes":{},"value":["<style>h1 {font-size: 34px;}\n       h1.title {font-size: 38px;}\n       h2 {font-size: 30px;}\n       h3 {font-size: 24px;}\n       h4 {font-size: 18px;}\n       h5 {font-size: 16px;}\n       h6 {font-size: 12px;}\n       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}\n       pre:not([class]) { background-color: white }<\/style>"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.21"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["pagedtable"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/pagedtable-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["js/pagedtable.js"]},{"type":"character","attributes":{},"value":["css/pagedtable.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.21"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["textmate.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.21"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["i18n"]},{"type":"character","attributes":{},"value":["21.6.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/i18n"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["i18next.min.js","tutorial-i18n-init.js"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["<script id=\"i18n-cstm-trns\" type=\"application/json\">{\"language\":\"en\",\"resources\":{\"en\":{\"translation\":{\"button\":{\"runcode\":\"Run Code\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Hint\",\"hint_plural\":\"Hints\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Next Hint\",\"hintprev\":\"Previous Hint\",\"solution\":\"Solution\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copy to Clipboard\",\"startover\":\"Start Over\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continue\",\"submitanswer\":\"Submit Answer\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Previous Topic\",\"nexttopic\":\"Next Topic\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Try Again\"},\"text\":{\"startover\":\"Start Over\",\"areyousure\":\"Are you sure you want to start over? (all exercise progress will be reset)\",\"youmustcomplete\":\"You must complete the\",\"exercise\":\"exercise\",\"exercise_plural\":\"exercises\",\"inthissection\":\"in this section before continuing.\",\"code\":\"Code\",\"enginecap\":\"{{engine}} $t(text.code)\",\"quiz\":\"Quiz\",\"blank\":\"blank\",\"blank_plural\":\"blanks\",\"exercisecontainsblank\":\"This exercise contains {{count}} $t(text.blank).\",\"pleasereplaceblank\":\"Please replace {{blank}} with valid code.\",\"unparsable\":\"It looks like this might not be valid R code. R cannot determine how to turn your text into a complete command. You may have forgotten to fill in a blank, to remove an underscore, to include a comma between arguments, or to close an opening <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> or <code>{<\\/code> with a matching <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code> or <code>}<\\/code>.\\n\",\"unparsablequotes\":\"<p>It looks like your R code contains specially formatted quotation marks or &quot;curly&quot; quotes (<code>{{character}}<\\/code>) around character strings, making your code invalid. R requires character values to be contained in straight quotation marks (<code>&quot;<\\/code> or <code>'<\\/code>).<\\/p> {{code}} <p>Don't worry, this is a common source of errors when you copy code from another app that applies its own formatting to text. You can try replacing the code on that line with the following. There may be other places that need to be fixed, too.<\\/p> {{suggestion}}\\n\",\"unparsableunicode\":\"<p>It looks like your R code contains an unexpected special character (<code>{{character}}<\\/code>) that makes your code invalid.<\\/p> {{code}} <p>Sometimes your code may contain a special character that looks like a regular character, especially if you copy and paste the code from another app. Try deleting the special character from your code and retyping it manually.<\\/p>\\n\",\"unparsableunicodesuggestion\":\"<p>It looks like your R code contains an unexpected special character (<code>{{character}}<\\/code>) that makes your code invalid.<\\/p> {{code}} <p>Sometimes your code may contain a special character that looks like a regular character, especially if you copy and paste the code from another app. You can try replacing the code on that line with the following. There may be other places that need to be fixed, too.<\\/p> {{suggestion}}\\n\",\"and\":\"and\",\"or\":\"or\",\"listcomma\":\", \",\"oxfordcomma\":\",\"}}},\"fr\":{\"translation\":{\"button\":{\"runcode\":\"Lancer le Code\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Indication\",\"hint_plural\":\"Indications\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Indication Suivante\",\"hintprev\":\"Indication Précédente\",\"solution\":\"Solution\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copier dans le Presse-papier\",\"startover\":\"Recommencer\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continuer\",\"submitanswer\":\"Soumettre\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Chapitre Précédent\",\"nexttopic\":\"Chapitre Suivant\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Réessayer\"},\"text\":{\"startover\":\"Recommencer\",\"areyousure\":\"Êtes-vous certains de vouloir recommencer? (La progression sera remise à zéro)\",\"youmustcomplete\":\"Vous devez d'abord compléter\",\"exercise\":\"l'exercice\",\"exercise_plural\":\"des exercices\",\"inthissection\":\"de cette section avec de continuer.\",\"code\":\"Code\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"and\":\"et\",\"or\":\"ou\",\"oxfordcomma\":\"\"}}},\"es\":{\"translation\":{\"button\":{\"runcode\":\"Ejecutar código\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Pista\",\"hint_plural\":\"Pistas\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Siguiente pista\",\"hintprev\":\"Pista anterior\",\"solution\":\"Solución\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copiar al portapapeles\",\"startover\":\"Reiniciar\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continuar\",\"submitanswer\":\"Enviar respuesta\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Tema anterior\",\"nexttopic\":\"Tema siguiente\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Volver a intentar\"},\"text\":{\"startover\":\"Reiniciar\",\"areyousure\":\"¿De verdad quieres empezar de nuevo? (todo el progreso del ejercicio se perderá)\",\"youmustcomplete\":\"Debes completar\",\"exercise\":\"el ejercicio\",\"exercise_plural\":\"los ejercicios\",\"inthissection\":\"en esta sección antes de continuar.\",\"code\":\"Código\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Cuestionario\",\"and\":\"y\",\"or\":\"o\",\"oxfordcomma\":\"\"}}},\"pt\":{\"translation\":{\"button\":{\"runcode\":\"Executar código\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Dica\",\"hint_plural\":\"Dicas\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Próxima dica\",\"hintprev\":\"Dica anterior\",\"solution\":\"Solução\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Copiar para a área de transferência\",\"startover\":\"Reiniciar\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Continuar\",\"submitanswer\":\"Enviar resposta\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Tópico anterior\",\"nexttopic\":\"Próximo tópico\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Tentar novamente\"},\"text\":{\"startover\":\"Reiniciar\",\"areyousure\":\"Tem certeza que deseja começar novamente? (todo o progresso feito será perdido)\",\"youmustcomplete\":\"Você deve completar\",\"exercise\":\"o exercício\",\"exercise_plural\":\"os exercícios\",\"inthissection\":\"nesta seção antes de continuar.\",\"code\":\"Código\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"and\":\"e\",\"or\":\"ou\",\"oxfordcomma\":\"\"}}},\"tr\":{\"translation\":{\"button\":{\"runcode\":\"Çalıştırma Kodu\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Ipucu\",\"hint_plural\":\"İpuçları\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Sonraki İpucu\",\"hintprev\":\"Önceki İpucu\",\"solution\":\"Çözüm\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Pano'ya Kopyala\",\"startover\":\"Baştan Başlamak\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Devam et\",\"submitanswer\":\"Cevabı onayla\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Önceki Konu\",\"nexttopic\":\"Sonraki Konu\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Tekrar Deneyin\"},\"text\":{\"startover\":\"Baştan Başlamak\",\"areyousure\":\"Baştan başlamak istediğinizden emin misiniz? (tüm egzersiz ilerlemesi kaybolacak)\",\"youmustcomplete\":\"Tamamlamalısın\",\"exercise\":\"egzersiz\",\"exercise_plural\":\"egzersizler\",\"inthissection\":\"devam etmeden önce bu bölümde\",\"code\":\"Kod\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Sınav\",\"oxfordcomma\":\"\"}}},\"emo\":{\"translation\":{\"button\":{\"runcode\":\"🏃\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"💡\",\"hint_plural\":\"$t(button.hint)\",\"hinttitle\":\"$t(button.hint)\",\"solution\":\"🎯\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"📋\",\"startover\":\"⏮\",\"startovertitle\":\"Start Over\",\"continue\":\"✅\",\"submitanswer\":\"🆗\",\"submitanswertitle\":\"Submit Answer\",\"previoustopic\":\"⬅\",\"nexttopic\":\"➡\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"🔁\"},\"text\":{\"startover\":\"⏮\",\"areyousure\":\"🤔\",\"youmustcomplete\":\"⚠️ 👉 🧑‍💻\",\"exercise\":\"\",\"exercise_plural\":\"\",\"inthissection\":\"\",\"code\":\"💻\",\"enginecap\":\"$t(text.code) {{engine}}\",\"oxfordcomma\":\"\"}}},\"eu\":{\"translation\":{\"button\":{\"runcode\":\"Kodea egikaritu\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Laguntza\",\"hint_plural\":\"Laguntza\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Aurreko laguntza\",\"hintprev\":\"Hurrengo laguntza\",\"solution\":\"Ebazpena\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Arbelean kopiatu\",\"startover\":\"Berrabiarazi\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Jarraitu\",\"submitanswer\":\"Erantzuna bidali\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Aurreko atala\",\"nexttopic\":\"Hurrengo atala\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Berriro saiatu\"},\"text\":{\"startover\":\"Berrabiarazi\",\"areyousure\":\"Berriro hasi nahi duzu? (egindako lana galdu egingo da)\",\"youmustcomplete\":\"Aurrera egin baino lehen atal honetako\",\"exercise\":\"ariketa egin behar duzu.\",\"exercise_plural\":\"ariketak egin behar dituzu.\",\"inthissection\":\"\",\"code\":\"Kodea\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Galdetegia\",\"oxfordcomma\":\"\"}}},\"de\":{\"translation\":{\"button\":{\"runcode\":\"Code ausführen\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Tipp\",\"hint_plural\":\"Tipps\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Nächster Tipp\",\"hintprev\":\"Vorheriger Tipp\",\"solution\":\"Lösung\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"In die Zwischenablage kopieren\",\"startover\":\"Neustart\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Weiter\",\"submitanswer\":\"Antwort einreichen\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Vorheriges Kapitel\",\"nexttopic\":\"Nächstes Kapitel\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Nochmal versuchen\"},\"text\":{\"startover\":\"Neustart\",\"areyousure\":\"Bist du sicher, dass du neustarten willst? (der gesamte Lernfortschritt wird gelöscht)\",\"youmustcomplete\":\"Vervollstädinge\",\"exercise\":\"die Übung\",\"exercise_plural\":\"die Übungen\",\"inthissection\":\"in diesem Kapitel, bevor du fortfährst.\",\"code\":\"Code\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"blank\":\"Lücke\",\"blank_plural\":\"Lücken\",\"pleasereplaceblank\":\"Bitte ersetze {{blank}} mit gültigem Code.\",\"unparsable\":\"Dies scheint kein gültiger R Code zu sein. R kann deinen Text nicht in einen gültigen Befehl übersetzen. Du hast vielleicht vergessen, die Lücke zu füllen, einen Unterstrich zu entfernen, ein Komma zwischen Argumente zu setzen oder ein eröffnendes <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> oder <code>{<\\/code> mit einem zugehörigen <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code> oder <code>}<\\/code> zu schließen.\\n\",\"and\":\"und\",\"or\":\"oder\",\"listcomma\":\", \",\"oxfordcomma\":\",\"}}},\"ko\":{\"translation\":{\"button\":{\"runcode\":\"코드 실행\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"힌트\",\"hint_plural\":\"힌트들\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"다음 힌트\",\"hintprev\":\"이전 힌트\",\"solution\":\"솔루션\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"클립보드에 복사\",\"startover\":\"재학습\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"다음 학습으로\",\"submitanswer\":\"정답 제출\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"이전 토픽\",\"nexttopic\":\"다음 토픽\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"재시도\"},\"text\":{\"startover\":\"재학습\",\"areyousure\":\"다시 시작 하시겠습니까? (모든 예제의 진행 정보가 재설정됩니다)\",\"youmustcomplete\":\"당신은 완료해야 합니다\",\"exercise\":\"연습문제\",\"exercise_plural\":\"연습문제들\",\"inthissection\":\"이 섹션을 실행하기 전에\",\"code\":\"코드\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"퀴즈\",\"blank\":\"공백\",\"blank_plural\":\"공백들\",\"exercisecontainsblank\":\"이 연습문제에는 {{count}}개의 $t(text.blank)이 포함되어 있습니다.\",\"pleasereplaceblank\":\"{{blank}}를 유효한 코드로 바꾸십시오.\",\"unparsable\":\"이것은 유효한 R 코드가 아닐 수 있습니다. R은 텍스트를 완전한 명령으로 변환하는 방법을 결정할 수 없습니다. 당신은 공백이나 밑줄을 대체하여 채우기, 인수를 컴마로 구분하기, 또는 <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> , <code>{<\\/code>로 시작하는 구문을 닫는 <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code>, <code>}<\\/code>을 잊었을 수도 있습니다.\\n\",\"and\":\"그리고\",\"or\":\"혹은\",\"listcomma\":\", \",\"oxfordcomma\":\"\"}}},\"zh\":{\"translation\":{\"button\":{\"runcode\":\"运行代码\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"提示\",\"hint_plural\":\"提示\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"下一个提示\",\"hintprev\":\"上一个提示\",\"solution\":\"答案\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"复制到剪切板\",\"startover\":\"重新开始\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"继续\",\"submitanswer\":\"提交答案\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"上一专题\",\"nexttopic\":\"下一专题\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"再试一次\"},\"text\":{\"startover\":\"重置\",\"areyousure\":\"你确定要重新开始吗? (所有当前进度将被重置)\",\"youmustcomplete\":\"你必须完成\",\"exercise\":\"练习\",\"exercise_plural\":\"练习\",\"inthissection\":\"在进行本节之前\",\"code\":\"代码\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"测试\",\"blank\":\"空\",\"blank_plural\":\"空\",\"exercisecontainsblank\":\"本练习包含{{count}}个$t(text.blank)\",\"pleasereplaceblank\":\"请在{{blank}}内填写恰当的代码\",\"unparsable\":\"这似乎不是有效的R代码。 R不知道如何将您的文本转换为完整的命令。 您是否忘了填空，忘了删除下划线，忘了在参数之间包含逗号，或者是忘了用<code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code>,<code>}<\\/code>来封闭<code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code>。 or <code>{<\\/code>。\\n\",\"unparsablequotes\":\"<p>您的R代码中似乎含有特殊格式的引号，或者弯引号(<code>{{character}}<\\/code>) 在字符串前后，在R中字符串应该被直引号(<code>&quot;<\\/code> 或者 <code>'<\\/code>)包裹。<\\/p> {{code}} <p>别担心，该错误经常在复制粘贴包含格式的代码时遇到， 您可以尝试将该行中的代码替换为以下代码，也许还有其他地方需要修改。<\\/p> {{suggestion}}\\n\",\"unparsableunicode\":\"<p>您的代码中似乎包含有异常字符(<code>{{character}}<\\/code>),导致代码无效。<\\/p> {{code}} <p>有时候你的代码可能含有看似正常字符的特殊字符，特别是当你复制粘贴其他来源代码的时候。 请试着删除这些特殊字符,重新输入<\\/p>\\n\",\"unparsableunicodesuggestion\":\"<p>您的代码中似乎包含有异常字符(<code>{{character}}<\\/code>),导致代码无效。<\\/p> {{code}} <p>有时候你的代码可能含有看似正常字符的特殊字符，特别是当你复制粘贴其他来源代码的时候。 请试着删除这些特殊字符,重新输入<\\/p>\\n\",\"and\":\"且\",\"or\":\"或\",\"listcomma\":\",\",\"oxfordcomma\":\",\"}}},\"pl\":{\"translation\":{\"button\":{\"runcode\":\"Uruchom kod\",\"runcodetitle\":\"$t(button.runcode) ({{kbd}})\",\"hint\":\"Podpowiedź\",\"hint_plural\":\"Podpowiedzi\",\"hinttitle\":\"$t(button.hint)\",\"hintnext\":\"Następna podpowiedź\",\"hintprev\":\"Poprzednia podpowiedź\",\"solution\":\"Rozwiązanie\",\"solutiontitle\":\"$t(button.solution)\",\"copyclipboard\":\"Kopiuj do schowka\",\"startover\":\"Zacznij od początku\",\"startovertitle\":\"$t(button.startover)\",\"continue\":\"Kontynuuj\",\"submitanswer\":\"Wyślij\",\"submitanswertitle\":\"$t(button.submitanswer)\",\"previoustopic\":\"Poprzednia sekcja\",\"nexttopic\":\"Następna sekcja\",\"questionsubmit\":\"$t(button.submitanswer)\",\"questiontryagain\":\"Spróbuj ponownie\"},\"text\":{\"startover\":\"Zacznij od początku\",\"areyousure\":\"Czy na pewno chcesz zacząć od początku? (cały postęp w zadaniu zostanie utracony)\",\"youmustcomplete\":\"Musisz ukończyć\",\"exercise\":\"ćwiczenie\",\"exercise_plural\":\"ćwiczenia\",\"inthissection\":\"w tej sekcji przed kontynuowaniem\",\"code\":\"Kod\",\"enginecap\":\"$t(text.code) {{engine}}\",\"quiz\":\"Quiz\",\"blank\":\"luka\",\"blank_plural\":\"luk(i)\",\"exercisecontainsblank\":\"To ćwiczenie zawiera {{count}} $t(text.blank).\",\"pleasereplaceblank\":\"Proszę uzupełnić {{blank}} prawidłowym kodem.\",\"unparsable\":\"Wygląda na to, że może to nie być prawidłowy kod R. R nie jest w stanie przetworzyć Twojego tekstu na polecenie. Mogłeś(-aś) zapomnieć wypełnić luki, usunąć podkreślnik, umieścić przecinka między argumentami, lub zamknąć znak <code>&quot;<\\/code>, <code>'<\\/code>, <code>(<\\/code> lub <code>{<\\/code> odpowiadającym <code>&quot;<\\/code>, <code>'<\\/code>, <code>)<\\/code> lub <code>}<\\/code>.\\n\",\"unparsablequotes\":\"<p>Wygląda na to, że Twój kod zawiera szczególnie sformatowane cudzysłowy lub cudzysłowy typograficzne (<code>{{character}}<\\/code>) przy ciągach znaków, co sprawia, że kod jest niepoprawny. R wymaga cudzysłowów prostych (<code>&quot;<\\/code> albo <code>'<\\/code>).<\\/p> {{code}} <p>Nie martw się, to powszechne źródło błędów, gdy kopiuje się kod z innego programu, który sam formatuje teskt. Możesz spróbować zastąpić swój kod następującym kodem. Mogą być też inne miejsca, które wymagają poprawienia.<\\/p> {{suggestion}}\\n\",\"unparsableunicode\":\"<p>Wygląda na to, że Twój kod zawiera niespodziewany znak specjalny (<code>{{character}}<\\/code>), co sprawia, że kod jest niepoprawny.<\\/p> {{code}} <p>Czasami Twój kod może zawierać znak specjalny, który wygląda jak zwykły znak, zwłaszcza jeśli kopiujesz kod z innego programu. Spróbuj usunąć znak specjalny i wpisać do ponownie ręcznie.<\\/p>\\n\",\"unparsableunicodesuggestion\":\"<p>Wygląda na to, że Twój kod zawiera niespodziewany znak specjalny (<code>{{character}}<\\/code>), co sprawia, że kod jest niepoprawny.<\\/p> {{code}} <p>Czasami Twój kod może zawierać znak specjalny, który wygląda jak zwykły znak, zwłaszcza jeśli kopiujesz kod z innego programu. Możesz spróbować zastąpić swój kod następującym kodem. Mogą być też inne miejsca, które wymagają poprawienia.<\\/p> {{suggestion}}\\n\",\"and\":\"i\",\"or\":\"lub\",\"listcomma\":\", \",\"oxfordcomma\":\"\"}}}}}<\/script>"]},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial-format"]},{"type":"character","attributes":{},"value":["0.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmarkdown/templates/tutorial/resources"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial-format.js"]},{"type":"character","attributes":{},"value":["tutorial-format.css","rstudio-theme.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["navigation"]},{"type":"character","attributes":{},"value":["1.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/navigation-1.1"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tabsets.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.21"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["highlightjs"]},{"type":"character","attributes":{},"value":["9.12.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["rmd/h/highlightjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["highlight.js"]},{"type":"character","attributes":{},"value":["default.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["rmarkdown"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["2.21"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["jquery"]},{"type":"character","attributes":{},"value":["3.6.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/3.6.0"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquery-3.6.0.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["jquerylib"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.1.4"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["font-awesome"]},{"type":"character","attributes":{},"value":["6.4.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["fontawesome"]}]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["css/all.min.css","css/v4-shims.min.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["fontawesome"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.5.1"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["bootbox"]},{"type":"character","attributes":{},"value":["5.5.2"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/bootbox"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["bootbox.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["idb-keyvalue"]},{"type":"character","attributes":{},"value":["3.2.0"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/idb-keyval"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["idb-keyval-iife-compat.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[false]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["tutorial"]},{"type":"character","attributes":{},"value":["0.11.3"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/tutorial"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["tutorial.js"]},{"type":"character","attributes":{},"value":["tutorial.css"]},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["ace"]},{"type":"character","attributes":{},"value":["1.10.1"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/ace"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["ace.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","version","src","meta","script","stylesheet","head","attachment","package","all_files","pkgVersion"]},"class":{"type":"character","attributes":{},"value":["html_dependency"]}},"value":[{"type":"character","attributes":{},"value":["clipboardjs"]},{"type":"character","attributes":{},"value":["2.0.10"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["file"]}},"value":[{"type":"character","attributes":{},"value":["lib/clipboardjs"]}]},{"type":"NULL"},{"type":"character","attributes":{},"value":["clipboard.min.js"]},{"type":"NULL"},{"type":"NULL"},{"type":"NULL"},{"type":"character","attributes":{},"value":["learnr"]},{"type":"logical","attributes":{},"value":[true]},{"type":"character","attributes":{},"value":["0.11.3"]}]}]}
+</script>
+<!--/html_preserve-->
+<!--html_preserve-->
+<script type="application/shiny-prerendered" data-context="execution_dependencies">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["packages","version"]},"class":{"type":"character","attributes":{},"value":["data.frame"]},"row.names":{"type":"integer","attributes":{},"value":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79]}},"value":[{"type":"character","attributes":{},"value":["backports","base","base64enc","bslib","cachem","checkmate","cli","colorspace","commonmark","compiler","curl","datasets","digest","dplyr","ellipsis","evaluate","fansi","fastmap","fontawesome","forcats","generics","ggplot2","glue","gradethis","graphics","grDevices","grid","gtable","hms","htmltools","htmlwidgets","httpuv","janitor","jquerylib","jsonlite","knitr","later","learnr","lifecycle","lubridate","magrittr","markdown","methods","mime","munsell","pillar","pkgconfig","promises","purrr","R6","Rcpp","readr","repr","rlang","rmarkdown","rprojroot","rstudioapi","sass","scales","shiny","skimr","snakecase","stats","stringi","stringr","tibble","tidyr","tidyselect","tidyverse","timechange","tools","tzdb","utf8","utils","vctrs","withr","xfun","xtable","yaml"]},{"type":"character","attributes":{},"value":["1.4.1","4.2.2","0.1-3","0.4.2","1.0.7","2.2.0","3.6.0","2.1-0","1.9.0","4.2.2","5.0.0","4.2.2","0.6.31","1.1.0","0.3.2","0.20","1.0.4","1.1.1","0.5.1","1.0.0","0.1.3","3.4.2","1.6.2","0.2.12.9002","4.2.2","4.2.2","4.2.2","0.3.3","1.1.3","0.5.4","1.6.2","1.6.9","2.2.0","0.1.4","1.8.4","1.42","1.3.0","0.11.3","1.0.3","1.9.2","2.0.3","1.6","4.2.2","0.12","0.5.0","1.9.0","2.0.3","1.2.0.1","1.0.1","2.5.1","1.0.10","2.1.4","1.1.6","1.1.0","2.21","2.0.3","0.14","0.4.5","1.2.1","1.7.4","2.1.5","0.11.0","4.2.2","1.7.12","1.5.0","3.2.0","1.3.0","1.2.0","2.0.0","0.2.0","4.2.2","0.3.0","1.2.3","4.2.2","0.6.0","2.5.0","0.39","1.8-4","2.3.7"]}]}]}
+</script>
+<!--/html_preserve-->
+</div>
+</div>
+</div>
+
+</article> <!-- topics -->
+
+<div class="topicsContainer">
+<div class="topicsPositioner">
+<div class="band">
+<div class="bandContent topicsListContainer">
+
+<!-- begin doc-metadata -->
+<div id="doc-metadata">
+<h1 class="title toc-ignore" style="display:none;">Cleaning Data</h1>
+</div>
+<!-- end doc-metadata -->
+
+</div> <!-- bandContent.topicsListContainer -->
+</div> <!-- band -->
+</div> <!-- topicsPositioner -->
+</div> <!-- topicsContainer -->
+
+
+</main> <!-- bandContent page -->
+</div> <!-- pageContent band -->
+
+
+
+<!-- Build Tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("section-TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<script>
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+
+</body>
+
+</html>

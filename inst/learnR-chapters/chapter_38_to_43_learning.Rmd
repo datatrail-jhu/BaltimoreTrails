@@ -1,0 +1,731 @@
+---
+title: "Cleaning Data"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(tidyr)
+library(tidyverse)
+library(dplyr)
+library(forcats)
+library(janitor)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 33: Working with Strings
+
+In this tutorial, we'll explore some essential string manipulation functions using the `stringr` package, which is a part of the `tidyverse`. We will also look at regular expressions to perform more advanced string manipulation tasks.
+
+### Creating and Manipulating Strings
+
+Before we dive into using the `stringr` package, let's create a simple string and store it in a variable:
+
+```{r}
+stringA <- "Welcome to the string tutorial."
+```
+
+We can also store multiple strings in a vector:
+
+```{r}
+stringVector <- c("Welcome to the string tutorial.", "String manipulation", "Working with text")
+```
+
+Now, let's install and load the stringr package:
+
+```{r,eval=FALSE}
+# Install the stringr package if not already installed
+# install.packages("stringr")
+
+# Load the stringr package
+library(stringr)
+```
+
+### Basic String Operations
+
+Some common string operations include determining the length of a string, combining strings, and subsetting strings.
+
+#### Determining String Length
+
+To find the length of a string, use the `str_length()` function:
+
+```{r}
+str_length(stringA)
+
+```
+
+#### Combining Strings
+
+To combine strings, use the `str_c()` function. You can also specify a separator using the `sep` argument:
+
+```{r}
+str_c("Hello", "World", sep = " ")
+
+```
+
+
+#### Subsetting Strings
+
+To extract a part of a string, use the `str_sub()` function. For example, if you want to extract the first five characters of a string, specify the starting and ending positions:
+
+```{r}
+str_sub(stringA, 1, 5)
+
+```
+
+Now, let's test your understanding of basic string operations.
+
+#### Exercise 1: Basic String Operations
+
+Combine the two strings "Data" and "Science" and store the result in a variable called `combined_string`. Then, find the length of the `combined_string`.
+
+```{r ex1, exercise=TRUE}
+# Write your code here
+```
+
+```{r ex1-setup}
+```
+
+```{r ex1-solution}
+combined_string <- str_c("Data", "Science", sep = " ")
+str_length(combined_string)
+```
+
+```{r ex1-check}
+grade_code()
+```
+
+### Regular Expressions
+
+Regular expressions are a powerful way to work with strings. They allow you to match patterns within strings, making string manipulation more efficient and flexible.
+
+
+#### Viewing Matches with str_view()
+
+The `str_view()` function is useful for visualizing how a pattern matches a string. For example, if you want to find all occurrences of the letter "i" in a string, you can use `str_view()`:
+
+```{r}
+str_view(stringA, "i")
+
+```
+
+#### Counting Matches with str_count()
+
+The `str_count()` function counts the number of times a pattern appears in a string. For example, if you want to count the number of vowels in a string, you can use the following code:
+
+```{r}
+str_count(stringA, "[aeiou]")
+
+```
+
+Now, let's practice working with regular expressions.
+
+#### Exercise 2: Counting Vowels
+
+Create a function called `count_vowels()` that takes a string as an argument and returns the number of vowels (a, e, i, o, u) in the string. Test your function on the string "Data Science".
+
+```{r ex2, exercise=TRUE}
+# Write your code here
+```
+
+```{r ex2-setup}
+```
+
+```{r ex2-solution}
+count_vowels <- function(string) {
+  str_count(string, "[aeiou]")
+}
+
+count_vowels("Data Science")
+
+```
+
+```{r ex2-check}
+grade_code()
+```
+
+### Extracting matches with str_extract()
+
+To extract parts of a string that match a specified pattern, use str_extract(). This function returns the matched pattern for strings where it is found and NA otherwise. For example, let's extract names starting with "M":
+
+```{r}
+names <- c("Alice", "Mike", "Samantha", "Mark")
+str_extract(names, "^M")
+```
+
+### Replacing matches with str_replace()
+
+To replace occurrences of a pattern in a string with a specified replacement, use `str_replace()`. For example, let's replace names starting with "M" with a question mark:
+
+```{r}
+str_replace(names, "^M", "?")
+```
+
+### Common Regular Expressions
+
+Regular expressions are powerful tools for pattern matching in strings. Here are some common regular expressions:
+
+#### Searching for a set of characters
+
+To search for a set of characters, place them within brackets. For example, let's identify all lowercase vowels in our `names` vector:
+
+```{r}
+str_view_all(names, "[aeiou]")
+```
+
+#### Searching for anything other than a set of characters
+
+To search for characters other than those specified within brackets, add a caret (^) before the characters:
+
+```{r}
+str_view_all(names, "[^aeiou]")
+```
+
+#### Searching for digits
+
+To search for digits (numeric values between 0 and 9) in a string, use "\d":
+
+```{r}
+addresses <- c("1234 Main Street", "1600 Pennsylvania Ave", "Brick Building")
+str_view_all(addresses, "\\d")
+
+```
+
+#### Searching for whitespace
+
+To search for whitespace (spaces, tabs, or newlines) in a string, use "\s":
+
+```{r}
+str_view_all(addresses, "\\s")
+
+```
+
+#### Identify any character (except newline)
+
+To identify any character except a newline, use ".":
+
+```{r}
+str_view_all(addresses, ".")
+
+```
+
+### Repetition in Regular Expressions
+
+Regular expressions allow you to specify how many times a pattern should be found within a string. Here are some examples:
+
+* `?`: 0 or 1
+* `+`: 1 or more
+* `*`: 0 or more
+* `{n}`: exactly n times
+* `{n,}`: n or more times
+* `{n,m}`: between n and m times
+
+
+#### Examples of repetition in regular expressions
+
+Let's identify any time "n" shows up one or more times in our `addresses` vector:
+
+```{r}
+str_view_all(addresses, "n+")
+
+```
+
+Now, let's identify any time "n" shows up exactly twice in a row:
+
+```{r}
+str_view_all(addresses, "n{2}")
+
+
+```
+
+Finally, let's identify any time "n" shows up two or three times:
+
+```{r}
+str_view_all(addresses, "n{2,3}")
+
+
+```
+
+### Interactive Exercises
+
+Now it's your turn to practice what you've learned!
+
+#### Exercise 1: Extracting Patterns
+
+Create a function called extract_digits() that takes a string as an argument and returns all the digits in that string using str_extract_all(). For example, extract_digits("abc123def456") should return the vector c("123", "456").
+
+```{r ex3, exercise=TRUE}
+# Write your function here
+
+```
+
+```{r ex3-setup}
+```
+
+```{r ex3-solution}
+# Solution
+extract_digits <- function(text) {
+  str_extract_all(text, "\\d")
+}
+
+```
+
+```{r ex3-check}
+grade_code()
+```
+
+
+#### Exercise 2: Counting Vowels
+
+Create a function called `count_vowels()` that takes a string as an argument and returns the number of vowels (both uppercase and lowercase) in the string. For example, `count_vowels("Hello World")` should return 3.
+
+
+```{r ex4, exercise=TRUE}
+# Write your function here
+
+```
+
+```{r ex4-setup}
+```
+
+```{r ex4-solution}
+# Solution
+count_vowels <- function(text) {
+  sum(str_count(text, "[aeiouAEIOU]"))
+}
+
+```
+
+```{r ex4-check}
+grade_code()
+```
+
+Congratulations! You've completed the interactive tutorial on working with strings in R using the `stringr` package. You've learned how to extract and replace string patterns, search for patterns using regular expressions, and created functions to apply these techniques. Keep practicing and exploring other functions in the `stringr` package to improve your string manipulation skills in R.
+
+## Chapter 34: Working with Factors
+
+Welcome to this interactive tutorial on working with factors in R using the `forcats` package! In this tutorial, you will learn how to create, manipulate, and work with factors in R.
+
+### Factor Basics
+
+Factors are used to handle categorical data in R. They have two components: the actual values of the data and the possible levels within the factor. Let's create a factor using the months of the year as an example.
+
+```{r}
+all_months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+some_months <- c("Mar", "Dec", "Jan",  "Apr", "Jul")
+```
+
+To create a factor, we need to supply both the data and the possible levels:
+
+```{r}
+mon <- factor(some_months, levels = all_months)
+mon
+```
+
+Now, when we sort this factor, it sorts in a sensible way:
+
+```{r}
+sort(mon)
+```
+
+#### Exercise 1: Creating a Factor
+
+Create a factor called `weekdays` using the following data:
+
+```{r}
+all_days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+some_days <- c("Tuesday", "Friday", "Monday")
+```
+
+```{r ex5, exercise=TRUE}
+all_days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+some_days <- c("Tuesday", "Friday", "Monday")
+# Write your code here
+
+```
+
+```{r ex5-setup}
+all_days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
+some_days <- c("Tuesday", "Friday", "Monday")
+```
+
+```{r ex5-solution}
+# Solution
+weekdays <- factor(some_days, levels = all_days)
+
+```
+
+```{r ex5-check}
+grade_code()
+```
+
+
+### Manipulating Factor Levels
+
+Sometimes, you might want to change the order of the factor levels or combine several levels into one. Let's explore some of the functions provided by the `forcats` package to achieve these tasks.
+
+
+#### Exercise 2: Reordering Factor Levels
+
+Use `fct_relevel()` to reorder the levels of the `mon` factor to start with "Jul" first. Name the result `mon_reordered`.
+
+```{r ex6, exercise=TRUE}
+all_months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+some_months <- c("Mar", "Dec", "Jan",  "Apr", "Jul")
+
+mon <- factor(some_months, levels = all_months)
+
+# Write your code here
+
+```
+
+```{r ex6-setup}
+all_months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
+some_months <- c("Mar", "Dec", "Jan",  "Apr", "Jul")
+
+mon <- factor(some_months, levels = all_months)
+```
+
+```{r ex6-solution}
+# Solution
+mon_reordered <- fct_relevel(mon, "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", after = 0)
+```
+
+```{r ex6-check}
+grade_code()
+```
+
+#### Exercise 3: Combining Factor Levels
+
+For this exercise, we will use the `chickwts` dataset. Your task is to create a new column called `feed_recode` that combines "horsebean" and "soybean" into a single level called "bean" and renames "linseed" and "sunflower" into "seed".
+
+
+```{r ex7, exercise=TRUE}
+# Load the chickwts dataset
+data(chickwts)
+
+# Recode the feed column
+chickwts$feed_recode <- ???
+
+```
+
+```{r ex7-setup}
+# Load the chickwts dataset
+data(chickwts)
+```
+
+```{r ex7-solution}
+# Solution
+chickwts$feed_recode <- fct_recode(chickwts$feed,
+                                   "bean" = "horsebean",
+                                   "bean" = "soybean",
+                                   "seed" = "linseed",
+                                   "seed" = "sunflower")
+
+```
+
+```{r ex7-check}
+grade_code()
+```
+
+#### Exercise 4: Converting Numeric Levels to Factors
+
+In this exercise, you will convert the `weight` column in the `chickwts` dataset into a factor column called `weight_recode` with two levels: "low" for weights less than or equal to 200, and "high" for weights greater than 200.
+
+
+```{r ex8, exercise=TRUE}
+# Convert weight column to factor
+chickwts$weight_recode <- ???
+```
+
+```{r ex8-setup}
+# Load the chickwts dataset
+data(chickwts)
+
+chickwts$feed_recode <- fct_recode(chickwts$feed,
+                                   "bean" = "horsebean",
+                                   "bean" = "soybean",
+                                   "seed" = "linseed",
+                                   "seed" = "sunflower")
+```
+
+```{r ex8-solution}
+chickwts$weight_recode <- ifelse(chickwts$weight <= 200, "low", "high")
+chickwts$weight_recode <- factor(chickwts$weight_recode)
+
+```
+
+```{r ex8-check}
+grade_code()
+```
+
+Now that you have completed the interactive tutorial on working with factors using the learnR package, you should have a better understanding of how to create, modify, and analyze factors in R. Factors are important for handling categorical data and can make your analyses more efficient and accurate.
+
+## Chapter 35: Working with Dates
+
+### Introduction
+
+In this interactive tutorial, you will learn how to work with dates and times in R using the `lubridate` package. We will cover creating and manipulating date and date-time objects, extracting components from dates, and performing operations with dates.
+
+#### Loading the lubridate package
+
+First, ensure that the lubridate package is installed and loaded:
+
+```{r}
+#install.packages("lubridate")
+library(lubridate)
+```
+
+### Creating Dates and Date-time Objects
+
+We will learn how to create date and date-time objects from strings and individual parts.
+
+#### Exercise 1: Creating Date Objects from Strings
+
+Create a date object for the date "December 12th, 1995" using the `mdy()` function from the `lubridate` package.
+
+
+```{r ex9, exercise=TRUE}
+# Create a date object for December 12th, 1995
+date_object <- ???
+
+```
+
+```{r ex9-setup}
+```
+
+```{r ex9-solution}
+date_object <- mdy("December 12th, 1995")
+
+
+```
+
+```{r ex9-check}
+grade_code()
+```
+
+
+#### Exercise 2: Creating Date-time Objects from Strings
+
+Create a date-time object for the date and time "1995-12-12 15:30:45" using the `ymd_hms()` function from the `lubridate` package.
+
+```{r ex10, exercise=TRUE}
+# Create a date-time object for December 12th, 1995 at 15:30:45
+date_time_object <- ???
+
+
+```
+
+```{r ex10-setup}
+```
+
+```{r ex10-solution}
+date_time_object <- ymd_hms("1995-12-12 15:30:45")
+date_object <- mdy("December 12th, 1995")
+
+```
+
+```{r ex10-check}
+grade_code()
+```
+
+### Working with Dates
+
+Now that you know how to create date and date-time objects, let's explore how to work with these objects.
+
+#### Exercise 3: Extracting Components from Dates
+
+Extract the year, month, and day of the week (with labels) from the `date_object` created earlier.
+
+```{r ex11, exercise=TRUE}
+# Extract the year, month, and day of the week from the date_object
+year_component <- ???
+month_component <- ???
+day_of_week_component <- ???
+
+```
+
+```{r ex11-setup}
+date_time_object <- ymd_hms("1995-12-12 15:30:45")
+date_object <- mdy("December 12th, 1995")
+```
+
+```{r ex11-solution}
+year_component <- year(date_object)
+month_component <- month(date_object)
+day_of_week_component <- wday(date_object, label = TRUE)
+
+
+
+```
+
+```{r ex11-check}
+grade_code()
+```
+
+
+#### Exercise 4: Calculating Age
+
+Given the date of birth "1988-09-29", calculate a person's age in years using the `today()` function and the `as.duration()` function from the `lubridate` package.
+
+
+```{r ex12, exercise=TRUE}
+# Calculate age in years
+birthdate <- ymd("1988-09-29")
+age_days <- ???
+age_years <- ???
+
+
+```
+
+```{r ex12-setup}
+birthdate <- ymd("1988-09-29")
+```
+
+```{r ex12-solution}
+age_days <- today() - birthdate
+age_years <- as.duration(age_days) / dyears(1)
+
+
+```
+
+```{r ex12-check}
+grade_code()
+```
+
+Congratulations! You have now completed the interactive tutorial on working with dates using the lubridate package in R. You should have a better understanding of how to create, manipulate, and analyze dates and date-time objects in R, which is essential for many data analysis tasks that involve time-based data.
+
+
+## Chapter 36: Project Organization
+
+Data science projects involve many files, such as data, code, documentation, and figures. Managing and organizing these files is crucial for effective communication and collaboration. In this tutorial, we will learn how to set up a data science project and organize its files using RStudio.
+
+### Benefits of Organized Project Files
+
+1. Easier collaboration
+2. Lower likelihood of making mistakes
+3. Easier recall
+4 More transparency and honesty
+
+### Project Folders
+
+A well-organized data science project should have folders for different purposes. Here are four common folders:
+
+1. raw_data: Stores the raw data you collect or receive.
+2. tidy_data: Stores the cleaned versions of the data.
+3. results: Stores plots, data visualizations, and other results created from your data.
+4. util: Stores background code that isn't part of R Markdown files.
+
+Let's create the project folders!
+
+```{r, eval=FALSE}
+dir.create("raw_data")
+dir.create("tidy_data")
+dir.create("results")
+dir.create("util")
+```
+
+```{r ex13, echo=FALSE}
+quiz(
+  question("What is the purpose of the \"results\" folder in a data science project?",
+    answer("Stores the raw data you collect or receive.", correct = FALSE),
+    answer("Stores the cleaned versions of the data.", correct = FALSE),
+    answer("Stores plots, data visualizations, and other results created from your data.", correct = TRUE),
+    answer("Stores background code that isn't part of R Markdown files.", correct = FALSE)
+  )
+)
+```
+
+
+### README File
+
+A README file is essential for every project. It provides a high-level description of your project, its organization, and any important details. You should create a README file in your project's root directory and update it as your project evolves.
+
+Let's create a README file! 
+
+```{r, eval=FALSE}
+readme_content <- "
+# Project Organization
+
+The folders in this project are:
+
+* raw_data - all the raw versions of the data are kept here.
+* tidy_data - cleaned versions of the data are here.
+* results - results, figures, and plots from our data are kept here.
+* util - background code that isn't in Rmds is kept here.
+"
+
+writeLines(readme_content, "README.md")
+```
+
+
+
+Now that we have created the README file and written its content, you should see the file in your project's root directory. Make sure to update the README file as your project evolves to keep it up to date.
+
+
+```{r ex14, echo=FALSE}
+quiz(
+  question("What is the primary purpose of a README file in a data science project?",
+    answer("To store the raw data for the project.", correct = FALSE),
+    answer("To provide a high-level description of the project, its organization, and any important details.", correct = TRUE),
+    answer("To store cleaned versions of the data.", correct = FALSE),
+    answer("To store background code that isn't part of R Markdown files.", correct = FALSE)
+  )
+)
+```
+
+
+### Folder Structure
+
+When starting a data science project, it's essential to have a well-organized folder structure. Let's create the following folders for a sample project:
+
+* data
+** raw_data
+** tidy_data
+* results
+** figures
+** tables
+* util
+
+In RStudio, click on the "New Folder" button to create each folder and its subfolders. Your project should now have a clear structure.
+
+### README File
+
+Now that you've set up the folder structure, it's time to create a README file. This file should provide an overview of the project, describe the organization of files and folders, and any important details. Make sure to update the README file as your project progresses.
+
+```{r ex15, echo=FALSE}
+quiz(
+  question("Which of the following should be included in a README file?",
+    answer("Raw data files", correct = FALSE),
+    answer("High-level project description and folder organization", correct = TRUE),
+    answer("Cleaned data files", correct = FALSE),
+    answer("Detailed code explanations", correct = FALSE)
+  )
+)
+```
+
+### Writing Modular Code
+
+Writing modular code helps maintain a clean and understandable project. Separate code into individual files based on their purpose and have a master file that calls these individual files.
+
+```{r ex16, echo=FALSE}
+quiz(
+  question("Why is it essential to write modular code?",
+    answer("To make the code more complicated", correct = FALSE),
+    answer("To make debugging and replication easier", correct = TRUE),
+    answer("To increase the number of files in the project", correct = FALSE),
+    answer("To make the code harder to understand", correct = FALSE)
+  )
+)
+```
+
+### Conclusion
+
+In this tutorial, we covered the basics of organizing a data science project, setting up a folder structure, creating a README file, and writing modular code. Keeping your project organized is crucial for collaboration, reducing errors, and maintaining transparency. Keep practicing these skills to become a better data scientist!

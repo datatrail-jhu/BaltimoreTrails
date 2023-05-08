@@ -1,0 +1,534 @@
+---
+title: "Cleaning Data"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(tidyr)
+library(tidyverse)
+library(dplyr)
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 29: What is Tidy Data
+
+
+### Introduction to Tidy Data
+
+In this interactive tutorial, we will learn about the principles of tidy data and how to ensure your datasets follow these principles for easier manipulation, modeling, and visualization.
+
+#### What is Tidy Data?
+
+Hadley Wickham, a leader in the data science field, formalized the concept of tidy data in 2014. Tidy data principles provide a standard method for formatting datasets, involving the arrangement of rows, columns, and spreadsheets with observations, variables, and types.
+
+#### Why Tidy Data?
+
+Tidy datasets are designed to be easier to manipulate, model, and visualize. Starting with tidy data or spending time to convert data into a tidy format at the beginning of a project simplifies the remaining steps of your data science project.
+
+#### Data Terminology
+
+Before we dive into the principles of tidy data, let's review some basic data terminology:
+
+1. __Variables__: These are the different categories of data collected or measured for each observation. They are stored in columns of the dataset.
+2. __Observations__: These are the individual data points or measurements taken for each variable. They are stored in rows of the dataset.
+3. __Types__: This term refers to different sources of data collected for the same individuals.
+
+#### Principles of Tidy Data
+
+1. Each variable should be in one column.
+2. Each different observation of a variable should be in a different row.
+3. There should be one spreadsheet for each "type" of data.
+4. If you have multiple spreadsheets, include a column in each (with the same column label) that allows them to be joined or merged.
+
+### Interactive Questions
+
+Now that we've covered the basics of tidy data, let's dive into some interactive questions to reinforce your understanding.
+
+#### Question 1: Tidy Data Principles
+
+Match the following principles of tidy data with their correct descriptions:
+
+```{r ex1, echo=FALSE}
+quiz(
+  question("Which principle of tidy data states that each variable you measure should be in one column?",
+    answer("Principle #1"),
+    answer("Principle #2", correct = TRUE),
+    answer("Principle #3"),
+    answer("Principle #4")
+  ),
+  question("Which principle of tidy data states that there should be one spreadsheet for each 'type' of data?",
+    answer("Principle #1"),
+    answer("Principle #2"),
+    answer("Principle #3", correct = TRUE),
+    answer("Principle #4")
+  )
+)
+```
+
+#### Common Problems with Messy Data Sets
+
+1. Column headers are values but should be variable names.
+2. A single column has multiple variables.
+3. Variables have been entered in both rows and columns.
+4. Multiple "types" of data are in the same spreadsheet.
+5. A single observation is stored across multiple spreadsheets.
+
+#### Question 2: Identifying Messy Data Issues
+
+```{r ex2, echo=FALSE}
+quiz(
+  question("Which common problem with messy data sets is described as: 'A single column has multiple variables'?",
+    answer("Problem #1"),
+    answer("Problem #2", correct = TRUE),
+    answer("Problem #3"),
+    answer("Problem #4")
+  ),
+  question("Which common problem with messy data sets is described as: 'Multiple types of data are in the same spreadsheet'?",
+    answer("Problem #1"),
+    answer("Problem #2"),
+    answer("Problem #3"),
+    answer("Problem #4", correct = TRUE)
+  )
+)
+```
+
+
+#### Tidying Untidy Data
+
+Depending on the issue with the messy data, you may need to filter, transform, modify variables, aggregate data, or sort observations. R provides functions to perform these actions, making it easier to tidy your data and get it ready for analysis.
+
+#### Question 3: Tidying Data Actions
+
+```{r ex3, echo=FALSE}
+quiz(
+  question("Which action can be taken on a dataset to tidy the data?",
+    answer("Filtering", correct = TRUE),
+    answer("Transforming", correct = TRUE),
+    answer("Modifying variables", correct = TRUE),
+    answer("All of the above", correct = TRUE)
+  )
+)
+```
+
+This interactive tutorial has covered the importance of tidy data
+
+
+## Chapter 30: Reshaping Data
+
+In this interactive tutorial, we will learn how to reshape data between wide and long formats using the `tidyr` package in R. We will also briefly cover data transposition using the `t()` function in base R.
+
+### Wide and Long Data
+
+Tidy data can be found in two forms: __wide data__ and __long data__. Wide data has a column for each variable and a row for each observation, while long data has one column indicating the type of variable contained in that row and a separate row for the value for that variable. Each row contains a single observation for a single variable.
+
+Wide data is easy to understand at a glance, while long data is often more convenient for analysis. We can easily switch between these two formats using the `tidyr` package.
+
+```{r}
+wide_data <- tibble::tribble(
+  ~id, ~height, ~weight, ~age,
+  1,     180,      70,     25,
+  2,     175,      68,     30,
+  3,     178,      72,     28
+)
+wide_data
+```
+
+The wide data above has separate columns for height, weight, and age.
+
+```{r}
+long_data <- tibble::tribble(
+  ~id, ~variable, ~value,
+  1,   "height",   180,
+  1,   "weight",   70,
+  1,   "age",      25,
+  2,   "height",   175,
+  2,   "weight",   68,
+  2,   "age",      30,
+  3,   "height",   178,
+  3,   "weight",   72,
+  3,   "age",      28
+)
+long_data
+```
+
+The long data above has a single column `variable` indicating the type of variable, and another column `value` for the corresponding values.
+
+### Reshaping Data with tidyr
+
+The `tidyr` package provides two main functions for reshaping data:
+
+1. `pivot_longer()`: Converts wide data to long data
+2. `pivot_wider()`: Converts long data to wide data
+
+#### pivot_longer()
+
+To convert the `wide_data` to long format, we can use the `pivot_longer()` function. We specify the columns to pivot and the names for the new columns `variable` and `value`.
+
+```{r}
+long_data_example <- wide_data %>%
+  pivot_longer(cols = c(height, weight, age), names_to = "variable", values_to = "value")
+long_data_example
+```
+
+
+#### pivot_wider()
+
+To convert the `long_data` back to wide format, we use the `pivot_wider()` function. We specify the columns containing the names and values for the new wide format columns.
+
+```{r}
+wide_data_example <- long_data %>%
+  pivot_wider(names_from = variable, values_from = value)
+wide_data_example
+```
+
+
+#### Exercise 1: Reshaping Data
+
+In this exercise, we will practice reshaping data using the `tidyr` package. We will be working with the `relig_income` dataset available in `tidyr`.
+
+First, let's load the necessary packages and take a look at the dataset:
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+head(relig_income)
+```
+
+##### Question 1: Converting Wide Data to Long Data
+
+Use the `pivot_longer()` function to convert the wide dataset `relig_income` into long format. Name the new columns "income" and "count", respectively. Store the result in a new data frame called `long_relig_income`.
+
+```{r ex4, exercise=TRUE}
+```
+
+```{r ex4-setup}
+```
+
+```{r ex4-solution}
+long_relig_income <- relig_income %>%
+  pivot_longer(!religion, names_to = "income", values_to = "count")
+```
+
+```{r ex4-check}
+grade_code()
+```
+
+
+## Chapter 31: How to Tidy Data
+
+In this tutorial, we will learn how to tidy data using the dplyr, tidyr, janitor, and skimr packages in R. Tidy data is essential for easy analysis and visualization. We will explore several functions for data wrangling and transformation.
+
+### Packages
+
+First, let's load the necessary packages. If you haven't installed them yet, please do so using `install.packages()`.
+
+```{r}
+library(dplyr)
+library(tidyr)
+library(janitor)
+library(skimr)
+library(ggplot2)
+```
+
+### The msleep Dataset
+
+We will be using the `msleep` dataset from the ggplot2 package. It contains sleep times and weights for various mammals. Run the following code to glimpse the dataset:
+
+```{r}
+glimpse(msleep)
+```
+
+### Filtering Data
+
+#### Filtering Rows
+
+Let's filter the dataset to include only primates with a total sleep time greater than 10 hours. Use the `filter()` function with the appropriate conditions.
+
+```{r}
+primates <- msleep %>%
+  filter(order == "Primates", sleep_total > 10)
+primates
+```
+
+#### Filtering Columns
+
+Now, let's select specific columns from the `primates` dataset. Use the `select()` function to choose only the `name`, `sleep_total`, `sleep_rem`, and `sleep_cycle` columns.
+
+```{r}
+primates_selected <- primates %>%
+  select(name, sleep_total, sleep_rem, sleep_cycle)
+primates_selected
+```
+
+### Exercise 1: Filter the msleep dataset
+
+Filter the `msleep` dataset to include only mammals in the "Carnivora" order with a body weight greater than 1000. Assign the result to a new variable called `large_carnivores`.
+
+```{r ex5, exercise=TRUE}
+# Write your code here
+```
+
+```{r ex5-setup}
+```
+
+```{r ex5-solution}
+large_carnivores <- msleep %>%
+  filter(order == "Carnivora", bodywt > 1000)
+```
+
+```{r ex5-check}
+grade_code()
+```
+
+#### Renaming Columns
+
+We can rename columns using the `rename()` function. Let's rename the `sleep_total` column to `total_sleep`.
+
+```{r}
+primates_renamed <- primates_selected %>%
+  rename(total_sleep = sleep_total)
+primates_renamed
+```
+
+#### Exercise 2: Rename columns in the large_carnivores dataset
+
+Rename the `bodywt` column to `body_weight` and the `brainwt` column to `brain_weight` in the `large_carnivores` dataset. Assign the result to a new variable called `large_carnivores_renamed`.
+
+```{r ex6, exercise=TRUE}
+# Write your code here
+```
+
+```{r ex6-setup}
+large_carnivores <- msleep %>%
+  filter(order == "Carnivora", bodywt > 1000)
+```
+
+```{r ex6-solution}
+large_carnivores_renamed <- large_carnivores %>%
+  rename(body_weight = bodywt, brain_weight = brainwt)
+```
+
+```{r ex6-check}
+grade_code()
+```
+
+#### Reordering Data
+
+In R, you can reorder your data by using functions like `arrange()` from the dplyr package. This function allows you to sort the rows of a data frame based on one or more columns. For example, to sort a data frame `df` by the `age` column, you can use the following command:
+
+```{r,eval=FALSE}
+library(dplyr)
+df <- df %>% arrange(age)
+```
+
+If you want to sort by multiple columns, you can simply add them as arguments:
+
+```{r,eval=FALSE}
+df <- df %>% arrange(age, name)
+```
+
+To sort in descending order, you can use the desc() function:
+
+```{r,eval=FALSE}
+df <- df %>% arrange(desc(age))
+```
+
+Removing Duplicate Rows: To remove duplicate rows from your data frame, you can use the `distinct()` function from dplyr. For example:
+
+```{r,eval=FALSE}
+df <- df %>% distinct()
+```
+
+By default, this function will consider all columns when identifying duplicates. If you want to remove duplicates based on specific columns, you can specify them as arguments:
+
+```{r,eval=FALSE}
+df <- df %>% distinct(column1, column2)
+```
+
+
+Renaming Columns: To rename columns in a data frame, you can use the `rename()` function from dplyr. Here's an example:
+
+```{r,eval=FALSE}
+df <- df %>% rename(new_name = old_name)
+```
+
+Combining Data Frames: If you have multiple data frames that you want to combine, you can use functions like `bind_rows()` and `bind_cols()` from dplyr. `bind_rows()` combines data frames vertically (by rows), while `bind_cols()` combines them horizontally (by columns). For example:
+
+```{r,eval=FALSE}
+df_combined <- bind_rows(df1, df2)
+```
+
+These are just a few examples of how you can tidy your data in R using dplyr. There are many more functions and techniques available to help you clean, manipulate, and transform your data to prepare it for analysis.
+
+#### Creating New Columns
+
+You can create new columns in your data frame using the `mutate()` function from the dplyr package. For example, let's say you have a dataset containing the total sleep time in hours for various mammals, and you want to convert the sleep time to minutes. You can create a new column using `mutate()`:
+
+```{r,eval=FALSE}
+msleep %>%
+  mutate(sleep_total_minutes = sleep_total * 60)
+```
+
+#### Separating Columns
+
+Sometimes, you may find that a single column in your data frame contains multiple pieces of information that would be better stored in separate columns. The `separate()` function from the tidyr package can help you with this task. For example, let's say you have a dataset with a column called "conservation_abbreviation" that contains both the abbreviation and the description, separated by an equals sign (=). You can separate this column into two new columns using `separate()`:
+
+```{r,eval=FALSE}
+conservation %>%
+  separate(conservation_abbreviation, into = c("abbreviation", "description"), sep = " = ")
+```
+
+```{r ex7, echo=FALSE}
+question("What is the purpose of the `mutate()` function in R?",
+  answer("To create new columns in a data frame.", correct = TRUE),
+  answer("To separate columns containing multiple pieces of information."),
+  answer("To merge separate columns into a single column."),
+  answer("To clean up column names in a data frame.")
+)
+```
+
+#### Merging Columns
+
+The `unite()` function from the tidyr package allows you to merge separate columns into a single column. For example, let's say you have a dataset with two separate columns called "abbreviation" and "description", and you want to merge them into a single column with an equals sign (=) between the abbreviation and the description. You can use the `unite()` function to accomplish this:
+
+```{r,eval=FALSE}
+conservation %>%
+  unite(united_column, abbreviation, description, sep = " = ")
+```
+
+
+## Chapter 32: Joining Data
+
+In this tutorial, we will explore various methods to combine datasets with overlapping information using dplyr's join functions. These functions are useful when you have two datasets containing related information, and you want to merge them into a single dataset for easier analysis.
+
+Let's create two sample datasets, `df_a` and `df_b`, with some overlapping information:
+
+```{r}
+df_a <- data.frame(sample = c("A", "B", "C", "D"),
+                   number = c(2, 4, 4.4, 3.1))
+df_b <- data.frame(sample = c("A", "B", "E", "F"),
+                   color = c("blue", "blue", "red", "green"))
+```
+
+Here are the contents of `df_a`:
+
+```{r}
+df_a
+```
+
+And here are the contents of `df_b`:
+
+```{r}
+df_b
+```
+
+#### Join functions
+
+We will explore the following join functions in this tutorial:
+
+* `inner_join()`: Includes only rows with matches in both `df_a` and `df_b`.
+* `left_join()`: Includes all rows in `df_a`, and matches from `df_b` where available.
+* `right_join()`: Includes all rows in `df_b`, and matches from `df_a` where available.
+* `full_join()`: Includes all rows in both `df_a` and `df_b`, regardless of whether they have matches.
+
+#### inner_join()
+
+`inner_join()` keeps only rows that have matches in both datasets. We specify the column to match on using the `by` argument:
+
+```{r}
+library(dplyr)
+
+inner_join(df_a, df_b, by = "sample")
+```
+
+#### left_join()
+
+`left_join()` keeps all rows in `df_a` and adds matches from `df_b` where available:
+
+```{r}
+left_join(df_a, df_b, by = "sample")
+```
+
+#### right_join()
+
+`right_join()` keeps all rows in `df_b` and adds matches from `df_a` where available:
+
+```{r}
+right_join(df_a, df_b, by = "sample")
+```
+
+#### full_join()
+
+`full_join()` keeps all rows in both `df_a` and `df_b`, regardless of whether they have matches:
+
+```{r}
+full_join(df_a, df_b, by = "sample")
+```
+
+### Combining datasets with different columns
+
+When we have datasets with the same rows but different variables, we can use `bind_cols()`. For this example, we have two datasets representing the same samples.
+
+```{r}
+df_a <- data.frame(sample = c("A", "B", "C", "D"),
+                   number = c(2, 4, 4.4, 3.1))
+df_c <- data.frame(sample = c("A", "B", "C", "D"),
+                   animal = c("dog", "cat", "bird", "snake"))
+```
+
+Before merging these datasets, we need to make sure that our samples are in the same order in each dataset.
+
+```{r}
+all.equal(df_a$sample, df_c$sample)
+
+```
+
+Now we can use `bind_cols()` to merge `df_a` and `df_c`.
+
+```{r}
+bind_cols(df_a, df_c)
+
+```
+
+
+#### Exercise 1: Combining datasets with different columns
+
+Use `bind_cols()` to merge `df_a` and `df_c`, then rename the sample column to "sample" and remove the duplicated sample column using `select()`. Your final dataset should have columns "sample", "number", and "animal".
+
+```{r ex8, exercise=TRUE}
+# Combine df_a and df_c, then rename and remove the duplicated sample column
+
+```
+
+```{r ex8-setup}
+df_a <- data.frame(sample = c("A", "B", "C", "D"),
+                   number = c(2, 4, 4.4, 3.1))
+df_c <- data.frame(sample = c("A", "B", "C", "D"),
+                   animal = c("dog", "cat", "bird", "snake"))
+
+```
+
+```{r ex8-solution}
+bind_cols(df_a, df_c) %>%
+  rename(sample = sample...1) %>%
+  select(-sample...3)
+
+```
+
+```{r ex8-check}
+grade_code()
+```
+
+Great job! Now you have learned different ways to combine datasets using various join functions and `bind_rows()` and `bind_cols()`. Remember to choose the appropriate method based on the structure of your datasets and the desired outcome.
+
+
+
