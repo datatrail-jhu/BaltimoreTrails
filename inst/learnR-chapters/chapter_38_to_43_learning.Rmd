@@ -8,11 +8,9 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 library(gradethis)
-library(tidyr)
-library(tidyverse)
+library(ggplot2)
 library(dplyr)
-library(forcats)
-library(janitor)
+
 
 knitr::opts_chunk$set(echo = TRUE)
 
@@ -20,130 +18,127 @@ gradethis::gradethis_setup()
 ```
 
 
-## Chapter 33: Working with Strings
+## Chapter 38: Plotting Data
 
-In this tutorial, we'll explore some essential string manipulation functions using the `stringr` package, which is a part of the `tidyverse`. We will also look at regular expressions to perform more advanced string manipulation tasks.
+### Learning Objectives
 
-### Creating and Manipulating Strings
+In this tutorial, you will learn to:
 
-Before we dive into using the `stringr` package, let's create a simple string and store it in a variable:
+1. Understand the importance of data visualization.
+2. Create plots using ggplot2.
+3. Distinguish between exploratory and explanatory plots.
+4. Create different types of plots.
 
-```{r}
-stringA <- "Welcome to the string tutorial."
-```
+### Data Visualization
 
-We can also store multiple strings in a vector:
+Data visualization is crucial in data science. It helps us understand the data and communicate results effectively. Good visualizations are clear, concise, and convey information without requiring lengthy explanations. There are two general types of data visualizations: exploratory plots and explanatory plots.
 
-```{r}
-stringVector <- c("Welcome to the string tutorial.", "String manipulation", "Working with text")
-```
+#### Exploratory Plots
 
-Now, let's install and load the stringr package:
-
-```{r,eval=FALSE}
-# Install the stringr package if not already installed
-# install.packages("stringr")
-
-# Load the stringr package
-library(stringr)
-```
-
-### Basic String Operations
-
-Some common string operations include determining the length of a string, combining strings, and subsetting strings.
-
-#### Determining String Length
-
-To find the length of a string, use the `str_length()` function:
+These plots help you understand the data and discover hidden patterns. They are created quickly, and you'll make many of them during the data exploration phase. The axes and legends should be clean and informative.
 
 ```{r}
-str_length(stringA)
+# Example exploratory plot
+example_data <- data.frame(x = rnorm(50), y = rnorm(50))
+ggplot(example_data, aes(x, y)) + 
+  geom_point() + 
+  labs(x = "X-axis", y = "Y-axis")
 
 ```
 
-#### Combining Strings
 
-To combine strings, use the `str_c()` function. You can also specify a separator using the `sep` argument:
+#### Explanatory Plots
+
+These plots are designed to communicate insights to others. They take more time to create, and you'll make fewer of them for each project. They should have clear labels, appropriate colors, and be easily interpretable.
 
 ```{r}
-str_c("Hello", "World", sep = " ")
-
+# Example explanatory plot
+ggplot(example_data, aes(x, y)) +
+  geom_point(size = 3) +
+  labs(x = "X-axis Label", y = "Y-axis Label", title = "Explanatory Plot") +
+  theme_minimal()
 ```
 
+### Types of Plots
 
-#### Subsetting Strings
+We will discuss some basic plot types: histograms, scatterplots, barplots, and boxplots. For this tutorial, we'll use the `mtcars` dataset.
 
-To extract a part of a string, use the `str_sub()` function. For example, if you want to extract the first five characters of a string, specify the starting and ending positions:
+#### Histogram
+
+Histograms are useful for visualizing the distribution of a single numerical variable. The following example shows a histogram of `mpg` (miles per gallon) in the `mtcars` dataset.
 
 ```{r}
-str_sub(stringA, 1, 5)
-
+# Histogram
+ggplot(mtcars, aes(mpg)) + geom_histogram(binwidth = 3) + labs(x = "Miles per Gallon", y = "Count")
 ```
 
-Now, let's test your understanding of basic string operations.
+#### Scatterplot
 
-#### Exercise 1: Basic String Operations
-
-Combine the two strings "Data" and "Science" and store the result in a variable called `combined_string`. Then, find the length of the `combined_string`.
-
-```{r ex1, exercise=TRUE}
-# Write your code here
-```
-
-```{r ex1-setup}
-```
-
-```{r ex1-solution}
-combined_string <- str_c("Data", "Science", sep = " ")
-str_length(combined_string)
-```
-
-```{r ex1-check}
-grade_code()
-```
-
-### Regular Expressions
-
-Regular expressions are a powerful way to work with strings. They allow you to match patterns within strings, making string manipulation more efficient and flexible.
-
-
-#### Viewing Matches with str_view()
-
-The `str_view()` function is useful for visualizing how a pattern matches a string. For example, if you want to find all occurrences of the letter "i" in a string, you can use `str_view()`:
+Scatterplots display the relationship between two numerical variables. The example below shows a scatterplot of `mpg` and `hp` (horsepower) in the `mtcars` dataset.
 
 ```{r}
-str_view(stringA, "i")
-
+# Scatterplot
+ggplot(mtcars, aes(hp, mpg)) + geom_point() + labs(x = "Horsepower", y = "Miles per Gallon")
 ```
 
-#### Counting Matches with str_count()
+#### Barplot
 
-The `str_count()` function counts the number of times a pattern appears in a string. For example, if you want to count the number of vowels in a string, you can use the following code:
+Barplots are useful for comparing numerical values across categories. In this example, we'll use the `cut` variable to compare the number of cars with different levels of horsepower.
 
 ```{r}
-str_count(stringA, "[aeiou]")
+# Barplot
+mtcars$hp_cut <- cut(mtcars$hp, breaks = c(0, 100, 200, 300), include.lowest = TRUE)
 
+ggplot(mtcars, aes(hp_cut)) + geom_bar() + labs(x = "Horsepower Categories", y = "Count")
 ```
 
-Now, let's practice working with regular expressions.
 
-#### Exercise 2: Counting Vowels
+#### Boxplot
 
-Create a function called `count_vowels()` that takes a string as an argument and returns the number of vowels (a, e, i, o, u) in the string. Test your function on the string "Data Science".
+Boxplots summarize numerical values across categories and display the range of values. In this example, we'll compare `mpg` between cars with different numbers of cylinders.
+
+```{r boxplot, echo=TRUE, fig.cap="Boxplot"}
+# Boxplot
+ggplot(mtcars, aes(factor(cyl), mpg)) + geom_boxplot() + labs(x = "Number of Cylinders", y = "Miles per Gallon")
+```
+
+Now, let's practice creating plots with interactive questions.
+
+
+#### Interactive Questions
+
+1. Create a histogram of disp (displacement) in the mtcars dataset.
+
+```{r ex1, echo=FALSE}
+quiz(
+  question("What should be the data?",
+    answer("mtcars", correct = TRUE),
+    answer("example_data", correct = FALSE),
+    answer("disp", correct = FALSE),
+    answer("mpg", correct = FALSE)
+  ),
+  question("Which aesthetics should be used?",
+    answer("hp", correct = FALSE),
+    answer("mpg", correct = FALSE),
+    answer("disp", correct = TRUE),
+    answer("cyl", correct = FALSE)
+  )
+)
+```
 
 ```{r ex2, exercise=TRUE}
-# Write your code here
+# Create a histogram of `disp` in the `mtcars` dataset
+ggplot( , aes()) + geom_histogram(binwidth = ) + labs(x = "Displacement", y = "Count")
+
 ```
 
 ```{r ex2-setup}
+
 ```
 
 ```{r ex2-solution}
-count_vowels <- function(string) {
-  str_count(string, "[aeiou]")
-}
-
-count_vowels("Data Science")
+# Create a histogram of `disp` in the `mtcars` dataset
+ggplot(mtcars, aes(disp)) + geom_histogram(binwidth = 50) + labs(x = "Displacement", y = "Count")
 
 ```
 
@@ -151,155 +146,40 @@ count_vowels("Data Science")
 grade_code()
 ```
 
-### Extracting matches with str_extract()
 
-To extract parts of a string that match a specified pattern, use str_extract(). This function returns the matched pattern for strings where it is found and NA otherwise. For example, let's extract names starting with "M":
+Now, create a scatterplot of disp (x-axis) and mpg (y-axis) in the mtcars dataset.
 
-```{r}
-names <- c("Alice", "Mike", "Samantha", "Mark")
-str_extract(names, "^M")
+```{r ex3, echo=FALSE}
+quiz(
+  question("What should be the data?",
+    answer("mtcars", correct = TRUE),
+    answer("example_data", correct = FALSE),
+    answer("disp", correct = FALSE),
+    answer("mpg", correct = FALSE)
+  ),
+  question("Which aesthetics should be used?",
+    answer("hp and mpg", correct = FALSE),
+    answer("disp and cyl", correct = FALSE),
+    answer("disp and mpg", correct = TRUE),
+    answer("cyl and mpg", correct = FALSE)
+  )
+)
 ```
-
-### Replacing matches with str_replace()
-
-To replace occurrences of a pattern in a string with a specified replacement, use `str_replace()`. For example, let's replace names starting with "M" with a question mark:
-
-```{r}
-str_replace(names, "^M", "?")
-```
-
-### Common Regular Expressions
-
-Regular expressions are powerful tools for pattern matching in strings. Here are some common regular expressions:
-
-#### Searching for a set of characters
-
-To search for a set of characters, place them within brackets. For example, let's identify all lowercase vowels in our `names` vector:
-
-```{r}
-str_view_all(names, "[aeiou]")
-```
-
-#### Searching for anything other than a set of characters
-
-To search for characters other than those specified within brackets, add a caret (^) before the characters:
-
-```{r}
-str_view_all(names, "[^aeiou]")
-```
-
-#### Searching for digits
-
-To search for digits (numeric values between 0 and 9) in a string, use "\d":
-
-```{r}
-addresses <- c("1234 Main Street", "1600 Pennsylvania Ave", "Brick Building")
-str_view_all(addresses, "\\d")
-
-```
-
-#### Searching for whitespace
-
-To search for whitespace (spaces, tabs, or newlines) in a string, use "\s":
-
-```{r}
-str_view_all(addresses, "\\s")
-
-```
-
-#### Identify any character (except newline)
-
-To identify any character except a newline, use ".":
-
-```{r}
-str_view_all(addresses, ".")
-
-```
-
-### Repetition in Regular Expressions
-
-Regular expressions allow you to specify how many times a pattern should be found within a string. Here are some examples:
-
-* `?`: 0 or 1
-* `+`: 1 or more
-* `*`: 0 or more
-* `{n}`: exactly n times
-* `{n,}`: n or more times
-* `{n,m}`: between n and m times
-
-
-#### Examples of repetition in regular expressions
-
-Let's identify any time "n" shows up one or more times in our `addresses` vector:
-
-```{r}
-str_view_all(addresses, "n+")
-
-```
-
-Now, let's identify any time "n" shows up exactly twice in a row:
-
-```{r}
-str_view_all(addresses, "n{2}")
-
-
-```
-
-Finally, let's identify any time "n" shows up two or three times:
-
-```{r}
-str_view_all(addresses, "n{2,3}")
-
-
-```
-
-### Interactive Exercises
-
-Now it's your turn to practice what you've learned!
-
-#### Exercise 1: Extracting Patterns
-
-Create a function called extract_digits() that takes a string as an argument and returns all the digits in that string using str_extract_all(). For example, extract_digits("abc123def456") should return the vector c("123", "456").
-
-```{r ex3, exercise=TRUE}
-# Write your function here
-
-```
-
-```{r ex3-setup}
-```
-
-```{r ex3-solution}
-# Solution
-extract_digits <- function(text) {
-  str_extract_all(text, "\\d")
-}
-
-```
-
-```{r ex3-check}
-grade_code()
-```
-
-
-#### Exercise 2: Counting Vowels
-
-Create a function called `count_vowels()` that takes a string as an argument and returns the number of vowels (both uppercase and lowercase) in the string. For example, `count_vowels("Hello World")` should return 3.
 
 
 ```{r ex4, exercise=TRUE}
-# Write your function here
+# Create a scatterplot of `disp` (x-axis) and `mpg` (y-axis) in the `mtcars` dataset
+ggplot( , aes( , )) + geom_point() + labs(x = "Displacement", y = "Miles per Gallon")
 
 ```
 
 ```{r ex4-setup}
+
 ```
 
 ```{r ex4-solution}
-# Solution
-count_vowels <- function(text) {
-  sum(str_count(text, "[aeiouAEIOU]"))
-}
+# Create a scatterplot of `disp` (x-axis) and `mpg` (y-axis) in the `mtcars` dataset
+ggplot(mtcars, aes(disp, mpg)) + geom_point() + labs(x = "Displacement", y = "Miles per Gallon")
 
 ```
 
@@ -307,158 +187,90 @@ count_vowels <- function(text) {
 grade_code()
 ```
 
-Congratulations! You've completed the interactive tutorial on working with strings in R using the `stringr` package. You've learned how to extract and replace string patterns, search for patterns using regular expressions, and created functions to apply these techniques. Keep practicing and exploring other functions in the `stringr` package to improve your string manipulation skills in R.
 
-## Chapter 34: Working with Factors
 
-Welcome to this interactive tutorial on working with factors in R using the `forcats` package! In this tutorial, you will learn how to create, manipulate, and work with factors in R.
 
-### Factor Basics
 
-Factors are used to handle categorical data in R. They have two components: the actual values of the data and the possible levels within the factor. Let's create a factor using the months of the year as an example.
+Now, create a barplot of the number of cars with different numbers of cylinders in the mtcars dataset.
 
-```{r}
-all_months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-some_months <- c("Mar", "Dec", "Jan",  "Apr", "Jul")
+```{r ex5, echo=FALSE}
+quiz(
+  question("What should be the data?",
+    answer("mtcars", correct = TRUE),
+    answer("example_data", correct = FALSE),
+    answer("disp", correct = FALSE),
+    answer("cyl", correct = FALSE)
+  ),
+  question("Which aesthetics should be used?",
+    answer("hp", correct = FALSE),
+    answer("mpg", correct = FALSE),
+    answer("disp", correct = FALSE),
+    answer("cyl", correct = TRUE)
+  )
+)
 ```
 
-To create a factor, we need to supply both the data and the possible levels:
-
-```{r}
-mon <- factor(some_months, levels = all_months)
-mon
-```
-
-Now, when we sort this factor, it sorts in a sensible way:
-
-```{r}
-sort(mon)
-```
-
-#### Exercise 1: Creating a Factor
-
-Create a factor called `weekdays` using the following data:
-
-```{r}
-all_days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-some_days <- c("Tuesday", "Friday", "Monday")
-```
-
-```{r ex5, exercise=TRUE}
-all_days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-some_days <- c("Tuesday", "Friday", "Monday")
-# Write your code here
-
-```
-
-```{r ex5-setup}
-all_days <- c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday")
-some_days <- c("Tuesday", "Friday", "Monday")
-```
-
-```{r ex5-solution}
-# Solution
-weekdays <- factor(some_days, levels = all_days)
-
-```
-
-```{r ex5-check}
-grade_code()
-```
-
-
-### Manipulating Factor Levels
-
-Sometimes, you might want to change the order of the factor levels or combine several levels into one. Let's explore some of the functions provided by the `forcats` package to achieve these tasks.
-
-
-#### Exercise 2: Reordering Factor Levels
-
-Use `fct_relevel()` to reorder the levels of the `mon` factor to start with "Jul" first. Name the result `mon_reordered`.
 
 ```{r ex6, exercise=TRUE}
-all_months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-some_months <- c("Mar", "Dec", "Jan",  "Apr", "Jul")
-
-mon <- factor(some_months, levels = all_months)
-
-# Write your code here
+# Create a barplot of the number of cars with different numbers of cylinders in the `mtcars` dataset
+ggplot( , aes()) + geom_bar() + labs(x = "Number of Cylinders", y = "Count")
 
 ```
 
 ```{r ex6-setup}
-all_months <- c("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec")
-some_months <- c("Mar", "Dec", "Jan",  "Apr", "Jul")
 
-mon <- factor(some_months, levels = all_months)
 ```
 
 ```{r ex6-solution}
-# Solution
-mon_reordered <- fct_relevel(mon, "Jul", "Aug", "Sep", "Oct", "Nov", "Dec", after = 0)
+# Create a barplot of the number of cars with different numbers of cylinders in the `mtcars` dataset
+ggplot(mtcars, aes(factor(cyl))) + geom_bar() + labs(x = "Number of Cylinders", y = "Count")
+
+
 ```
 
 ```{r ex6-check}
 grade_code()
 ```
 
-#### Exercise 3: Combining Factor Levels
-
-For this exercise, we will use the `chickwts` dataset. Your task is to create a new column called `feed_recode` that combines "horsebean" and "soybean" into a single level called "bean" and renames "linseed" and "sunflower" into "seed".
 
 
-```{r ex7, exercise=TRUE}
-# Load the chickwts dataset
-data(chickwts)
 
-# Recode the feed column
-chickwts$feed_recode <- ???
+Finally, Create a boxplot comparing mpg between cars with different numbers of gears in the mtcars dataset.
 
-```
-
-```{r ex7-setup}
-# Load the chickwts dataset
-data(chickwts)
-```
-
-```{r ex7-solution}
-# Solution
-chickwts$feed_recode <- fct_recode(chickwts$feed,
-                                   "bean" = "horsebean",
-                                   "bean" = "soybean",
-                                   "seed" = "linseed",
-                                   "seed" = "sunflower")
+```{r ex7, echo=FALSE}
+quiz(
+  question("What should be the data?",
+    answer("mtcars", correct = TRUE),
+    answer("example_data", correct = FALSE),
+    answer("mpg", correct = FALSE),
+    answer("gears", correct = FALSE)
+  ),
+  question("Which aesthetics should be used?",
+    answer("hp and mpg", correct = FALSE),
+    answer("gears and cyl", correct = FALSE),
+    answer("mpg and gears", correct = TRUE),
+    answer("cyl and mpg", correct = FALSE)
+  )
+)
 
 ```
-
-```{r ex7-check}
-grade_code()
-```
-
-#### Exercise 4: Converting Numeric Levels to Factors
-
-In this exercise, you will convert the `weight` column in the `chickwts` dataset into a factor column called `weight_recode` with two levels: "low" for weights less than or equal to 200, and "high" for weights greater than 200.
 
 
 ```{r ex8, exercise=TRUE}
-# Convert weight column to factor
-chickwts$weight_recode <- ???
+# Create a boxplot comparing `mpg` between cars with different numbers of gears in the `mtcars` dataset
+ggplot( , aes( , )) + geom_boxplot() + labs(x = "Number of Gears", y = "Miles per Gallon")
+
 ```
 
 ```{r ex8-setup}
-# Load the chickwts dataset
-data(chickwts)
 
-chickwts$feed_recode <- fct_recode(chickwts$feed,
-                                   "bean" = "horsebean",
-                                   "bean" = "soybean",
-                                   "seed" = "linseed",
-                                   "seed" = "sunflower")
 ```
 
 ```{r ex8-solution}
-chickwts$weight_recode <- ifelse(chickwts$weight <= 200, "low", "high")
-chickwts$weight_recode <- factor(chickwts$weight_recode)
+# Create a boxplot comparing `mpg` between cars with different numbers of gears in the `mtcars` dataset
+ggplot(mtcars, aes(factor(gear), mpg)) + geom_boxplot() + labs(x = "Number of Gears", y = "Miles per Gallon")
+
+
 
 ```
 
@@ -466,103 +278,175 @@ chickwts$weight_recode <- factor(chickwts$weight_recode)
 grade_code()
 ```
 
-Now that you have completed the interactive tutorial on working with factors using the learnR package, you should have a better understanding of how to create, modify, and analyze factors in R. Factors are important for handling categorical data and can make your analyses more efficient and accurate.
 
-## Chapter 35: Working with Dates
+Congratulations! You have completed this interactive tutorial on data visualization using the learnR package. Keep practicing and experimenting with different datasets and plots to improve your data visualization skills. Remember, a well-crafted visualization can help you and others understand the data more effectively.
 
-### Introduction
 
-In this interactive tutorial, you will learn how to work with dates and times in R using the `lubridate` package. We will cover creating and manipulating date and date-time objects, extracting components from dates, and performing operations with dates.
+## Chapter 39: Good Plots
 
-#### Loading the lubridate package
+In this interactive tutorial, we will explore some tips for creating good plots using the R programming language.
 
-First, ensure that the lubridate package is installed and loaded:
+### Choosing the Right Type of Plot
+
+Different plot types are suitable for different types of data. Choosing the right plot can significantly improve the effectiveness of your visualization.
+
+```{r ex9, echo=FALSE}
+question("Which of the following plot types is best for comparing values across groups?",
+  answer("Pie chart"),
+  answer("Bar chart", correct = TRUE),
+  answer("Line chart"),
+  answer("Scatter plot")
+)
+```
+
+### Mindful Color Choices
+
+Colors play an important role in data visualization. Be mindful of color choices, considering factors such as accessibility and the message you want to convey.
+
+### Axis Labeling
+
+Clear and descriptive axis labels are essential for making your plots easy to understand.
+
+### Example: iPhone Sales
+
+Let's create a simple bar plot using ggplot2 to demonstrate the importance of axis labeling and color choices. We will use a small dataset representing iPhone sales over three years.
 
 ```{r}
-#install.packages("lubridate")
-library(lubridate)
+data <- data.frame(
+  Year = c(2020, 2021, 2022),
+  Sales = c(190, 210, 230)
+)
 ```
 
-### Creating Dates and Date-time Objects
+Now, create a bar plot with the given data. Set the x-axis to "Year" and the y-axis to "Sales". Use a color palette that is easy to read.
 
-We will learn how to create date and date-time objects from strings and individual parts.
-
-#### Exercise 1: Creating Date Objects from Strings
-
-Create a date object for the date "December 12th, 1995" using the `mdy()` function from the `lubridate` package.
-
-
-```{r ex9, exercise=TRUE}
-# Create a date object for December 12th, 1995
-date_object <- ???
-
-```
-
-```{r ex9-setup}
-```
-
-```{r ex9-solution}
-date_object <- mdy("December 12th, 1995")
-
-
-```
-
-```{r ex9-check}
-grade_code()
+```{r}
+data %>%
+  ggplot(aes(x = Year, y = Sales, fill = factor(Year))) +
+  geom_bar(stat = "identity") +
+  scale_fill_brewer(palette = "Dark2") +
+  labs(x = "Year", y = "Sales (in millions)", title = "iPhone Sales Over Time", fill = "Year") +
+  theme_minimal()
 ```
 
 
-#### Exercise 2: Creating Date-time Objects from Strings
+### Exercise 1: Creating a Bar Plot
 
-Create a date-time object for the date and time "1995-12-12 15:30:45" using the `ymd_hms()` function from the `lubridate` package.
+Now it's your turn! Create a bar plot with the following data, representing the sales of three different products over two years.
+
+```{r}
+exercise_data <- data.frame(
+  Year = rep(c(2021, 2022), each = 3),
+  Product = rep(c("A", "B", "C"), 2),
+  Sales = c(120, 100, 150, 130, 110, 170)
+)
+```
+
+Your task is to create a bar plot with "Product" on the x-axis and "Sales" on the y-axis, and use different colors for each product. Make sure to label your axes and choose an appropriate color palette.
 
 ```{r ex10, exercise=TRUE}
-# Create a date-time object for December 12th, 1995 at 15:30:45
-date_time_object <- ???
-
 
 ```
 
 ```{r ex10-setup}
+exercise_data <- data.frame(
+  Year = rep(c(2021, 2022), each = 3),
+  Product = rep(c("A", "B", "C"), 2),
+  Sales = c(120, 100, 150, 130, 110, 170)
+)
 ```
 
 ```{r ex10-solution}
-date_time_object <- ymd_hms("1995-12-12 15:30:45")
-date_object <- mdy("December 12th, 1995")
-
+exercise_data %>%
+  ggplot(aes(x = Product, y = Sales, fill = factor(Product))) +
+  geom_bar(stat = "identity") +
+  scale_fill_brewer(palette = "Set2") +
+  labs(x = "Product", y = "Sales (in millions)", title = "Product Sales Over Time", fill = "Product") +
+  theme_minimal()
 ```
 
 ```{r ex10-check}
 grade_code()
 ```
 
-### Working with Dates
+Congratulations! You've completed this interactive tutorial on creating good plots using R. Remember to choose the right type of plot, be mindful of color choices, and label your axes for effective data visualizations.
 
-Now that you know how to create date and date-time objects, let's explore how to work with these objects.
 
-#### Exercise 3: Extracting Components from Dates
+## Chapter 40: Introduction to ggplot2
 
-Extract the year, month, and day of the week (with labels) from the `date_object` created earlier.
+In this tutorial, we will introduce you to ggplot2, a powerful R package for creating elegant and flexible plots. We will learn the basics of ggplot2, how to work with aesthetics, and explore different geoms for various types of plots.
+
+### Loading the ggplot2 package
+
+First, let's install and load the ggplot2 package.
+
+```{r, eval=FALSE}
+install.packages("ggplot2")
+library(ggplot2)
+```
+
+### The Basics
+
+In ggplot2, plots are constructed using a series of layers. Each layer represents a different aspect of the plot, and these layers are combined using the plus sign (+).
+
+A basic ggplot2 plot can be constructed using the following general form:
+
+```{r, eval=FALSE}
+ggplot(data = DATASET) +
+  geom_PLOT_TYPE(mapping = aes(VARIABLE(S)))
+
+```
+
+
+The first step is to call the `ggplot()` function and specify the dataset to be used. Next, you will need to specify the type of plot (geom) you want to create.
+
+For this tutorial, we will be working with the `diamonds` dataset, which is included in ggplot2. This dataset contains information on various attributes of 53,940 diamonds.
+
+### Scatterplots: geom_point
+
+Let's start by creating a scatterplot using the `geom_point()` function. Scatterplots are useful for examining the relationship between two numeric variables.
+
+```{r}
+scatterplot_example <- ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = carat, y = price))
+scatterplot_example
+```
+
+### Aesthetics
+
+You can modify the appearance of your plot using the `aes()` function. This function allows you to change the size, color, and shape of the points in your scatterplot, among other things.
+
+#### Point color
+
+To change the color of the points based on a variable, you can map the variable to the `color` argument within the `aes()` function.
+
+```{r}
+color_example <- ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = carat, y = price, color = clarity))
+color_example
+```
+
+### Interactive Questions
+
+Now, let's test your understanding of ggplot2 with some interactive questions.
+
+#### Question 1: Scatterplot
+
+Create a scatterplot showing the relationship between the `x` (length) and `y` (width) variables in the `diamonds` dataset.
+
 
 ```{r ex11, exercise=TRUE}
-# Extract the year, month, and day of the week from the date_object
-year_component <- ???
-month_component <- ???
-day_of_week_component <- ???
+# Your code here
 
 ```
 
 ```{r ex11-setup}
-date_time_object <- ymd_hms("1995-12-12 15:30:45")
-date_object <- mdy("December 12th, 1995")
+
 ```
 
 ```{r ex11-solution}
-year_component <- year(date_object)
-month_component <- month(date_object)
-day_of_week_component <- wday(date_object, label = TRUE)
-
-
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = x, y = y))
 
 ```
 
@@ -571,27 +455,23 @@ grade_code()
 ```
 
 
-#### Exercise 4: Calculating Age
+#### Question 2: Aesthetics
 
-Given the date of birth "1988-09-29", calculate a person's age in years using the `today()` function and the `as.duration()` function from the `lubridate` package.
-
+Modify the scatterplot from Question 1 to color the points based on the cut variable.
 
 ```{r ex12, exercise=TRUE}
-# Calculate age in years
-birthdate <- ymd("1988-09-29")
-age_days <- ???
-age_years <- ???
+# Your code here
 
 
 ```
 
 ```{r ex12-setup}
-birthdate <- ymd("1988-09-29")
+
 ```
 
 ```{r ex12-solution}
-age_days <- today() - birthdate
-age_years <- as.duration(age_days) / dyears(1)
+ggplot(data = diamonds) +
+  geom_point(mapping = aes(x = x, y = y, color = cut))
 
 
 ```
@@ -600,132 +480,361 @@ age_years <- as.duration(age_days) / dyears(1)
 grade_code()
 ```
 
-Congratulations! You have now completed the interactive tutorial on working with dates using the lubridate package in R. You should have a better understanding of how to create, manipulate, and analyze dates and date-time objects in R, which is essential for many data analysis tasks that involve time-based data.
+### Histograms: geom_histogram
 
+Histograms help us visualize the distribution of a continuous variable, providing insights into the range of values and the shape of the data. Let's create a histogram of the `carat` variable from the `diamonds` dataset.
 
-## Chapter 36: Project Organization
+```{r}
+ggplot(data = diamonds) +
+  geom_histogram(mapping = aes(carat))
 
-Data science projects involve many files, such as data, code, documentation, and figures. Managing and organizing these files is crucial for effective communication and collaboration. In this tutorial, we will learn how to set up a data science project and organize its files using RStudio.
-
-### Benefits of Organized Project Files
-
-1. Easier collaboration
-2. Lower likelihood of making mistakes
-3. Easier recall
-4 More transparency and honesty
-
-### Project Folders
-
-A well-organized data science project should have folders for different purposes. Here are four common folders:
-
-1. raw_data: Stores the raw data you collect or receive.
-2. tidy_data: Stores the cleaned versions of the data.
-3. results: Stores plots, data visualizations, and other results created from your data.
-4. util: Stores background code that isn't part of R Markdown files.
-
-Let's create the project folders!
-
-```{r, eval=FALSE}
-dir.create("raw_data")
-dir.create("tidy_data")
-dir.create("results")
-dir.create("util")
 ```
 
-```{r ex13, echo=FALSE}
-quiz(
-  question("What is the purpose of the \"results\" folder in a data science project?",
-    answer("Stores the raw data you collect or receive.", correct = FALSE),
-    answer("Stores the cleaned versions of the data.", correct = FALSE),
-    answer("Stores plots, data visualizations, and other results created from your data.", correct = TRUE),
-    answer("Stores background code that isn't part of R Markdown files.", correct = FALSE)
-  )
-)
+In this histogram, the rectangular boxes show the number of diamonds within each bin. Most of the diamonds in the dataset have a carat size less than 1.
+
+### Barplots: geom_bar
+
+Barplots show the relationship between a categorical variable and a set of numbers. Let's create a barplot showing the number of diamonds for each `cut` category in the `diamonds` dataset.
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(cut))
+
 ```
 
+The rectangular bars represent the count of diamonds for each category of the `cut` variable.
 
-### README File
+### Boxplots: geom_boxplot
 
-A README file is essential for every project. It provides a high-level description of your project, its organization, and any important details. You should create a README file in your project's root directory and update it as your project evolves.
+Boxplots provide a summary of a numerical variable across categories. Let's create a boxplot showing how the `price` of diamonds varies across `color` categories.
 
-Let's create a README file! 
-
-```{r, eval=FALSE}
-readme_content <- "
-# Project Organization
-
-The folders in this project are:
-
-* raw_data - all the raw versions of the data are kept here.
-* tidy_data - cleaned versions of the data are here.
-* results - results, figures, and plots from our data are kept here.
-* util - background code that isn't in Rmds is kept here.
-"
-
-writeLines(readme_content, "README.md")
+```{r}
+ggplot(data = diamonds) +
+  geom_boxplot(aes(x = color, y = price))
 ```
 
+The median price (black horizontal bar) increases as the diamond color improves from category J to D.
+
+### Exercise: Create a Customized Boxplot
+
+Now, it's your turn to create a boxplot. Using the code provided above, create a boxplot of `price` vs. `color` from the `diamonds` dataset, but change the fill color to blue.
+
+```{r ex13, exercise=TRUE}
+# Write your code here
+
+```
+
+```{r ex13-setup}
+
+```
+
+```{r ex13-solution}
+ggplot(data = diamonds) +
+  geom_boxplot(aes(x = color, y = price), fill = "blue")
+
+```
+
+```{r ex13-check}
+grade_code()
+```
+
+### Summary
+
+This tutorial introduced you to the basics of creating histograms, barplots, and boxplots using ggplot2. You should now be comfortable generating and interpreting these plots, as well as customizing some of their features. Keep exploring and practicing to become more proficient in ggplot2!
+
+## Chapter 41: Customization in ggplot2
+
+In this tutorial, we will learn how to customize ggplot2 plots using the diamonds dataset as an example. We will explore how to control colors, add labels, and apply themes to our plots.
+
+First, let's load the necessary libraries and the diamonds dataset.
+
+```{r}
+library(ggplot2)
+library(learnr)
+
+```
+
+#### Customizing Colors
+
+We can customize the colors of our plots in ggplot2. Let's start by creating a bar plot of diamond clarity.
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = clarity, fill = clarity))
+
+```
+
+Now, we want to see the distribution of diamond cuts within each clarity group. To do this, we will use the `fill` aesthetic with the `cut` variable.
 
 
-Now that we have created the README file and written its content, you should see the file in your project's root directory. Make sure to update the README file as your project evolves to keep it up to date.
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = clarity, fill = cut))
 
+```
+
+However, we may want to change the colors manually for better visualization. We can do this using the scale_fill_manual function.
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = clarity, fill = cut)) +
+  scale_fill_manual(values = c("red", "orange", "darkgreen", "dodgerblue", "purple4"))
+
+```
 
 ```{r ex14, echo=FALSE}
-quiz(
-  question("What is the primary purpose of a README file in a data science project?",
-    answer("To store the raw data for the project.", correct = FALSE),
-    answer("To provide a high-level description of the project, its organization, and any important details.", correct = TRUE),
-    answer("To store cleaned versions of the data.", correct = FALSE),
-    answer("To store background code that isn't part of R Markdown files.", correct = FALSE)
-  )
+question("Which function is used to manually change the colors of bars in a bar plot?",
+  answer("scale_color_manual()"),
+  answer("scale_fill_manual()", correct = TRUE),
+  answer("scale_manual_color()"),
+  answer("scale_manual_fill()")
 )
 ```
 
 
-### Folder Structure
+#### Adding Labels
 
-When starting a data science project, it's essential to have a well-organized folder structure. Let's create the following folders for a sample project:
+A good title and axis labels can make your plot more informative. Let's add a title, subtitle, and a y-axis label to our plot using the `labs()` and `ylab()` functions.
 
-* data
-** raw_data
-** tidy_data
-* results
-** figures
-** tables
-* util
-
-In RStudio, click on the "New Folder" button to create each folder and its subfolders. Your project should now have a clear structure.
-
-### README File
-
-Now that you've set up the folder structure, it's time to create a README file. This file should provide an overview of the project, describe the organization of files and folders, and any important details. Make sure to update the README file as your project progresses.
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = clarity, fill = cut), position = "fill") +
+  scale_fill_manual(values = c("red", "orange", "darkgreen", "dodgerblue", "purple4")) +
+  labs(title = "Diamond Clarity vs Cut Distribution",
+       subtitle = "Proportion of cuts within each clarity group") +
+  ylab("Proportion")
+```
 
 ```{r ex15, echo=FALSE}
-quiz(
-  question("Which of the following should be included in a README file?",
-    answer("Raw data files", correct = FALSE),
-    answer("High-level project description and folder organization", correct = TRUE),
-    answer("Cleaned data files", correct = FALSE),
-    answer("Detailed code explanations", correct = FALSE)
-  )
+question("Which function is used to add a title and subtitle to the plot?",
+  answer("title()"),
+  answer("add_labels()"),
+  answer("labs()", correct = TRUE),
+  answer("labels()")
 )
 ```
 
-### Writing Modular Code
+#### Applying Themes
 
-Writing modular code helps maintain a clean and understandable project. Separate code into individual files based on their purpose and have a master file that calls these individual files.
+We can change the overall appearance of our plot using themes. There are 8 built-in themes in ggplot2. Let's apply the `theme_classic()` to our plot.
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = clarity, fill = cut), position = "fill") +
+  scale_fill_manual(values = c("red", "orange", "darkgreen", "dodgerblue", "purple4")) +
+  labs(title = "Diamond Clarity vs Cut Distribution",
+       subtitle = "Proportion of cuts within each clarity group") +
+  ylab("Proportion") +
+  theme_classic()
+
+```
+
+
+#### Customizing Themes
+
+We can adjust the theme of our graph using the `theme()` function. This can be used to change the text size, font, and color of various elements within the graph.
+
+Let's practice by creating a bar graph using the `diamonds` dataset.
+
+```{r}
+ggplot(data = diamonds) +
+  geom_bar(mapping = aes(x = clarity, fill = cut), position = "fill") +
+  labs(title = "Diamond Clarity vs. Cut Quality") +
+  theme_classic() +
+  theme(title = element_text(size = 20),
+        axis.text = element_text(size = 14),
+        axis.title = element_text(size = 16, face = "bold"),
+        legend.text = element_text(size = 14),
+        plot.subtitle = element_text(color = "gray30")) +
+  guides(fill = guide_legend("Cut quality"))
+```
+
+
+#### Adjusting Scales
+
+We can control the number of values displayed on an axis using `scale_x_continuous` or `scale_y_continuous` for continuous variables, and `scale_x_discrete` or `scale_y_discrete` for discrete variables.
+
+
+#### Coordinate Adjustment
+
+Sometimes you may need to flip your axis. We can do this with the `coord_flip()` function.
+
+#### Adding Annotations
+
+The `annotate` function allows you to add text to your plot. The size, position, and alignment of the text can be controlled.
+
 
 ```{r ex16, echo=FALSE}
-quiz(
-  question("Why is it essential to write modular code?",
-    answer("To make the code more complicated", correct = FALSE),
-    answer("To make debugging and replication easier", correct = TRUE),
-    answer("To increase the number of files in the project", correct = FALSE),
-    answer("To make the code harder to understand", correct = FALSE)
-  )
+# Quiz question
+question("What do the 'x' and 'y' arguments in the annotate function specify?",
+  answer("The location of the annotation on the plot", correct = TRUE),
+  answer("The size of the annotation text"),
+  answer("The color of the annotation text"),
+  answer("The orientation of the annotation text")
 )
 ```
 
-### Conclusion
+#### Conclusions
 
-In this tutorial, we covered the basics of organizing a data science project, setting up a folder structure, creating a README file, and writing modular code. Keeping your project organized is crucial for collaboration, reducing errors, and maintaining transparency. Keep practicing these skills to become a better data scientist!
+In this tutorial, you've learned about several ways to customize your ggplot2 plots, including color and theme customization, legend and scale adjustments, axis flipping, and adding annotations. Remember, ggplot2 is a very flexible tool thanks to its layered approach, and we've just scratched the surface of what's possible. As you continue to explore and experiment with ggplot2, you'll find that you can create nearly any plot you can imagine.
+
+To keep learning, consider exploring more about the geom_text() function for adding text labels to points on your plot, or dive into the many other geoms and themes available in ggplot2. Happy plotting!
+
+```{r ex17, echo=FALSE}
+# Wrap-up Quiz
+question("What function would you use to flip the axes in a ggplot2 plot?",
+  answer("flip_axes()"),
+  answer("axes_flip()"),
+  answer("coord_flip()", correct = TRUE),
+  answer("flip_coord()")
+)
+```
+
+## Chapter 42: Saving Plots
+
+### Introduction
+
+As you work with R, you'll often need to save your plots for use in presentations, documents, or to share with your team. In this interactive tutorial, we'll explore how to save plots from RStudio in various formats.
+
+#### Types of Image Files
+
+R can generate a variety of image file formats. Here, we'll focus on four commonly used formats:
+
+1. __JPEG__: A compressed format that is popular and saves storage space. However, it loses quality with each save. The background is white by default.
+2. __PNG__: A high-quality bitmap format that retains its quality over time but uses more storage space. PNG images have a transparent background.
+3. __TIFF__: A bitmap format intended to preserve quality over time. TIFF images can be edited with photo editors like Photoshop. If you plan to edit the image later, this format is a good choice.
+4. __PDF__: A vector format, useful for plotting multiple images in a single file or for printing. These can be scaled to any size without pixelation.
+
+
+#### Saving Plots with `ggsave()`
+
+The `ggsave()` function in ggplot2 makes it easy to save your plots. By specifying the plot, filename, and the destination path, you can quickly save any ggplot2 generated plot. The file format is determined by the file extension in the filename argument.
+
+```{r}
+# Let's create a simple scatterplot
+library(ggplot2)
+myplot <- ggplot(mtcars, aes(wt, mpg)) + geom_point()
+
+# Save the plot as a PNG
+ggsave(plot = myplot, filename = "myplot.png", path = ".")
+
+# Save the plot as a JPEG
+ggsave(plot = myplot, filename = "myplot.jpeg", path = ".")
+
+```
+
+
+You can also control the size of your image using the height, width, and unit arguments in ggsave().
+
+```{r}
+# Save the plot as a larger PNG
+ggsave(plot = myplot, filename = "myplot_large.png", path = ".", height = 9, width = 9, unit = "in")
+
+```
+
+#### Alternative Approach: Graphics Devices
+
+While `ggsave()` is a straightforward way to save images, there may be times when you need to use an alternative method. R provides graphics devices like `png()`, `jpeg()`, `pdf()`, or `tiff()`. After calling the appropriate function and specifying the filename, you print the image object and finalize the image file generation with `dev.off()`.
+
+```{r}
+# Save the plot as a PNG using png()
+png("myplot_graphics_device.png")
+print(myplot)
+dev.off()
+
+# Save the plot as a JPEG using jpeg()
+jpeg("myplot_graphics_device.jpeg")
+print(myplot)
+dev.off()
+```
+
+
+This concludes our tutorial on saving plots in R. Remember, the right format for your image depends on your specific needs, so choose the one that fits best. Whether you're using ggsave() or another graphics device function, R provides a range of options to help you effectively share your data visualizations.
+
+
+## Chapter 43: From Exploratory to Explanatory
+
+### Introduction
+
+Welcome to this interactive tutorial on data visualization with `ggplot2`! In this tutorial, we will focus on transforming an exploratory plot into an explanatory one. We will use the `mpg` dataset from the `ggplot2` package.
+
+
+### Data Overview
+
+The `mpg` dataset contains information about different car models, including their class, manufacturer, and fuel efficiency (in miles per gallon). Let's take a quick look at the data.
+
+
+```{r}
+head(mpg)
+```
+
+### Question 1
+
+Let's create an exploratory plot showing highway mileage (`hwy`) for different car classes (`class`).
+
+Fill in the ... to complete the code.
+
+```{r ex18, exercise=TRUE}
+ggplot(data = ..., aes(x = ..., y = ...)) +
+  geom_boxplot()
+
+```
+
+```{r ex18-setup}
+```
+
+```{r ex18-solution}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot()
+```
+
+```{r ex18-check}
+grade_code()
+```
+
+### Adding Titles and Labels
+
+Now, let's make the plot more explanatory by adding a title, x and y axis labels using the `labs()` function.
+
+
+### Question 2
+
+Complete the code by filling in the `...`.
+
+
+```{r ex19, exercise=TRUE}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot() +
+  labs(title = ..., x = ..., y = ...)
+
+```
+
+```{r ex19-setup}
+```
+
+```{r ex19-solution}
+ggplot(data = mpg, aes(x = class, y = hwy)) +
+  geom_boxplot() +
+  labs(title = "Highway Mileage for Different Car Classes", x = "Car Class", y = "Highway Mileage (mpg)")
+
+```
+
+```{r ex19-check}
+grade_code()
+```
+
+
+### Customizing the Plot
+
+Let's now modify the theme and color of our boxplot to make it more aesthetically pleasing. We will use `theme_minimal()` for a cleaner theme and `scale_fill_brewer()` to fill the boxes with color.
+
+```{r}
+ggplot(data = mpg, aes(x = class, y = hwy, fill = class)) +
+  geom_boxplot() +
+  labs(title = "Highway Mileage for Different Car Classes", x = "Car Class", y = "Highway Mileage (mpg)") +
+  scale_fill_brewer(palette = "Set3") +
+  theme_minimal()
+
+```
+
+This concludes our tutorial. We hope it has helped you understand how to transform exploratory plots into more explanatory ones using ggplot2! Happy plotting!

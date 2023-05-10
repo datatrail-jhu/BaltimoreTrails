@@ -1,0 +1,616 @@
+---
+title: "Cleaning Data"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(naniar)
+
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 50: Translating Real-World Questions into Data Science Questions
+
+### What are Data Tables?
+
+In this interactive tutorial, we'll learn how to translate real-world questions into data science questions. This is an essential skill for any data scientist, as we often need to analyze data to answer questions. The process involves identifying the relevant data, understanding the limitations of the data, and defining the type of data science question we're trying to answer. Let's dive in!
+
+### Problem Forward, Not Solution Backward
+
+The key principle in data science is to start with a question you want to answer, rather than looking at the data or solution first. This could be a question driven by your curiosity, such as how a specific variable affects another, or a question from someone else you're helping with data analysis.
+
+The challenge is to translate these general questions into specific data science questions.
+
+### Making Questions More Specific
+
+Here are three generic questions:
+
+1. Do cars with higher horsepower have lower miles per gallon?
+2. Are flights more delayed during winter?
+3. Do diamonds with higher carat weight cost more?
+
+These are interesting questions, but they're not very specific. To make a question more specific, you need to consider the data you would use to answer the question.
+
+To help us make these questions more concrete, let's use the `mtcars`, `nycflights13`, and `diamonds` datasets from the `ggplot2` package.
+
+```{r}
+library(ggplot2)
+library(nycflights13)
+data(mtcars)
+data(nycflights13, package = "nycflights13")
+data(diamonds)
+```
+
+### Interactively Defining Your Question
+
+Let's work with the first question: "Do cars with higher horsepower have lower miles per gallon?"
+
+```{r ex1, echo=FALSE}
+quiz(
+  question(
+    "What or who am I trying to understand with data?",
+    answer("1. Cars"),
+    answer("2. Horsepower"),
+    answer("3. Miles per gallon"),
+    answer("4. Cars", correct = TRUE)
+  ),
+  question(
+    "What measurements do I have on those objects that help me answer the question?",
+    answer("1. Horsepower and miles per gallon"),
+    answer("2. Weight and displacement"),
+    answer("3. Cylinders and gears"),
+    answer("4. Horsepower and miles per gallon", correct = TRUE)
+  ),
+  question(
+    "How do the data I have limit the type of question I can answer?",
+    answer("1. I only have data on certain car models"),
+    answer("2. I only have data from a specific year"),
+    answer("3. I only have data on cars with a certain number of cylinders"),
+    answer("4. I only have data on certain car models", correct = TRUE)
+  ),
+  question(
+    "What is the type of data science question we are trying to answer?",
+    answer("1. A question about a relationship between two variables"),
+    answer("2. A question about predicting a certain outcome"),
+    answer("3. A question about inferring a population parameter"),
+    answer("4. A question about a relationship between two variables", correct = TRUE)
+  )
+)
+```
+
+
+### Summary
+
+Great job! You've just translated a general question into a specific data science question. The same process can be applied to any question you might have. Remember, the key is to understand your data and the limitations it might have. This is a crucial step in any data analysis project. Happy analyzing!
+
+
+## Chapter 51: Identifying Data
+
+In this interactive tutorial, we'll learn how to identify the data needed to answer a data science question using the `ggplot2` package. We'll cover the following topics:
+
+1. Formulating a data science question
+2. Identifying the perfect dataset
+3. Finding the available dataset
+4. Dealing with limitations
+
+### 1. Formulating a Data Science Question
+
+Let's start by formulating a data science question using the `mpg` dataset from the `ggplot2` package.
+
+__Question: What factors predict the fuel efficiency (measured in miles per gallon) of cars?__
+
+### 2. Identifying the Perfect Dataset
+
+Imagine the perfect dataset to answer our question. This dataset would have information on various factors that could potentially affect fuel efficiency.
+
+Here's what our perfect dataset might include:
+
+1. `manufacturer` - the car manufacturer
+2. `model` - the car model
+3. `year` - the year the car was manufactured
+4. `trans` - the transmission type
+5. `drv` - the type of drive train (4wd, fwd, rwd)
+6. `class` - the type of car (compact, SUV, etc.)
+
+Now, let's see what data we have available in the `mpg` dataset.
+
+```{r}
+head(mpg)
+```
+
+### 3. Finding the Available Dataset
+
+The `mpg` dataset has most of the variables we need to answer our question. However, it's important to note that this dataset might not be perfect, and we might face some limitations.
+
+Let's do a quick exploratory analysis to check for any potential issues.
+
+```{r}
+summary(mpg)
+```
+
+### 4. Dealing with Limitations
+
+We can see that the `mpg` dataset covers a range of years, manufacturers, and car classes. However, it's not without limitations:
+
+1. The dataset might not be up-to-date or comprehensive.
+2. Some important factors affecting fuel efficiency might be missing.
+3. There might be issues with the data quality or reliability.
+
+### Questions
+
+Now, let's test your understanding with a couple of interactive questions.
+
+```{r ex2, echo=FALSE}
+quiz(
+  question("What is one limitation of the `mpg` dataset that we discovered during our exploratory analysis?",
+    answer("The dataset does not include car manufacturers", correct = FALSE),
+    answer("The dataset does not include car models", correct = FALSE),
+    answer("The dataset might not be comprehensive or up-to-date", correct = TRUE),
+    answer("The dataset does not include car classes", correct = FALSE)
+  ),
+  question("What is the relationship between the variables 'displ' and 'hwy'?",
+    answer("Positive correlation"),
+    answer("Negative correlation", correct = TRUE),
+    answer("No correlation"),
+    answer("Can't say without statistical test")
+  )
+)
+```
+
+### Identifying Good Data
+
+In data science, it's important to ensure the data we have is the right data for our analysis.
+
+#### Wrangling Data
+
+Data obtained often need to be cleaned and wrangled. If the data is pre-processed, ensure you understand how the processing was done. Always record your steps in reformatting the data.
+
+For example, make sure each variable forms a column, each observation forms a row, and each table/file stores data about one kind of observation.
+
+Let's practice this concept.
+
+
+```{r ex3, exercise=TRUE}
+# Here's the mtcars dataset. Observe the structure and contents.
+head(mtcars)
+
+# Now, let's do some wrangling. Rename the column "mpg" to "miles_per_gallon". Use the dplyr package.
+# Your code here.
+
+```
+
+```{r ex3-setup}
+
+```
+
+```{r ex3-solution}
+library(dplyr)
+mtcars <- rename(mtcars, miles_per_gallon = mpg)
+head(mtcars)
+```
+
+```{r ex3-check}
+grade_code()
+```
+
+#### Common Data Issues
+
+##### Small Sample Sizes
+
+Collecting data can be challenging and expensive. Hence, at times, you might have to work with small sample sizes. While larger samples are preferable, note the sample size in your analysis when dealing with smaller ones.
+
+
+##### Missing Variables
+
+In data analysis, you might not always find the exact variables you're looking for. In such cases, you can use proxy variables - variables that are different but highly correlated with your variable of interest.
+
+
+##### Inconsistent Collection Period
+
+Ensure that the variables in your dataset are collected in the same period. For example, comparing cab prices of 2018 with ride counts of 2015 won't yield accurate insights.
+
+
+##### Non-representative Samples
+
+Ensure that your sample accurately reflects the population you're interested in. If it doesn't, your insights might be skewed.
+
+
+##### Measurement Errors
+
+Measurement errors refer to incorrect measurements of variables in your sample. Always consider potential measurement errors during your analysis.
+
+##### Confounded Variables
+
+Confounders are variables that affect your outcome but are also related to your main variable of interest. It's essential to understand the relationship between variables in your dataset.
+
+### Summary 
+
+Remember, 'garbage in, garbage out.' Always ensure that the data you use in your analysis is reliable, accurate, and suitable for your question of interest. Be cautious about the data you use, and always note the limitations in your analysis.
+
+
+## Chapter 52: In Practice Using Stats
+
+### Introduction
+
+Data science is about exploring the unknown and turning it into the known. But it can be a bit messy.
+
+### Tip 1: Always be looking at your data
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Use msleep dataset from ggplot2
+data("msleep")
+
+# Show the first few rows
+head(msleep)
+```
+
+```{r ex4, echo=FALSE}
+quiz(
+  question("What is a good first step when you start working with a new dataset?",
+    answer("Run a complex machine learning model", correct = FALSE),
+    answer("Visually inspect your data and understand its structure", correct = TRUE),
+    answer("Ignore it and hope for the best", correct = FALSE),
+    answer("Publish it in a scientific journal", correct = FALSE)
+  )
+)
+
+```
+
+
+### Tip 2: Dig into weirdness
+
+Keep an eye out for anything unusual in your data, which could indicate problems or interesting phenomena.
+
+### Tip 3: Let the data inform you
+
+Your data will guide your analysis, and in turn, your analysis will help you understand your data better.
+
+```{r}
+# Use the summary function to get an overview of your data
+summary(msleep)
+
+```
+
+### Exercise: Find missing data in the dataset
+
+```{r ex5, exercise=TRUE}
+# Write a function to find the number of missing data in each column
+# Hint: Use the is.na() and sum() functions
+
+```
+
+```{r ex5-setup}
+data("msleep")
+```
+
+```{r ex5-solution}
+# Solution
+sapply(msleep, function(x) sum(is.na(x)))
+
+```
+
+```{r ex5-check}
+grade_code()
+```
+
+### Tip 4: Check for outliers 
+
+Outliers can influence the results of your analysis. It's important to identify them.
+
+#### Exercise: Find outliers in the 'sleep_total' variable
+
+
+
+```{r ex6, exercise=TRUE}
+# Plot a boxplot to visualize outliers in 'sleep_total' 
+# Hint: Use the boxplot() function
+
+
+```
+
+```{r ex6-setup}
+data("msleep")
+```
+
+```{r ex6-solution}
+# Solution
+boxplot(msleep$sleep_total, ylab = "Total Sleep")
+
+```
+
+```{r ex6-check}
+grade_code()
+```
+
+### Understanding Data Distributions
+
+When analyzing data, it's important to understand how your data are distributed. This distribution can influence the type of statistical tests we can use.
+
+Let's start by examining a dataset available in the `ggplot2` package, `mtcars`.
+
+```{r}
+head(mtcars)
+```
+
+
+```{r ex7, echo=FALSE}
+quiz(
+  question("What is the primary variable of interest in the `mtcars` dataset?",
+    answer("mpg", correct = TRUE),
+    answer("cyl"),
+    answer("disp"),
+    answer("hp")
+  )
+)
+```
+
+### Plotting Distributions
+
+Now, let's create a density plot for the mpg (miles per gallon) variable to understand its distribution.
+
+```{r ex8, exercise=TRUE}
+# Your code here
+
+```
+
+```{r ex8-setup}
+```
+
+```{r ex8-solution}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_density()
+
+```
+
+```{r ex8-check}
+grade_code()
+```
+
+
+### Understanding Normal Distributions
+
+Normal distributions are bell-shaped curves. If your data plot resembles this shape, then you have "normally distributed" data. This can influence the statistical tests you can use.
+
+To formally test for normality, we can use the `shapiro.test()` function. Let's apply this to the `mpg` variable in the `mtcars` dataset.
+
+
+```{r ex9, exercise=TRUE}
+# Your code here
+
+```
+
+```{r ex9-setup}
+```
+
+```{r ex9-solution}
+shapiro.test(mtcars$mpg)
+
+```
+
+```{r ex9-check}
+grade_code()
+```
+
+Remember, if the p-value is greater than 0.05, we can consider the data to be normally distributed.
+
+From the result of the Shapiro-Wilk test, is the `mpg` variable normally distributed?
+
+```{r ex10, echo=FALSE}
+quiz(
+  question("From the result of the Shapiro-Wilk test, is the `mpg` variable normally distributed?",
+    answer("Yes"),
+    answer("No", correct = TRUE)
+  )
+)
+```
+
+### Choosing the Right Test
+
+The choice of test depends on the distribution of your data. There are different tests for different scenarios, and choosing the wrong test may lead to erroneous conclusions.
+
+Remember, understanding your data distribution is crucial to identifying the right tests and analyses to conduct.
+
+### Summary
+
+Understanding the distribution of your data is a crucial first step in any analysis. We've seen how to visualize this distribution using a density plot, and how to formally test for normality using the shapiro.test() function. Happy data exploring!
+
+
+## Chapter 53: Descriptive Analysis
+
+The goal of descriptive analysis is to summarize a set of data. In this tutorial, we will learn how to describe a dataset using common statistical measures.
+
+
+### Introduction to the Dataset
+
+For this tutorial, we will use the `diamonds` dataset from the `ggplot2` package. Let's load the dataset and assign it to the object `df`.
+
+```{r}
+df <- diamonds
+```
+
+
+### Understanding the Dataset
+
+Let's find out the number of observations (rows) and variables (columns) in our dataset using the `dim()` function.
+
+```{r ex11, exercise=TRUE}
+# Your code here
+
+```
+
+```{r ex11-setup}
+df <- diamonds
+```
+
+```{r ex11-solution}
+dim(df)
+```
+
+```{r ex11-check}
+grade_code()
+```
+
+
+```{r ex12, echo=FALSE}
+quiz(
+  question("What are the dimensions of the `df` data frame?",
+    answer("53940, 10", correct = TRUE),
+    answer("10, 53940"),
+    answer("53940, 11"),
+    answer("11, 53940")
+  )
+)
+```
+
+
+### Understanding the Variables
+
+Let's find out more about the variables we are working with using the `str()` function.
+
+```{r ex13, exercise=TRUE}
+# Your code here
+```
+
+```{r ex13-setup}
+df <- diamonds
+```
+
+```{r ex13-solution}
+str(df)
+```
+
+```{r ex13-check}
+grade_code()
+```
+
+
+```{r ex14, echo=FALSE}
+question("What type of variable is `cut` in the `df` dataset?",
+  answer("numeric"),
+  answer("character"),
+  answer("Ordered factor with 5 levels", correct = TRUE),
+  answer("integer")
+)
+```
+
+
+### Checking for Missing Values
+
+It's always a good practice to check for missing values in your data. Let's see how we can do that.
+
+```{r}
+sapply(df, function(x) sum(is.na(x)))
+```
+
+### Describing the Shape of Your Data
+
+Let's describe the shape of our data. We will consider the `price` variable for this purpose.
+
+```{r}
+summary(df$price)
+
+```
+
+
+### Exercise 2
+
+Let's visualize missingness in the `df` dataset using the `vis_miss()` function from the `visdat` library.
+
+```{r ex15, exercise=TRUE}
+library(visdat)
+# Your code here
+```
+
+```{r ex15-setup}
+library(visdat)
+df <- as.data.frame(diamonds)
+```
+
+```{r ex15-solution}
+vis_miss(df)
+```
+
+```{r ex15-check}
+grade_code()
+```
+
+This is the end of the tutorial. You should now be able to perform a descriptive analysis!
+
+
+## Chapter 54: Exploratory Analysis
+
+In this tutorial, we will delve into the world of exploratory data analysis, where we examine and explore data to discover unknown relationships. Note that exploratory analysis doesn't confirm causal relationships. It's a great tool for generating hypotheses and helping design future studies, but it's not a final say on data relationships.
+
+### Exploratory Analysis Principles
+
+Here are the basic principles of exploratory analysis:
+
+* Look for missing values
+* Look for outlier values
+* Use plots to explore relationships
+* Use tables to explore relationships
+* If necessary, transform variables
+
+### Dataset Exploration
+
+We will use the `mpg` dataset from the `ggplot2` package, which contains fuel economy data from 1999 to 2008 for 38 models of cars.
+
+```{r}
+head(mpg)
+```
+
+Now, let's check the structure of our dataset:
+
+```{r}
+str(mpg)
+```
+
+```{r ex16, echo=FALSE}
+quiz(
+  question("What are the types of variables in the `mpg` dataset?",
+    answer("All variables are numerical."),
+    answer("Some variables are numerical, and others are categorical.", correct = TRUE),
+    answer("All variables are categorical.")
+  )
+)
+```
+
+### Exploring Relationships
+
+Let's now explore relationships in our data. For instance, we can investigate if there's an association between displacement (`displ`) and highway miles per gallon (`hwy`).
+
+```{r}
+ggplot(mpg, aes(x=displ, y=hwy)) +
+  geom_point()
+```
+
+
+### Question 2
+
+```{r ex17, echo=FALSE}
+quiz(
+  question(
+    "Based on the scatterplot, do you think there's a relationship between displacement and highway miles per gallon?",
+    answer("Yes, there seems to be a positive linear relationship."),
+    answer("Yes, there seems to be a negative linear relationship.", correct = TRUE),
+    answer("No, there doesn't seem to be a relationship.")
+  )
+)
+```
+
+
+
+
+
