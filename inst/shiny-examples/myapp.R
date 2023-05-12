@@ -11,6 +11,9 @@ library(BaltimoreTrails)
 # Pre-load all dataset names into app
 data_names <- data(package = "BaltimoreTrails")
 
+# Initializing Empty dataframe for esquisse transitions
+data_rv <- reactiveValues(data = data.frame(), name = NULL)
+
 ui <- dashboardPage(
   dashboardHeader(title = "DataTrail DataHub"),
 
@@ -155,12 +158,15 @@ server <- function(input, output, session) {
 
           print(names(Dat))
 
-          esquisse::esquisse_server(
-            id = "esquisse",
-            data = data_rv
-            #data_name = reactive({ req(input$data_select); input$data_select })
-          )
+          observeEvent(dat(), {
+            data_rv$data <- dat()
+            data_rv$name <- input$data_select
+          })
 
+        esquisse::esquisse_server(
+          id = "esquisse",
+          data = data_rv
+        )
 
           datatable(
             Dat,
