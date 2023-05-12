@@ -1,0 +1,562 @@
+---
+title: "Chapters 90 - 96"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+
+
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 90: Using Twitter for Data Science
+
+### Introduction
+Twitter is a vibrant platform where data science professionals interact. It's a rich space for learning, networking, and even job hunting. In this tutorial, we'll guide you through the process of tailoring your Twitter profile and leveraging Twitter effectively as a data scientist.
+
+###Update Your Profile
+First, let's start with personalizing your Twitter profile. This includes adding a photo and a short bio, which should only contain a few words about your interests. You might want to include a link to your personal website in the "Website" box, and your location (if you prefer) in the "Location" box. The steps are as follows:
+
+1. Log into your Twitter account.
+2. Click on the camera icon -> "Upload photo".
+3. Adjust the photo size and position, click "Apply".
+4. Navigate to your profile, click "Edit profile".
+5. Write a short bio, add your website URL, and (optional) location.
+6. Save changes.
+
+### Choosing Who & What To Follow
+The next step is to follow people who post information that's helpful for you as a data scientist. We suggest following people who:
+
+1. Are interesting
+2. Can teach you something
+3. May post about things helpful for your career
+
+To follow someone, click the "Follow" button on their profile. You can also use common hashtags, such as #rstats, #datascience, or #dataviz, to find people of interest.
+
+
+### Tweeting
+Tweeting is an integral part of Twitter engagement. It's a way to share ideas, learn, and build your network. Here are some guidelines for positive Twitter engagement:
+
+1. Keep it positive
+2. Avoid fights
+3. Support others
+
+#### Tweeting for Self-Promotion
+Share your projects, interesting findings, or great visualizations. Include pictures, links, and make your tweets visually memorable and informative!
+
+#### Tweeting to Promote Others
+Don't hesitate to share others' work. This is a great way to build your network and also keep a record of interesting content. Always cite the individual and link to their work.
+
+```{r ex1, echo=FALSE}
+quiz(
+  question("What are good practices for tweeting?",
+    answer("Keep it positive", correct = TRUE),
+    answer("Avoid fights", correct = TRUE),
+    answer("Promote your work", correct = TRUE),
+    answer("Promote others' work", correct = TRUE)
+  ),
+  question("What should your Twitter profile include?",
+    answer("Photo", correct = TRUE),
+    answer("Short bio", correct = TRUE),
+    answer("Website URL", correct = TRUE),
+    answer("Phone number", correct = FALSE)
+  ),
+    question("What can you add to your tweets?",
+    answer("Emojis", correct = TRUE),
+    answer("Photos", correct = TRUE),
+    answer("Polls", correct = TRUE),
+    answer("Your social security number", correct = FALSE)
+  )
+)
+
+```
+
+#### Crafting a Tweet
+
+To start tweeting, click on the blue "Tweet" button on your profile. This brings up a box where you can compose your tweet. You can add emojis, photos, GIFs, polls, and even your location to your tweets. Be mindful of the 280-character limit - it's a practice in brevity and clear communication!
+
+Engage with those who comment on your tweets. Twitter can be a lively place for quick discussions. Keep your tweets and interactions professional and respectful.
+
+### Conclusion
+
+Twitter is a powerful platform for data scientists. Use it to learn, network, share your work, and engage with the broader data science community. Remember to keep your interactions positive and professional. Happy tweeting!
+
+## Chapter 91: Data Science Job Descriptions
+
+### What Do Data Scientists Do?
+Data scientists are like detectives for data, seeking to decipher and extract insights from vast amounts of information. They might work on diverse problems, such as optimizing a website for better sales or identifying key traits in successful employees. Different companies have distinct roles for data scientists, but they all involve working with data to address problems.
+
+### Skills for Data Science Roles
+Companies generally look for three types of skills in aspiring data scientists: technical skills, employee traits, and business skills.
+
+#### Technical Skills
+These are the bedrock of any data science role. They include:
+
+* __Programming Languages__: R, Python, and SQL are commonly used.
+* __Data Wrangling__: Cleaning and formatting data for use.
+* __Data Visualization__: Presenting data in an understandable and appealing manner.
+* __Statistics__: Basic understanding of statistical principles.
+* __Machine Learning__: Familiarity with predictive analysis techniques.
+
+Your resume should reflect these skills through your past projects and experiences. Having a GitHub profile with your projects can also help demonstrate your skills.
+
+#### Employee Traits
+Companies want to hire dedicated, dependable, and adaptable individuals. Constant learning is integral in data science as technologies and methodologies are always evolving.
+
+#### Business Skills
+Data scientists typically work as part of a team and need to interact with various stakeholders. Hence, being an effective communicator, a creative problem solver, and possessing an innate curiosity are desirable traits.
+
+#### Understanding Job Descriptions
+Job descriptions for data scientist roles will generally consist of:
+
+* __Job Title__: The name of the position.
+* __Location__: Where the job is based.
+* __Introduction__: Brief overview of the company and role.
+* __Job Description__: Detailed explanation of responsibilities and required skills.
+* __Job Qualifications__: Necessary educational background, knowledge, and abilities.
+* __Preferred Qualifications__: Optional but beneficial skills or experiences.
+
+
+```{r ex2, echo=FALSE}
+quiz(
+  question("Which programming languages are commonly used in data science?",
+    answer("R", correct = TRUE),
+    answer("Python", correct = TRUE),
+    answer("SQL", correct = TRUE),
+    answer("Swift", correct = FALSE)
+  ),
+  question("What employee traits are desirable for a data scientist role?",
+    answer("Adaptability", correct = TRUE),
+    answer("Dependability", correct = TRUE),
+    answer("Resistance to change", correct = FALSE),
+    answer("Lack of curiosity", correct = FALSE)
+  )
+)
+
+```
+
+### Airbnb - Inference Data Scientist Role
+Data scientists in this role should be capable of generating hypotheses, conducting experiments to establish causality, and refining strategies to drive decision-making.
+
+#### Expected Skills for Inference
+* Technical skills: Programming, data wrangling, and statistical knowledge.
+* Work principles: Focused, detail-oriented, team players, and passionate about their work.
+* Business skills: Strong written and verbal communication skills.
+
+```{r ex3, echo=FALSE}
+quiz(
+  question("What is the main role of a Data Scientist in the Inference track at Airbnb?", 
+           answer("Generating hypotheses, conducting experiments, and refining strategies.", correct = TRUE),
+           answer("Strong written and verbal communication skills.")),
+  question("What are some of the business skills expected from a data scientist at Airbnb?", 
+           answer("Strong written and verbal communication skills.", correct = TRUE)),
+           answer("Generating hypotheses, conducting experiments, and refining strategies.")
+)
+
+
+```
+
+### Junior Data Scientist Role at Claire's
+This role entails using data for decision-making on various aspects like promotions, space planning, competitive landscape, and ad hoc analyses.
+
+#### Expected Skills for Claire's
+* Technical skills: Programming, statistics, and data visualization.
+* Work principles: Strong team member and willing to teach others.
+* Business skills: Able to communicate findings via reports understandable by partners and business users.
+
+```{r ex4, echo=FALSE}
+quiz(
+  question(
+    "What are the responsibilities of a Junior Data Scientist at Claire's?",
+    answer("Using data for decision-making on promotions, space planning, competitive landscape, and ad hoc analyses.", correct = TRUE),
+    answer("Able to communicate findings via reports understandable by partners and business users.")
+  ),
+  question(
+    "What is a critical business skill for this role at Claire's?",
+    answer("Able to communicate findings via reports understandable by partners and business users.", correct = TRUE),
+    answer("Using data for decision-making on promotions, space planning, competitive landscape, and ad hoc analyses.")
+  )
+)
+```
+
+### Data Scientist Role at Allstate
+In the insurance field, a data scientist could make a significant impact.
+
+#### Expected Skills for Allstate
+* __Technical skills__: Statistical and machine learning knowledge and experience, programming skills, and the ability to work with large datasets.
+* __Work principles__: Willing to teach others, be flexible in learning new technologies, and be dependable.
+* __Business skills__: Able to communicate data-centric information effectively, both written and oral, and present well to others.
+
+```{r ex5, echo=FALSE}
+quiz(
+  question("What technical skills are expected from a Data Scientist at Allstate?", 
+           answer("Statistical and machine learning knowledge and experience, programming skills, and the ability to work with large datasets.", correct = TRUE),
+           answer("Willing to teach others, be flexible in learning new technologies, and be dependable.")),
+  question("What is an important work principle for a Data Scientist at Allstate?", 
+           answer("Willing to teach others, be flexible in learning new technologies, and be dependable.",correct = TRUE),
+           answer("Statistical and machine learning knowledge and experience, programming skills, and the ability to work with large datasets."))
+)
+
+```
+
+### Summary
+In each of the above roles, technical skills, adherence to work principles, and having solid business skills are required. The exact technical skills differ by role, so it's best to apply to positions that align with your current skill set. With experience and additional training, you
+
+
+## Chapter 92: Where to Look for Data Science Jobs
+
+### Where to Look for Data Science Jobs
+Now you're ready to dive into the job market, but where do you begin your search? Let's explore some of the major platforms for job hunting in data science.
+
+#### Identifying Suitable Positions
+Job descriptions in data science vary widely, and not all positions will be suitable given your current skillset. It's important to look for positions that align with your current abilities and knowledge, while also offering the opportunity to learn and grow. Roles like "data analyst", "junior data scientist", or "entry level data scientist" may be good starting points.
+
+```{r ex6, echo=FALSE}
+quiz(
+  question("What types of roles could be suitable for someone with foundational data science skills?",
+    answer("Senior Data Scientist", correct = FALSE),
+    answer("Machine Learning Engineer", correct = FALSE),
+    answer("Junior Data Scientist", correct = TRUE),
+    answer("Data Analyst", correct = TRUE)
+  ),
+  question("Is it necessary to meet every single qualification listed in a job posting to apply for it?",
+    answer("Yes", correct = FALSE),
+    answer("No", correct = TRUE)
+  )
+)
+
+```
+
+#### Job Searching Platforms
+You can find data science jobs on various platforms, some of the popular ones include LinkedIn, StackOverflow Jobs, and job boards such as Indeed, Glassdoor, ZipRecruiter, and Monster. If you have specific companies in mind, don't forget to check their official websites for any job postings. Active engagement on platforms like Twitter can also lead to discovering job opportunities.
+
+
+```{r ex7, echo=FALSE}
+quiz(
+  question("Which of the following platforms can be used to find data science jobs?",
+    answer("LinkedIn", correct = TRUE),
+    answer("Monster", correct = TRUE),
+    answer("Twitter", correct = TRUE),
+    answer("Snapchat", correct = FALSE)
+  ),
+  question("You are interested in working for a specific company, where should you look for their job postings?",
+    answer("Their official website", correct = TRUE),
+    answer("Any random job board", correct = FALSE),
+    answer("Only on LinkedIn", correct = FALSE),
+    answer("Only on StackOverflow Jobs", correct = FALSE)
+  )
+)
+```
+
+#### Applying for Jobs
+After identifying potential jobs, the next step is to apply. Generally, you'll need to provide your contact information, resume, cover letter, and possibly answer some additional questions. Make sure to proofread everything before hitting the "Apply" button!
+
+
+```{r ex8, echo=FALSE}
+quiz(
+  question("What materials are typically required when applying for a job?",
+    answer("Contact Information", correct = TRUE),
+    answer("Resume", correct = TRUE),
+    answer("Cover Letter", correct = TRUE),
+    answer("A Photo of Your Pet", correct = FALSE)
+  ),
+  question("What should you do before submitting your application?",
+    answer("Double-check and proofread all the information", correct = TRUE),
+    answer("Share it on social media", correct = FALSE),
+    answer("Send it to a random email", correct = FALSE),
+    answer("Print it out", correct = FALSE)
+  )
+)
+
+```
+
+This tutorial should give you a good start on understanding how to search and apply for data science jobs. 
+
+## Chapter 93: Where to find Remote Data Science Jobs
+
+
+The landscape of employment has been gradually evolving, with an increasing number of companies offering remote work opportunities. Data Science positions are not exempt from this trend. This tutorial will guide you through the ways to find remote data science jobs.
+
+### General Postings
+
+Remote jobs can be posted on various platforms. Look for phrases like "remote work possible" or "location: anywhere" in the job description. Many job platforms have filters for remote work, which you can use to find such opportunities.
+
+```{r ex9, echo=FALSE}
+quiz(
+  question("What phrases in a job posting might indicate that it is a remote position?", 
+           answer("Location: Anywhere", correct = TRUE),
+           answer("On-site only"),
+           answer("Location: Specific City"),
+           answer("Remote work possible", correct = TRUE)
+  ),
+  question("What should you do to find remote job postings on a job platform?", 
+           answer("Check the 'remote' filter or option", correct = TRUE),
+           answer("Look at every job posting one by one"),
+           answer("Ask the website support"),
+           answer("Just hope you find one")
+  )
+)
+```
+
+### Dedicated Remote Job Platforms
+
+There are job platforms dedicated to hosting remote work positions. A notable example is RemoteOK, which hosts job postings for remote work exclusively. You can find remote data science jobs on this platform at https://remoteok.io/remote-data-science-jobs.
+
+```{r ex10, echo=FALSE}
+quiz(
+  question("What is the benefit of using a platform like RemoteOK?", 
+           answer("You can find jobs in a specific city"),
+           answer("All job postings are for remote positions", correct = TRUE),
+           answer("You can find on-site job postings"),
+           answer("You can find jobs in the tech hubs")
+  ),
+  question("What is the URL to find remote data science jobs on RemoteOK?", 
+           answer("https://remoteok.io/remote-data-science-jobs", correct = TRUE),
+           answer("https://remoteok.io/data-science-jobs"),
+           answer("https://data-science-jobs.remoteok.io"),
+           answer("https://remoteok.io")
+  )
+)
+
+```
+
+### Summary
+This tutorial has covered the basics of finding remote data science jobs. The key takeaways are:
+
+1. Remote jobs can be found on general job platforms, with the help of the 'remote' filter or specific phrases in the job description.
+
+2. There are dedicated platforms, like RemoteOK, for remote job postings.
+
+Remember, the job search is a process, and it requires patience and perseverance. Good luck!
+
+## Chapter 94: Data Science Interviews
+
+### Pre-Interview Phone Calls
+Remember, the initial phone calls are part of the interview process. Prepare for them diligently. These calls aim to validate your credentials, gauge your interest, and decide if you're a fit for an in-person interview.
+
+
+```{r ex11, echo=FALSE}
+quiz(
+  question("What is the purpose of pre-interview phone calls?",
+    answer("To gauge your interest in the position", correct = TRUE),
+    answer("To offer you the job"),
+    answer("To discuss the salary")
+  ),
+  question("What should you do before the phone call?",
+    answer("Prepare questions to ask", correct = TRUE),
+    answer("Nothing, it's just a casual chat"),
+    answer("Ask for the job")
+  )
+)
+
+```
+
+### Interview Preparation
+There's no surefire way to predict the questions, but you can prepare for general types: personality and technical questions. Practice both answering questions out loud and coding.
+
+
+```{r ex12, echo=FALSE}
+quiz(
+  question("What are the two general types of interview questions?",
+    answer("Personality and technical questions", correct = TRUE),
+    answer("Salary and location questions"),
+    answer("Education and experience questions")
+  ),
+  question("How should you prepare for these questions?",
+    answer("By thinking about them"),
+    answer("By writing the answers down"),
+    answer("By practicing out loud and coding", correct = TRUE)
+  )
+)
+
+```
+
+### The Day of the Interview
+The interview day is a two-way street. It's as much about you learning about them as it is them learning about you. Dress professionally and comfortably, and ask insightful questions about the position and the company.
+
+```{r ex13, echo=FALSE}
+quiz(
+  question("What is the goal on the day of the interview?",
+    answer("To learn as much about them as they're learning about you", correct = TRUE),
+    answer("To secure a job offer"),
+    answer("To discuss the salary")
+  ),
+  question("How should you dress for the interview?",
+    answer("Wear a suit"),
+    answer("Wear jeans"),
+    answer("Dress professionally and comfortably", correct = TRUE)
+  )
+)
+
+```
+
+### One-on-one Interviews
+In a one-on-one interview, the interviewer will explain the company and the position before assessing your background and technical capabilities. It's important to show your knowledge of the company and ask insightful questions about the company and the role.
+
+### Technical Assessment
+Technical assessments are integral to data science interviews. This could involve live-coding, where you code in real time, or a take-home analysis. Both formats give you an opportunity to showcase your technical skills.
+
+```{r ex14, echo=FALSE}
+quiz(
+  question("What are the two formats of technical assessments in data science interviews?",
+    answer("Live-coding and take-home analysis", correct = TRUE),
+    answer("Oral and written presentation"),
+    answer("One-on-one and group interviews"),
+    answer("Background check and reference check")
+  )
+)
+
+```
+
+### Communication
+Effective communication, both written and oral, is crucial in data science. In some interviews, you may be asked to present your past work or generate a report from your take-home analysis.
+
+### After The Interview
+Post-interview period is a time for self-reflection. Evaluate if you really want the job, if it's a good fit, and if you're excited about the company and the role.
+
+```{r ex15, echo=FALSE}
+quiz(
+  question("What should you evaluate during the post-interview period?",
+    answer("The company's financial status"),
+    answer("If you want the job, if it's a good fit, and your excitement about the company and role", correct = TRUE),
+    answer("The interviewer's personality"),
+    answer("The company's social media presence")
+  )
+)
+
+```
+
+
+### Job Offer and Negotiations
+If you receive a job offer, always ask for the full offer in writing and take time to review it. This period also allows you to negotiate for better terms.
+
+### Summary
+Navigating data science interviews can be challenging, but with the right preparation and mindset, you can significantly improve your chances of landing the job.
+
+```{r ex16, echo=FALSE}
+quiz(
+  question("What should you do if you receive a job offer?",
+    answer("Accept immediately"),
+    answer("Reject if it's not what you expected"),
+    answer("Ask for the full offer in writing and take time to review it", correct = TRUE),
+    answer("Start preparing for the job right away")
+  )
+)
+
+```
+
+## Chapter 95: Data Science Meetups
+
+Data science meetups are an excellent platform to connect with professionals in the field and potentially discover job opportunities. It's beneficial to start attending these meetups and building your network even before you start your job search.
+
+### Finding Meetups
+You can find data science meetups on Meetup.com, specifically at https://www.meetup.com/topics/data-science/. After creating an account, the site will suggest groups that you might be interested in.
+
+```{r ex17, echo=FALSE}
+quiz(
+  question("Where can you find data science meetups?",
+    answer("Job fairs"),
+    answer("Meetup.com", correct = TRUE),
+    answer("LinkedIn"),
+    answer("Facebook")
+  )
+)
+
+```
+
+### What to Expect
+At a typical meetup, you can expect networking sessions and presentations. It's essential to engage in conversations and connect with others. Remember, everyone is there to meet new people and learn new things!
+
+### Meetups and Job Opportunities
+While meetups might not be the best place to directly find jobs, they are great for building a network. If you're looking for a job, it's good to mention it in your conversations. You never know who might have a lead or know about an opening!
+
+```{r ex18, echo=FALSE}
+quiz(
+  question("Why are data science meetups important?",
+    answer("They provide free food"),
+    answer("They are great for building a network", correct = TRUE),
+    answer("They guarantee job offers"),
+    answer("They are mandatory for data scientists")
+  )
+)
+
+
+```
+
+### Summary
+Attending meetups is a fantastic way to network, learn new things, and potentially find job opportunities. Check out the meetups in your area and start connecting with people!
+
+```{r ex19, echo=FALSE}
+quiz(
+  question("What should you do if you're looking for a job and attending a meetup?",
+    answer("Avoid mentioning that you're looking for a job"),
+    answer("Mention it in your conversations", correct = TRUE),
+    answer("Interrupt presentations to announce your job search"),
+    answer("Only talk about your job search")
+  )
+)
+
+```
+
+## Chapter 96: Create Your Portfolio
+
+### Creating Your Portfolio
+In this tutorial, we guide you through the process of setting up a portfolio website to showcase your data science projects.
+
+### Setting Up a GitHub Repository
+Firstly, create a new GitHub repository to host your projects. Follow the instructions provided in the 'Creating a repository' section of this course.
+
+```{r ex20, echo=FALSE}
+quiz(
+  question("What is the first step to create your portfolio?",
+    answer("Buy a domain"),
+    answer("Create a new GitHub repository", correct = TRUE),
+    answer("Upload your projects on social media"),
+    answer("Take a nap")
+  )
+)
+```
+
+### Setting Up Your Projects on GitHub
+After creating a new repository, initialize it as a Git repository in your RStudio project using the Terminal pane. Then, commit your files and push them to your GitHub repository.
+
+### Making Your Projects Visible
+Enable GitHub Pages for your repository to make your projects viewable online. Your project URLs should follow this format: https://username.github.io/name_of_your_project_repository/section_folder/project_html_file_name.nb.html
+
+### Linking Your Projects to Your Website
+Add a section to your website describing your data science projects. Make sure to include links to all your projects using the correct URL format and R Markdown syntax.
+
+```{r ex21, echo=FALSE}
+quiz(
+  question("How to make your projects viewable online?",
+    answer("Print them out and distribute"),
+    answer("Send them via email"),
+    answer("Enable GitHub Pages for your repository", correct = TRUE),
+    answer("Ask a friend to do it")
+  )
+)
+```
+
+### Summary
+Congratulations! You now know how to create a professional portfolio to showcase your data science projects. This portfolio can be easily shared with potential employers or collaborators.
+
+```{r ex22, echo=FALSE}
+quiz(
+  question("What should you add to your website?",
+    answer("Your favorite recipes"),
+    answer("Your vacation photos"),
+    answer("A section describing your data science projects", correct = TRUE),
+    answer("Your favorite memes")
+  )
+)
+
+```
+

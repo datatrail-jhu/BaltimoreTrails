@@ -1,0 +1,566 @@
+---
+title: "Chapters 83 - 89"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(sortable)
+
+
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 83: Resumes
+
+A resume is a crucial document when applying for a job. It provides a concise overview of your education, skills, and experience. A well-crafted resume can make a strong impression on potential employers. Let's learn about the key elements of an effective resume.
+
+```{r ex1, echo=FALSE}
+quiz(
+  question("Which elements are typically included in a resume? (Select all that apply)",
+         answer("Contact Information", correct = TRUE),
+         answer("Education", correct = TRUE),
+         answer("Skills", correct = TRUE),
+         answer("Experience", correct = TRUE)
+))
+```
+
+### Cover Letters
+
+In addition to your resume, you will often be required to submit a cover letter. A cover letter allows you to express your interest in the job and highlight your qualifications. It is an opportunity to showcase your communication skills and make a strong case for why you are the right fit for the position.
+
+
+```{r ex2, echo=FALSE}
+quiz(
+  question("What should a cover letter accomplish? (Select all that apply)",
+         answer("Express interest in the job", correct = TRUE),
+         answer("Highlight qualifications", correct = TRUE),
+         answer("Explain job history in detail")
+)
+)
+```
+
+Well done! A cover letter should express your interest and highlight your qualifications, but it should not go into extensive detail about your job history.
+
+### Online Presence
+
+#### Personal Website
+
+Having a personal website is a powerful way to showcase your work and enhance your online presence. It allows potential employers to learn more about you and your projects. Let's learn how to set up a personal website using GitHub.
+
+```{r ex3, echo=FALSE}
+quiz(
+  question("What are the benefits of having a personal website? (Select all that apply)",
+         answer("Showcase your projects", correct = TRUE),
+         answer("Provide additional information beyond the resume", correct = TRUE),
+         answer("Demonstrate your technical skills", correct = TRUE)
+)
+)
+```
+
+
+#### Social Media
+
+In addition to a personal website, maintaining an active and professional presence on social media platforms is essential. LinkedIn, GitHub, and Twitter are particularly important for data scientists. Let's explore why each platform is valuable.
+
+```{r ex4, echo=FALSE}
+quiz(
+  question("What are the benefits of maintaining an active presence on social media platforms as a data scientist? (Select all that apply)",
+         answer("Showcase your work and collaborations", correct = TRUE),
+         answer("Expand your professional network", correct = TRUE),
+         answer("Share knowledge and learn from others", correct = TRUE),
+         answer("Increase visibility in the industry", correct = TRUE))
+)
+```
+
+Terrific! GitHub allows you to showcase your work and collaborations, LinkedIn provides a detailed professional profile, and Twitter is a great platform for sharing work and supporting others in the data science community.
+
+
+## Chapter 84: Building Resumes
+
+Data science is a competitive field, and when applying for jobs, it's crucial to submit a well-crafted resume. In this tutorial, we'll discuss the key components and formatting guidelines for creating an effective data science resume.
+
+### What is a Resume?
+
+A resume is a short document that describes your qualifications for a job. It includes your contact information, a summary of your qualifications, your experience, and education. Resumes are concise, well-formatted, and easy to read."
+
+### General Features
+
+General Features of Resumes:
+- Resumes should be brief and not exceed one page.
+- Use bullet points for easy readability.
+- Use action words to describe your achievements.
+- Organize and format your resume effectively.
+- Arrange information in reverse chronological order.
+- Always be truthful and avoid falsifying information."
+
+### Formatting
+Formatting Guidelines for Resumes:
+- Choose an easy-to-read font like Times New Roman, Helvetica, Arial, Verdana, or Calibri.
+- Use a font size of at least 10 points.
+- If using colors, opt for darker shades that are easily visible in both color and black-and-white prints.
+- Maintain consistency in fonts, font sizes, and colors throughout your resume.
+
+### What to Include
+What to Include in a Data Science Resume:
+1. Name and Contact Information
+2. Brief Summary
+3. Skills
+4. Education
+5. Experience
+6. Projects (if applicable)
+    
+### Example Resumes
+Example Resumes:
+- Classic: A traditional, well-organized resume format.
+- Creative: A less traditional, visually appealing resume format.
+
+### Sharing your Resume
+Sharing Your Resume:
+- Always save your resume as a PDF.
+- Open the PDF to ensure formatting looks perfect.
+- Make necessary edits and re-save until your resume is flawless.
+
+```{r ex5, echo=FALSE}
+quiz(
+      question(
+        "What are the key features of a good data science resume?",
+        answer("Concise and well-formatted", correct=TRUE),
+        answer("Arranged in reverse chronological order", correct=TRUE),
+        answer("Truthful and accurate information", correct=TRUE),
+        answer("All of the above", correct=TRUE)
+      ),
+      question(
+    "Which of the following formatting guidelines should be followed for resumes?",
+    answer("Choose an easy-to-read font", correct=TRUE),
+    answer("Use an appropriate font size", correct=TRUE),
+    answer("Use colorful backgrounds"),
+    answer("Use inconsistent fonts")
+  )
+    )
+```
+
+## Chapter 85: Cover Letters
+
+### Introduction
+A cover letter complements your resume by offering a personalized and detailed narrative of your experiences, skills, and motivations. It's your opportunity to tell your story and demonstrate your fit for a specific role at a specific company.
+
+### What to Include
+A cover letter should not be a repetition of your resume. Instead, it should highlight relevant experiences, show your personality, and explain why you're interested in the specific organization. It should be truthful and proofread carefully to avoid any errors.
+
+### Format
+Cover letters are flexible, but there are some common elements:
+
+1. Your contact information
+2. The date
+3. The hiring manager's name and address
+4. The letter's body
+5. Closing and your name
+
+Make an effort to find out the hiring manager's name instead of using a generic greeting. The appearance of the letter should reflect your personality while remaining professional and easy to read.
+
+### Content
+The content of the letter includes an introduction, body, closing, and a call-to-action.
+
+1. Introduction: Draw attention and show understanding of the company and why you are a good fit.
+2. Body: Provide specific examples of your experiences that align with the job description.
+3. Closing: Summarize without repeating what you have said before.
+4. Call-To-Action: Politely suggest further communication.
+
+
+```{r ex6, echo=FALSE}
+quiz(
+  question("What should the introduction of a cover letter include?", 
+    answer("A unique opening line and a clear understanding of the company.", correct = TRUE),
+    answer("The hiring manager's name and address."),
+    answer("A summary of the entire letter."),
+    answer("A call to action.")
+  )
+)
+```
+
+
+### What to Avoid
+
+When writing a cover letter, avoid hard-to-read fonts or colors, overused phrases, and plagiarism. Always proofread your letter to avoid any grammatical errors.
+
+```{r ex7, echo=FALSE}
+quiz(
+question("What should be avoided when writing a cover letter?", 
+  answer("Using a unique opening line."),
+  answer("Using specific examples to back up statements."),
+  answer("Using hard-to-read fonts or colors.", correct = TRUE),
+  answer("Expressing enthusiasm and interest.")
+)
+)
+```
+
+## Chapter 86: Make Your Own Website
+
+In this tutorial, you'll learn how to create your own professional website using GitHub and the R packages blogdown and prettydoc.
+
+### GitHub Repository
+1. Create a new repository on GitHub named `username.github.io` (replace `username` with your actual GitHub username).
+2. Make sure this repository is public and initialize it with a README.
+
+### RStudio Cloud
+
+You will use RStudio Cloud to write an RMarkdown document.
+
+### RMarkdown Document
+
+Create an RMarkdown document and save it as `index.Rmd` inside a `docs` folder.
+
+### Website Content
+
+Your website content should include sections about you, your interests, your projects, and your contact information. This is a simple template you can use:
+
+
+```{markdown}
+## About
+
+* Your background and current studies.
+* Your trajectory and past achievements.
+
+## Interests
+
+* Interest 1
+* Interest 2
+
+## Projects
+
+* Project 1
+* Project 2
+
+## Contact
+
+* Email: [youremail@email](mailto:youremail@email)
+```
+
+Let's test what you've learned so far.
+
+1. What is the name of the GitHub repository you need to create?
+
+```{r ex8, exercise=TRUE}
+# Replace this with your answer
+github_repo <- ""
+github_repo
+
+```
+
+```{r ex8-setup}
+
+```
+
+```{r ex8-solution}
+github_repo <- "username.github.io"
+github_repo
+```
+
+```{r ex8-check}
+grade_code()
+```
+
+
+2. In which folder do you need to save your index.Rmd document?
+
+```{r ex9, exercise=TRUE}
+# Replace this with your answer
+folder <- ""
+folder
+
+```
+
+```{r ex9-setup}
+
+```
+
+```{r ex9-solution}
+folder <- "docs"
+folder
+
+```
+
+```{r ex9-check}
+grade_code()
+```
+
+
+### Website Tabs
+
+```{r ex10, echo=FALSE}
+quiz(
+question("What is the purpose of changing the 'weight' in each tab of your website?",
+  answer("To change the color of the tabs."),
+  answer("To change the order in which the tabs appear on your website.", correct = TRUE),
+  answer("To change the size of the tabs."),
+  answer("To hide the tabs from the website.")
+)
+)
+```
+
+### Website Appearance
+
+Let's talk about improving the overall appearance of your website. Widgets are a key aspect of your website's appearance.
+
+```{r ex11, echo=FALSE}
+quiz(
+question("How do you remove a widget from your website?",
+  answer("By setting active = true in the corresponding .md file."),
+  answer("By deleting the corresponding .md file."),
+  answer("By setting active = false in the corresponding .md file.", correct = TRUE),
+  answer("By changing the weight of the widget in the corresponding .md file.")
+)
+)
+```
+
+### Skills
+
+The skills section of your website is where you highlight your job-pertinent skills.
+
+### Removing Content
+To make your website more focused, you can turn off some sections from your website. This won't delete the content, and you can turn them back on anytime you want.
+
+### Posts
+The posts section of your website is where you can write blog posts and include them.
+
+### Projects
+You can also include information on the projects you've worked on in the projects section of your website.
+
+### Website Tailoring
+You can change the order in which different sections appear on your website by editing the 'weight' argument.
+
+### Deployment
+Finally, you need to deploy your website. We will guide you through the process of deploying your website using GitHub Pages.
+
+```{r ex12, echo=FALSE}
+quiz(
+question("Which files do you need to deploy your website?",
+  answer("Only the contents of /cloud/projects/public", correct = TRUE),
+  answer("All the files in your project."),
+  answer("Only the hidden files in your project."),
+  answer("Only the .md files in your project.")
+)
+)
+```
+
+## Chapter 87: Project Gallery
+
+### Project List
+
+The most straightforward way to showcase your projects is by creating a list with links to your projects hosted on platforms like GitHub. However, to make it easier for your audience, you should consider transforming your projects into detailed reports or blog posts. These should tell a story about your project, including the results and the analysis process.
+
+### Project Gallery
+
+Providing visual cues for your projects can enhance the appeal of your project list. Including an image with the title can be very effective in attracting readers to your work.
+
+### What To Include and Exclude
+
+Your project gallery should display your abilities to find, wrangle, explore, analyze, visualize a dataset, and tell a story effectively. Make sure the work displayed is your own and avoid criticizing others' work.
+
+### Let's practice!
+
+```{r ex13, echo=FALSE}
+quiz(
+  question("Why is creating a project gallery essential when looking for a job in data science?",
+    answer("It helps potential employers to understand your skills and interests.", correct = TRUE),
+    answer("It is a requirement for all data science jobs.", correct = FALSE),
+    answer("It allows you to criticize the work of others.", correct = FALSE)
+  )
+)
+
+```
+
+```{r ex14, echo=FALSE}
+quiz(
+  question("What should a project gallery ideally include?",
+    answer("Detailed reports or blog posts about your projects", correct = TRUE),
+    answer("Visual cues for your projects", correct = TRUE),
+    answer("Criticisms of other people's work", correct = FALSE)
+  )
+)
+```
+
+```{r ex15, echo=FALSE}
+quiz(
+  question("What is the key idea in creating a blog post using R Markdown?",
+    answer("To simply copy and paste from other sources", correct = FALSE),
+    answer("To narrate your analysis in a structured way", correct = TRUE)
+  )
+)
+```
+
+### Project Content
+
+In creating a data analysis blog post, it's crucial to think about its structure. A general framework could include sections such as: Introduction, Data Collection, Exploratory Data Analysis, Results, and Conclusion. This way, you can tell the story of your analysis clearly and coherently.
+
+```{r ex16, echo=FALSE}
+quiz(
+  question("Which of the following is not typically a section in a data analysis blog post?",
+    answer("Introduction", correct = FALSE),
+    answer("Data Collection", correct = FALSE),
+    answer("Favorite Recipes", correct = TRUE),
+    answer("Conclusion", correct = FALSE)
+  )
+)
+```
+
+
+### YAML edits
+
+YAML (Yet Another Markup Language) is a powerful tool for customizing the appearance of your blog post. It is placed at the top of your R Markdown document and can be used to define properties like the summary of the post, a preview image, and an image in the header of your post. For example:
+
+```{markdown}
+summary: 'Analysis of XYZ Data'
+image_preview: 'myimage.jpg'
+header:
+  image: 'myimage.jpg'
+
+```
+
+### Final Steps
+
+After structuring your post and editing the YAML, it's time to add the content, explain your analysis, and include relevant code and figures. Make sure your work is well-explained and supports the story you're telling with your analysis.
+
+When you're satisfied, proofread your post for errors, and then push the changes to your website. Remember to include a link to your project in your portfolio or CV to showcase your data science skills!
+
+### Conclusion
+
+Congratulations on completing this tutorial! You're now equipped with the knowledge to create a data analysis blog post using R Markdown. Happy blogging!
+
+```{r ex17, echo=FALSE}
+quiz(
+  question("What is the purpose of YAML in an R Markdown document?",
+    answer("To structure the blog post", correct = FALSE),
+    answer("To provide a summary and images for the blog post", correct = TRUE),
+    answer("To proofread the document", correct = FALSE),
+    answer("To push changes to the website", correct = FALSE)
+  )
+)
+
+```
+
+## Chapter 88: Improving Your GitHub Profile
+
+We will be discussing how to update your GitHub profile, pin repositories, and contribute to the community.
+
+
+### Profile
+
+1. Update your profile with a suitable photo, brief bio, and a link to your website. Ensure the image is unique to you for easy recognition.
+
+2. Fill in the following fields:
+
+* Name
+* Bio
+* URL
+
+### Pinned Repositories
+
+Pin the six most interesting or skill-demonstrating projects on your GitHub profile.
+
+### GitHub Contributions
+
+One way of showcasing your skills and demonstrating that you are a good community member is by contributing to others' work on GitHub. This can be done by fixing typos or addressing issues on others' repos.
+
+```{r ex18, echo=FALSE}
+quiz(
+  question("What information should you include in your GitHub profile?", 
+    answer("Name, Bio, URL", correct = TRUE),
+    answer("Only Name"),
+    answer("Only Bio"),
+    answer("Only URL")),
+  question("How many repositories can you pin to your GitHub profile?", 
+    answer("2"),
+    answer("4"),
+    answer("6", correct = TRUE),
+    answer("8"))
+)
+
+
+```
+
+
+### Summary
+
+Remember, a well-maintained GitHub profile not only showcases your projects but also your participation in the GitHub community. So, make sure to update your profile, pin your best projects, and contribute to others' work.
+
+## Chapter 89: Improving Your LinkedIn Profile
+
+
+LinkedIn is a vital professional networking platform. Recruiters often use LinkedIn to find potential candidates. Additionally, LinkedIn can suggest jobs based on your profile. Therefore, it's essential to have a detailed and professional LinkedIn profile.
+
+Let's go through the steps to create an effective LinkedIn profile.
+
+### Profile Photo and Biography
+You can start with uploading a professional-looking picture and crafting a concise headline that showcases your professional skills and interests.
+
+```{r ex19, echo=FALSE}
+quiz(
+question("Why is a professional photo important in LinkedIn?",
+  answer("It doesn't matter.", correct = FALSE),
+  answer("It is essential for recruiters to identify you.", correct = TRUE)
+),
+
+question("What should the headline contain?",
+  answer("Your hobbies and interests", correct = FALSE),
+  answer("Your professional skills and interests", correct = TRUE)
+)
+
+)
+
+
+```
+
+### Links and Contact Information
+
+Provide your contact information and links to your other professional sites.
+
+```{r ex20, echo=FALSE}
+quiz(
+question("Why should you provide your professional website link?",
+  answer("To redirect people to your personal blog.", correct = FALSE),
+  answer("To showcase your portfolio and work samples.", correct = TRUE)
+)
+
+)
+
+
+```
+
+### Education, Experience, and Skills
+
+The education, experience, and skills section should reflect your resume, albeit with more detail. Remember, the information should be important and relevant to potential employers.
+
+```{r ex21, echo=FALSE}
+quiz(
+question("What is the purpose of the Education, Experience, and Skills section?",
+  answer("To share your life story.", correct = FALSE),
+  answer("To provide recruiters with relevant information about your professional background.", correct = TRUE)
+)
+
+)
+```
+
+### Connecting to Others
+
+inkedIn also allows you to connect with others in your field, helping you build a professional network.
+
+```{r ex22, echo=FALSE}
+quiz(
+question("Why is networking on LinkedIn important?",
+  answer("To increase the number of connections.", correct = FALSE),
+  answer("To build a professional network.", correct = TRUE)
+)
+
+)
+```
+
+

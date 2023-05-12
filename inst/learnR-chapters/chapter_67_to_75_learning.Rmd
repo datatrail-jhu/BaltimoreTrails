@@ -1,0 +1,874 @@
+---
+title: "Chapters 67 - 75"
+output:
+  learnr::tutorial:
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+library(sortable)
+
+
+
+knitr::opts_chunk$set(echo = TRUE)
+
+gradethis::gradethis_setup()
+```
+
+
+## Chapter 67: Pushing and Pulling Changes in GitHub
+
+### Introduction
+
+In this tutorial, you'll learn how to manage and collaborate on projects using git commands, specifically focusing on pushing and pulling changes.
+
+### Checking Git Status
+
+The git status command is useful for displaying files that have been modified or added since the last GitHub update. To see what files have been modified locally but aren't yet on GitHub, you can use git status.
+
+### Pushing Changes
+
+When working on a project, you will create files that need to be added to the Git version control system and made public. This can be done using the add, commit, and push commands.
+
+### Adding and Committing a File
+
+After creating a file, let's say example.txt, you can use the git add command to track it. To stage this file, you would use:
+
+```{git}
+git add example.txt
+
+```
+
+Once the file is staged, you can record the changes using `git commit`. Include a descriptive message about the changes:
+
+```{git}
+git add example.txt
+git commit -m "Add example file"
+
+```
+
+
+#### Verifying Your Identity
+
+When making changes to a repository, you might have to verify your identity. If asked, you can set your username and email using the `git config` command:
+
+
+```{git}
+git config user.name "YourUsername"
+git config user.email "youremail@domain.com"
+```
+
+#### Publishing Changes
+
+To publish your changes to the remote repository, you can use the `git push` command. Git will prompt you for your GitHub username and password. After entering these, the push will be complete.
+
+
+### Pulling Changes
+
+If a collaborator makes changes to the shared remote repository, you can incorporate their changes into your local repository using the git pull command.
+
+```{r ex1, echo=FALSE}
+
+quiz(
+  question("What is the purpose of `git add` command?", 
+            answer("`git add` stages files for version control, tracking changes for these files.", correct = TRUE), 
+            answer("`git add` commits the changes to the Git version history."),
+            answer("`git add` pushes the changes to the remote repository."),
+            answer("`git add` pulls changes from the remote repository.")
+  ),
+  question("What does `git pull` do?", 
+            answer("`git pull` incorporates changes from the remote repository into the local repository.", correct = TRUE),
+            answer("`git pull` stages files for version control."),
+            answer("`git pull` commits the changes to the Git version history."),
+            answer("`git pull` pushes the changes to the remote repository.")
+  )
+)
+
+```
+
+## Chapter 68: Organization with Issues on GitHub
+
+### What are Issues?
+
+Issues in GitHub are essentially task tracking tools. They allow you to specify a task, assign workers, attach labels, and create discussion threads.
+
+
+### Creating an Issue
+
+To create a new issue, go to the Issues tab on your repository's main webpage and click the "New issue" button.
+
+In the issue creation page, you can provide a brief summary and a detailed description of the task. On the right side of the page, you can assign GitHub users to work on this issue and attach labels for easy organization.
+
+Once the issue is created, you'll be directed to the issue's webpage, which includes a discussion thread for communication regarding the task. After the task is completed, the issue can be closed to mark it as resolved.
+
+
+```{r ex2, echo=FALSE}
+
+quiz(
+  question("What is the main purpose of GitHub Issues?", 
+            answer("GitHub Issues are used for tracking tasks, assigning workers, attaching labels, and creating discussion threads within a project.", correct = TRUE), 
+            answer("GitHub Issues are used for committing changes."),
+            answer("GitHub Issues are used for pushing and pulling changes."),
+            answer("GitHub Issues are used for creating repositories.")
+  ),
+  question("What happens when a task associated with a GitHub Issue is completed?", 
+            answer("The issue can be closed to mark it as resolved.", correct = TRUE),
+            answer("The issue needs to be deleted."),
+            answer("A new issue needs to be created."),
+            answer("The issue remains unchanged.")
+  )
+)
+
+```
+
+## Chapter 69: Setting Up a Project on GitHub
+
+### Setting up a GitHub Repository
+
+You begin by creating a new repository on GitHub. Log into your GitHub account and click the plus sign in the upper right corner, followed by "New repository". Name your repository 'my_sample_project', add a brief description, make it public, and initialize it with a README file.
+
+Clone this repository by copying the repository URL (make sure it begins with 'https') from the "Clone or download" option.
+
+### Creating a New Project from a GitHub Repository
+
+Next, go to RStudio Cloud and create a new project from the Git repository by pasting the copied repository URL.
+
+This clones the remote repository and creates a new project in RStudio Cloud.
+
+You can then edit the README file and add a description of the folders:
+
+```{markdown}
+# my_sample_project README
+The project contains:
+
+* _data_ - Data files for analysis.
+* _figures_ - Created plots and data visualizations.
+* _code_ - Code files for data collection, cleanup, and analysis.
+* _products_ - Reports, presentations, or other outputs.
+
+```
+
+### Pushing Local Changes to the Remote Repository in RStudio Cloud
+You can then stage, commit, and push these changes to the remote repository using the following commands:
+
+```{git}
+git add .
+git commit -m "updated readme file"
+git push
+
+```
+
+
+After successfully pushing your changes, you should be able to see them on the GitHub repository webpage.
+
+
+```{r ex3, echo=FALSE}
+quiz(
+  question("What is the purpose of initializing a repository with a README file?", 
+            answer("It provides a description and overview of the project, which is displayed on the repository's main page.", correct = TRUE), 
+            answer("It initializes the repository with a .gitignore file."),
+            answer("It creates a new branch in the repository."),
+            answer("It is used for tracking changes in the repository.")
+  ),
+  question("What does the command 'git push' do?", 
+            answer("It uploads local repository content to a remote repository.", correct = TRUE),
+            answer("It downloads content from a remote repository."),
+            answer("It creates a new branch in the local repository."),
+            answer("It merges changes from different branches.")
+  )
+)
+
+```
+
+## Chapter 70: Pull Requests
+
+
+### What is a Pull Request?
+
+A pull request is a way to suggest changes to someone else's code. It is initiated after you've forked their repository and made your desired changes. You can then request the original repository owner to "pull" your modifications into their code.
+
+### Forking a Repository
+
+Before making a pull request, you need to fork the repository you wish to change. This creates a copy of the repository under your GitHub account.
+
+Let's practice with __https://github.com/jtleek/sample_project__. Go to the project page and click "Fork" in the top right corner.
+
+After forking, clone the repository to your local system (replace 'your_username' with your GitHub username):
+
+
+```{git}
+git clone https://github.com/your_username/sample_project.git
+
+```
+
+### Making Edits
+You can now make changes to the files in the repository. Let's say you open 'myFile.Rmd' and change:
+
+```{css}
+summary(cars)
+```
+
+to:
+
+
+```{css}
+library(dplyr)
+glimpse(cars)
+```
+
+After saving your changes, you're ready to create a pull request.
+
+```{r ex4, echo=FALSE}
+quiz(
+  question("What is a fork in GitHub?", 
+            answer("A copy of a repository that resides on your account.", correct = TRUE), 
+            answer("A tool for eating food."),
+            answer("A branch in the repository."),
+            answer("A way to download a repository.")
+  ),
+  question("What is a pull request in GitHub?", 
+            answer("A way to propose changes to someone else's code.", correct = TRUE),
+            answer("A way to request access to a private repository."),
+            answer("A way to clone a repository to your local system."),
+            answer("A way to download updates from a remote repository.")
+  )
+)
+```
+
+
+### Forking a Repository
+
+The first step towards making a pull request is to fork the repository you want to contribute to. Forking essentially creates a copy of the repository under your own GitHub account.
+
+For this tutorial, we will use the repository __`https://github.com/jtleek/newproject`__. To fork this repository, navigate to the URL and click on the 'Fork' button at the top right corner of the page.
+
+
+```{r ex5, exercise=TRUE}
+# Replace '<your_username>' with your own GitHub username
+git_clone_command = "git clone https://github.com/<your_username>/newproject.git"
+git_clone_command
+
+```
+
+```{r ex5-setup}
+# Replace '<your_username>' with your own GitHub username
+git_clone_command = "git clone https://github.com/<your_username>/newproject.git"
+git_clone_command
+
+```
+
+```{r ex5-solution}
+# Replace '<your_username>' with your own GitHub username
+git_clone_command = "git clone https://github.com/<your_username>/newproject.git"
+git_clone_command
+
+```
+
+```{r ex5-check}
+grade_code()
+```
+
+### Making Edits
+Once you have forked and cloned the repository, you are free to make changes to the code. Let's assume we've made a change to a file called `myfile.Rmd`.
+
+```{r, eval=FALSE}
+# Assume we changed a file called myfile.Rmd
+edited_file = "myfile.Rmd"
+edited_file
+```
+
+### Pushing Changes
+
+After making the necessary changes, the next step is to commit these changes and push them to your GitHub account. Make sure to replace `<your_username>` and `<your_password>` with your GitHub username and password.
+
+
+```{r, eval=FALSE}
+# Commands to add, commit and push changes
+git_add_command = "git add -A"
+git_commit_command = 'git commit -m "Edited myfile.Rmd to use glimpse() to summarize the cars data"'
+git_push_command = "git push"
+
+git_add_command
+git_commit_command
+git_push_command
+```
+
+### Creating a Pull Request
+
+Now that you've made and pushed changes to your forked repository, it's time to create a pull request.
+
+```{r, eval=FALSE}
+# URL to create a pull request
+pull_request_url = "https://github.com/<your_username>/newproject/compare"
+pull_request_url
+
+```
+
+### Communicating Changes
+
+When creating a pull request, it is important to clearly communicate the changes you have made. This is done through the title and description of the pull request.
+
+```{r, eval=FALSE}
+# Sample title and description
+title = "Improved Summary of Cars Data"
+description = "I edited myfile.Rmd to use the glimpse() function from the dplyr package to provide a more concise summary of the cars dataset."
+
+title
+description
+```
+
+```{r ex6, echo=FALSE}
+quiz(
+  question("What is the purpose of a pull request in GitHub?",
+  answer("To copy a repository from another user's account."),
+  answer("To delete unnecessary files from a repository."),
+  answer("To propose changes to a repository and allow the owner to review them.", correct = TRUE),
+  answer("To merge two unrelated repositories.")
+),
+  question("What steps do you need to take to submit a pull request on GitHub?",
+  answer("Copy the repository, edit the files, and submit."),
+  answer("Fork the repository, clone it, make changes, add and commit changes, push to your fork, and submit a pull request.", correct = TRUE),
+  answer("Fork the repository, delete unnecessary files, and submit a pull request."),
+  answer("Clone the repository, make changes, and directly push to the original repository.")
+)
+)
+```
+
+## Chapter 71: Version Control Help
+
+### Searching for Help
+
+When you encounter an error with Git, your first step should be to search for the error message on a search engine like Google. Let's imagine you have a merge conflict in Git. You might search for "git merge conflict help".
+
+```{r ex7, exercise=TRUE}
+# Type a hypothetical error message you might search for if you're having trouble with Git
+error_message <- "..."
+
+
+```
+
+```{r ex7-setup}
+# Type a hypothetical error message you might search for if you're having trouble with Git
+```
+
+```{r ex7-solution}
+error_message <- "git merge conflict help"
+
+
+```
+
+```{r ex7-check}
+grade_code()
+```
+
+### Turning to Trustworthy Resources
+
+In your search results, you'll likely find resources like Stack Overflow and GitHub's own help pages. These are often reliable sources of information.
+
+
+```{r ex8, exercise=TRUE}
+# Type the names of two reliable resources for Git help
+resources <- c("...", "...")
+
+```
+
+```{r ex8-setup}
+# Type the names of two reliable resources for Git help
+resources <- c("...", "...")
+
+```
+
+```{r ex8-solution}
+resources <- c("Stack Overflow", "GitHub Help")
+
+
+
+```
+
+```{r ex8-check}
+grade_code()
+```
+
+### When All Else Fails: Burn it Down
+
+Sometimes, your Git repository might become so tangled that the best option is to start fresh. This process involves moving your files to a safe location, cloning a fresh copy of the repository, and moving your files back.
+
+```{r ex9, exercise=TRUE}
+# List the steps you'd take to "burn down" your Git repository and start fresh
+steps <- c("...", 
+           "...", 
+           "...",
+           "...")
+
+
+```
+
+```{r ex9-setup}
+# List the steps you'd take to "burn down" your Git repository and start fresh
+steps <- c("...", 
+           "...", 
+           "...",
+           "...")
+
+
+```
+
+```{r ex9-solution}
+# List the steps you'd take to "burn down" your Git repository and start fresh
+steps <- c("Move files to a safe location", 
+           "Clone a fresh copy of the repository", 
+           "Move files back to the new repository",
+           "Stage, commit, and push files back to GitHub")
+
+
+
+
+```
+
+```{r ex9-check}
+grade_code()
+```
+
+
+```{r ex10, echo=FALSE}
+quiz(
+question("What should you do when you encounter a Git error?",
+  answer("Ignore it and hope it goes away."),
+  answer("Search for the error message on Google.", correct = TRUE),
+  answer("Delete your entire repository."),
+  answer("Restart your computer.")
+),
+  question("What is 'burning it down' in the context of Git?",
+  answer("Deleting your GitHub account."),
+  answer("Reporting a bug to GitHub."),
+  answer("Setting your computer on fire."),
+  answer("Starting fresh with a new clone of your repository when things get too tangled.", correct = TRUE)
+)
+
+)
+```
+
+
+That's it! Remember, everyone encounters issues with Git. The key is to stay patient, search for help, and don't be afraid to start fresh if needed.
+
+## Chapter 72: Types of Communication
+
+### Opinionated Communication
+
+When we talk about software, we sometimes refer to it as being 'opinionated', which implies the software enforces a certain way of doing things. This approach simplifies tasks for the user, much like Apple does with its products.
+
+Here, we'll adopt an opinionated approach, providing you with essential details for effective data science communication. While this isn't the only approach, it's a good starting point, and you can develop your own style over time.
+
+### Types of Communication
+
+As a data scientist, you'll find yourself communicating through various channels. We'll cover the following general categories:
+
+* Reports
+* Presentations
+* Blog Posts
+* Meetings
+
+### Reports
+
+Reports are written documents that summarize a data science project. They tell a story with a beginning, middle, and end. The beginning introduces the question you're addressing and provides relevant background information. The middle describes your work, which often includes plots and text. The end summarizes your results.
+
+### Presentations
+
+Presentations are oral deliveries that, much like reports, tell a story. They are usually composed of slides with images and text but can also include short videos or GIFs. The audience is typically larger than those for a report, ranging from groups within your company to conference attendees.
+
+### Blog Posts
+
+Blog posts are an excellent way to reach a wider audience. They generally serve a broader audience than reports and can be used to share a cool analysis or teach others how to do something related to data science.
+
+### Meetings
+
+Meetings come in many forms and sizes, from project planning sessions with team members to larger gatherings where you may be the only data expert. Effective communication in these settings is crucial.
+
+
+```{r ex11, echo=FALSE}
+quiz(
+question("What does 'opinionated' software mean?",
+  answer("Software that has many bugs"),
+  answer("Software that is difficult to use"),
+  answer("Software that enforces a certain way of doing things", correct = TRUE),
+  answer("Software that is poorly designed")
+),
+
+question("Which of the following is NOT a typical form of data science communication?",
+  answer("Reports"),
+  answer("Presentations"),
+  answer("Blog Posts"),
+  answer("Telepathy", correct = TRUE)
+)
+
+
+)
+```
+
+
+## Chapter 73: Data Science Reports
+
+The essence of data science reports is effective communication of your analysis. This tutorial aims to guide you through the structure of a data science report using R Markdown.
+
+### Exercise 1 - Report Structure
+
+A comprehensive data science report includes specific sections. Drag the elements to their correct positions to complete a typical data science report structure.
+
+```{r ex12, echo=FALSE}
+
+# Define the answer options
+elements <- c(
+    "Title",
+    "Introduction",
+    "Analysis",
+    "Results",
+    "Conclusions",
+    "References"
+  )
+
+# Initialize the question
+question_rank(
+  "Sort these elements in alpabetical order:",
+  answer(elements, correct = TRUE),
+  answer(rev(elements), correct = FALSE, message = "Other direction!"),
+  allow_retry = TRUE
+)
+```
+
+### Exercise 2 - Choosing the Right Title
+
+Choosing a suitable title is crucial. Let's see how well you've understood this concept. Which of the following titles is better for a data science report?
+
+```{r ex13, echo=FALSE}
+quiz(
+  question("Which of the following titles is better for a data science report?",
+    answer("Genome Data Analysis", correct = FALSE),
+    answer("Utilizing Genomic Data for Disease Prediction", correct = TRUE),
+    answer("Analysis", correct = FALSE),
+    answer("Public Genomic Data", correct = FALSE)
+  )
+)
+
+```
+
+### Report Sections
+Let's take a closer look at each of these sections.
+
+#### Title
+The title should be concise and informative. It should give the reader a snapshot of the question being answered and the answer itself.
+
+#### Introduction
+The introduction should include the motivation for your project, the question you're answering, and a description of the dataset.
+
+#### Analysis
+In this section, describe your approach to analyzing the data, including the methods you used.
+
+#### Results
+This section should contain the results from your analysis and their explanations. It's not enough to simply put tables and figures; you need to guide the reader to understand the results.
+
+#### Conclusions
+After discussing the results, summarize your findings and conclusions from your analysis. Keep this section as brief as necessary.
+
+#### References
+Give credit where credit is due. You can use hyperlinks to reference others' work.
+
+### Referencing in R Markdown
+
+Including references in your R Markdown document is crucial. Let's practice referencing the ggplot2 package in a report.
+
+```{r ex14, exercise=TRUE}
+# Write a sentence that uses ggplot2 and include a reference to it.
+
+```
+
+```{r ex14-setup}
+
+```
+
+```{r ex14-solution}
+# Solution
+"We used the `ggplot2` package [@wickham2016ggplot2] to generate all figures in this report."
+
+
+
+
+```
+
+```{r ex14-check}
+grade_code()
+```
+
+### Data Visualization
+
+Choosing the right type of plot is essential for conveying your findings. Let's practice choosing the right plot type.
+
+```{r ex15, exercise=TRUE}
+# Suppose we want to compare values between five different groups. What type of plot should we use? Write your answer as a string.
+"..."
+
+```
+
+```{r ex15-setup}
+
+```
+
+```{r ex15-solution}
+# Solution
+"barplot"
+
+```
+
+```{r ex15-check}
+grade_code()
+```
+
+
+### Brief Reports
+
+A brief report, often referred to as an executive summary, is a shorter version of a full report.
+
+## Chapter 74: Google Slides
+
+### Introduction to Google Slides
+
+Google Slides is a web-based slide presentation editor. It's similar to Microsoft PowerPoint, but with added features like simultaneous multi-user editing.
+
+### Presentation Guidelines
+
+When creating presentations, always remember:
+
+* Use fewer words
+* Use pictures over words when possible
+* Make images and text large and readable
+* Maintain consistency in text font and color
+
+### Accessing Google Slides
+
+Google Slides can be accessed from Google Drive or its dedicated URL, `slides.google.com`.
+
+
+### Creating a Full Slideshow
+
+Creating a presentation involves:
+
+* Adding new slides
+* Changing slide layouts
+* Formatting text
+* Adding and editing images
+* Changing the theme and slide format
+* Rearranging slide order
+
+
+```{r ex16, echo=FALSE}
+quiz(
+  question("What is Google Slides?",
+    answer("A word processor", correct = FALSE),
+    answer("A web-based slide presentation editor", correct = TRUE),
+    answer("A spreadsheet tool", correct = FALSE),
+    answer("A graphic design tool", correct = FALSE)
+  ),
+  question("What are some of the best practices for creating a slide presentation?",
+    answer("Use a lot of text", correct = FALSE),
+    answer("Use images over words whenever possible", correct = TRUE),
+    answer("Use small text and images", correct = FALSE),
+    answer("Change text font and color throughout the presentation", correct = FALSE)
+  )
+)
+```
+
+### Advanced Formatting Options
+
+Google Slides provides several additional formatting options which can be accessed by right-clicking on the image or using the toolbar.
+
+#### Formatting and Editing Themes
+
+Themes allow you to uniformly style your presentation. Click on the "Theme" icon on the toolbar to access available themes.
+
+
+#### Changing Background Color
+
+You can change the background color of your slides by right-clicking on a blank spot and selecting "Change background".
+
+#### Rearranging Slides
+
+Slides can be rearranged by dragging and dropping them in the left-hand panel.
+
+#### Presenting Your Slideshow
+
+Once your slideshow is ready, click on "Present" in the top-right corner to start the presentation.
+
+#### Accessing, Downloading, and Sharing Slides
+
+Google Slides automatically saves your presentations to your account. You can download your presentations in different formats and share them directly from Google Slides.
+
+```{r ex17, echo=FALSE}
+quiz(
+  question("What can the 'Theme' option in Google Slides be used for?",
+    answer("Changing the font of text", correct = FALSE),
+    answer("Changing the background color of a slide", correct = FALSE),
+    answer("Applying a consistent style across the presentation", correct = TRUE),
+    answer("Rearranging the slides", correct = FALSE)
+  ),
+  question("How can you rearrange the order of slides in Google Slides?",
+    answer("By using the 'Rearrange' option in the top menu", correct = FALSE),
+    answer("By dragging and dropping them in the left-hand panel", correct = TRUE),
+    answer("By changing their order in the 'Slides' menu", correct = FALSE),
+    answer("By right-clicking on a slide and choosing 'Move'", correct = FALSE)
+  )
+)
+```
+
+## Chapter 75: How to Give a Presentation
+
+When it comes to presenting your work, you want to inspire, educate, and entertain your audience. This tutorial will guide you through some key aspects of preparing and delivering a presentation.
+
+#### Understanding Your Audience
+Before you start creating your presentation, you need to understand your audience. Tailoring your presentation to their needs and interests will make it more engaging and effective.
+
+```{r ex18, echo=FALSE}
+quiz(
+  question("What is the primary reason for understanding your audience before creating a presentation?",
+    answer("To make the presentation more engaging and effective.", correct = TRUE),
+    answer("To decide how many slides to use."),
+    answer("To determine the length of the presentation."),
+    answer("To choose the presentation software.")
+  )
+)
+
+```
+
+
+#### Creating Slides
+When creating slides, make sure to:
+
+* Limit the number of ideas per slide
+* Encourage listening (limit reading)
+* Use large text and expand images
+* Choose good colors and alignment
+
+#### Presenting Your Work
+When it's time to present, remember to:
+
+* Speak clearly
+* Show excitement and passion
+* Use pauses effectively
+* Be yourself
+
+
+```{r ex19, echo=FALSE}
+question("What are some tips for presenting your work effectively?",
+  answer("Speak quickly and quietly."),
+  answer("Show excitement and passion, use pauses effectively, be yourself.", correct = TRUE),
+  answer("Read directly from the slides."),
+  answer("Avoid using visuals or graphics.")
+)
+
+```
+
+#### Practice
+Practicing your presentation can help you become more confident and ensure that you stay within your allotted time.
+
+Remember, it's always better to be over-prepared than under-prepared, especially when it comes to technology. Bring all necessary adapters and a backup of your presentation.
+
+
+```{r ex20, echo=FALSE}
+question("Why is practicing your presentation important?",
+  answer("It helps you become more confident and ensure that you stay within your allotted time.", correct = TRUE),
+  answer("It helps you create more slides."),
+  answer("It helps you choose the best presentation software."),
+  answer("It's not important to practice your presentation.")
+)
+
+
+```
+
+
+### Handling Questions
+
+
+After your presentation, there's typically a Q&A session. This can be daunting, but don't worry, we've got some tips:
+
+* Pause and think before responding.
+* Reiterate the question to the audience.
+* It's okay to stay silent if you need more time.
+* If you don't know an answer, admit it. It's okay to say "I don't know."
+
+
+```{r ex21, echo=FALSE}
+quiz(
+  question("What should you do if you don't know an answer to a question?",
+    answer("Make up an answer", correct = FALSE),
+    answer("Say 'I don't know'", correct = TRUE)
+  ),
+  question("Is it okay to pause and think before responding?",
+    answer("No", correct = FALSE),
+    answer("Yes", correct = TRUE)
+  )
+)
+
+```
+
+
+
+### Example Presentation: Analysis
+
+Presenting your data analysis involves telling a story about your findings. Your slides should be well-designed and your text and colors should be clear. Let's take a look at a presentation by Julia Silge, a data scientist at Stack Overflow.
+
+#### Talk Outline
+
+Julia's presentation had three main parts:
+
+1. Introduction to the tidytext package.
+2. Analysis of Jane Austen's novels.
+3. Analysis of NASA data.
+
+
+```{r ex22, echo=FALSE}
+quiz(
+  question("What were the three main parts of Julia Silge's presentation?",
+    answer("Introduction to tidytext, Analysis of Jane Austen's novels, Analysis of NASA data", correct = TRUE),
+    answer("Introduction to ggplot2, Analysis of Jane Austen's novels, Analysis of NASA data", correct = FALSE)
+  )
+)
+
+```
+
+#### Slide Design
+
+In Julia's presentation, she limits the information on each slide, ensuring her audience focuses on her words. She also uses clear text and visuals.
+
+#### Presentation
+
+Julia spoke clearly and at a reasonable pace, keeping her audience interested. She was true to her personality, and she knew her audience well. She also handled unexpected issues calmly and professionally.
+
+```{r ex23, echo=FALSE}
+quiz(
+  question("What qualities made Julia Silge's presentation effective?",
+    answer("Clear speech, personality authenticity, audience understanding, and calmness during issues", correct = TRUE),
+    answer("Complex jargon, rushing through slides, and ignoring audience understanding", correct = FALSE)
+  )
+)
+
+```
+
+### Summary
+
+
+
+```{r ex24, echo=FALSE}
+quiz(
+  question("What is the key to giving a successful presentation?",
+    answer("Ignoring your audience", correct = FALSE),
+    answer("Being mindful of your audience, creating good slides, and presenting ideas clearly", correct = TRUE)
+  )
+)
+
+
+```
+
+
+
+
+

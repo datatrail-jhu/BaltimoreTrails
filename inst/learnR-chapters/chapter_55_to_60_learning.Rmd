@@ -1,5 +1,5 @@
 ---
-title: "Cleaning Data"
+title: "Chapters 55 - 60"
 output:
   learnr::tutorial:
 runtime: shiny_prerendered
@@ -9,6 +9,9 @@ runtime: shiny_prerendered
 library(learnr)
 library(gradethis)
 library(naniar)
+library(caret)
+library(dplyr)
+library(ggplot2)
 
 
 knitr::opts_chunk$set(echo = TRUE)
@@ -17,174 +20,54 @@ gradethis::gradethis_setup()
 ```
 
 
-## Chapter 50: Translating Real-World Questions into Data Science Questions
+## Chapter 55: Overview of Inference
 
-### What are Data Tables?
+Inferential Analysis allows analysts to draw conclusions about a larger population using a smaller sample. This tutorial will introduce you to some core concepts of inferential statistics including random sampling, uncertainty, and the importance of representative sampling.
 
-In this interactive tutorial, we'll learn how to translate real-world questions into data science questions. This is an essential skill for any data scientist, as we often need to analyze data to answer questions. The process involves identifying the relevant data, understanding the limitations of the data, and defining the type of data science question we're trying to answer. Let's dive in!
+### Random Sampling & Inference
 
-### Problem Forward, Not Solution Backward
-
-The key principle in data science is to start with a question you want to answer, rather than looking at the data or solution first. This could be a question driven by your curiosity, such as how a specific variable affects another, or a question from someone else you're helping with data analysis.
-
-The challenge is to translate these general questions into specific data science questions.
-
-### Making Questions More Specific
-
-Here are three generic questions:
-
-1. Do cars with higher horsepower have lower miles per gallon?
-2. Are flights more delayed during winter?
-3. Do diamonds with higher carat weight cost more?
-
-These are interesting questions, but they're not very specific. To make a question more specific, you need to consider the data you would use to answer the question.
-
-To help us make these questions more concrete, let's use the `mtcars`, `nycflights13`, and `diamonds` datasets from the `ggplot2` package.
+Let's start with a simple concept: we often draw conclusions about a large population based on a smaller sample. Imagine we have a dataset mtcars in R that represents all cars in the world.
 
 ```{r}
-library(ggplot2)
-library(nycflights13)
-data(mtcars)
-data(nycflights13, package = "nycflights13")
-data(diamonds)
+mtcars
 ```
 
-### Interactively Defining Your Question
+In reality, we can't have data about all the cars in the world. We might only have a sample, like the following 5 cars:
 
-Let's work with the first question: "Do cars with higher horsepower have lower miles per gallon?"
+```{r}
+sample_mtcars <- mtcars[sample(nrow(mtcars), 5), ]
+sample_mtcars
+```
+
+The goal of inferential analysis is to use this sample to infer characteristics of the larger population.
+
+### Uncertainty
+
+Now, let's introduce the concept of uncertainty. Because we're basing our conclusions on a sample, there's always a degree of uncertainty involved. For instance, let's say we want to estimate the average MPG (Miles per Gallon) for all cars based on our sample data.
+
+```{r}
+mean(sample_mtcars$mpg)
+```
+
+This is an estimate, but there's uncertainty around it. We don't know the true average MPG for all cars, only for our sample.
 
 ```{r ex1, echo=FALSE}
 quiz(
-  question(
-    "What or who am I trying to understand with data?",
-    answer("1. Cars"),
-    answer("2. Horsepower"),
-    answer("3. Miles per gallon"),
-    answer("4. Cars", correct = TRUE)
-  ),
-  question(
-    "What measurements do I have on those objects that help me answer the question?",
-    answer("1. Horsepower and miles per gallon"),
-    answer("2. Weight and displacement"),
-    answer("3. Cylinders and gears"),
-    answer("4. Horsepower and miles per gallon", correct = TRUE)
-  ),
-  question(
-    "How do the data I have limit the type of question I can answer?",
-    answer("1. I only have data on certain car models"),
-    answer("2. I only have data from a specific year"),
-    answer("3. I only have data on cars with a certain number of cylinders"),
-    answer("4. I only have data on certain car models", correct = TRUE)
-  ),
-  question(
-    "What is the type of data science question we are trying to answer?",
-    answer("1. A question about a relationship between two variables"),
-    answer("2. A question about predicting a certain outcome"),
-    answer("3. A question about inferring a population parameter"),
-    answer("4. A question about a relationship between two variables", correct = TRUE)
+  question("What is the true average MPG for all cars?", 
+            answer("We can't know for sure, it can only be estimated based on a sample.", correct = TRUE),
+            answer("The average MPG of our sample is the true average MPG for all cars.", correct = FALSE)
   )
 )
 ```
 
+### Random Sampling
 
-### Summary
+The accuracy of inferential statistics heavily depends on how representative our sample is of the population. A representative sample has similar characteristics to the population, allowing us to make accurate inferences.
 
-Great job! You've just translated a general question into a specific data science question. The same process can be applied to any question you might have. Remember, the key is to understand your data and the limitations it might have. This is a crucial step in any data analysis project. Happy analyzing!
-
-
-## Chapter 51: Identifying Data
-
-In this interactive tutorial, we'll learn how to identify the data needed to answer a data science question using the `ggplot2` package. We'll cover the following topics:
-
-1. Formulating a data science question
-2. Identifying the perfect dataset
-3. Finding the available dataset
-4. Dealing with limitations
-
-### 1. Formulating a Data Science Question
-
-Let's start by formulating a data science question using the `mpg` dataset from the `ggplot2` package.
-
-__Question: What factors predict the fuel efficiency (measured in miles per gallon) of cars?__
-
-### 2. Identifying the Perfect Dataset
-
-Imagine the perfect dataset to answer our question. This dataset would have information on various factors that could potentially affect fuel efficiency.
-
-Here's what our perfect dataset might include:
-
-1. `manufacturer` - the car manufacturer
-2. `model` - the car model
-3. `year` - the year the car was manufactured
-4. `trans` - the transmission type
-5. `drv` - the type of drive train (4wd, fwd, rwd)
-6. `class` - the type of car (compact, SUV, etc.)
-
-Now, let's see what data we have available in the `mpg` dataset.
-
-```{r}
-head(mpg)
-```
-
-### 3. Finding the Available Dataset
-
-The `mpg` dataset has most of the variables we need to answer our question. However, it's important to note that this dataset might not be perfect, and we might face some limitations.
-
-Let's do a quick exploratory analysis to check for any potential issues.
-
-```{r}
-summary(mpg)
-```
-
-### 4. Dealing with Limitations
-
-We can see that the `mpg` dataset covers a range of years, manufacturers, and car classes. However, it's not without limitations:
-
-1. The dataset might not be up-to-date or comprehensive.
-2. Some important factors affecting fuel efficiency might be missing.
-3. There might be issues with the data quality or reliability.
-
-### Questions
-
-Now, let's test your understanding with a couple of interactive questions.
-
-```{r ex2, echo=FALSE}
-quiz(
-  question("What is one limitation of the `mpg` dataset that we discovered during our exploratory analysis?",
-    answer("The dataset does not include car manufacturers", correct = FALSE),
-    answer("The dataset does not include car models", correct = FALSE),
-    answer("The dataset might not be comprehensive or up-to-date", correct = TRUE),
-    answer("The dataset does not include car classes", correct = FALSE)
-  ),
-  question("What is the relationship between the variables 'displ' and 'hwy'?",
-    answer("Positive correlation"),
-    answer("Negative correlation", correct = TRUE),
-    answer("No correlation"),
-    answer("Can't say without statistical test")
-  )
-)
-```
-
-### Identifying Good Data
-
-In data science, it's important to ensure the data we have is the right data for our analysis.
-
-#### Wrangling Data
-
-Data obtained often need to be cleaned and wrangled. If the data is pre-processed, ensure you understand how the processing was done. Always record your steps in reformatting the data.
-
-For example, make sure each variable forms a column, each observation forms a row, and each table/file stores data about one kind of observation.
-
-Let's practice this concept.
-
+Create a new sample of 10 cars from the mtcars dataset and calculate the average MPG.
 
 ```{r ex3, exercise=TRUE}
-# Here's the mtcars dataset. Observe the structure and contents.
-head(mtcars)
-
-# Now, let's do some wrangling. Rename the column "mpg" to "miles_per_gallon". Use the dplyr package.
-# Your code here.
-
+# Your task: Create a new sample of 10 cars from the mtcars dataset and calculate the average MPG.
 ```
 
 ```{r ex3-setup}
@@ -192,303 +75,553 @@ head(mtcars)
 ```
 
 ```{r ex3-solution}
-library(dplyr)
-mtcars <- rename(mtcars, miles_per_gallon = mpg)
-head(mtcars)
+sample_mtcars_10 <- mtcars[sample(nrow(mtcars), 10), ]
+mean(sample_mtcars_10$mpg)
 ```
 
 ```{r ex3-check}
 grade_code()
 ```
 
-#### Common Data Issues
+### Summary
 
-##### Small Sample Sizes
-
-Collecting data can be challenging and expensive. Hence, at times, you might have to work with small sample sizes. While larger samples are preferable, note the sample size in your analysis when dealing with smaller ones.
+In this tutorial, we've introduced the basics of inferential statistics. We've discussed how it allows us to make conclusions about a larger population based on a smaller sample, introduced the concept of uncertainty in these conclusions, and discussed the importance of representative sampling. In the next lessons, we'll dive deeper into these concepts, using R to perform inferential analysis on real-world datasets.
 
 
-##### Missing Variables
+## Chapter 56: Inference - Linear Regression
 
-In data analysis, you might not always find the exact variables you're looking for. In such cases, you can use proxy variables - variables that are different but highly correlated with your variable of interest.
+Linear regression is one of the most commonly used statistical methods, allowing us to understand and predict the relationship between two variables. We'll use a dataset from the `ggplot2` package to explore this concept.
 
+### Key Concepts
 
-##### Inconsistent Collection Period
+Linear regression can be used to describe the relationship between a dependent variable (y-axis) and an independent variable (x-axis). The best-fitting line that describes this relationship minimizes the sum of the squared errors, which means it minimizes the distance of all points from the line.
 
-Ensure that the variables in your dataset are collected in the same period. For example, comparing cab prices of 2018 with ride counts of 2015 won't yield accurate insights.
+### Positive and Negative Relationships
 
+In linear regression, the direction of the line can indicate the relationship between the variables:
 
-##### Non-representative Samples
+* __Positive relationship__: As the value of the independent variable increases, so does the value of the dependent variable.
 
-Ensure that your sample accurately reflects the population you're interested in. If it doesn't, your insights might be skewed.
+* __Negative relationship__: As the value of the independent variable increases, the value of the dependent variable decreases.
 
+### Strength of Relationship
 
-##### Measurement Errors
+The strength of the relationship between two variables in linear regression is determined by how close the data points fall to the best-fitting line. The closer the points are to the line, the stronger the relationship.
 
-Measurement errors refer to incorrect measurements of variables in your sample. Always consider potential measurement errors during your analysis.
+### Association
 
-##### Confounded Variables
+One of the main questions in linear regression is: "What is the association between these two variables?" We look for the direction (positive, neutral, or negative) and strength (correlation) of the relationship. The Beta estimate and the standard error from the model help us understand this association.
 
-Confounders are variables that affect your outcome but are also related to your main variable of interest. It's essential to understand the relationship between variables in your dataset.
+### Association Testing in R
 
-### Summary 
+For this tutorial, we'll be using the mpg dataset from the ggplot2 package. We'll be trying to understand the relationship between the displacement of a car's engine (displ) and its fuel efficiency (hwy).
 
-Remember, 'garbage in, garbage out.' Always ensure that the data you use in your analysis is reliable, accurate, and suitable for your question of interest. Be cautious about the data you use, and always note the limitations in your analysis.
-
-
-## Chapter 52: In Practice Using Stats
-
-### Introduction
-
-Data science is about exploring the unknown and turning it into the known. But it can be a bit messy.
-
-### Tip 1: Always be looking at your data
+First, let's visualize the relationship between displ and hwy using a ggplot scatterplot.
 
 ```{r}
-# Load required libraries
-library(ggplot2)
-library(dplyr)
-
-# Use msleep dataset from ggplot2
-data("msleep")
-
-# Show the first few rows
-head(msleep)
+ggplot(mpg, aes(displ, hwy)) +
+  geom_point() +
+  labs(x = "Engine Displacement", y = "Highway MPG")
 ```
 
-```{r ex4, echo=FALSE}
-quiz(
-  question("What is a good first step when you start working with a new dataset?",
-    answer("Run a complex machine learning model", correct = FALSE),
-    answer("Visually inspect your data and understand its structure", correct = TRUE),
-    answer("Ignore it and hope for the best", correct = FALSE),
-    answer("Publish it in a scientific journal", correct = FALSE)
-  )
-)
+Next, fit a linear regression model to these data.
+
+```{r ex4, exercise=TRUE}
+# Your code here.
 
 ```
 
-
-### Tip 2: Dig into weirdness
-
-Keep an eye out for anything unusual in your data, which could indicate problems or interesting phenomena.
-
-### Tip 3: Let the data inform you
-
-Your data will guide your analysis, and in turn, your analysis will help you understand your data better.
-
-```{r}
-# Use the summary function to get an overview of your data
-summary(msleep)
+```{r ex4-setup}
 
 ```
 
-### Exercise: Find missing data in the dataset
+```{r ex4-solution}
+fit <- lm(hwy ~ displ, data = mpg)
+```
+
+```{r ex4-check}
+grade_code()
+```
+
+
+After we fit our model, we can inspect its summary for the estimates, standard error, and p-value.
+
 
 ```{r ex5, exercise=TRUE}
-# Write a function to find the number of missing data in each column
-# Hint: Use the is.na() and sum() functions
+# Your code here.
 
 ```
 
 ```{r ex5-setup}
-data("msleep")
+fit <- lm(hwy ~ displ, data = mpg)
 ```
 
 ```{r ex5-solution}
-# Solution
-sapply(msleep, function(x) sum(is.na(x)))
-
+summary(fit)
 ```
 
 ```{r ex5-check}
 grade_code()
 ```
 
-### Tip 4: Check for outliers 
 
-Outliers can influence the results of your analysis. It's important to identify them.
+The `summary()` function provides a wealth of information. It includes the beta estimates (coefficients), standard errors, and p-values for our model.
 
-#### Exercise: Find outliers in the 'sleep_total' variable
+The beta estimate (coefficient) for `mpg` tells us about the direction and strength of the relationship between miles per gallon and displacement. If the coefficient is positive, the relationship is positive, and if the coefficient is negative, the relationship is negative. The magnitude of the coefficient gives us an idea of the strength of the relationship.
 
+The standard error informs us about the uncertainty of the beta estimate. The smaller the standard error, the more confident we can be about the estimate.
 
+Finally, the p-value (found in the column Pr[>|t|]) tells us the probability of obtaining the observed data (or data more extreme) if the null hypothesis is true. In this context, the null hypothesis is that there is no relationship between miles per gallon and displacement. A small p-value (typically less than 0.05) suggests that we can reject the null hypothesis.
 
-```{r ex6, exercise=TRUE}
-# Plot a boxplot to visualize outliers in 'sleep_total' 
-# Hint: Use the boxplot() function
-
-
-```
-
-```{r ex6-setup}
-data("msleep")
-```
-
-```{r ex6-solution}
-# Solution
-boxplot(msleep$sleep_total, ylab = "Total Sleep")
-
-```
-
-```{r ex6-check}
-grade_code()
-```
-
-### Understanding Data Distributions
-
-When analyzing data, it's important to understand how your data are distributed. This distribution can influence the type of statistical tests we can use.
-
-Let's start by examining a dataset available in the `ggplot2` package, `mtcars`.
-
-```{r}
-head(mtcars)
-```
-
-
-```{r ex7, echo=FALSE}
+```{r ex6, echo=FALSE}
+# Quiz on interpreting the model
 quiz(
-  question("What is the primary variable of interest in the `mtcars` dataset?",
-    answer("mpg", correct = TRUE),
-    answer("cyl"),
-    answer("disp"),
-    answer("hp")
+  question("What does a positive beta estimate (coefficient) signify in a linear regression model?",
+    answer("A positive relationship between the independent and dependent variables", correct = TRUE),
+    answer("A negative relationship between the independent and dependent variables"),
+    answer("No relationship between the independent and dependent variables"),
+    answer("The model failed to fit properly")
+  ),
+  question("What does a small p-value (typically less than 0.05) suggest in the context of a linear regression model?",
+    answer("There is likely no relationship between the independent and dependent variables"),
+    answer("There is likely a relationship between the independent and dependent variables", correct = TRUE),
+    answer("The data does not meet the assumptions for linear regression"),
+    answer("The model failed to fit properly")
   )
 )
 ```
 
-### Plotting Distributions
 
-Now, let's create a density plot for the mpg (miles per gallon) variable to understand its distribution.
+
+That's it! You've just created a linear regression model using the `lm()` function, and learned how to interpret the output. Just remember, associations are correlations. They are not causal. The observation that cars with higher miles per gallon tend to have lower displacement does not imply that increasing a car's miles per gallon will decrease its displacement.
+
+
+## Chapter 57: Inference - Examples
+
+### Introduction
+
+In this interactive tutorial, we will explore linear regression as a powerful tool for inference, which forms the foundation of many real-world analyses. We will use a simple case study to illustrate how linear regression can be applied, how to interpret its results, and how to analyze your own data in the future.
+
+Linear regression is extensively used across multiple disciplines such as data science, economics, social science, and natural science. All these fields share a common goal - answering questions about the world using data. In this tutorial, we will focus on a simplified version of a case study conducted by economists, demonstrating how they utilized data to answer their research questions.
+
+### Case Study 1: The Effects of Fuel Efficiency on Car Weight
+
+Our case study revolves around the question: "Is there a relationship between the fuel efficiency (mpg) and weight (wt) of cars?" This kind of question is often asked when we want to understand the relationship between two variables. Here, we're using the `mtcars` dataset from the `ggplot2` package, which provides data on various aspects of car design and performance.
+
+```{r}
+# Load the dataset
+data(mtcars)
+```
+
+#### Question
+
+The question we aim to answer is: "Does the fuel efficiency of a car relate to its weight?" This is a new twist on the questions asked by many automobile researchers and enthusiasts.
+
+#### Data
+
+The mtcars dataset contains information about 32 models of cars from the 1973 Motor Trend magazine, including measurements on mpg (miles per gallon) and wt (weight of the car in 1000 lbs).
+
+#### Analysis
+
+To analyze these data, we will use a simple linear regression model, with mpg as the dependent variable and wt as the independent variable.
+
+```{r ex7, exercise=TRUE}
+# Your code here.
+
+```
+
+```{r ex7-setup}
+```
+
+```{r ex7-solution}
+fit <- lm(mpg ~ wt, data = mtcars)
+```
+
+```{r ex7-check}
+grade_code()
+```
+
+#### Results
+
+Once we have our model, we can look at the summary to interpret the results.
 
 ```{r ex8, exercise=TRUE}
-# Your code here
+# Your code here.
 
 ```
 
 ```{r ex8-setup}
+fit <- lm(mpg ~ wt, data = mtcars)
 ```
 
 ```{r ex8-solution}
-ggplot(mtcars, aes(x = mpg)) +
-  geom_density()
-
+summary(fit)
 ```
 
 ```{r ex8-check}
 grade_code()
 ```
 
+This summary provides the estimates (coefficients), standard errors, and p-values for our model.
 
-### Understanding Normal Distributions
+Let's interpret these results:
 
-Normal distributions are bell-shaped curves. If your data plot resembles this shape, then you have "normally distributed" data. This can influence the statistical tests you can use.
+* The coefficient for wt tells us about the direction and strength of the relationship between weight and fuel efficiency. If the coefficient is positive, the relationship is positive, and if it's negative, the relationship is negative.
 
-To formally test for normality, we can use the `shapiro.test()` function. Let's apply this to the `mpg` variable in the `mtcars` dataset.
+* The standard error informs us about the uncertainty of the coefficient estimate. The smaller the standard error, the more confident we can be about the estimate.
+
+* The p-value (found in the column Pr[>|t|]) tells us the probability of obtaining the observed data (or data more extreme) if the null hypothesis is true. In this context, the null hypothesis is that there is no relationship between weight and fuel efficiency. A small p-value (typically less than 0.05) suggests that we can reject the null hypothesis.
 
 
-```{r ex9, exercise=TRUE}
-# Your code here
+### Case Study 2: Does Vehicle Size Affect Fuel Efficiency? 
+
+#### Research Question
+
+The question we are interested in is: "Does car size affect fuel efficiency?"
+
+For this, we'll need information on fuel efficiency and car size from the `mpg` dataset.
+
+```{r}
+# Load the ggplot2 package
+library(ggplot2)
+
+# View the first few rows of the mpg dataset
+head(mpg)
+```
+
+#### Data
+
+In the `mpg` dataset, `displ` is a measure of car size (engine displacement), and `hwy` represents highway fuel efficiency (in miles per gallon).
+
+```{r}
+# Extract the variables of interest
+data <- mpg[, c("displ", "hwy")]
+
+# View the first few rows of the new dataset
+head(data)
+```
+
+
+#### Analysis
+
+We'll use linear regression, with `displ` as the independent variable and `hwy` as the dependent variable.
+
+```{r}
+# Fit a linear regression model
+model <- lm(hwy ~ displ, data = data)
+
+# Print the model summary
+summary(model)
 
 ```
 
-```{r ex9-setup}
+#### Results and Interpretation
+
+We can interpret the results from the linear regression output. The coefficient for `displ` can be interpreted as the expected change in `hwy` for each one-unit increase in `displ`, holding all other variables constant.
+
+```{r}
+# Print the coefficient for displ
+coef(model)["displ"]
+
 ```
 
-```{r ex9-solution}
-shapiro.test(mtcars$mpg)
+#### Conclusion
+
+In this tutorial, we've used regression analysis to understand the impact of car size on fuel efficiency. This is just the start - remember that additional analyses and experiments would be needed to fully understand the relationship between these variables.
+
+
+```{r ex9, echo=FALSE}
+# Final Quiz Question 1
+quiz(caption = "Quiz",
+  question("Which variable did we predict in our analysis?",
+    answer("displ"),
+    answer("hwy", correct = TRUE)
+  ),
+  question("What would a negative coefficient for `displ` imply?",
+    answer("As car size increases, fuel efficiency increases."),
+    answer("As car size increases, fuel efficiency decreases.", correct = TRUE),
+    answer("As car size decreases, fuel efficiency increases."),
+    answer("As car size decreases, fuel efficiency decreases.")
+  )
+)
 
 ```
 
-```{r ex9-check}
-grade_code()
+## Chapter 58: Inference - Multiple Regression
+
+### Confounding
+
+Confounding is when a variable affects both your dependent and independent variables. Consider the example of diamond prices. The size (carat) of a diamond affects its price, but so does the quality of its cut. If we only analyze the price based on the carat size, we might overlook the effect of cut quality, which would be a confounder.
+
+
+### Multiple Linear Regression
+
+Multiple linear regression can help us handle confounders by including them in our model. For example, if we are analyzing the price of a diamond based on its carat size, we might also include the quality of the cut to account for its effect.
+
+Let's look at an example using the `diamonds dataset`, which includes the prices of diamonds along with their carat sizes and cut qualities.
+
+```{r}
+# Scatter plot of price vs carat
+ggplot(diamonds, aes(carat, price)) +
+  geom_point()
 ```
 
-Remember, if the p-value is greater than 0.05, we can consider the data to be normally distributed.
+From the scatter plot, it seems that the carat size and price are positively correlated. But, let's consider the quality of the cut as well.
 
-From the result of the Shapiro-Wilk test, is the `mpg` variable normally distributed?
+```{r}
+# Linear regression model with carat and cut as predictors
+fit <- lm(price ~ carat + cut, data = diamonds)
+summary(fit)
+
+```
+
 
 ```{r ex10, echo=FALSE}
 quiz(
-  question("From the result of the Shapiro-Wilk test, is the `mpg` variable normally distributed?",
-    answer("Yes"),
-    answer("No", correct = TRUE)
+  question("What is the effect of ignoring confounding variables in data analysis?",
+    answer("It can lead to misinterpretation of the data.", correct = TRUE),
+    answer("It can lead to more accurate results."),
+    answer("It has no effect on the analysis."),
+    answer("It can make the analysis easier.")
   )
 )
 ```
 
-### Choosing the Right Test
+### Correlation is not Causation
 
-The choice of test depends on the distribution of your data. There are different tests for different scenarios, and choosing the wrong test may lead to erroneous conclusions.
+Correlation between two variables does not necessarily imply that one causes the other. For example, while larger diamonds (greater carat sizes) might be correlated with higher prices, this doesn't mean that making a diamond larger will increase its price. Other factors, like cut quality, might be involved.
 
-Remember, understanding your data distribution is crucial to identifying the right tests and analyses to conduct.
+### Beyond Linear Regression
 
-### Summary
+Linear regression is not the only statistical test available, but it is a fundamental concept that many other tests are based on. For example, a t-test, which tests if the mean of a dataset differs from a specified value, is essentially a linear regression model with only an intercept.
 
-Understanding the distribution of your data is a crucial first step in any analysis. We've seen how to visualize this distribution using a density plot, and how to formally test for normality using the shapiro.test() function. Happy data exploring!
+### Coding Exercise
 
+Let's try a coding exercise. Write code to run a t-test to check if the average price of a diamond in the diamonds dataset is different from $4000.
 
-## Chapter 53: Descriptive Analysis
-
-The goal of descriptive analysis is to summarize a set of data. In this tutorial, we will learn how to describe a dataset using common statistical measures.
-
-
-### Introduction to the Dataset
-
-For this tutorial, we will use the `diamonds` dataset from the `ggplot2` package. Let's load the dataset and assign it to the object `df`.
-
-```{r}
-df <- diamonds
-```
-
-
-### Understanding the Dataset
-
-Let's find out the number of observations (rows) and variables (columns) in our dataset using the `dim()` function.
 
 ```{r ex11, exercise=TRUE}
-# Your code here
-
+# Replace ___ with appropriate code to run a t-test
+t.test(___, mu = 4000)
 ```
 
 ```{r ex11-setup}
-df <- diamonds
+
 ```
 
 ```{r ex11-solution}
-dim(df)
+t.test(diamonds$price, mu = 4000)
 ```
 
 ```{r ex11-check}
 grade_code()
 ```
 
+### Review
 
-```{r ex12, echo=FALSE}
-quiz(
-  question("What are the dimensions of the `df` data frame?",
-    answer("53940, 10", correct = TRUE),
-    answer("10, 53940"),
-    answer("53940, 11"),
-    answer("11, 53940")
-  )
-)
+In this tutorial, we revisited the concept of confounding in statistical analysis and learned how to handle confounders using multiple linear regression. We also looked at the concept of correlation and causation, emphasizing that one should be careful not to overstate findings and never to draw causal claims when all we have are associations.
+
+Next, we explored t-tests as a way to check if the average of a dataset differs from an expectation. We did a hands-on coding exercise on this using the diamonds dataset, where we checked if the average price of a diamond is different from a certain amount. We also learned that many statistical tests are simply extensions of linear regression.
+
+Remember, always consider and check for confounding among the variables in your dataset. Also, while correlation can indicate a relationship between two variables, it does not imply causation.
+
+### Conclusion
+
+In this interactive tutorial, we've learned about multiple linear regression, the concept of confounding, the difference between correlation and causation, and how to run a t-test. We also learned how to handle confounders in our data analysis and how to properly interpret the results of a multiple linear regression model.
+
+
+## Chapter 59: Prediction and Machine Learning
+
+### What is Machine Learning?
+
+Machine learning refers to creating models from data patterns that can be used for future predictions. In predictive analysis, we are essentially applying machine learning concepts, using relationships within a dataset to build models for prediction.
+
+### Machine Learning Steps
+
+To make predictions for the future using current data, there are four general steps:
+
+1. Data Splitting
+2. Variable Selection
+3. Model Selection
+4. Accuracy Assessment
+
+We will go through each of these steps in this tutorial using the mtcars dataset.
+
+```{r}
+data(mtcars)
+```
+
+### Data Splitting
+For machine learning, we need data to train our model. We often use three datasets to build a predictive model: train, tune, and test. Let's split our mtcars dataset into these three sets.
+
+```{r}
+# We will use the sample function to randomly select rows for the training set.
+set.seed(123) # for reproducibility
+train_indices <- sample(1:nrow(mtcars), size = 0.7 * nrow(mtcars)) # 70% of data
+train_data <- mtcars[train_indices, ]
+
+# The rest of the data will be split equally into tune and test datasets
+tune_test_indices <- setdiff(1:nrow(mtcars), train_indices)
+tune_indices <- sample(tune_test_indices, size = 0.5 * length(tune_test_indices))
+tune_data <- mtcars[tune_indices, ]
+test_data <- mtcars[setdiff(tune_test_indices, tune_indices), ]
+
 ```
 
 
-### Understanding the Variables
+### Variable Selection
+The variables in the data on hand should be related to the outcome we're interested in predicting. Here, let's assume we want to predict mpg (miles per gallon) based on other car features.
 
-Let's find out more about the variables we are working with using the `str()` function.
+For simplicity, let's select cyl (number of cylinders), hp (horsepower), and wt (weight) as our predictor variables.
+
+```{r}
+predictor_vars <- c("cyl", "hp", "wt")
+
+```
+
+
+### Model Selection
+
+There are many ways to generate prediction models. For this tutorial, let's use a simple linear regression model to predict mpg based on our predictor variables.
+
+```{r}
+# Building the model using the train_data
+model <- lm(mpg ~ cyl + hp + wt, data = train_data)
+summary(model)
+
+```
+
+Now, we have our predictive model. Let's use it to make predictions on our tune dataset and assess its accuracy.
+
+```{r}
+# Next, we apply our model to the tune dataset
+tune_data$predicted_weight <- predict(model, newdata = tune_data)
+
+# We can calculate the root mean square error (RMSE) to assess the model's accuracy
+rmse <- sqrt(mean((tune_data$weight - tune_data$predicted_weight)^2))
+rmse
+
+```
+
+
+### Exercise 1. Predictive Modeling with Linear Regression
+
+In the above steps, we have built a predictive model using linear regression and assessed its accuracy on the tune dataset. Now, it's your turn to apply these steps to a new variable.
+
+In this exercise, you are asked to build a linear regression model to predict the `drat` variable (rear axle ratio) based on the `hp` variable (gross horsepower). Apply your model to the tune dataset and calculate the RMSE to evaluate its accuracy.
+
+
+```{r ex12, exercise=TRUE}
+# Build the model
+
+# Apply the model to the tune dataset
+
+# Calculate RMSE
+```
+
+```{r ex12-setup}
+# We will use the sample function to randomly select rows for the training set.
+set.seed(123) # for reproducibility
+train_indices <- sample(1:nrow(mtcars), size = 0.7 * nrow(mtcars)) # 70% of data
+train_data <- mtcars[train_indices, ]
+
+# The rest of the data will be split equally into tune and test datasets
+tune_test_indices <- setdiff(1:nrow(mtcars), train_indices)
+tune_indices <- sample(tune_test_indices, size = 0.5 * length(tune_test_indices))
+tune_data <- mtcars[tune_indices, ]
+test_data <- mtcars[setdiff(tune_test_indices, tune_indices), ]
+```
+
+```{r ex12-solution}
+# Build the model
+model_ex1 <- lm(drat ~ hp, data = train_data)
+
+# Apply the model to the tune dataset
+tune_data$predicted_drat <- predict(model_ex1, newdata = tune_data)
+
+# Calculate RMSE
+rmse_ex1 <- sqrt(mean((tune_data$drat - tune_data$predicted_drat)^2))
+rmse_ex1
+
+```
+
+```{r ex12-check}
+grade_code()
+```
+
+### Model Selection: Classification and Regression Trees (CART)
+
+
+hen it comes to predicting categorical outcomes, Classification and Regression Trees (CART) is a handy tool. A CART model generates a decision tree based on the patterns in the training data, which can then be used to predict future outcomes.
+
+Let's try to predict the `am` variable (transmission type: 0 = automatic, 1 = manual) in the `mtcars` dataset using a CART model. We'll use the `rpart` package to build our model.
+
+```{r}
+# Install and load the rpart package
+if (!require(rpart)) {
+  install.packages('rpart')
+}
+library(rpart)
+
+# Build the CART model
+cart_model <- rpart(am ~ hp + wt, data = train_data, method = "class")
+
+# Let's visualize our decision tree
+if (!require(rpart.plot)) {
+  install.packages('rpart.plot')
+}
+library(rpart.plot)
+rpart.plot(cart_model, extra = 1)
+```
+
+Now, let's apply our CART model to the tune dataset and assess its accuracy.
+
+```{r}
+# Apply the CART model to the tune dataset
+tune_data$predicted_am <- predict(cart_model, newdata = tune_data, type = "class")
+
+# Calculate accuracy
+accuracy <- sum(tune_data$am == tune_data$predicted_am) / nrow(tune_data)
+accuracy
+```
+
+### Exercise 2. Predictive Modeling with CART
+
+Now, it's your turn to build a CART model. In this exercise, you are asked to predict the `vs` variable (engine shape: 0 = V-shaped, 1 = straight) based on the `hp `and `wt` variables. Apply your model to the tune dataset and calculate the accuracy.
+
+
 
 ```{r ex13, exercise=TRUE}
-# Your code here
+# Build the CART model
+
+# Apply the CART model to the tune dataset
+
+# Calculate accuracy
 ```
 
 ```{r ex13-setup}
-df <- diamonds
+# We will use the sample function to randomly select rows for the training set.
+set.seed(123) # for reproducibility
+train_indices <- sample(1:nrow(mtcars), size = 0.7 * nrow(mtcars)) # 70% of data
+train_data <- mtcars[train_indices, ]
+
+# The rest of the data will be split equally into tune and test datasets
+tune_test_indices <- setdiff(1:nrow(mtcars), train_indices)
+tune_indices <- sample(tune_test_indices, size = 0.5 * length(tune_test_indices))
+tune_data <- mtcars[tune_indices, ]
+test_data <- mtcars[setdiff(tune_test_indices, tune_indices), ]
 ```
 
 ```{r ex13-solution}
-str(df)
+# Build the CART model
+cart_model_ex2 <- rpart(vs ~ hp + wt, data = train_data, method = "class")
+
+# Apply the CART model to the tune dataset
+tune_data$predicted_vs <- predict(cart_model_ex2, newdata = tune_data, type = "class")
+
+# Calculate accuracy
+accuracy_ex2 <- sum(tune_data$vs == tune_data$predicted_vs) / nrow(tune_data)
+accuracy_ex2
 ```
 
 ```{r ex13-check}
@@ -496,121 +629,175 @@ grade_code()
 ```
 
 
-```{r ex14, echo=FALSE}
-question("What type of variable is `cut` in the `df` dataset?",
-  answer("numeric"),
-  answer("character"),
-  answer("Ordered factor with 5 levels", correct = TRUE),
-  answer("integer")
-)
-```
+### Model Selection: Random Forest
 
+Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. It is a very powerful and versatile method, capable of handling both regression and classification tasks.
 
-### Checking for Missing Values
-
-It's always a good practice to check for missing values in your data. Let's see how we can do that.
+Let's try to predict the `am` variable in the `mtcars` dataset using a Random Forest model. We'll use the `randomForest` package to build our model.
 
 ```{r}
-sapply(df, function(x) sum(is.na(x)))
+# Install and load the randomForest package
+if (!require(randomForest)) {
+  install.packages('randomForest')
+}
+library(randomForest)
+
+# Build the Random Forest model
+rf_model <- randomForest(am ~ hp + wt, data = train_data)
+
+# Apply the Random Forest model to the tune dataset
+tune_data$predicted_am_rf <- predict(rf_model, newdata = tune_data)
+
+# Calculate accuracy
+accuracy_rf <- sum(tune_data$am == tune_data$predicted_am_rf) / nrow(tune_data)
+accuracy_rf
 ```
 
-### Describing the Shape of Your Data
 
-Let's describe the shape of our data. We will consider the `price` variable for this purpose.
+### Exercise 3. Predictive Modeling with Random Forest
 
-```{r}
-summary(df$price)
-
-```
+Now, it's your turn to build a Random Forest model. In this exercise, you are asked to predict the `vs` variable based on the `hp` and `wt` variables. Apply your model to the tune dataset and calculate the accuracy.
 
 
-### Exercise 2
-
-Let's visualize missingness in the `df` dataset using the `vis_miss()` function from the `visdat` library.
-
-```{r ex15, exercise=TRUE}
-library(visdat)
+```{r ex14, exercise=TRUE}
 # Your code here
+
 ```
 
-```{r ex15-setup}
-library(visdat)
-df <- as.data.frame(diamonds)
+```{r ex14-setup}
+# We will use the sample function to randomly select rows for the training set.
+set.seed(123) # for reproducibility
+train_indices <- sample(1:nrow(mtcars), size = 0.7 * nrow(mtcars)) # 70% of data
+train_data <- mtcars[train_indices, ]
+
+# The rest of the data will be split equally into tune and test datasets
+tune_test_indices <- setdiff(1:nrow(mtcars), train_indices)
+tune_indices <- sample(tune_test_indices, size = 0.5 * length(tune_test_indices))
+tune_data <- mtcars[tune_indices, ]
+test_data <- mtcars[setdiff(tune_test_indices, tune_indices), ]
 ```
 
-```{r ex15-solution}
-vis_miss(df)
+```{r ex14-solution}
+# Build the Random Forest model
+rf_model_ex3 <- randomForest(vs ~ hp + wt, data = train_data)
+
+# Apply the Random Forest model to the tune dataset
+tune_data$predicted_vs_rf <- predict(rf_model_ex3, newdata = tune_data)
+
+# Calculate accuracy
+accuracy_ex3 <- sum(tune_data$vs == tune_data$predicted_vs_rf) / nrow(tune_data)
+accuracy_ex3
+
 ```
 
-```{r ex15-check}
+```{r ex14-check}
 grade_code()
 ```
 
-This is the end of the tutorial. You should now be able to perform a descriptive analysis!
+You can see that the accuracy varies depending on the model. Different models may perform better or worse depending on the specific characteristics of the data and the task.
+
+### Model Accuracy
+
+Predictive analysis is a challenging task. Hence, it's crucial to evaluate the accuracy of your model meticulously.
+
+### Error Rates
+
+To assess our predictive models' performance, we calculate error rates. The two common ways are:
+
+1. RMSE (Root-mean-square Error)
+2. Accuracy
+
+To assess error, you need the truth (the actual value) in addition to the predicted value. Thus, RMSE and Accuracy are assessed in the training and tuning data.
+
+### RMSE
+
+The root-mean-square error (RMSE) is a measure used to assess prediction error for continuous variables. We want to minimize error in prediction. Thus, a small RMSE is better than a large RMSE.
+
+### Accuracy
+
+To assess error in the prediction of categorical variables, accuracy is frequently used. Accuracy determines the number of predictions that match their actual values.
+
+### Machine Learning Examples
+
+Now let's walk through two examples. One for prediction of a continuous variable using linear regression and a second for prediction of a categorical value using a CART.
+
+#### Continuous Variable Prediction: Linear Regression
+
+For this example, we will use the `mpg` dataset from the ggplot2 package. We will attempt to use the data in the `mpg` dataset to predict `displ`.
 
 
-## Chapter 54: Exploratory Analysis
+#### Data Splitting
 
-In this tutorial, we will delve into the world of exploratory data analysis, where we examine and explore data to discover unknown relationships. Note that exploratory analysis doesn't confirm causal relationships. It's a great tool for generating hypotheses and helping design future studies, but it's not a final say on data relationships.
-
-### Exploratory Analysis Principles
-
-Here are the basic principles of exploratory analysis:
-
-* Look for missing values
-* Look for outlier values
-* Use plots to explore relationships
-* Use tables to explore relationships
-* If necessary, transform variables
-
-### Dataset Exploration
-
-We will use the `mpg` dataset from the `ggplot2` package, which contains fuel economy data from 1999 to 2008 for 38 models of cars.
+We will split the dataset into a training set and a tuning set. To do this, we will use the caret package and use the createDataPartition() function to split the dataset.
 
 ```{r}
-head(mpg)
+# Set the seed for reproducibility
+set.seed(123)
+
+# Use the createDataPartition function to split the dataset
+trainIndex <- createDataPartition(mpg$displ, p = .7, list = FALSE, times = 1)
+
+# Split into training and tuning set
+mpg_train <- mpg %>% slice(trainIndex)
+mpg_tune <- mpg %>% slice(-trainIndex)
+
+# View the structure of the training set and the tuning set
+str(mpg_train)
+str(mpg_tune)
+
 ```
 
-Now, let's check the structure of our dataset:
+
+Next, we'll move onto predicting a categorical variable.
 
 ```{r}
-str(mpg)
+# Categorical Variable Prediction: CART
+
+# We will use the `species` variable from the `iris` dataset for this example
+data(iris)
+
+# Split the data into training and tuning sets
+set.seed(123)
+trainIndex <- createDataPartition(iris$Species, p = .7, list = FALSE, times = 1)
+
+iris_train <- iris %>% slice(trainIndex)
+iris_tune <- iris %>% slice(-trainIndex)
+
+# Train the CART model
+fit.cart <- train(Species~., data = iris_train, method = "rpart", metric = "Accuracy")
+
+# Generate predictions
+predictions_cart <- predict(fit.cart, iris_tune)
+
+# Compare the predicted and actual values
+table(iris_tune$Species, predictions_cart)
 ```
 
-```{r ex16, echo=FALSE}
+
+```{r ex15, echo=FALSE}
+# Create a quiz question using `learnr`'s `quiz` function
 quiz(
-  question("What are the types of variables in the `mpg` dataset?",
-    answer("All variables are numerical."),
-    answer("Some variables are numerical, and others are categorical.", correct = TRUE),
-    answer("All variables are categorical.")
+  question("What does RMSE stand for in the context of machine learning?",
+    answer("Root-mean-square Error", correct = TRUE),
+    answer("Relative Mean Score Error"),
+    answer("Rooted Mean Square Error"),
+    answer("Relative Mean Square Error")
+  ),
+  question("What does the `train` function in the `caret` package do?",
+    answer("It trains a machine learning model on provided data", correct = TRUE),
+    answer("It splits data into training and testing sets"),
+    answer("It generates predictions from a trained model"),
+    answer("It visualizes the performance of a trained model")
+  ),
+  question("What is the purpose of the `createDataPartition` function?",
+    answer("To split data into training and testing sets", correct = TRUE),
+    answer("To train a machine learning model on provided data"),
+    answer("To generate predictions from a trained model"),
+    answer("To visualize the performance of a trained model")
   )
 )
+
 ```
-
-### Exploring Relationships
-
-Let's now explore relationships in our data. For instance, we can investigate if there's an association between displacement (`displ`) and highway miles per gallon (`hwy`).
-
-```{r}
-ggplot(mpg, aes(x=displ, y=hwy)) +
-  geom_point()
-```
-
-
-### Question 2
-
-```{r ex17, echo=FALSE}
-quiz(
-  question(
-    "Based on the scatterplot, do you think there's a relationship between displacement and highway miles per gallon?",
-    answer("Yes, there seems to be a positive linear relationship."),
-    answer("Yes, there seems to be a negative linear relationship.", correct = TRUE),
-    answer("No, there doesn't seem to be a relationship.")
-  )
-)
-```
-
-
 
 
 
