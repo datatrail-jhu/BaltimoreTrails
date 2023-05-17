@@ -5,12 +5,13 @@
 #' The prepared foods density, per 1,000 people, was calculated for each CSA using the CSA's population and the total number of carryout and fast food restaurants, including vendors selling prepared foods in public markets, in each CSA.
 #'
 #' @format ## `Fast_Food_Outlet_Density_per_1000_Residents`
-#' A data frame with BLA rows and BLA columns:
+#' A data frame with 55 obs. of  5 variables:
 #' \describe{
-#'   \item{BLA}{BLA}
-#'   \item{BLA, BLA}{BLABLABLA}
-#'   \item{BLA}{BLA}
-#'   ...
+#'   \item{CSA2010 }{Area Name (Character String)}
+#'   \item{Fastfd11}{The prepared foods (vendors) density, per 1,000 people in 2011 (Numeric)}
+#'   \item{Fastfd13}{The prepared foods (vendors) density, per 1,000 people in 2013 (Numeric)}
+#'   \item{Fastfd18}{The prepared foods (vendors) density, per 1,000 people in 2018 (Numeric)}
+#'   \item{Fastfd19}{The prepared foods (vendors) density, per 1,000 people in 2019 (Numeric)}
 #' }
 #' @source <https://vital-signs-bniajfi.hub.arcgis.com/datasets/bniajfi::fast-food-outlet-density-per-1000-residents-community-statistical-area/about>
 "Fast_Food_Outlet_Density_per_1000_Residents"

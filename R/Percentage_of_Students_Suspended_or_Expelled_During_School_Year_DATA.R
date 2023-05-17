@@ -3,12 +3,13 @@
 #' The percentage of students of any grade level that were formally suspended or expelled for any reason during the school year out of all public school students within an area.
 #'
 #' @format ## `Percentage_of_Students_Suspended_or_Expelled_During_School_Year`
-#' A data frame with BLA rows and BLA columns:
+#' A data frame with 55 obs. of  5 variables:
 #' \describe{
-#'   \item{BLA}{BLA}
-#'   \item{BLA, BLA}{BLABLABLA}
-#'   \item{BLA}{BLA}
-#'   ...
+#'   \item{CSA2010 }{Area Name in 2010 (Character String)}
+#'   \item{susp10}{The percentage of students of any grade level that were formally suspended or expelled in 2010 (Numeric)}
+#'   \item{susp11}{The percentage of students of any grade level that were formally suspended or expelled in 2011 (Numeric)}
+#'   \item{susp12}{The percentage of students of any grade level that were formally suspended or expelled in 2012 (Numeric)}
+#'   \item{susp13}{The percentage of students of any grade level that were formally suspended or expelled in 2013 (Numeric)}
 #' }
 #' @source <https://vital-signs-bniajfi.hub.arcgis.com/datasets/bniajfi::percentage-of-students-suspended-or-expelled-during-school-year/about>
 "Percentage_of_Students_Suspended_or_Expelled_During_School_Year"

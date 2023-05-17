@@ -5,10 +5,17 @@
 #' @format ## `Percent_of_Children_with_Elevated_Blood_Lead_Levels`
 #' A data frame with BLA rows and BLA columns:
 #' \describe{
-#'   \item{BLA}{BLA}
-#'   \item{BLA, BLA}{BLABLABLA}
-#'   \item{BLA}{BLA}
-#'   ...
+#'   \item{CSA2010 }{Area Name (Character String)}
+#'   \item{ebll10}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2010  (Numeric)}
+#'   \item{ebll11}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2011  (Numeric)}
+#'   \item{ebll12}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2012  (Numeric)}
+#'   \item{ebll13}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2013  (Numeric)}
+#'   \item{ebll14}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2014  (Numeric)}
+#'   \item{ebll15}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2015  (Numeric)}
+#'   \item{ebll16}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2016  (Numeric)}
+#'   \item{ebll17}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2017  (Numeric)}
+#'   \item{ebll18}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2018  (Numeric)}
+#'   \item{ebll19}{The number of children aged 0-6 that are found to either have elevated blood lead levels or lead poisoning in 2019  (Numeric)}
 #' }
 #' @source <https://vital-signs-bniajfi.hub.arcgis.com/datasets/bniajfi::percent-of-children-tested-aged-0-6-with-elevated-blood-lead-levels-community-statistical-area/about>
 "Percent_of_Children_with_Elevated_Blood_Lead_Levels"

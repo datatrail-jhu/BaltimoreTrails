@@ -6,6 +6,7 @@ library(DT)
 library(ggplot2)
 library(learnr)
 library(esquisse)
+library(fontawesome)
 library(BaltimoreTrails)
 
 # Pre-load all dataset names into app
@@ -21,7 +22,22 @@ ui <- dashboardPage(
   dashboardSidebar(
     sidebarMenu(
       menuItem("Data and Plotting Tools", tabName = "dataview", icon = icon("table")),
-      menuItem("Interactive Learning", tabName = "learning", icon = icon("hand"))
+      menuItem(" Chapters 1-6", tabName = "1-6", icon = icon("network-wired")),
+      menuItem(" Chapters 7-12", tabName = "7-12", icon = icon("question")),
+      menuItem(" Chapters 13-19", tabName = "13-19", icon = icon("database")),
+      menuItem(" Chapters 20-27", tabName = "20-27", icon = icon("database")),
+      menuItem(" Chapters 28-32", tabName = "28-32", icon = icon("broom")),
+      menuItem(" Chapters 33-37", tabName = "33-37", icon = icon("broom")),
+      menuItem(" Chapters 38-43", tabName = "38-43", icon = icon("chart-simple")),
+      menuItem(" Chapters 44-48", tabName = "44-48", icon = icon("chart-simple")),
+      menuItem(" Chapters 49-54", tabName = "49-54", icon = icon("calculator")),
+      menuItem(" Chapters 55-60", tabName = "55-60", icon = icon("calculator")),
+      menuItem(" Chapters 61-66", tabName = "61-66", icon = icon("share-nodes")),
+      menuItem(" Chapters 67-75", tabName = "67-75", icon = icon("share-nodes")),
+      menuItem(" Chapters 76-82", tabName = "76-82", icon = icon("share-nodes")),
+      menuItem(" Chapters 83-89", tabName = "83-89", icon = icon("file")),
+      menuItem(" Chapters 90-96", tabName = "90-96", icon = icon("file"))
+
     )
   ),
 
@@ -69,22 +85,17 @@ ui <- dashboardPage(
         ),
       ),
 
-      # Third tab content
       tabItem(
-        tabName = "learning",
+        tabName = "1-6",
         h1("Interactive Learning"),
-        selectInput(
-          "chapter_select", "Select Chapter to Practice",
-          c(
-            "Chapter 1: Plotting" = "ch1",
-            "Chapter 2: Regression" = "ch2",
-            "Chapter 3: Data Management" = "ch3"
-          )
-        ),
         fluidRow(
           htmlOutput("frame")
         ),
       )
+
+
+
+
     )
   )
 )
@@ -155,8 +166,6 @@ server <- function(input, output, session) {
           }
 
           data_rv <- reactiveValues(data = Dat, name = input$data_select)
-
-          print(names(Dat))
 
           observeEvent(dat(), {
             data_rv$data <- dat()
@@ -280,7 +289,7 @@ server <- function(input, output, session) {
   # Generate Tab 2 Interactive LearnR frame (based on input selection later)
   output$frame <- renderUI({
     tags$iframe(
-      src = "https://jjallaire.shinyapps.io/learnr-tutorial-03a-data-manip-filter/", width = 1280, height = 720
+      src = "https://posit.cloud/content/5964502", width = 1280, height = 720
     )
   })
 }

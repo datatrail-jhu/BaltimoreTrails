@@ -168,7 +168,7 @@ Just like any other coding practice, using version control systems like Git also
 
 3. Be aware of the version of files you are working on: Check that you are up to date with the current repo by frequently pulling. Also, don't keep your edited files to yourself - once you have committed your files (and written that helpful message!), you should push those changes to the common repository. If you are done editing a section of code and are planning on moving on to an unrelated problem, you need to share that edit with your collaborators.
 
-```{r ex6}
+```{r ex6, echo=FALSE}
 quiz(
   question("What does the term 'commit' mean in the context of version control?", 
             answer("Saving edits and changes made to a file.", correct = TRUE),

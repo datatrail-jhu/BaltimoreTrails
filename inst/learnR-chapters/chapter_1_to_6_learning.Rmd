@@ -1,0 +1,955 @@
+---
+title: "Chapters 1 - 6"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(gradethis)
+#knitr::opts_chunk$set(echo = TRUE)
+#tutorial_options(exercise.checker = NULL)
+```
+
+
+## Chapter 1: Welcome to DataTrail
+
+In this interactive tutorial, we will ask questions regarding chapter 1 of DataTrail, a 14-week educational initiative for young adults, high school, and GED graduates. DataTrail aims to equip members of underserved communities with the necessary skills and support required to work in the booming field of data science.
+
+### Learning Objectives
+
+1. Understand the purpose and objectives of DataTrail.
+2. Learn about the mutually-intensive learning experience (MILE) approach.
+3. Understand the whole-person ecosystem of support provided by DataTrail.
+
+
+```{r ex1, echo=FALSE}
+quiz(
+  question("What does DataTrail aim to achieve?",
+    answer("Equip members of underserved communities with data science skills", correct = TRUE),
+    answer("Focus on training only technical skills"),
+    answer("Offer a free 2-year program"),
+    answer("Focus on only one specific data science tool")
+  ),
+  question("What is the MILE approach?",
+    answer("A data science training methodology"),
+    answer("A mutually-intensive learning experience", correct = TRUE),
+    answer("A programming language"),
+    answer("A new data science tool")
+  ),
+  question("What is the main target group for DataTrail?",
+    answer("BIPOC individuals and their potential employers", correct = TRUE),
+    answer("College graduates"),
+    answer("Data science professionals"),
+    answer("Children and teenagers")
+  ),
+  question("Which institution offers DataTrail?",
+    answer("Johns Hopkins Bloomberg School of Public Health", correct = TRUE),
+    answer("Harvard University"),
+    answer("Stanford University"),
+    answer("Massachusetts Institute of Technology")
+  ),
+  question("What are the two main components of the DataTrail program?",
+    answer("MILE and whole-person ecosystem of support", correct = TRUE),
+    answer("Online courses and in-person workshops"),
+    answer("Theoretical courses and practical projects"),
+    answer("Certification exams and job placement services")
+  ),
+  question("What is the role of mentors in the DataTrail MILE?",
+    answer("To engage in anti-racism and mentorship training", correct = TRUE),
+    answer("To teach scholars technical skills"),
+    answer("To provide job opportunities directly"),
+    answer("To offer financial support to scholars")
+  )
+)
+```
+
+## Chapter 2: Finding Help
+
+In this tutorial, you will learn how to find help and resources related to data science and the R programming language.
+
+### Learning Objectives
+
+1. Understand the importance of seeking help and using resources.
+2. Learn how to search the internet effectively for answers.
+3. Become familiar with specific websites and resources for finding help in R.
+4. Learn about AI ChatBots as a resource for help.
+
+
+```{r ex2, echo=FALSE}
+quiz(
+  question("Why is it important to seek help and use resources?",
+    answer("To save time and find solutions to problems", correct = TRUE),
+    answer("To avoid learning anything"),
+    answer("To rely only on others for answers"),
+    answer("To avoid using search engines")
+  ),
+  question("What are some guidelines for effective Google searches?",
+    answer("Use full sentences and correct grammar"),
+    answer("Use the fewest words possible and be specific", correct = TRUE),
+    answer("Ask only general questions"),
+    answer("Avoid using specific websites for help")
+  )
+)
+```
+
+### Practice: Searching for Help
+
+Let's practice searching for help on a specific topic related to R programming. Type the following search query into Google:
+
+```
+R create dataframe from vectors
+```
+
+```{r ex3, echo=FALSE}
+quiz(
+  question("Which website from the search results is a common source of help for R programming?",
+    answer("Stack Overflow", correct = TRUE),
+    answer("Wikipedia"),
+    answer("Facebook"),
+    answer("Yahoo Answers")
+  )
+)
+```
+
+### Additional Questions
+
+```{r ex4, echo=FALSE}
+quiz(
+  question("Which programming language will be the main focus of the coursework?",
+    answer("R", correct = TRUE),
+    answer("Python"),
+    answer("Java"),
+    answer("C++")
+  ),
+  question("Which search engine is the most common for finding help?",
+    answer("Google", correct = TRUE),
+    answer("Bing"),
+    answer("Yahoo"),
+    answer("DuckDuckGo")
+  ),
+  question("What is one of the specific websites where you can find help related to programming in general?",
+    answer("Stack Overflow", correct = TRUE),
+    answer("Instagram"),
+    answer("Pinterest"),
+    answer("LinkedIn")
+  ),
+  question("What is an example of how you can use AI ChatBots like ChatGPT?",
+    answer("Asking ChatGPT to explain a piece of code", correct = TRUE),
+    answer("Asking ChatGPT to write your whole project"),
+    answer("Asking ChatGPT for personal advice"),
+    answer("Asking ChatGPT to debug your code automatically")
+  )
+)
+```
+
+
+## Chapter 3: Understanding Your Chromebook
+
+```{r ex5, echo=FALSE}
+quiz(
+  question("What is the main purpose of a Chromebook?",
+    answer("To play video games"),
+    answer("To use as a dedicated offline workstation"),
+    answer("To work primarily on the web", correct = TRUE),
+    answer("To run heavy computational tasks")
+  ),
+  question("What is 'cloud computing'?",
+    answer("Storing physical computers in the sky"),
+    answer("Using the Internet to access tools and computers to do your work", correct = TRUE),
+    answer("A method of cooling down computers"),
+    answer("A type of computer virus")
+  )
+)
+```
+
+### 3.2 Chrome OS
+
+```{r ex6, echo=FALSE}
+quiz(
+  question("What are the three different ways to add new software to a Chromebook?",
+    answer("Chrome Apps, Chrome Extensions, Android Apps", correct = TRUE),
+    answer("Windows Apps, Linux Apps, Mac Apps"),
+    answer("Chrome Apps, Firefox Extensions, Safari Extensions"),
+    answer("Google Drive, Dropbox, OneDrive")
+  ),
+  question("What are Google Docs, Slides, and Sheets?",
+    answer("Online file storage services"),
+    answer("Video conferencing tools"),
+    answer("Chrome Apps for creating and editing documents, presentations, and spreadsheets", correct = TRUE),
+    answer("Social media platforms")
+  )
+)
+```
+
+### 3.2.1 Chrome "Apps"
+
+```{r ex7, echo=FALSE}
+quiz(
+  question("What is the main difference between a Chrome App and a Chrome Extension?",
+    answer("Chrome Apps run inside the browser, while Chrome Extensions modify the browser itself", correct = TRUE),
+    answer("Chrome Apps modify the browser itself, while Chrome Extensions run inside the browser"),
+    answer("Chrome Apps are for entertainment, while Chrome Extensions are for productivity"),
+    answer("Chrome Apps are for productivity, while Chrome Extensions are for entertainment")
+  ),
+  question("What do Google Docs, Slides, and Sheets have in common?",
+    answer("They are all social media platforms"),
+    answer("They are all Chrome Extensions"),
+    answer("They are all file storage services"),
+    answer("They are all Chrome Apps for creating and editing different types of documents", correct = TRUE)
+  )
+)
+```
+
+### 3.2.2 Where do Chromebook Apps live?
+
+```{r ex8, echo=FALSE}
+quiz(
+  question("What is the purpose of the 'Shelf' on a Chromebook?",
+    answer("To store your physical books and documents"),
+    answer("To provide easy access to your most frequently used Chrome Apps", correct = TRUE),
+    answer("To store your passwords and login information"),
+    answer("To keep track of your browsing history")
+  ),
+  question("Question 2: How do you open the screen with all your installed apps on a Chromebook?",
+    answer("Press the power button"),
+    answer("Click the Launcher button on the lower left-hand side of the screen", correct = TRUE),
+    answer("Press the escape key"),
+    answer("Swipe up")
+  )
+)
+```
+
+
+### 3.2.5 The Chrome Web Store and Chrome Apps
+
+```{r ex9, echo=FALSE}
+quiz(
+  question("How can you access the Chrome Web Store on a Chromebook?",
+    answer("Click on the launcher button, then find and click the Web Store icon"),
+    answer("Type 'chrome web store' in the search bar", correct = TRUE),
+    answer("Press the Web Store key on the keyboard")
+  ),
+  question("Which of the following is true about Chrome Apps?",
+    answer("They only work when your Chromebook is offline"),
+    answer("They are only available on Android devices"),
+    answer("They can be run from the web browser and sometimes require installation", correct = TRUE)
+  ),
+  question("What is the main purpose of the StackEdit app?",
+    answer("To manage your passwords"),
+    answer("To write and save Markdown files", correct = TRUE),
+    answer("To display funny pictures when you open a new tab")
+  )
+)
+```
+
+
+### 3.2.6 Chrome Extensions
+
+```{r ex10, echo=FALSE}
+quiz(
+  question("What are Chrome Extensions?",
+    answer("Software programs that modify the way that the Chrome browser works", correct = TRUE),
+    answer("Websites that you can save for offline reading"),
+    answer("Applications that run on Android devices")
+  ),
+  question("How can you install Chrome Extensions?",
+    answer("By going to the Chrome Web Store and searching for the desired extension", correct = TRUE),
+    answer("By visiting the extension's website and clicking 'Install'"),
+    answer("By downloading the extension from an external website and manually installing it")
+  ),
+  question("What does the Pocket Chrome extension do?",
+    answer("Allows you to save webpages for offline reading", correct = TRUE),
+    answer("Displays a funny picture every time you open a new tab"),
+    answer("Helps you manage your passwords")
+  )
+)
+```
+
+
+### 3.5 Chromebook Shortcuts
+
+```{r ex11, echo=FALSE}
+quiz(
+  question("What does the keyboard shortcut 'ctrl+n' do on a Chromebook?", 
+                  answer("Open a new Chrome window", correct = TRUE),
+                  answer("Close an open Chrome window or tab"),
+                  answer("Bookmark a page")),
+  
+  question("What is the function of the refresh key?", 
+                  answer("Takes you back to the previous webpage"),
+                  answer("Takes you forward to the next webpage"),
+                  answer("Refreshes the current webpage", correct = TRUE)),
+  
+  question("Which key combination takes a screenshot of the entire screen on a Chromebook?", 
+                  answer("ctrl+showwindows", correct = TRUE),
+                  answer("ctrl+shift+showwindows"),
+                  answer("ctrl+lock")),
+  question("Which key combination allows you to zoom in on a Chromebook?", 
+                  answer("ctrl+plus/equals", correct = TRUE),
+                  answer("ctrl+minus/underscore"),
+                  answer("ctrl+f")),
+  
+  question("How do you search for a specific word or phrase on a webpage using a keyboard shortcut?", 
+                  answer("ctrl+z"),
+                  answer("ctrl+f", correct = TRUE),
+                  answer("ctrl+c")),
+  
+  question("Which key combination allows you to copy selected text on a Chromebook?", 
+                  answer("ctrl+v"),
+                  answer("ctrl+x"),
+                  answer("ctrl+c", correct = TRUE))
+)
+```
+
+
+### 3.6 Chromebook Security Quiz
+
+
+```{r ex12, echo=FALSE}
+quiz(
+  question("What is one of the characteristics of a good password?", 
+                  answer("Short and simple"),
+                  answer("Easy for other people to guess"),
+                  answer("Long and easy for you to remember, but hard for others to guess", correct = TRUE)),
+  
+  question("Which setting should you enable to require a password when waking your Chromebook from sleep?", 
+                  answer("Show screen lock when waking from sleep", correct = TRUE),
+                  answer("Manage Other People"),
+                  answer("Two step verification")),
+  
+  question("What is the purpose of two-step verification?", 
+                  answer("To make it easier to log in to your account"),
+                  answer("To require both a password and a code sent to your phone to access your account", correct = TRUE),
+                  answer("To manage who can access your Chromebook"))
+)
+```
+
+#### 3.6.5 Managing apps and devices
+
+```{r ex13, echo=FALSE}
+quiz(
+  question("Where can you monitor and manage apps and devices that have access to your Google account information?", 
+                  answer("https://myaccount.google.com/security", correct = TRUE),
+                  answer("https://myaccount.google.com/apps"),
+                  answer("https://myaccount.google.com/devices")),
+  
+  question("How often should you check your account security page for any unrecognized events or activity?", 
+                  answer("Every week"),
+                  answer("Every month or so", correct = TRUE),
+                  answer("Every year"))
+)
+```
+
+### 3.7 Updating your Chromebook
+
+```{r ex14, echo=FALSE}
+quiz(
+  question("What does updating your Chromebook's operating system (OS) do?", 
+                  answer("Slows down the system"),
+                  answer("Fixes bugs, adds new features, and/or improves security", correct = TRUE),
+                  answer("Changes the user interface drastically")),
+  
+  question("When does your Chromebook check for and apply available updates?", 
+                  answer("Every time you power it on", correct = TRUE),
+                  answer("Every week"),
+                  answer("Only when you manually check for updates"))
+)
+```
+
+
+### 3.8 Getting Help with a Chromebook
+
+```{r ex15, echo=FALSE}
+quiz(
+  question("Which of the following is NOT a common Chromebook issue category?", 
+                  answer("Operating System Issues"),
+                  answer("Internet Connection Problems"),
+                  answer("Hardware Malfunction", correct = TRUE)),
+  
+  question("Where can you find Chromebook support and ask questions about your device?", 
+                  answer("https://support.apple.com/chromebook"),
+                  answer("https://support.google.com/chromebook", correct = TRUE),
+                  answer("https://support.microsoft.com/chromebook"))
+)
+```
+
+
+## Chapter 4: Working Offline vs Online
+
+### 4.0 Cloud computing
+
+```{r ex16, echo=FALSE}
+quiz(
+  question("What does cloud computing involve?",
+    answer("Applications and software running on personal computers"),
+    answer("Applications and software running on shared data centers", correct = TRUE),
+    answer("Storing data on external hard drives")
+  ),
+  question("What is the main advantage of cloud computing for data analysis?",
+    answer("Less need for personal computer maintenance"),
+    answer("Increased security and privacy"),
+    answer("Increased computing power and reduced cost for high-capacity computers", correct = TRUE)
+  )
+)
+```
+
+
+#### 4.0.2 What are the advantages of using the cloud?
+
+```{r ex17, echo=FALSE}
+quiz(
+  question("What is a major advantage of cloud storage?",
+    answer("Files are safe even if the computer is lost or damaged", correct = TRUE),
+    answer("Increased computing power"),
+    answer("No need for an Internet connection")
+  ),
+  question("How does working with the cloud affect software maintenance?",
+    answer("Increases the user's responsibility to maintain software"),
+    answer("The responsibility of maintaining software is on the service provider", correct = TRUE),
+    answer("There is no difference in software maintenance")
+  )
+)
+```
+
+
+#### 4.0.3 What are the disadvantages of using the cloud?
+
+```{r ex18, echo=FALSE}
+quiz(
+  question("What is a major disadvantage of working on the cloud?",
+    answer("Increased computing power"),
+    answer("Need for an Internet connection to access storage and computing power", correct = TRUE),
+    answer("Decreased security and privacy")
+  ),
+  question("What is a good practice to secure your cloud-based accounts?",
+    answer("Use a weak password for easy memorization"),
+    answer("Choose two-factor authentication whenever it is offered", correct = TRUE),
+    answer("Connect to any available network")
+  )
+)
+```
+
+
+#### 4.0.4 Google Drive
+
+```{r ex19, echo=FALSE}
+quiz(
+  question("What is the advantage of storing files on Google Drive?",
+    answer("Files are accessible only from your personal computer"),
+    answer("Files are stored online and can be accessed from any Internet connected computer", correct = TRUE),
+    answer("Files will be lost if you lose your Chromebook")
+  ),
+  question("How do you make Google Drive files available offline on a Chromebook?",
+    answer("It is not possible to make Google Drive files available offline"),
+    answer("Open the Google Drive app and enable the 'Offline' setting in Settings", correct = TRUE),
+    answer("Move all files from Google Drive to the 'Downloads' folder")
+  )
+)
+```
+
+
+#### 4.0.5 Example: editing a text file offline
+
+```{r ex20, echo=FALSE}
+quiz(
+  question("What app is commonly used for offline text editing?",
+    answer("Google Sheets"),
+    answer("Google Slides"),
+    answer("Google Docs", correct = TRUE)
+  ),
+  question("How do you create a new document in Google Docs?",
+    answer("Click on the Google Docs icon and click on the plus sign", correct = TRUE),
+    answer("Open the Google Drive app and enable the 'Offline' setting"),
+    answer("Move files from Google Drive to the 'Downloads' folder")
+  )
+)
+```
+
+
+#### 4.0.6 Offline Apps
+
+```{r ex21, echo=FALSE}
+quiz(
+  question("Which of the following apps have offline functionality?",
+    answer("Google Docs", correct = TRUE),
+    answer("Google Sheets", correct = TRUE),
+    answer("Google Slides", correct = TRUE),
+    answer("Facebook", correct = FALSE)
+  ),
+  question("What should you do to find apps with offline functionality on the Google Web Store?",
+    answer("Search for apps that mention offline functionality", correct = TRUE),
+    answer("Check the number of downloads", correct = FALSE),
+    answer("Sort apps by rating", correct = FALSE),
+    answer("Look for apps with a cloud icon", correct = FALSE)
+  )
+)
+```
+
+
+### 4.1 Where Are Files Stored?
+
+```{r ex22, echo=FALSE}
+quiz(
+  question("Where are most files stored on a Chromebook?",
+    answer("Local storage", correct = FALSE),
+    answer("Google Drive or Dropbox", correct = TRUE),
+    answer("CDs or DVDs", correct = FALSE),
+    answer("External hard drives", correct = FALSE)
+  ),
+  question("How can you check the remaining storage space on your Chromebook?",
+    answer("Check the device's settings", correct = FALSE),
+    answer("Click the three dots on the upper right-hand side of the Files app", correct = TRUE),
+    answer("Search for 'storage' on Google", correct = FALSE),
+    answer("Ask the Chromebook", correct = FALSE)
+  )
+)
+```
+
+
+#### 4.1.1 Where is the local storage?
+
+```{r ex23, echo=FALSE}
+quiz(
+  question("How do you access the Files App on a Chromebook?",
+    answer("Click on the Launcher circle and then click on the Files App icon", correct = TRUE),
+    answer("Type 'Files App' into the Google search bar", correct = FALSE),
+    answer("Right-click on the desktop and select 'Files'", correct = FALSE),
+    answer("Press the 'F' key on the keyboard", correct = FALSE)
+  ),
+  question("What is the purpose of the Downloads folder on a Chromebook?",
+    answer("To store downloaded movies and music", correct = FALSE),
+    answer("To store temporary internet files", correct = FALSE),
+    answer("To store all files that are saved directly on the Chromebook", correct = TRUE),
+    answer("To store files that are shared with other users", correct = FALSE)
+  )
+)
+```
+
+
+## Chapter 5: Account Setup
+
+Before we can get started doing fun things with data we need to make sure you are set up to use all of the different accounts that you will need throughout the course. We will tell you briefly what each of these accounts is used for and how to set it up now. If you don't know what each of these accounts is for exactly, don't worry! We will walk you through everything you need to know.
+
+#### 5.0.1 Choosing a Username
+
+```{r ex24, echo=FALSE}
+quiz(
+  question("What should you consider when choosing a username?",
+    answer("Use a nickname", correct = FALSE),
+    answer("Use profanity", correct = FALSE),
+    answer("Use a combination of your first and last name", correct = TRUE),
+    answer("Make it as short as possible", correct = FALSE)
+  )
+)
+```
+
+#### 5.0.2 Using a Consistent Username
+
+```{r ex25, echo=FALSE}
+quiz(
+  question("Why is using a consistent username across different accounts beneficial?",
+    answer("It looks professional", correct = FALSE),
+    answer("It is easier to remember", correct = TRUE),
+    answer("It is required by most websites", correct = FALSE),
+    answer("It prevents others from using the same username", correct = FALSE)
+  )
+)
+```
+
+
+#### 5.0.3 Accounts
+
+```{r ex26, echo=FALSE}
+quiz(
+  question("Which of the following accounts is NOT mentioned in this chapter?",
+    answer("LinkedIn", correct = FALSE),
+    answer("Twitter", correct = FALSE),
+    answer("Basecamp", correct = FALSE),
+    answer("Instagram", correct = TRUE)
+  )
+)
+```
+
+
+### 5.1 Google Account Setup
+
+```{r ex27, echo=FALSE}
+quiz(
+  question("Why is a Google account important in this course?",
+    answer("It provides access to free Google products", correct = TRUE),
+    answer("It is the only email service allowed", correct = FALSE),
+    answer("It is required for accessing the course materials", correct = FALSE),
+    answer("It is necessary for all online communication", correct = FALSE)
+  )
+)
+```
+
+
+### 5.2 Using Gmail for Email Communications
+
+```{r ex29, echo=FALSE}
+quiz(
+  question("Which feature of Gmail is especially useful for organizing email conversations?",
+    answer("Attachment options", correct = FALSE),
+    answer("Formatting options", correct = FALSE),
+    answer("Conversational threads", correct = TRUE),
+    answer("Tabs for different categories", correct = FALSE)
+  )
+)
+```
+
+
+#### 5.2.4 Searching for specific messages
+
+```{r ex30, echo=FALSE}
+quiz(
+  question("Which of the following can you search by in Gmail?",
+    answer("A word in the subject"),
+    answer("The sender's name"),
+    answer("The content of the email"),
+    answer("All of the above", correct = TRUE)
+  )
+)
+```
+
+
+#### 5.2.5 More specifics on using Gmail
+
+```{r ex31, echo=FALSE}
+quiz(
+  question("Where can you find beginner tutorials on using Gmail?",
+    answer("YouTube"),
+    answer("Google Workspace Learning Center"),
+    answer("Both", correct = TRUE),
+    answer("Neither")
+  )
+)
+```
+
+
+### 5.3 Google Drive
+
+```{r ex32, echo=FALSE}
+quiz(
+  question("What is Google Drive primarily used for?",
+    answer("Storing and editing files online", correct = TRUE),
+    answer("Sending emails"),
+    answer("Video chatting"),
+    answer("Setting calendar events")
+  )
+)
+```
+
+
+#### 5.3.1 Accessing your Google Drive account
+
+```{r ex33, echo=FALSE}
+quiz(
+  question("Which of the following is NOT included with your Google Account?",
+    answer("Gmail"),
+    answer("Calendar"),
+    answer("Google Drive"),
+    answer("Microsoft Word", correct = TRUE)
+  )
+)
+```
+
+
+#### 5.3.2 Organizing files in Google Drive
+
+```{r ex34, echo=FALSE}
+quiz(
+  question("Why should you create folders in Google Drive?",
+    answer("To keep similar files together", correct = TRUE),
+    answer("To change the color of files"),
+    answer("To automatically delete files"),
+    answer("To make files available offline")
+  )
+)
+```
+
+
+#### 5.3.3 Creating files in Google Drive
+
+```{r ex35, echo=FALSE}
+quiz(
+  question("How do you create a new file in Google Drive?",
+    answer("Click the 'New' button and select the type of file", correct = TRUE),
+    answer("Drag a file from your computer"),
+    answer("Press Ctrl+N")
+  )
+)
+```
+
+
+#### 5.3.4 Creating files in Google Drive
+
+```{r ex36, echo=FALSE}
+question("What do you click to upload a file or folder to Google Drive?",
+  answer("New", correct = TRUE),
+  answer("Upload"),
+  answer("File"),
+  answer("Folder")
+)
+```
+
+
+#### 5.3.5 Deleting Files and folders
+
+```{r ex37, echo=FALSE}
+question("How do you delete a file on Google Drive?",
+  answer("Right-click and choose Remove", correct = TRUE),
+  answer("Double-click and press Delete key"),
+  answer("Drag the file to Trash folder"),
+  answer("Click the file and press Delete key")
+)
+```
+
+#### 5.3.6 File Recovery
+
+```{r ex38, echo=FALSE}
+question("Where do deleted files go on Google Drive?",
+  answer("Trash folder", correct = TRUE),
+  answer("Recycle Bin"),
+  answer("Deleted Files folder"),
+  answer("Archive")
+)
+```
+
+
+#### 5.3.7 File Sharing
+
+```{r ex39, echo=FALSE}
+question("How do you share a file on Google Drive?",
+  answer("Right-click and choose Share", correct = TRUE),
+  answer("Double-click and press Share key"),
+  answer("Drag the file to Shared folder"),
+  answer("Click the file and press Share key")
+)
+```
+
+
+#### 5.3.8 Working Offline
+
+```{r ex40, echo=FALSE}
+question("How can you access Google Drive files offline?",
+  answer("Install Google Docs Offline extension and enable offline access in settings", correct = TRUE),
+  answer("Download all files to your local computer"),
+  answer("Use a third-party app"),
+  answer("You cannot access Google Drive files offline")
+)
+```
+
+
+#### 5.3.9 Storage limit
+
+```{r ex41, echo=FALSE}
+question("How much free storage does Google Drive provide?",
+  answer("15GB", correct = TRUE),
+  answer("5GB"),
+  answer("50GB"),
+  answer("100GB")
+)
+```
+
+
+#### 5.3.10 Security
+
+```{r ex42, echo=FALSE}
+question("What is the recommended method to secure your files on Google Drive?",
+  answer("Two-step verification", correct = TRUE),
+  answer("Strong password only"),
+  answer("Using a VPN"),
+  answer("Private browsing mode")
+)
+```
+
+#### 5.3.11 More specifics on using Google Drive
+
+```{r ex43, echo=FALSE}
+question("Where can you find more tutorials on using Google Drive?",
+  answer("YouTube.com", correct = TRUE),
+  answer("Netflix"),
+  answer("Hulu"),
+  answer("Amazon Prime Video")
+)
+```
+
+
+### 5.4 Other Accounts Setup
+
+#### 5.4.1 LinkedIn Account
+
+```{r ex44, echo=FALSE}
+question("What is the primary purpose of LinkedIn?",
+  answer("Social networking for employment", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+#### 5.4.2 Twitter Account
+
+```{r ex45, echo=FALSE}
+question("What is the primary purpose of Twitter?",
+  answer("Posting and interacting with messages called 'tweets'", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+#### 5.4.3 Basecamp Account
+
+```{r ex46, echo=FALSE}
+question("What is the primary purpose of Basecamp?",
+  answer("Communicating and working together on projects", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+#### 5.4.4 RStudio Cloud Account
+
+```{r ex47, echo=FALSE}
+question("What is the primary purpose of RStudio Cloud?",
+  answer("Working with R programming language for statistical computing and graphics", correct = TRUE),
+  answer("Sharing personal photos"),
+  answer("Watching videos"),
+  answer("Finding recipes")
+)
+```
+
+
+
+## Chapter 6: Remote work and task management
+
+In this tutorial, we will explore best practices and ideas for how to work remotely in a way that promotes not only your productivity but also your well being.
+
+#### 6.0.1 Goals for working remotely
+
+```{r ex48, echo=FALSE}
+quiz(
+  question("Which one of these is not a goal for working remotely?",
+    answer("Creating a comfortable and conducive work area"),
+    answer("Being healthy"),
+    answer("Being unproductive", correct = TRUE),
+    answer("Being productive")
+  )
+)
+```
+
+
+### 6.1 How to be healthy
+
+To promote the healthiest version of yourself, ask yourself what you need to spend more time doing and what things you need to do less of. Some aspects of being healthy include:
+
+* Adequate sleep and sleep patterns
+* Balance and energetic meal plans
+* Spending time with loving and supportive individuals
+* Working reasonable hours - setting up boundaries
+* Spending some time doing things you enjoy that refill your energy
+
+```{r ex49, echo=FALSE}
+quiz(
+  question("Which one of these is not a part of being healthy?",
+    answer("Adequate sleep and sleep patterns"),
+    answer("Skipping meals", correct = TRUE),
+    answer("Working reasonable hours"),
+    answer("Spending time with loving and supportive individuals")
+  )
+)
+```
+
+
+#### 6.1.1 Define success
+
+To set yourself up for success in regards to your health, you will need to start by defining what looks and feels healthy for you. Identify what steps are needed to create a healthier version of yourself.
+
+```{r ex50, echo=FALSE}
+quiz(
+  question("Which one of these is a part of defining success?",
+    answer("Ignoring your well-being"),
+    answer("Following an unhealthy diet"),
+    answer("Identifying what steps are needed to create a healthier version of yourself", correct = TRUE),
+    answer("Neglecting sleep")
+  )
+)
+```
+
+
+#### 6.1.2 Form healthy habits
+
+To change habits, we need to make goals that are SMART:
+
+* Specific
+* Measurable
+* Achievable
+* Relevant
+* Time-bound
+
+```{r ex51, echo=FALSE}
+quiz(
+  question("Which one of these is not a part of SMART goals?",
+    answer("Specific"),
+    answer("Immeasurable", correct = TRUE),
+    answer("Achievable"),
+    answer("Time-bound")
+  )
+)
+```
+
+
+#### 6.1.3 Know yourself
+
+Remote work can be super powerful for being healthy but what is healthy might vary for different individuals. Remote work is great in that it can lend you flexibility to find routines and patterns that work best for promoting the healthiest form of you.
+
+```{r ex52, echo=FALSE}
+quiz(
+  question("What is the benefit of remote work?",
+    answer("It allows you to work without any breaks"),
+    answer("It can lend you flexibility to find routines and patterns that work best for promoting the healthiest form of you", correct = TRUE),
+    answer("It makes you work longer hours"),
+    answer("It isolates you from others")
+  )
+)
+```
+
+
+#### 6.1.4 Self-reevaluate
+
+Examine your workday and identify variables within your control that may have contributed to a good or bad day. Learn from your experiences and try to replicate what went well or make changes to improve the next day.
+
+```{r ex53, echo=FALSE}
+quiz(
+  question("What should you do to self-reevaluate?",
+    answer("Dwell on the past"),
+    answer("Ignore your experiences"),
+    answer("Examine your workday and identify variables within your control that may have contributed to a good or bad day", correct = TRUE),
+    answer("Do not make any changes")
+  )
+)
+```
+
+
+#### 6.1.5 Reach out for help
+
+```{r ex54, echo=FALSE}
+quiz(
+  question("What is one of the most meaningful things you can do to promote your own healthy living?",
+    answer("Ignore your problems"),
+    answer("Keep everything to yourself"),
+    answer("Avoid talking to others"),
+    answer("Asking for help", correct = TRUE)
+  )
+)
+```
+
+
+

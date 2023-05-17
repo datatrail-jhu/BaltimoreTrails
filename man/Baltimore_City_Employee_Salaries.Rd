@@ -6,12 +6,18 @@
 \title{Baltimore City Employee Salaries}
 \format{
 ## `Baltimore_City_Employee_Salaries`
-A data frame with BLA rows and BLA columns:
+A data frame with 174067 obs. of  9 variables:
 \describe{
-  \item{BLA}{BLA}
-  \item{BLA, BLA}{BLABLABLA}
-  \item{BLA}{BLA}
-  ...
+  \item{OBJECTID}{Individual Row Database Identifier (Integer)}
+  \item{Name}{Name of Individual (Character string)}
+  \item{JobTitle}{Job Title of Individual (Character string)}
+  \item{AgencyID}{Employer Database Identifier (Character string)}
+  \item{AgencyName}{Name of Employer Agency (Character string)}
+  \item{HireDate}{Date when Employee was hired (Date)}
+  \item{AnnualSalary}{Annual/Yearly Employee Salary (Integer)}
+  \item{GrossPay}{Gross Employee Pay (numeric)}
+  \item{FiscalYear}{Fiscal Year of Obersvation Recording (Character string)}
+
 }
 }
 \source{
