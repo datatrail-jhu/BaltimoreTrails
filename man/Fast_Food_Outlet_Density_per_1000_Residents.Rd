@@ -7,12 +7,13 @@
 \title{Fast Food Outlet Density per 1,000 Residents in Baltimore City}
 \format{
 ## `Fast_Food_Outlet_Density_per_1000_Residents`
-A data frame with BLA rows and BLA columns:
+A data frame with 55 obs. of  5 variables:
 \describe{
-  \item{BLA}{BLA}
-  \item{BLA, BLA}{BLABLABLA}
-  \item{BLA}{BLA}
-  ...
+  \item{CSA2010 }{Area Name (Character String)}
+  \item{Fastfd11}{The prepared foods (vendors) density, per 1,000 people in 2011 (Numeric)}
+  \item{Fastfd13}{The prepared foods (vendors) density, per 1,000 people in 2013 (Numeric)}
+  \item{Fastfd18}{The prepared foods (vendors) density, per 1,000 people in 2018 (Numeric)}
+  \item{Fastfd19}{The prepared foods (vendors) density, per 1,000 people in 2019 (Numeric)}
 }
 }
 \source{

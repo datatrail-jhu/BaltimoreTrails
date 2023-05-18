@@ -5,7 +5,7 @@
 \alias{Baltimore_City_Employee_Salaries}
 \title{Baltimore City Employee Salaries}
 \format{
-## `Baltimore_City_Employee_Salaries`
+`Baltimore_City_Employee_Salaries`
 A data frame with 174067 obs. of  9 variables:
 \describe{
   \item{OBJECTID}{Individual Row Database Identifier (Integer)}

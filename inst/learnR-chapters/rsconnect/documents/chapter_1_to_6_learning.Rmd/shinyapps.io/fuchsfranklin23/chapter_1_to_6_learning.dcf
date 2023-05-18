@@ -1,0 +1,14 @@
+name: chapter_1_to_6_learning
+title: chapter_1_to_6_learning
+username:
+account: fuchsfranklin23
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9132276
+bundleId: 7231291
+url: https://fuchsfranklin23.shinyapps.io/chapter_1_to_6_learning/
+when: 1684360984.16649
+lastSyncTime: 1684360984.1665
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: chapter_14_to_27_learning.Rmd|chapter_28_to_32_learning.Rmd|chapter_33_to_37_learning.Rmd|chapter_38_to_43_learning.Rmd|chapter_44_to_48_learning.Rmd|chapter_49_to_54_learning.Rmd|chapter_55_to_60_learning.Rmd|chapter_61_to_66_learning.Rmd|chapter_67_to_75_learning.Rmd|chapter_7_to_12_learning.Rmd|chapter_76_to_82_learning.Rmd|chapter_83_to_89_learning.Rmd|chapter_90_to_96_learning.Rmd|myplot.jpeg|myplot.png|myplot_graphics_device.jpeg|myplot_graphics_device.png|myplot_large.png

@@ -7,12 +7,20 @@
 \title{Percent of Households with No Vehicle Available in Baltimore City}
 \format{
 ## `Percent_of_Households_with_No_Vehicles_Available`
-A data frame with BLA rows and BLA columns:
+A data frame with 55 obs. of  12 variables:
 \describe{
-  \item{BLA}{BLA}
-  \item{BLA, BLA}{BLABLABLA}
-  \item{BLA}{BLA}
-  ...
+  \item{CSA2010 }{Area Name in 2010 (Character String)}
+  \item{novhcl11}{The percentage of households that do not have a personal vehicle available for use in 2011 (Numeric)}
+  \item{novhcl12}{The percentage of households that do not have a personal vehicle available for use in 2012 (Numeric)}
+  \item{novhcl13}{The percentage of households that do not have a personal vehicle available for use in 2013 (Numeric)}
+  \item{novhcl14}{The percentage of households that do not have a personal vehicle available for use in 2014 (Numeric)}
+  \item{novhcl15}{The percentage of households that do not have a personal vehicle available for use in 2015 (Numeric)}
+  \item{novhcl16}{The percentage of households that do not have a personal vehicle available for use in 2016 (Numeric)}
+  \item{novhcl17}{The percentage of households that do not have a personal vehicle available for use in 2017 (Numeric)}
+  \item{novhcl18}{The percentage of households that do not have a personal vehicle available for use in 2018 (Numeric)}
+  \item{novhcl19}{The percentage of households that do not have a personal vehicle available for use in 2019 (Numeric)}
+  \item{CSA2020 }{Area Name in 2020 (Character String)}
+  \item{novhcl20}{The percentage of households that do not have a personal vehicle available for use in 2020 (Numeric)}
 }
 }
 \source{

@@ -7,12 +7,18 @@
 \title{Percent of Population that Uses Public Transportation to Get to Work in Baltimore City}
 \format{
 ## `Percent_of_Population_that_Uses_Public_Transportation_to_Get_to_Work`
-A data frame with BLA rows and BLA columns:
+A data frame with 55 obs. of  10 variables:
 \describe{
-  \item{BLA}{BLA}
-  \item{BLA, BLA}{BLABLABLA}
-  \item{BLA}{BLA}
-  ...
+  \item{CSA2010 }{Area Name (Character String)}
+  \item{pubtran11}{The percentage of commuters that carpool out of all commuters in 2011 (Numeric)}
+  \item{pubtran12}{The percentage of commuters that carpool out of all commuters in 2012 (Numeric)}
+  \item{pubtran13}{The percentage of commuters that carpool out of all commuters in 2013 (Numeric)}
+  \item{pubtran14}{The percentage of commuters that carpool out of all commuters in 2014 (Numeric)}
+  \item{pubtran15}{The percentage of commuters that carpool out of all commuters in 2015 (Numeric)}
+  \item{pubtran16}{The percentage of commuters that carpool out of all commuters in 2016 (Numeric)}
+  \item{pubtran17}{The percentage of commuters that carpool out of all commuters in 2017 (Numeric)}
+  \item{pubtran18}{The percentage of commuters that carpool out of all commuters in 2018 (Numeric)}
+  \item{pubtran19}{The percentage of commuters that carpool out of all commuters in 2019 (Numeric)}
 }
 }
 \source{

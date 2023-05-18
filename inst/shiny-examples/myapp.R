@@ -48,7 +48,7 @@ ui <- dashboardPage(
       # First tab content
       tabItem(
         tabName = "dataview",
-        h1("Data Viewing and Downloading Tool"),
+        h1("Data Viewing, Plotting, and Downloading Tool"),
         fluidRow(
           align = "center",
           box(
@@ -68,7 +68,7 @@ ui <- dashboardPage(
         fluidRow(
           box(
             width = 12, status = "primary",
-            h2("3. Edit, Download, and Univariate Data Plots", align = "center"),
+            h2("3. Edit Data , Download Data, and Univariate Data Plotting", align = "center"),
             uiOutput("modals"),
             dataTableOutput("mytable")
           ),
@@ -77,7 +77,7 @@ ui <- dashboardPage(
           box(
             width = 12, status = "primary",
 
-            h2("4. Multivariate Data Plots with esquisse", align = "center"),
+            h2("4. Multivariate Data Plotting and Code Generation", align = "center"),
             esquisse_ui(id = "esquisse",
                         header = FALSE
             )
@@ -90,6 +90,97 @@ ui <- dashboardPage(
         h1("Interactive Learning"),
         fluidRow(
           htmlOutput("frame")
+        ),
+      ),
+      tabItem(
+        tabName = "7-12",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame1")
+        ),
+      ),
+      tabItem(
+        tabName = "14-27",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame2")
+        ),
+      ),
+      tabItem(
+        tabName = "28-32",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame3")
+        ),
+      ),
+      tabItem(
+        tabName = "33-37",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame4")
+        ),
+      ),
+      tabItem(
+        tabName = "38-43",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame5")
+        ),
+      ),
+      tabItem(
+        tabName = "44-48",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame6")
+        ),
+      ),
+      tabItem(
+        tabName = "49-54",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame7")
+        ),
+      ),
+      tabItem(
+        tabName = "55-60",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame8")
+        ),
+      ),
+      tabItem(
+        tabName = "61-66",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame9")
+        ),
+      ),
+      tabItem(
+        tabName = "67-75",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame10")
+        ),
+      ),
+      tabItem(
+        tabName = "76-82",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame11")
+        ),
+      ),
+      tabItem(
+        tabName = "83-89",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame12")
+        ),
+      ),
+      tabItem(
+        tabName = "90-96",
+        h1("Interactive Learning"),
+        fluidRow(
+          htmlOutput("frame13")
         ),
       )
 
@@ -113,17 +204,18 @@ server <- function(input, output, session) {
 
   # Generate temporary dataset information
   observeEvent(input$data_select, {
+
+    selected_dataset <- metadata_full[metadata_full$dataset == input$data_select,]
+
+    if(nrow(selected_dataset)>1){
+      selected_dataset <-  selected_dataset[1,]
+    }
+
     output$dataset_info <- renderText({
-      paste0("Dataset: ", input$data_select, "\n\n",
-             "Link: https://example.com/datasets/", tolower(input$data_select), "\n\n",
-             "Title: Example Dataset Title\n\n",
-             "Background: This is an example background of the selected dataset. ",
-             "It contains information about the dataset's origin, collection methods, ",
-             "and other relevant details. This section will be populated with the actual ",
-             "information when the app is connected to the data source.\n\n",
-             "Interesting aspects: This section highlights some interesting aspects of ",
-             "the selected dataset, such as unique patterns, trends, or insights that ",
-             "can be gained from the data.")
+      paste0("Title: ", selected_dataset[,"title"],"\n\n",
+             "Dataset : ", input$data_select, "\n\n",
+             "Source: ", selected_dataset[,"source"], "\n\n",
+             "Column/Structure Information: ", selected_dataset[,"information"])
     })
   })
 
@@ -289,7 +381,72 @@ server <- function(input, output, session) {
   # Generate Tab 2 Interactive LearnR frame (based on input selection later)
   output$frame <- renderUI({
     tags$iframe(
-      src = "https://posit.cloud/content/5964502", width = 1280, height = 720
+      src = " https://fuchsfranklin23.shinyapps.io/chapter_1_to_6_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame1 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin23.shinyapps.io/chapter_7_to_12_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame2 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin23.shinyapps.io/chapter_14_to_27_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame3 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin23.shinyapps.io/chapter_28_to_32_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame4 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin23.shinyapps.io/chapter_33_to_37_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame5 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin24.shinyapps.io/chapter_38_to_43_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame6 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin24.shinyapps.io/chapter_44_to_48_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame7 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin24.shinyapps.io/chapter_49_to_54_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame8 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin24.shinyapps.io/chapter_55_to_60_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame9 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin24.shinyapps.io/chapter_61_to_66_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame10 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin25.shinyapps.io/chapter_67_to_75_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame11 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin25.shinyapps.io/chapter_76_to_82_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame12 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin25.shinyapps.io/chapter_83_to_89_learning/", width = 1280, height = 720
+    )
+  })
+  output$frame13 <- renderUI({
+    tags$iframe(
+      src = " https://fuchsfranklin25.shinyapps.io/chapter_90_to_96_learning/", width = 1280, height = 720
     )
   })
 }

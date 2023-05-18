@@ -4,7 +4,6 @@
 #' broken down by community statistical area regions.
 #'
 #' @format ## `Perc_Pop_School_Employed`
-#' A data frame with BLA rows and BLA columns:
 #' \describe{
 #'   \item{CSA2010 }{Area Name in 2010 (Character String)}
 #'   \item{sclemp10}{The percentage of persons aged 16 to 19 who are in school and/or are employed in 2010 (Numeric)}

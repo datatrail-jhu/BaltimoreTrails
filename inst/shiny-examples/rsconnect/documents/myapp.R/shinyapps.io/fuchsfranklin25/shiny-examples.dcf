@@ -1,0 +1,13 @@
+name: shiny-examples
+title: shiny-examples
+username:
+account: fuchsfranklin25
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9132638
+bundleId: 7231507
+url: https://fuchsfranklin25.shinyapps.io/shiny-examples/
+when: 1684364691.18958
+lastSyncTime: 1684364691.1896
+asMultiple: FALSE
+asStatic: FALSE
