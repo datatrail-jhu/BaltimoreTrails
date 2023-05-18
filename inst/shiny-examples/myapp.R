@@ -7,6 +7,9 @@ library(ggplot2)
 library(learnr)
 library(esquisse)
 library(fontawesome)
+
+#Install Deployment Shiny Version BaltimoreTrails locally for Shinyapps.IO
+devtools::install_github("datatrail-jhu/BaltimoreTrails", dependencies = FALSE)
 library(BaltimoreTrails)
 
 # Pre-load all dataset names into app
@@ -24,8 +27,7 @@ ui <- dashboardPage(
       menuItem("Data and Plotting Tools", tabName = "dataview", icon = icon("table")),
       menuItem(" Chapters 1-6", tabName = "1-6", icon = icon("network-wired")),
       menuItem(" Chapters 7-12", tabName = "7-12", icon = icon("question")),
-      menuItem(" Chapters 13-19", tabName = "13-19", icon = icon("database")),
-      menuItem(" Chapters 20-27", tabName = "20-27", icon = icon("database")),
+      menuItem(" Chapters 14-27", tabName = "14-27", icon = icon("database")),
       menuItem(" Chapters 28-32", tabName = "28-32", icon = icon("broom")),
       menuItem(" Chapters 33-37", tabName = "33-37", icon = icon("broom")),
       menuItem(" Chapters 38-43", tabName = "38-43", icon = icon("chart-simple")),

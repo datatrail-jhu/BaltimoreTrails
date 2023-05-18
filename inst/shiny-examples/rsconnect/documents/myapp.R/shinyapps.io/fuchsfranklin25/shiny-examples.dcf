@@ -5,9 +5,9 @@ account: fuchsfranklin25
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 9132638
-bundleId: 7231507
+bundleId: 7234304
 url: https://fuchsfranklin25.shinyapps.io/shiny-examples/
-when: 1684364691.18958
-lastSyncTime: 1684364691.1896
+when: 1684422259.2136
+lastSyncTime: 1684422259.21362
 asMultiple: FALSE
 asStatic: FALSE
