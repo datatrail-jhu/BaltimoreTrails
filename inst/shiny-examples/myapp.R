@@ -9,7 +9,7 @@ library(esquisse)
 library(fontawesome)
 
 #Install Deployment Shiny Version BaltimoreTrails locally for Shinyapps.IO
-devtools::install_github("datatrail-jhu/BaltimoreTrails", dependencies = FALSE)
+#devtools::install_github("datatrail-jhu/BaltimoreTrails", dependencies = FALSE)
 library(BaltimoreTrails)
 
 # Pre-load all dataset names into app
