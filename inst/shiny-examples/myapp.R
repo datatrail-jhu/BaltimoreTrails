@@ -199,6 +199,11 @@ server <- function(input, output, session) {
     if (!is.null(input$data_select)) {
       if (input$data_select != "") {
         dat <- eval(as.symbol(input$data_select))
+
+        if (nrow(dat) > 1000){
+          dat <- dat[sample(nrow(dat), 500), ]
+        }
+
         dat
       }
     }
