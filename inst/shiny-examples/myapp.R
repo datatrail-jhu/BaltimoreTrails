@@ -11,6 +11,9 @@ library(fontawesome)
 #Install Deployment Shiny Version BaltimoreTrails locally for Shinyapps.IO
 #devtools::install_github("datatrail-jhu/BaltimoreTrails", dependencies = FALSE)
 library(BaltimoreTrails)
+#library(devtools)
+#load_all()
+
 
 # Pre-load all dataset names into app
 data_names <- data(package = "BaltimoreTrails")
