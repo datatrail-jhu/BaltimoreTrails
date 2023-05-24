@@ -8,7 +8,6 @@ runtime: shiny_prerendered
 ```{r setup, include=FALSE}
 library(learnr)
 library(gradethis)
-library(sortable)
 
 
 
@@ -18,343 +17,297 @@ gradethis::gradethis_setup()
 ```
 
 
-## Chapter 83: Resumes
+## Chapter 76: Projecting from a Chromebook
 
-A resume is a crucial document when applying for a job. It provides a concise overview of your education, skills, and experience. A well-crafted resume can make a strong impression on potential employers. Let's learn about the key elements of an effective resume.
+As a data scientist, presenting your analysis is a common task. This tutorial will guide you on how to connect your Chromebook to a projector.
 
-```{r ex1, echo=FALSE}
-quiz(
-  question("Which elements are typically included in a resume? (Select all that apply)",
-         answer("Contact Information", correct = TRUE),
-         answer("Education", correct = TRUE),
-         answer("Skills", correct = TRUE),
-         answer("Experience", correct = TRUE)
-))
-```
+### Finding the right adapter
 
-### Cover Letters
+Connecting your Chromebook to a projector requires an adapter, commonly known as a "dongle". You need to identify the type of projector input (typically VGA or HDMI) and the available port on your Chromebook. To discover your Chromebook's port, visit https://www.google.com/chromebook, click "Find Yours", locate your model, and click on the BestBuy link for detailed information.
 
-In addition to your resume, you will often be required to submit a cover letter. A cover letter allows you to express your interest in the job and highlight your qualifications. It is an opportunity to showcase your communication skills and make a strong case for why you are the right fit for the position.
+The recommended setup is to have two dongles: one with a VGA connection and the other with an HDMI connection. This will prepare you for most projector types.
 
+### Projecting from your Chromebook
+
+With the right dongle, you're set to project from your Chromebook. Connect the dongle to the projector cord, then to your Chromebook's port. A window titled "Extending screen to" will appear; click it to open the display settings.
+
+You can set up the projector as an "Extended Display" or "Mirrored Display".
+
+* "Extended Display": The projected screen acts as a second Desktop.
+* "Mirrored Display": The projector mirrors your Desktop exactly.
+
+For presentations, "Mirrored Display" is typically preferred.
+
+
+## Chapter 77: Data Science Presentation for General Audiences
+
+#### The Audience
+
+When presenting to a general audience, such as individuals focused on day-to-day operations or high school students getting their first introduction to data science, it's crucial to consider their knowledge level. These individuals might not have a deep understanding of data science or quantitative analysis.
+
+#### The Goal
+
+The aim of your presentation should be to provide a high-level overview of your work. While it's still crucial to inspire, educate, and entertain, the nitty-gritty details of your analysis may not be as important to a general audience.
+
+### The Presentation
+
+The way you present your information is critical. In this section, we'll discuss what to emphasize and de-emphasize in your presentation.
+
+#### Emphasize
+
+When presenting to a general audience, your presentation should tell a story. Spend more time on the background and introduction, explaining:
+
+* Why you conducted the analysis.
+* Why your audience should care.
+* The specific question you set out to answer.
+
+#### De-emphasize
+
+In a presentation for a general audience, avoid diving too deep into:
+
+* The details of your approach.
+* The problems you encountered during your analysis.
 
 ```{r ex2, echo=FALSE}
 quiz(
-  question("What should a cover letter accomplish? (Select all that apply)",
-         answer("Express interest in the job", correct = TRUE),
-         answer("Highlight qualifications", correct = TRUE),
-         answer("Explain job history in detail")
-)
+  question("What is the primary goal of presenting to a general audience?", 
+            answer("To explain the minute details of your analysis."),
+            answer("To show off your coding skills."),
+            answer("To provide a high-level overview of your work.", correct = TRUE),
+            answer("To demonstrate all the problems you encountered during your analysis.")
+  ),
+  question("What should you emphasize in your presentation?",
+            answer("The problems encountered during your analysis."),
+            answer("The specific question you set out to answer.", correct = TRUE),
+            answer("Your coding skills."),
+            answer("Every single detail of your analysis.")
+  )
 )
 ```
 
-Well done! A cover letter should express your interest and highlight your qualifications, but it should not go into extensive detail about your job history.
+#### Conclusion
 
-### Online Presence
+Remember, presenting to a general audience is about conveying the core of your work without getting lost in the details. Keep it high-level, focused, and engaging!
 
-#### Personal Website
 
-Having a personal website is a powerful way to showcase your work and enhance your online presence. It allows potential employers to learn more about you and your projects. Let's learn how to set up a personal website using GitHub.
+## Chapter 78: How to present to a Technical Audience
+
+#### Understanding the Audience
+
+Technical presentations are typically delivered to an audience familiar with your work, such as team members or conference attendees in your specific field of expertise. Thus, you can often limit the amount of introductory material in this type of presentation and focus on the details of your analysis.
+
+#### The Goal of the Presentation
+The goal of a technical presentation is to explain the details of what you did. The emphasis should be on the details and caveats of your approach.
+
+#### Structure of the Presentation
+Like any good presentation, a technical presentation should have a clear beginning, middle, and end. The middle part, where you explain the details of your analysis, is where you should focus most of your attention.
+
+#### Main Components of the Presentation
+In a technical presentation, you need to provide your audience with:
+
+1. A detailed summary of the data (descriptive + exploratory analysis)
+2. What you did (with concrete details)
+3. What you found (with multiple figures discussing results)
+4. Discussion of the analysis
+5. Conclusion
+
+#### Emphasis and De-emphasis
+
+In a technical talk, it's okay to de-emphasize certain background information that is common knowledge to everyone in the room. Instead, the bulk of your time and focus should be spent discussing the details of the analysis and its results.
 
 ```{r ex3, echo=FALSE}
 quiz(
-  question("What are the benefits of having a personal website? (Select all that apply)",
-         answer("Showcase your projects", correct = TRUE),
-         answer("Provide additional information beyond the resume", correct = TRUE),
-         answer("Demonstrate your technical skills", correct = TRUE)
+  question("What is the primary focus of a technical presentation?",
+  answer("The presenter's credentials"),
+  answer("Detailed summary of the data, the approach, the findings, analysis discussion, and conclusion", correct = TRUE),
+  answer("Background information"),
+  answer("The presenter's future plans")
+),
+  question("What information can be de-emphasized in a technical presentation?",
+  answer("The presenter's credentials"),
+  answer("Background information that is common knowledge", correct = TRUE),
+  answer("The findings"),
+  answer("The approach used in the analysis")
 )
 )
 ```
 
+## Chapter 79: How to write a Blog Post
 
-#### Social Media
+### What is a Blog Post?
 
-In addition to a personal website, maintaining an active and professional presence on social media platforms is essential. LinkedIn, GitHub, and Twitter are particularly important for data scientists. Let's explore why each platform is valuable.
+A blog post is a piece of writing that is shared on the internet. It does not have to be as formal or as polished as a published article or academic paper. It can vary in length and depth, ranging from a short, simple example to a longer, more in-depth, and polished piece.
 
 ```{r ex4, echo=FALSE}
 quiz(
-  question("What are the benefits of maintaining an active presence on social media platforms as a data scientist? (Select all that apply)",
-         answer("Showcase your work and collaborations", correct = TRUE),
-         answer("Expand your professional network", correct = TRUE),
-         answer("Share knowledge and learn from others", correct = TRUE),
-         answer("Increase visibility in the industry", correct = TRUE))
+  question("What is a blog post?",
+    answer("A formal academic paper"),
+    answer("A piece of writing shared on the internet", correct = TRUE),
+    answer("A published article"),
+    answer("An email")
+  )
 )
+
 ```
 
-Terrific! GitHub allows you to showcase your work and collaborations, LinkedIn provides a detailed professional profile, and Twitter is a great platform for sharing work and supporting others in the data science community.
+### General Outline of a Blog Post
+A good blog post should tell a story. It should start with an introduction, followed by the main body broken down into sections, and end with a conclusion. The introduction should explain the topic and its importance. The body should logically present your points, and the conclusion should provide the key takeaways.
 
+### Types of Blog Posts
 
-## Chapter 84: Building Resumes
+There are many types of blog posts. Here, we will discuss four main types that are common in data science:
 
-Data science is a competitive field, and when applying for jobs, it's crucial to submit a well-crafted resume. In this tutorial, we'll discuss the key components and formatting guidelines for creating an effective data science resume.
-
-### What is a Resume?
-
-A resume is a short document that describes your qualifications for a job. It includes your contact information, a summary of your qualifications, your experience, and education. Resumes are concise, well-formatted, and easy to read."
-
-### General Features
-
-General Features of Resumes:
-- Resumes should be brief and not exceed one page.
-- Use bullet points for easy readability.
-- Use action words to describe your achievements.
-- Organize and format your resume effectively.
-- Arrange information in reverse chronological order.
-- Always be truthful and avoid falsifying information."
-
-### Formatting
-Formatting Guidelines for Resumes:
-- Choose an easy-to-read font like Times New Roman, Helvetica, Arial, Verdana, or Calibri.
-- Use a font size of at least 10 points.
-- If using colors, opt for darker shades that are easily visible in both color and black-and-white prints.
-- Maintain consistency in fonts, font sizes, and colors throughout your resume.
-
-### What to Include
-What to Include in a Data Science Resume:
-1. Name and Contact Information
-2. Brief Summary
-3. Skills
-4. Education
-5. Experience
-6. Projects (if applicable)
-    
-### Example Resumes
-Example Resumes:
-- Classic: A traditional, well-organized resume format.
-- Creative: A less traditional, visually appealing resume format.
-
-### Sharing your Resume
-Sharing Your Resume:
-- Always save your resume as a PDF.
-- Open the PDF to ensure formatting looks perfect.
-- Make necessary edits and re-save until your resume is flawless.
+1. Announcement: These posts provide information about a new tool, dataset, or resource that might be useful to the community.
+2. How-To: These are tutorial posts that teach how to do something, often including all necessary information and code.
+3. Analysis: These posts present an interesting analysis that the author has conducted, often sharing code and results.
+4. Workflow: These posts describe the author's workflow, offering insight into how they work on their computers and analyze data.
 
 ```{r ex5, echo=FALSE}
 quiz(
-      question(
-        "What are the key features of a good data science resume?",
-        answer("Concise and well-formatted", correct=TRUE),
-        answer("Arranged in reverse chronological order", correct=TRUE),
-        answer("Truthful and accurate information", correct=TRUE),
-        answer("All of the above", correct=TRUE)
-      ),
-      question(
-    "Which of the following formatting guidelines should be followed for resumes?",
-    answer("Choose an easy-to-read font", correct=TRUE),
-    answer("Use an appropriate font size", correct=TRUE),
-    answer("Use colorful backgrounds"),
-    answer("Use inconsistent fonts")
+  question("Which of these is NOT a common type of data science blog post?",
+    answer("Announcement"),
+    answer("How-To"),
+    answer("Analysis"),
+    answer("Recipe", correct = TRUE)
   )
-    )
+)
 ```
 
-## Chapter 85: Cover Letters
+### Why Write a Blog Post?
+Writing a blog post can help you clarify and organize your thoughts, and it can also be a learning tool for others. Additionally, with the reach of the internet, your blog post can potentially be read by a huge audience.
 
-### Introduction
-A cover letter complements your resume by offering a personalized and detailed narrative of your experiences, skills, and motivations. It's your opportunity to tell your story and demonstrate your fit for a specific role at a specific company.
+#### Blog Etiquette
+When writing a blog post or commenting on others' work, always be respectful and kind. Criticism should be limited to the work itself, and personal attacks should be avoided.
 
-### What to Include
-A cover letter should not be a repetition of your resume. Instead, it should highlight relevant experiences, show your personality, and explain why you're interested in the specific organization. It should be truthful and proofread carefully to avoid any errors.
+### Summary
 
-### Format
-Cover letters are flexible, but there are some common elements:
+In this tutorial, we've introduced the concept of a blog post, discussed the general outline of a blog post, explored different types of blog posts, and talked about the benefits of writing a blog post as well as the etiquette to maintain.
 
-1. Your contact information
-2. The date
-3. The hiring manager's name and address
-4. The letter's body
-5. Closing and your name
+Remember, when writing a blog post:
 
-Make an effort to find out the hiring manager's name instead of using a generic greeting. The appearance of the letter should reflect your personality while remaining professional and easy to read.
+* Have an informative title
+* Include hyperlinks and references to others' work
+* Separate sections with headers
+* Include good figures
+* Use clear, concise language
 
-### Content
-The content of the letter includes an introduction, body, closing, and a call-to-action.
 
-1. Introduction: Draw attention and show understanding of the company and why you are a good fit.
-2. Body: Provide specific examples of your experiences that align with the job description.
-3. Closing: Summarize without repeating what you have said before.
-4. Call-To-Action: Politely suggest further communication.
+## Chapter 80: Participating in Meetings
 
+#### Meeting Etiquette
+In any meeting, there are general guidelines to follow:
+
+1. Punctuality: Ensure to arrive, start, and end the meeting on time.
+2. Conciseness: Keep your contributions precise and to the point.
+3. Respectfulness: Avoid interrupting others and talking over them.
+4. Positivity: Disagree constructively and appreciate others' work.
+5. Problem-solving: If you identify a problem, offer a potential solution.
+
+
+#### Hosting a Meeting
+
+When hosting a meeting, careful planning is required. Key steps include:
+
+1. Deciding if a meeting is necessary.
+2. Drafting and distributing an agenda.
+3. Deciding the meeting's date, time, and venue.
+4. Identifying and inviting the necessary participants.
+5. Keeping the meeting on track and ending it on time.
+
+#### Participating in a Meeting
+
+As a participant, your responsibilities include:
+
+1. Paying attention and taking notes.
+2. Participating actively and respectfully.
+3. If presenting, be mindful of time, be prepared, and guide the discussion effectively.
 
 ```{r ex6, echo=FALSE}
 quiz(
-  question("What should the introduction of a cover letter include?", 
-    answer("A unique opening line and a clear understanding of the company.", correct = TRUE),
-    answer("The hiring manager's name and address."),
-    answer("A summary of the entire letter."),
-    answer("A call to action.")
-  )
+question("What are the key steps to consider when hosting a meeting?",
+  answer("Deciding if a meeting is necessary"),
+  answer("Drafting and distributing an agenda"),
+  answer("Deciding the meeting's date, time, and venue"),
+  answer("Identifying and inviting the necessary participants"),
+  answer("All of the above", correct = TRUE)
+),
+question("What are the responsibilities of a participant in a meeting?",
+  answer("Paying attention and taking notes"),
+  answer("Participating actively and respectfully"),
+  answer("If presenting, being mindful of time, prepared, and guiding the discussion effectively"),
+  answer("All of the above", correct = TRUE)
+)
 )
 ```
 
+## Chaper 81: How to Have a One-on-One Meeting
 
-### What to Avoid
+#### Consulting
 
-When writing a cover letter, avoid hard-to-read fonts or colors, overused phrases, and plagiarism. Always proofread your letter to avoid any grammatical errors.
+One-on-one meetings, often referred to as consulting, involve discussions between two individuals: one seeking assistance and the other with data science expertise. These meetings aim to address specific questions and provide solutions using data analysis skills.
+
+Consulting meetings typically last from 10 to 60 minutes, depending on the complexity of the question. Before the meeting, you can request relevant information or access to the dataset to prepare adequately. However, initial meetings might involve introductory discussions without requiring extensive preparation.
+
+#### Navigating the Meeting
+
+During the meeting, it's crucial to maintain professional etiquette and respect. Remember to be punctual, attentive, and considerate, just as in any other meeting. Recognize that both you and the person seeking your help have different knowledge backgrounds, and approach the discussion with openness and respect for each other's expertise.
+
+#### The Investigation
+
+The initial stage of the meeting is like an investigation. Your role is to:
+
+1. Identify the specific question they want to ask.
+2. Determine their prior knowledge and understanding of the question.
+3. Assess the data they have available.
+4. Understand their expectations for future data.
+5. Evaluate whether the question can be answered with the available data.
+6. Consider any constraints or limitations of the data.
+
+#### Crafting the Question
+
+People often approach you with vague questions. Your responsibility is to help formulate a specific data science question using the principles learned in data analysis courses. Through discussion, explain the importance of specificity to ensure a focused and answerable question.
+
+#### Understanding Prior Knowledge
+Take time to understand what the person seeking help already knows about the topic. Listen actively and learn from their experiences and work. This learning process helps establish a solid foundation for the project.
+
+
+#### Assessing the Data
+In many cases, individuals seek assistance after collecting the data. During the meeting, determine the data they currently possess and discuss how to tidy and format it for analysis. Additionally, explore any plans for future data collection and discuss the best data format for analysis.
+
+#### Planning the Analysis
+Based on the available data and the question of interest, decide on the most suitable analysis approach. Consider variables, missing data, outliers, and potential confounders. During this stage, your role is to teach and explain concepts clearly to ensure mutual understanding.
+
+#### Acknowledging Limitations
+Always consider the limitations of the analysis. Compare the actual data with the ideal dataset necessary to answer the question. By acknowledging and discussing these limitations upfront, you can avoid over-interpreting the findings later on.
+
+Checklist for the Meeting
+To ensure a productive meeting, use this checklist as a guide:
+
+* Determine a specific question.
+* Discuss the required information to answer the question.
+* Decide on the variables for analysis.
+* Assess the currently available data.
+* Determine if the data is in a tidy format.
+* Discuss future data availability.
+* Address limitations of the dataset.
+* Determine the best approach for analysis.
 
 ```{r ex7, echo=FALSE}
 quiz(
-question("What should be avoided when writing a cover letter?", 
-  answer("Using a unique opening line."),
-  answer("Using specific examples to back up statements."),
-  answer("Using hard-to-read fonts or colors.", correct = TRUE),
-  answer("Expressing enthusiasm and interest.")
+question("Which of the following is NOT a responsibility of a data scientist in a one-on-one meeting?",
+  answer("Being punctual and respectful."),
+  answer("Explaining the analysis clearly."),
+  answer("Changing the analysis to please a co-worker.", correct = TRUE),
+  answer("Acknowledging limitations of the analysis.")
+),
+question("What is the purpose of discussing prior knowledge in a one-on-one meeting?",
+  answer("To demonstrate expertise and knowledge."),
+  answer("To understand the person's level of understanding.", correct = TRUE),
+  answer("To avoid answering questions."),
+  answer("To limit the scope of the analysis.")
 )
 )
 ```
-
-## Chapter 86: Make Your Own Website
-
-In this tutorial, you'll learn how to create your own professional website using GitHub and the R packages blogdown and prettydoc.
-
-### GitHub Repository
-1. Create a new repository on GitHub named `username.github.io` (replace `username` with your actual GitHub username).
-2. Make sure this repository is public and initialize it with a README.
-
-### RStudio Cloud
-
-You will use RStudio Cloud to write an RMarkdown document.
-
-### RMarkdown Document
-
-Create an RMarkdown document and save it as `index.Rmd` inside a `docs` folder.
-
-### Website Content
-
-Your website content should include sections about you, your interests, your projects, and your contact information. This is a simple template you can use:
-
-
-```{markdown}
-## About
-
-* Your background and current studies.
-* Your trajectory and past achievements.
-
-## Interests
-
-* Interest 1
-* Interest 2
-
-## Projects
-
-* Project 1
-* Project 2
-
-## Contact
-
-* Email: [youremail@email](mailto:youremail@email)
-```
-
-Let's test what you've learned so far.
-
-1. What is the name of the GitHub repository you need to create?
-
-```{r ex8, exercise=TRUE}
-# Replace this with your answer
-github_repo <- ""
-github_repo
-
-```
-
-```{r ex8-setup}
-
-```
-
-```{r ex8-solution}
-github_repo <- "username.github.io"
-github_repo
-```
-
-```{r ex8-check}
-grade_code()
-```
-
-
-2. In which folder do you need to save your index.Rmd document?
-
-```{r ex9, exercise=TRUE}
-# Replace this with your answer
-folder <- ""
-folder
-
-```
-
-```{r ex9-setup}
-
-```
-
-```{r ex9-solution}
-folder <- "docs"
-folder
-
-```
-
-```{r ex9-check}
-grade_code()
-```
-
-
-### Website Tabs
-
-```{r ex10, echo=FALSE}
-quiz(
-question("What is the purpose of changing the 'weight' in each tab of your website?",
-  answer("To change the color of the tabs."),
-  answer("To change the order in which the tabs appear on your website.", correct = TRUE),
-  answer("To change the size of the tabs."),
-  answer("To hide the tabs from the website.")
-)
-)
-```
-
-### Website Appearance
-
-Let's talk about improving the overall appearance of your website. Widgets are a key aspect of your website's appearance.
-
-```{r ex11, echo=FALSE}
-quiz(
-question("How do you remove a widget from your website?",
-  answer("By setting active = true in the corresponding .md file."),
-  answer("By deleting the corresponding .md file."),
-  answer("By setting active = false in the corresponding .md file.", correct = TRUE),
-  answer("By changing the weight of the widget in the corresponding .md file.")
-)
-)
-```
-
-### Skills
-
-The skills section of your website is where you highlight your job-pertinent skills.
-
-### Removing Content
-To make your website more focused, you can turn off some sections from your website. This won't delete the content, and you can turn them back on anytime you want.
-
-### Posts
-The posts section of your website is where you can write blog posts and include them.
-
-### Projects
-You can also include information on the projects you've worked on in the projects section of your website.
-
-### Website Tailoring
-You can change the order in which different sections appear on your website by editing the 'weight' argument.
-
-### Deployment
-Finally, you need to deploy your website. We will guide you through the process of deploying your website using GitHub Pages.
-
-```{r ex12, echo=FALSE}
-quiz(
-question("Which files do you need to deploy your website?",
-  answer("Only the contents of /cloud/projects/public", correct = TRUE),
-  answer("All the files in your project."),
-  answer("Only the hidden files in your project."),
-  answer("Only the .md files in your project.")
-)
-)
-```
-
-
-
-
-
 
 
 
