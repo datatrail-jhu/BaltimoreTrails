@@ -52,26 +52,7 @@ Before we dive into the principles of tidy data, let's review some basic data te
 
 Now that we've covered the basics of tidy data, let's dive into some interactive questions to reinforce your understanding.
 
-#### Question 1: Tidy Data Principles
 
-Match the following principles of tidy data with their correct descriptions:
-
-```{r ex1, echo=FALSE}
-quiz(
-  question("Which principle of tidy data states that each variable you measure should be in one column?",
-    answer("Principle #1"),
-    answer("Principle #2", correct = TRUE),
-    answer("Principle #3"),
-    answer("Principle #4")
-  ),
-  question("Which principle of tidy data states that there should be one spreadsheet for each 'type' of data?",
-    answer("Principle #1"),
-    answer("Principle #2"),
-    answer("Principle #3", correct = TRUE),
-    answer("Principle #4")
-  )
-)
-```
 
 #### Common Problems with Messy Data Sets
 
@@ -81,42 +62,12 @@ quiz(
 4. Multiple "types" of data are in the same spreadsheet.
 5. A single observation is stored across multiple spreadsheets.
 
-#### Question 2: Identifying Messy Data Issues
-
-```{r ex2, echo=FALSE}
-quiz(
-  question("Which common problem with messy data sets is described as: 'A single column has multiple variables'?",
-    answer("Problem #1"),
-    answer("Problem #2", correct = TRUE),
-    answer("Problem #3"),
-    answer("Problem #4")
-  ),
-  question("Which common problem with messy data sets is described as: 'Multiple types of data are in the same spreadsheet'?",
-    answer("Problem #1"),
-    answer("Problem #2"),
-    answer("Problem #3"),
-    answer("Problem #4", correct = TRUE)
-  )
-)
-```
 
 
 #### Tidying Untidy Data
 
 Depending on the issue with the messy data, you may need to filter, transform, modify variables, aggregate data, or sort observations. R provides functions to perform these actions, making it easier to tidy your data and get it ready for analysis.
 
-#### Question 3: Tidying Data Actions
-
-```{r ex3, echo=FALSE}
-quiz(
-  question("Which action can be taken on a dataset to tidy the data?",
-    answer("Filtering", correct = TRUE),
-    answer("Transforming", correct = TRUE),
-    answer("Modifying variables", correct = TRUE),
-    answer("All of the above", correct = TRUE)
-  )
-)
-```
 
 This interactive tutorial has covered the importance of tidy data
 
@@ -387,14 +338,6 @@ conservation %>%
   separate(conservation_abbreviation, into = c("abbreviation", "description"), sep = " = ")
 ```
 
-```{r ex7, echo=FALSE}
-question("What is the purpose of the `mutate()` function in R?",
-  answer("To create new columns in a data frame.", correct = TRUE),
-  answer("To separate columns containing multiple pieces of information."),
-  answer("To merge separate columns into a single column."),
-  answer("To clean up column names in a data frame.")
-)
-```
 
 #### Merging Columns
 

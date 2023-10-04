@@ -1365,23 +1365,8 @@ Welcome to this interactive tutorial on R packages! In this tutorial, you'll lea
 
 R packages are collections of functions, data, and code that extend the functionality of the base R system. They are developed and published by the R community, and there are currently over 17,600 available packages. These packages are stored in repositories, which are central locations where you can download and install packages. Some popular repositories for R packages include CRAN, BioConductor, and GitHub.
 
-```{r ex46, echo=FALSE}
-quiz(
-  question("What is an R package?",
-    answer("A collection of functions, data, and code that extends R's functionality", correct = TRUE),
-    answer("A programming language"),
-    answer("A type of data visualization"),
-    answer("A library")
-  ),
-  question("Which of the following is a popular repository for R packages?",
-    answer("CRAN", correct = TRUE),
-    answer("GitLab"),
-    answer("Bitbucket"),
-    answer("Google Drive")
-  )
-)
 
-```
+
 
 ### Finding the right package
 
@@ -1438,32 +1423,6 @@ library(devtools)
 install_github("myusername/mypackage")
 ```
 
-```{r ex48, echo=FALSE}
-quiz(
-  question(
-    "Which function is used to install packages from CRAN?",
-    answer("install.packages()", correct = TRUE),
-    answer("install_github()"),
-    answer("BiocManager::install()"),
-    answer("library()")
-  ),
-  question(
-    "Which package should you install to use functions for installing packages from BioConductor?",
-    answer("devtools"),
-    answer("BiocManager", correct = TRUE),
-    answer("ggplot2"),
-    answer("GitHub")
-  ),
-  question(
-    "Which package should you install to use functions for installing packages from GitHub?",
-    answer("devtools", correct = TRUE),
-    answer("BiocManager"),
-    answer("ggplot2"),
-    answer("BioConductor")
-  )
-)
-
-```
 
 ### Loading Packages
 
@@ -1484,22 +1443,6 @@ readr::write_csv(iris, "iris.csv")
 
 Now, let's try an exercise to test your understanding of loading packages.
 
-```{r ex49, echo=FALSE}
-quiz(
-  question("Which function should you use to load a package?",
-    answer("install.packages()"),
-    answer("library()", correct = TRUE),
-    answer("load()"),
-    answer("::")
-  ),
-  question("How can you call a function from a package without loading the entire package?",
-    answer("install.packages()"),
-    answer("library()"),
-    answer("load()"),
-    answer("::", correct = TRUE)
-  )
-)
-```
 
 ### Dependencies and Updating Packages
 
@@ -1611,20 +1554,7 @@ If prompted to install required packages, click "Yes" to install them.
 
 You'll then see a window where you can enter the document title and your name as the author. Click "OK" to create the document.
 
-```{r ex52, echo=FALSE}
-quiz(
-  question("What is the main advantage of using R Markdown?",
-    answer("Reproducibility"),
-    answer("Ease of use", correct = TRUE),
-    answer("Speed of execution")
-  ),
-  question("Which file extension is used for R Markdown documents?",
-    answer(".R"),
-    answer(".md"),
-    answer(".Rmd", correct = TRUE)
-  )
-)
-```
+
 
 #### The Structure of an R Markdown Document
 
@@ -1639,21 +1569,6 @@ To see the final output of your R Markdown document, you can "Knit" it.
 ### Knitting R Markdown Documents
 
 "Knitting" an R Markdown document means rendering the plain text and code into the final output format. To knit a document, click the "Knit" button at the top of the RStudio source panel.
-
-```{r ex53, echo=FALSE}
-quiz(
-  question("What does 'Knitting' an R Markdown document mean?",
-    answer("Compiling the document"),
-    answer("Combining text, code, and output in the final format", correct = TRUE),
-    answer("Saving the document")
-  ),
-  question("How can you knit an R Markdown document in RStudio?",
-    answer("Click the 'Knit' button at the top of the source panel", correct = TRUE),
-    answer("Press Ctrl + K"),
-    answer("Use the knit() function in the console")
-  )
-)
-```
 
 
 ### Creating Headers
@@ -1770,16 +1685,6 @@ df_csv <- read_csv("sample_data.csv")
 
 What is the height of the second person in the dataset?
 
-```{r ex57, echo=FALSE}
-quiz(
-  question("What is the height of the second person in the dataset?",
-    answer("170"),
-    answer("185", correct = TRUE),
-    answer("175"),
-    answer("None of the above")
-  )
-)
-```
 
 ### Excel Files
 
@@ -2004,16 +1909,6 @@ Data can be classified into two main categories: public and private. Public data
 
 Which of the following is an example of public data?
 
-```{r ex61, echo=FALSE}
-quiz(
-  question("Which of the following is an example of public data?",
-    answer("Customer data from a subscription-based company"),
-    answer("Confidential patient records from a hospital"),
-    answer("Traffic data from a city's transport department", correct = TRUE),
-    answer("Sales data of a private retail store")
-  )
-)
-```
 
 ### Publicly Available Data
 
@@ -2157,24 +2052,7 @@ During data analysis, ensure that you understand the data you're working with, i
 
 If your analysis results in an algorithm or model that continues to be used, you should maintain and update it. Check for biases and update your algorithm if needed.
 
-#### Quiz 1: Ethical Considerations in Data Science
 
-```{r ex65, echo=FALSE}
-quiz(
-  question("Which of the following is NOT an ethical consideration during data collection?",
-    answer("Avoiding sampling bias"),
-    answer("Ensuring informed consent"),
-    answer("Ignoring privacy concerns", correct = TRUE),
-    answer("Providing an option to withdraw consent")
-  ),
-  question("Why is it important to consider the composition of a data science team?",
-    answer("To reduce the workload"),
-    answer("To include diverse perspectives and expertise, reducing biases and improving accuracy", correct = TRUE),
-    answer("To make the team look good"),
-    answer("None of the above")
-  )
-)
-```
 
 #### Interactive Exercise: Identifying Biases
 
@@ -2204,15 +2082,7 @@ Imagine you are tasked with analyzing the income distribution of individuals in 
 Given the dataset provided, how can you ensure that your analysis is ethical and doesn't perpetuate any biases or discrimination? Select all that apply.
 
 ```{r ex67, echo=FALSE}
-quiz(
-  question("Given the dataset provided, how can you ensure that your analysis is ethical and doesn't perpetuate any biases or discrimination? Select all that apply.",
-                 answer("Remove any biased data points from the dataset."),
-                 answer("Check for sampling bias and ensure the dataset is representative of the population.", correct = TRUE),
-                 answer("Use only income and education level in your analysis, as they are the most relevant variables."),
-                 answer("Assess the potential consequences of your analysis, including any unintended negative impacts.", correct = TRUE),
-  allow_retry = TRUE,
-  incorrect = "Try again. Consider the ethical implications of using different variables in your analysis and the importance of understanding the dataset."
-))
+
 ```
 
 ### AI in Military
@@ -2232,16 +2102,6 @@ Concerns about facial recognition technology include:
 3. The potential for biased outcomes based on gender and race.
 
 ```{r ex68, echo=FALSE}
-quiz(
-  question("What was the primary goal of Project Maven?", 
-    answer("To use AI for object identification and tracking in drone footage", correct = TRUE),
-    answer("To improve drone flight efficiency"),
-    answer("To increase the accuracy of facial recognition technology")),
-  question("What are some concerns regarding the use of facial recognition technology in law enforcement?", 
-    answer("It may lead to the identification of innocent individuals", correct = TRUE),
-    answer("It may improve the efficiency of criminal investigations"),
-    answer("It may help locate missing persons"))
-)
 
 ```
 
@@ -2260,14 +2120,7 @@ Data privacy becomes a concern when personally identifiable information (PII) or
 Select all the examples of PII from the list below.
 
 ```{r ex69, echo=FALSE}
-quiz(
-  question("Select all the examples of PII from the list below.",
-    answer("First and last name", correct = TRUE),
-    answer("Favorite color"),
-    answer("Email address", correct = TRUE),
-    answer("Social media username", correct = TRUE)
-  )
-)
+
 ```
 
 ### Encryption
@@ -2289,14 +2142,7 @@ Open Science aims to make scientific studies as transparent as possible, providi
 Data breaches occur when unauthorized individuals gain access to sensitive data. To better understand data privacy, we should learn from past mistakes made by various companies in handling data securely.
 
 ```{r ex70, echo=FALSE}
-quiz(
-  question("Which of the following is NOT a consequence of a data breach?",
-    answer("Loss of customer trust"),
-    answer("Legal ramifications"),
-    answer("Increased data security", correct = TRUE),
-    answer("Damage to a company's reputation")
-  )
-)
+
 ```
 
 
@@ -2339,14 +2185,7 @@ A spreadsheet is a type of document with rows and columns that form a grid. Each
 Now, let's test your understanding with a question:
 
 ```{r ex71, echo=FALSE}
-quiz(
-  question("Which of the following is a column header in our 'leanpub_data' Google Sheet?",
-    answer("author"),
-    answer("title", correct = TRUE),
-    answer("publisher"),
-    answer("category")
-  )
-)
+
 ```
 
 #### Collecting data
@@ -2381,14 +2220,7 @@ Lastly, make the sheet accessible to anyone with the link:
 Now, let's test your understanding with a final question:
 
 ```{r ex72, echo=FALSE}
-quiz(
-  question("Which step is required to make your Google Sheet accessible to anyone with the link?", 
-                 answer("Click on 'Share' and then 'Get shareable link'", correct = TRUE),
-                 answer("Email the spreadsheet to the desired recipients"),
-                 answer("Save the spreadsheet as a PDF"),
-                 answer("Copy and paste the spreadsheet content into a new document")
-           )
-)
+
 ```
 
 Congratulations! You've completed this interactive tutorial on using Google Sheets for data collection in a data science context. You've learned how to set up a new sheet, enter data, publish it to the web, and share it with others. Keep practicing and building your data science skills with more tutorials and hands-on projects. Good luck!
