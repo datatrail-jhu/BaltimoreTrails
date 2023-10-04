@@ -56,26 +56,7 @@ Share your projects, interesting findings, or great visualizations. Include pict
 Don't hesitate to share others' work. This is a great way to build your network and also keep a record of interesting content. Always cite the individual and link to their work.
 
 ```{r ex1, echo=FALSE}
-quiz(
-  question("What are good practices for tweeting?",
-    answer("Keep it positive", correct = TRUE),
-    answer("Avoid fights", correct = TRUE),
-    answer("Promote your work", correct = TRUE),
-    answer("Promote others' work", correct = TRUE)
-  ),
-  question("What should your Twitter profile include?",
-    answer("Photo", correct = TRUE),
-    answer("Short bio", correct = TRUE),
-    answer("Website URL", correct = TRUE),
-    answer("Phone number", correct = FALSE)
-  ),
-    question("What can you add to your tweets?",
-    answer("Emojis", correct = TRUE),
-    answer("Photos", correct = TRUE),
-    answer("Polls", correct = TRUE),
-    answer("Your social security number", correct = FALSE)
-  )
-)
+
 
 ```
 
@@ -126,20 +107,7 @@ Job descriptions for data scientist roles will generally consist of:
 
 
 ```{r ex2, echo=FALSE}
-quiz(
-  question("Which programming languages are commonly used in data science?",
-    answer("R", correct = TRUE),
-    answer("Python", correct = TRUE),
-    answer("SQL", correct = TRUE),
-    answer("Swift", correct = FALSE)
-  ),
-  question("What employee traits are desirable for a data scientist role?",
-    answer("Adaptability", correct = TRUE),
-    answer("Dependability", correct = TRUE),
-    answer("Resistance to change", correct = FALSE),
-    answer("Lack of curiosity", correct = FALSE)
-  )
-)
+
 
 ```
 
@@ -152,14 +120,7 @@ Data scientists in this role should be capable of generating hypotheses, conduct
 * Business skills: Strong written and verbal communication skills.
 
 ```{r ex3, echo=FALSE}
-quiz(
-  question("What is the main role of a Data Scientist in the Inference track at Airbnb?", 
-           answer("Generating hypotheses, conducting experiments, and refining strategies.", correct = TRUE),
-           answer("Strong written and verbal communication skills.")),
-  question("What are some of the business skills expected from a data scientist at Airbnb?", 
-           answer("Strong written and verbal communication skills.", correct = TRUE)),
-           answer("Generating hypotheses, conducting experiments, and refining strategies.")
-)
+
 
 
 ```
@@ -173,18 +134,7 @@ This role entails using data for decision-making on various aspects like promoti
 * Business skills: Able to communicate findings via reports understandable by partners and business users.
 
 ```{r ex4, echo=FALSE}
-quiz(
-  question(
-    "What are the responsibilities of a Junior Data Scientist at Claire's?",
-    answer("Using data for decision-making on promotions, space planning, competitive landscape, and ad hoc analyses.", correct = TRUE),
-    answer("Able to communicate findings via reports understandable by partners and business users.")
-  ),
-  question(
-    "What is a critical business skill for this role at Claire's?",
-    answer("Able to communicate findings via reports understandable by partners and business users.", correct = TRUE),
-    answer("Using data for decision-making on promotions, space planning, competitive landscape, and ad hoc analyses.")
-  )
-)
+
 ```
 
 ### Data Scientist Role at Allstate
@@ -196,14 +146,7 @@ In the insurance field, a data scientist could make a significant impact.
 * __Business skills__: Able to communicate data-centric information effectively, both written and oral, and present well to others.
 
 ```{r ex5, echo=FALSE}
-quiz(
-  question("What technical skills are expected from a Data Scientist at Allstate?", 
-           answer("Statistical and machine learning knowledge and experience, programming skills, and the ability to work with large datasets.", correct = TRUE),
-           answer("Willing to teach others, be flexible in learning new technologies, and be dependable.")),
-  question("What is an important work principle for a Data Scientist at Allstate?", 
-           answer("Willing to teach others, be flexible in learning new technologies, and be dependable.",correct = TRUE),
-           answer("Statistical and machine learning knowledge and experience, programming skills, and the ability to work with large datasets."))
-)
+
 
 ```
 
@@ -220,18 +163,7 @@ Now you're ready to dive into the job market, but where do you begin your search
 Job descriptions in data science vary widely, and not all positions will be suitable given your current skillset. It's important to look for positions that align with your current abilities and knowledge, while also offering the opportunity to learn and grow. Roles like "data analyst", "junior data scientist", or "entry level data scientist" may be good starting points.
 
 ```{r ex6, echo=FALSE}
-quiz(
-  question("What types of roles could be suitable for someone with foundational data science skills?",
-    answer("Senior Data Scientist", correct = FALSE),
-    answer("Machine Learning Engineer", correct = FALSE),
-    answer("Junior Data Scientist", correct = TRUE),
-    answer("Data Analyst", correct = TRUE)
-  ),
-  question("Is it necessary to meet every single qualification listed in a job posting to apply for it?",
-    answer("Yes", correct = FALSE),
-    answer("No", correct = TRUE)
-  )
-)
+
 
 ```
 
@@ -240,20 +172,7 @@ You can find data science jobs on various platforms, some of the popular ones in
 
 
 ```{r ex7, echo=FALSE}
-quiz(
-  question("Which of the following platforms can be used to find data science jobs?",
-    answer("LinkedIn", correct = TRUE),
-    answer("Monster", correct = TRUE),
-    answer("Twitter", correct = TRUE),
-    answer("Snapchat", correct = FALSE)
-  ),
-  question("You are interested in working for a specific company, where should you look for their job postings?",
-    answer("Their official website", correct = TRUE),
-    answer("Any random job board", correct = FALSE),
-    answer("Only on LinkedIn", correct = FALSE),
-    answer("Only on StackOverflow Jobs", correct = FALSE)
-  )
-)
+
 ```
 
 #### Applying for Jobs
@@ -261,20 +180,6 @@ After identifying potential jobs, the next step is to apply. Generally, you'll n
 
 
 ```{r ex8, echo=FALSE}
-quiz(
-  question("What materials are typically required when applying for a job?",
-    answer("Contact Information", correct = TRUE),
-    answer("Resume", correct = TRUE),
-    answer("Cover Letter", correct = TRUE),
-    answer("A Photo of Your Pet", correct = FALSE)
-  ),
-  question("What should you do before submitting your application?",
-    answer("Double-check and proofread all the information", correct = TRUE),
-    answer("Share it on social media", correct = FALSE),
-    answer("Send it to a random email", correct = FALSE),
-    answer("Print it out", correct = FALSE)
-  )
-)
 
 ```
 
@@ -290,20 +195,7 @@ The landscape of employment has been gradually evolving, with an increasing numb
 Remote jobs can be posted on various platforms. Look for phrases like "remote work possible" or "location: anywhere" in the job description. Many job platforms have filters for remote work, which you can use to find such opportunities.
 
 ```{r ex9, echo=FALSE}
-quiz(
-  question("What phrases in a job posting might indicate that it is a remote position?", 
-           answer("Location: Anywhere", correct = TRUE),
-           answer("On-site only"),
-           answer("Location: Specific City"),
-           answer("Remote work possible", correct = TRUE)
-  ),
-  question("What should you do to find remote job postings on a job platform?", 
-           answer("Check the 'remote' filter or option", correct = TRUE),
-           answer("Look at every job posting one by one"),
-           answer("Ask the website support"),
-           answer("Just hope you find one")
-  )
-)
+
 ```
 
 ### Dedicated Remote Job Platforms
@@ -311,20 +203,6 @@ quiz(
 There are job platforms dedicated to hosting remote work positions. A notable example is RemoteOK, which hosts job postings for remote work exclusively. You can find remote data science jobs on this platform at https://remoteok.io/remote-data-science-jobs.
 
 ```{r ex10, echo=FALSE}
-quiz(
-  question("What is the benefit of using a platform like RemoteOK?", 
-           answer("You can find jobs in a specific city"),
-           answer("All job postings are for remote positions", correct = TRUE),
-           answer("You can find on-site job postings"),
-           answer("You can find jobs in the tech hubs")
-  ),
-  question("What is the URL to find remote data science jobs on RemoteOK?", 
-           answer("https://remoteok.io/remote-data-science-jobs", correct = TRUE),
-           answer("https://remoteok.io/data-science-jobs"),
-           answer("https://data-science-jobs.remoteok.io"),
-           answer("https://remoteok.io")
-  )
-)
 
 ```
 
@@ -344,18 +222,7 @@ Remember, the initial phone calls are part of the interview process. Prepare for
 
 
 ```{r ex11, echo=FALSE}
-quiz(
-  question("What is the purpose of pre-interview phone calls?",
-    answer("To gauge your interest in the position", correct = TRUE),
-    answer("To offer you the job"),
-    answer("To discuss the salary")
-  ),
-  question("What should you do before the phone call?",
-    answer("Prepare questions to ask", correct = TRUE),
-    answer("Nothing, it's just a casual chat"),
-    answer("Ask for the job")
-  )
-)
+
 
 ```
 
@@ -364,18 +231,7 @@ There's no surefire way to predict the questions, but you can prepare for genera
 
 
 ```{r ex12, echo=FALSE}
-quiz(
-  question("What are the two general types of interview questions?",
-    answer("Personality and technical questions", correct = TRUE),
-    answer("Salary and location questions"),
-    answer("Education and experience questions")
-  ),
-  question("How should you prepare for these questions?",
-    answer("By thinking about them"),
-    answer("By writing the answers down"),
-    answer("By practicing out loud and coding", correct = TRUE)
-  )
-)
+
 
 ```
 
@@ -383,18 +239,7 @@ quiz(
 The interview day is a two-way street. It's as much about you learning about them as it is them learning about you. Dress professionally and comfortably, and ask insightful questions about the position and the company.
 
 ```{r ex13, echo=FALSE}
-quiz(
-  question("What is the goal on the day of the interview?",
-    answer("To learn as much about them as they're learning about you", correct = TRUE),
-    answer("To secure a job offer"),
-    answer("To discuss the salary")
-  ),
-  question("How should you dress for the interview?",
-    answer("Wear a suit"),
-    answer("Wear jeans"),
-    answer("Dress professionally and comfortably", correct = TRUE)
-  )
-)
+
 
 ```
 
@@ -405,14 +250,6 @@ In a one-on-one interview, the interviewer will explain the company and the posi
 Technical assessments are integral to data science interviews. This could involve live-coding, where you code in real time, or a take-home analysis. Both formats give you an opportunity to showcase your technical skills.
 
 ```{r ex14, echo=FALSE}
-quiz(
-  question("What are the two formats of technical assessments in data science interviews?",
-    answer("Live-coding and take-home analysis", correct = TRUE),
-    answer("Oral and written presentation"),
-    answer("One-on-one and group interviews"),
-    answer("Background check and reference check")
-  )
-)
 
 ```
 
@@ -423,14 +260,7 @@ Effective communication, both written and oral, is crucial in data science. In s
 Post-interview period is a time for self-reflection. Evaluate if you really want the job, if it's a good fit, and if you're excited about the company and the role.
 
 ```{r ex15, echo=FALSE}
-quiz(
-  question("What should you evaluate during the post-interview period?",
-    answer("The company's financial status"),
-    answer("If you want the job, if it's a good fit, and your excitement about the company and role", correct = TRUE),
-    answer("The interviewer's personality"),
-    answer("The company's social media presence")
-  )
-)
+
 
 ```
 
@@ -442,14 +272,6 @@ If you receive a job offer, always ask for the full offer in writing and take ti
 Navigating data science interviews can be challenging, but with the right preparation and mindset, you can significantly improve your chances of landing the job.
 
 ```{r ex16, echo=FALSE}
-quiz(
-  question("What should you do if you receive a job offer?",
-    answer("Accept immediately"),
-    answer("Reject if it's not what you expected"),
-    answer("Ask for the full offer in writing and take time to review it", correct = TRUE),
-    answer("Start preparing for the job right away")
-  )
-)
 
 ```
 
@@ -461,14 +283,7 @@ Data science meetups are an excellent platform to connect with professionals in 
 You can find data science meetups on Meetup.com, specifically at https://www.meetup.com/topics/data-science/. After creating an account, the site will suggest groups that you might be interested in.
 
 ```{r ex17, echo=FALSE}
-quiz(
-  question("Where can you find data science meetups?",
-    answer("Job fairs"),
-    answer("Meetup.com", correct = TRUE),
-    answer("LinkedIn"),
-    answer("Facebook")
-  )
-)
+
 
 ```
 
@@ -479,14 +294,6 @@ At a typical meetup, you can expect networking sessions and presentations. It's 
 While meetups might not be the best place to directly find jobs, they are great for building a network. If you're looking for a job, it's good to mention it in your conversations. You never know who might have a lead or know about an opening!
 
 ```{r ex18, echo=FALSE}
-quiz(
-  question("Why are data science meetups important?",
-    answer("They provide free food"),
-    answer("They are great for building a network", correct = TRUE),
-    answer("They guarantee job offers"),
-    answer("They are mandatory for data scientists")
-  )
-)
 
 
 ```
@@ -495,14 +302,6 @@ quiz(
 Attending meetups is a fantastic way to network, learn new things, and potentially find job opportunities. Check out the meetups in your area and start connecting with people!
 
 ```{r ex19, echo=FALSE}
-quiz(
-  question("What should you do if you're looking for a job and attending a meetup?",
-    answer("Avoid mentioning that you're looking for a job"),
-    answer("Mention it in your conversations", correct = TRUE),
-    answer("Interrupt presentations to announce your job search"),
-    answer("Only talk about your job search")
-  )
-)
 
 ```
 
@@ -515,14 +314,8 @@ In this tutorial, we guide you through the process of setting up a portfolio web
 Firstly, create a new GitHub repository to host your projects. Follow the instructions provided in the 'Creating a repository' section of this course.
 
 ```{r ex20, echo=FALSE}
-quiz(
-  question("What is the first step to create your portfolio?",
-    answer("Buy a domain"),
-    answer("Create a new GitHub repository", correct = TRUE),
-    answer("Upload your projects on social media"),
-    answer("Take a nap")
-  )
-)
+
+  
 ```
 
 ### Setting Up Your Projects on GitHub
@@ -535,28 +328,14 @@ Enable GitHub Pages for your repository to make your projects viewable online. Y
 Add a section to your website describing your data science projects. Make sure to include links to all your projects using the correct URL format and R Markdown syntax.
 
 ```{r ex21, echo=FALSE}
-quiz(
-  question("How to make your projects viewable online?",
-    answer("Print them out and distribute"),
-    answer("Send them via email"),
-    answer("Enable GitHub Pages for your repository", correct = TRUE),
-    answer("Ask a friend to do it")
-  )
-)
+
+
 ```
 
 ### Summary
 Congratulations! You now know how to create a professional portfolio to showcase your data science projects. This portfolio can be easily shared with potential employers or collaborators.
 
 ```{r ex22, echo=FALSE}
-quiz(
-  question("What should you add to your website?",
-    answer("Your favorite recipes"),
-    answer("Your vacation photos"),
-    answer("A section describing your data science projects", correct = TRUE),
-    answer("Your favorite memes")
-  )
-)
 
 ```
 

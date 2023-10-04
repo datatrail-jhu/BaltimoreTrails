@@ -71,21 +71,6 @@ If a collaborator makes changes to the shared remote repository, you can incorpo
 
 ```{r ex1, echo=FALSE}
 
-quiz(
-  question("What is the purpose of `git add` command?", 
-            answer("`git add` stages files for version control, tracking changes for these files.", correct = TRUE), 
-            answer("`git add` commits the changes to the Git version history."),
-            answer("`git add` pushes the changes to the remote repository."),
-            answer("`git add` pulls changes from the remote repository.")
-  ),
-  question("What does `git pull` do?", 
-            answer("`git pull` incorporates changes from the remote repository into the local repository.", correct = TRUE),
-            answer("`git pull` stages files for version control."),
-            answer("`git pull` commits the changes to the Git version history."),
-            answer("`git pull` pushes the changes to the remote repository.")
-  )
-)
-
 ```
 
 ## Chapter 68: Organization with Issues on GitHub
@@ -106,20 +91,6 @@ Once the issue is created, you'll be directed to the issue's webpage, which incl
 
 ```{r ex2, echo=FALSE}
 
-quiz(
-  question("What is the main purpose of GitHub Issues?", 
-            answer("GitHub Issues are used for tracking tasks, assigning workers, attaching labels, and creating discussion threads within a project.", correct = TRUE), 
-            answer("GitHub Issues are used for committing changes."),
-            answer("GitHub Issues are used for pushing and pulling changes."),
-            answer("GitHub Issues are used for creating repositories.")
-  ),
-  question("What happens when a task associated with a GitHub Issue is completed?", 
-            answer("The issue can be closed to mark it as resolved.", correct = TRUE),
-            answer("The issue needs to be deleted."),
-            answer("A new issue needs to be created."),
-            answer("The issue remains unchanged.")
-  )
-)
 
 ```
 
@@ -165,20 +136,6 @@ After successfully pushing your changes, you should be able to see them on the G
 
 
 ```{r ex3, echo=FALSE}
-quiz(
-  question("What is the purpose of initializing a repository with a README file?", 
-            answer("It provides a description and overview of the project, which is displayed on the repository's main page.", correct = TRUE), 
-            answer("It initializes the repository with a .gitignore file."),
-            answer("It creates a new branch in the repository."),
-            answer("It is used for tracking changes in the repository.")
-  ),
-  question("What does the command 'git push' do?", 
-            answer("It uploads local repository content to a remote repository.", correct = TRUE),
-            answer("It downloads content from a remote repository."),
-            answer("It creates a new branch in the local repository."),
-            answer("It merges changes from different branches.")
-  )
-)
 
 ```
 
@@ -221,20 +178,7 @@ glimpse(cars)
 After saving your changes, you're ready to create a pull request.
 
 ```{r ex4, echo=FALSE}
-quiz(
-  question("What is a fork in GitHub?", 
-            answer("A copy of a repository that resides on your account.", correct = TRUE), 
-            answer("A tool for eating food."),
-            answer("A branch in the repository."),
-            answer("A way to download a repository.")
-  ),
-  question("What is a pull request in GitHub?", 
-            answer("A way to propose changes to someone else's code.", correct = TRUE),
-            answer("A way to request access to a private repository."),
-            answer("A way to clone a repository to your local system."),
-            answer("A way to download updates from a remote repository.")
-  )
-)
+
 ```
 
 
@@ -320,20 +264,7 @@ description
 ```
 
 ```{r ex6, echo=FALSE}
-quiz(
-  question("What is the purpose of a pull request in GitHub?",
-  answer("To copy a repository from another user's account."),
-  answer("To delete unnecessary files from a repository."),
-  answer("To propose changes to a repository and allow the owner to review them.", correct = TRUE),
-  answer("To merge two unrelated repositories.")
-),
-  question("What steps do you need to take to submit a pull request on GitHub?",
-  answer("Copy the repository, edit the files, and submit."),
-  answer("Fork the repository, clone it, make changes, add and commit changes, push to your fork, and submit a pull request.", correct = TRUE),
-  answer("Fork the repository, delete unnecessary files, and submit a pull request."),
-  answer("Clone the repository, make changes, and directly push to the original repository.")
-)
-)
+
 ```
 
 ## Chapter 71: Version Control Help
@@ -433,21 +364,7 @@ grade_code()
 
 
 ```{r ex10, echo=FALSE}
-quiz(
-question("What should you do when you encounter a Git error?",
-  answer("Ignore it and hope it goes away."),
-  answer("Search for the error message on Google.", correct = TRUE),
-  answer("Delete your entire repository."),
-  answer("Restart your computer.")
-),
-  question("What is 'burning it down' in the context of Git?",
-  answer("Deleting your GitHub account."),
-  answer("Reporting a bug to GitHub."),
-  answer("Setting your computer on fire."),
-  answer("Starting fresh with a new clone of your repository when things get too tangled.", correct = TRUE)
-)
 
-)
 ```
 
 
@@ -488,23 +405,7 @@ Meetings come in many forms and sizes, from project planning sessions with team 
 
 
 ```{r ex11, echo=FALSE}
-quiz(
-question("What does 'opinionated' software mean?",
-  answer("Software that has many bugs"),
-  answer("Software that is difficult to use"),
-  answer("Software that enforces a certain way of doing things", correct = TRUE),
-  answer("Software that is poorly designed")
-),
 
-question("Which of the following is NOT a typical form of data science communication?",
-  answer("Reports"),
-  answer("Presentations"),
-  answer("Blog Posts"),
-  answer("Telepathy", correct = TRUE)
-)
-
-
-)
 ```
 
 
@@ -542,14 +443,6 @@ question_rank(
 Choosing a suitable title is crucial. Let's see how well you've understood this concept. Which of the following titles is better for a data science report?
 
 ```{r ex13, echo=FALSE}
-quiz(
-  question("Which of the following titles is better for a data science report?",
-    answer("Genome Data Analysis", correct = FALSE),
-    answer("Utilizing Genomic Data for Disease Prediction", correct = TRUE),
-    answer("Analysis", correct = FALSE),
-    answer("Public Genomic Data", correct = FALSE)
-  )
-)
 
 ```
 
@@ -662,20 +555,7 @@ Creating a presentation involves:
 
 
 ```{r ex16, echo=FALSE}
-quiz(
-  question("What is Google Slides?",
-    answer("A word processor", correct = FALSE),
-    answer("A web-based slide presentation editor", correct = TRUE),
-    answer("A spreadsheet tool", correct = FALSE),
-    answer("A graphic design tool", correct = FALSE)
-  ),
-  question("What are some of the best practices for creating a slide presentation?",
-    answer("Use a lot of text", correct = FALSE),
-    answer("Use images over words whenever possible", correct = TRUE),
-    answer("Use small text and images", correct = FALSE),
-    answer("Change text font and color throughout the presentation", correct = FALSE)
-  )
-)
+
 ```
 
 ### Advanced Formatting Options
@@ -704,20 +584,7 @@ Once your slideshow is ready, click on "Present" in the top-right corner to star
 Google Slides automatically saves your presentations to your account. You can download your presentations in different formats and share them directly from Google Slides.
 
 ```{r ex17, echo=FALSE}
-quiz(
-  question("What can the 'Theme' option in Google Slides be used for?",
-    answer("Changing the font of text", correct = FALSE),
-    answer("Changing the background color of a slide", correct = FALSE),
-    answer("Applying a consistent style across the presentation", correct = TRUE),
-    answer("Rearranging the slides", correct = FALSE)
-  ),
-  question("How can you rearrange the order of slides in Google Slides?",
-    answer("By using the 'Rearrange' option in the top menu", correct = FALSE),
-    answer("By dragging and dropping them in the left-hand panel", correct = TRUE),
-    answer("By changing their order in the 'Slides' menu", correct = FALSE),
-    answer("By right-clicking on a slide and choosing 'Move'", correct = FALSE)
-  )
-)
+
 ```
 
 ## Chapter 75: How to Give a Presentation
@@ -728,14 +595,6 @@ When it comes to presenting your work, you want to inspire, educate, and enterta
 Before you start creating your presentation, you need to understand your audience. Tailoring your presentation to their needs and interests will make it more engaging and effective.
 
 ```{r ex18, echo=FALSE}
-quiz(
-  question("What is the primary reason for understanding your audience before creating a presentation?",
-    answer("To make the presentation more engaging and effective.", correct = TRUE),
-    answer("To decide how many slides to use."),
-    answer("To determine the length of the presentation."),
-    answer("To choose the presentation software.")
-  )
-)
 
 ```
 
@@ -758,12 +617,6 @@ When it's time to present, remember to:
 
 
 ```{r ex19, echo=FALSE}
-question("What are some tips for presenting your work effectively?",
-  answer("Speak quickly and quietly."),
-  answer("Show excitement and passion, use pauses effectively, be yourself.", correct = TRUE),
-  answer("Read directly from the slides."),
-  answer("Avoid using visuals or graphics.")
-)
 
 ```
 
@@ -774,12 +627,7 @@ Remember, it's always better to be over-prepared than under-prepared, especially
 
 
 ```{r ex20, echo=FALSE}
-question("Why is practicing your presentation important?",
-  answer("It helps you become more confident and ensure that you stay within your allotted time.", correct = TRUE),
-  answer("It helps you create more slides."),
-  answer("It helps you choose the best presentation software."),
-  answer("It's not important to practice your presentation.")
-)
+
 
 
 ```
@@ -797,16 +645,6 @@ After your presentation, there's typically a Q&A session. This can be daunting, 
 
 
 ```{r ex21, echo=FALSE}
-quiz(
-  question("What should you do if you don't know an answer to a question?",
-    answer("Make up an answer", correct = FALSE),
-    answer("Say 'I don't know'", correct = TRUE)
-  ),
-  question("Is it okay to pause and think before responding?",
-    answer("No", correct = FALSE),
-    answer("Yes", correct = TRUE)
-  )
-)
 
 ```
 
@@ -826,12 +664,7 @@ Julia's presentation had three main parts:
 
 
 ```{r ex22, echo=FALSE}
-quiz(
-  question("What were the three main parts of Julia Silge's presentation?",
-    answer("Introduction to tidytext, Analysis of Jane Austen's novels, Analysis of NASA data", correct = TRUE),
-    answer("Introduction to ggplot2, Analysis of Jane Austen's novels, Analysis of NASA data", correct = FALSE)
-  )
-)
+
 
 ```
 
@@ -844,12 +677,6 @@ In Julia's presentation, she limits the information on each slide, ensuring her 
 Julia spoke clearly and at a reasonable pace, keeping her audience interested. She was true to her personality, and she knew her audience well. She also handled unexpected issues calmly and professionally.
 
 ```{r ex23, echo=FALSE}
-quiz(
-  question("What qualities made Julia Silge's presentation effective?",
-    answer("Clear speech, personality authenticity, audience understanding, and calmness during issues", correct = TRUE),
-    answer("Complex jargon, rushing through slides, and ignoring audience understanding", correct = FALSE)
-  )
-)
 
 ```
 
@@ -858,13 +685,6 @@ quiz(
 
 
 ```{r ex24, echo=FALSE}
-quiz(
-  question("What is the key to giving a successful presentation?",
-    answer("Ignoring your audience", correct = FALSE),
-    answer("Being mindful of your audience, creating good slides, and presenting ideas clearly", correct = TRUE)
-  )
-)
-
 
 ```
 

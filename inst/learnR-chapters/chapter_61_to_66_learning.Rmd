@@ -30,17 +30,7 @@ A __repeatable__ analysis is one that you, as the original researcher, can repea
 A __reproducible analysis__, on the other hand, is one where a different researcher, using your code and data, can repeat your analysis and achieve the same result.
 
 
-```{r ex1, echo=FALSE}
-quiz(
-  question("What is the difference between repeatable and reproducible analysis?",
-    answer("There is no difference"),
-    answer("Repeatable analysis requires different data and code, while reproducible analysis uses the same data and code"),
-    answer("Repeatable analysis can be repeated by the same researcher to achieve the same result, while reproducible analysis can be repeated by a different researcher to achieve the same result", correct = TRUE),
-    answer("Reproducible analysis can only be conducted once")
-  )
-)
 
-```
 
 ### Reproducibility in Practice
 
@@ -66,36 +56,6 @@ Readable and efficient code is easier to troubleshoot, rerun, and repurpose. Som
 
 Reproducibility is a cornerstone of any scientific discipline, including data science. It ensures the reliability and validity of your findings, fostering trust within your team and the wider scientific community. Always remember to document your work, write clear and efficient code, and perform checks to ensure your findings are repeatable and reproducible.
 
-Now let's test your understanding of reproducibility!
-
-```{r ex2, echo=FALSE}
-quiz(
-  question("Which of the following is a good practice for reproducibility?",
-    answer("Writing complex and compact code"),
-    answer("Using vague variable names"),
-    answer("Documenting your work and writing clear and efficient code", correct = TRUE),
-    answer("Keeping your work to yourself and not sharing it with others")
-  )
-)
-```
-
-### Conclusion
-
-Reproducibility is a cornerstone of any scientific discipline, including data science. It ensures the reliability and validity of your findings, fostering trust within your team and the wider scientific community. Always remember to document your work, write clear and efficient code, and perform checks to ensure your findings are repeatable and reproducible.
-
-Now let's test your understanding of reproducibility!
-
-```{r ex3, echo=FALSE}
-quiz(
-  question("Which of the following is a good practice for reproducibility?",
-    answer("Writing complex and compact code"),
-    answer("Using vague variable names"),
-    answer("Documenting your work and writing clear and efficient code", correct = TRUE),
-    answer("Keeping your work to yourself and not sharing it with others")
-  )
-)
-```
-
 
 ## Chapter 63: Version Control
 
@@ -104,17 +64,7 @@ quiz(
 
 Version control systems allow us to save our work frequently and at the same time maintain different versions of our work. Think of it like a highly sophisticated "Track Changes" feature, capable of tracking changes in many files simultaneously.
 
-```{r ex4, echo=FALSE}
-quiz(
-  question("What is a benefit of using a version control system?",
-    answer("Save frequently without having multiple copies."),
-    answer("Undo changes made to a document."),
-    answer("Collaborate with multiple users working on the same project."),
-    answer("All of the above.", correct = TRUE)
-  )
-)
 
-```
 
 
 ### Introduction to Git and GitHub
@@ -168,21 +118,6 @@ Just like any other coding practice, using version control systems like Git also
 
 3. Be aware of the version of files you are working on: Check that you are up to date with the current repo by frequently pulling. Also, don't keep your edited files to yourself - once you have committed your files (and written that helpful message!), you should push those changes to the common repository. If you are done editing a section of code and are planning on moving on to an unrelated problem, you need to share that edit with your collaborators.
 
-```{r ex6, echo=FALSE}
-quiz(
-  question("What does the term 'commit' mean in the context of version control?", 
-            answer("Saving edits and changes made to a file.", correct = TRUE),
-            answer("Creating a branch of a repository.", correct = FALSE),
-            answer("Updating the repository with your edits.", correct = FALSE),
-            answer("Pulling changes from the repository.", correct = FALSE)),
-  question("What is the purpose of writing informative commit messages?",
-            answer("To explain what changes were made and why.", correct = TRUE),
-            answer("To update the repository with your edits.", correct = FALSE),
-            answer("To create a branch of a repository.", correct = FALSE),
-            answer("To pull changes from the repository.", correct = FALSE))
-)
-```
-
 Great work! You've now got a basic understanding of version control, Git, and GitHub, and you're ready to start using these tools in your own projects. Happy coding!
 
 ## Chapter 64: GitHub
@@ -192,62 +127,23 @@ Great work! You've now got a basic understanding of version control, Git, and Gi
 
 Welcome to our GitHub tutorial! GitHub is a web-based hosting service for version control and it's where you'll store your code. It's also a fantastic resource to learn from other people's code. Let's get started by creating a GitHub account. Visit www.github.com and follow the sign-up process. Choose a meaningful username as it will be associated with all your work and contributions on GitHub. Once you've created an account, you're ready to dive into the world of GitHub!
 
-```{r ex7, echo=FALSE}
-  quiz(
-    question("What is the primary purpose of GitHub?",
-              answer("Hosting code and facilitating version control.", correct = TRUE),
-              answer("Providing a platform for online gaming.", correct = FALSE),
-              answer("Storing photos and videos.", correct = FALSE),
-              answer("Offering cloud storage for any kind of files.", correct = FALSE)
-    )
-  )
-```
+
 
 
 ### Logging in and Exploring the Homepage
 
 Next, log in to your new GitHub account. Once logged in, you'll be greeted with the homepage. This is the command center of your GitHub account. From here, you can access user settings, notifications, help files, and more. Take some time to familiarize yourself with the interface.
 
-```{r ex8, echo=FALSE}
-  quiz(
-    question("Where can you access user settings, notifications, and help files in GitHub?",
-              answer("The homepage.", correct = TRUE),
-              answer("The account settings page.", correct = FALSE),
-              answer("The profile page.", correct = FALSE),
-              answer("The repositories page.", correct = FALSE)
-    )
-  )
-```
+ 
 
 ### User Settings
 
 Now, let's explore your profile and account settings. Here, you can view your contributions and repositories, and edit your profile. It's a good idea to fill out your name, add a bio, and even upload a profile picture. Remember, your GitHub profile is like your coding resume. It represents you to the GitHub community, so make it count!"
 
-```{r ex9, echo=FALSE}
-  quiz(
-    question("What can you do in your GitHub profile settings?",
-              answer("View contributions, repositories, and edit your profile.", correct = TRUE),
-              answer("Change your username and password.", correct = FALSE),
-              answer("Create new repositories.", correct = FALSE),
-              answer("Download other people's code.", correct = FALSE)
-    )
-  )
-```
 
 ### Notifications and Help Files
 
 Lastly, let's touch on notifications and help files. The bell icon on your homepage is where you'll find notifications related to your activities and collaborations on GitHub. And if you ever need help, the 'Help' button is located at the bottom of every page. It's a great resource for any questions you might have about GitHub.
-
-```{r ex10, echo=FALSE}
-  quiz(
-    question("Where can you find the 'Help' button on GitHub?",
-              answer("At the bottom of every page.", correct = TRUE),
-              answer("At the top of the homepage."),
-              answer("In the account settings page."),
-              answer("In the profile settings page.")
-    )
-  )
-```
 
 
 ## Chapter 65: Creating a Repository
@@ -319,20 +215,5 @@ After a few seconds, the RStudio interface for your project should appear. The f
 To interact with your GitHub repository from RStudio Cloud, you need to set up your GitHub credentials. You'll need to install and load the `usethis package`, and then create a GitHub Personal Access Token (PAT). This process involves several steps and R commands, which are beyond the scope of this tutorial. However, once your PAT is set, you can enter it into RStudio Cloud to connect your local project with your GitHub account.
 
 ```{r ex11, echo=FALSE}
-quiz(
-  question("What is the first step in cloning a repository from GitHub?", 
-            answer("Navigate to the GitHub page of the repository and copy its URL", correct = TRUE), 
-            answer("Create a new project in RStudio"),
-            answer("Install and load the `usethis` package"),
-            answer("Generate a GitHub Personal Access Token (PAT)")
-  ),
-  question("What do you need to interact with your GitHub repository from RStudio Cloud?", 
-            answer("A GitHub Personal Access Token (PAT)", correct = TRUE),
-            answer("A URL starting with `git@`"),
-            answer("The `learnr` package"),
-            answer("A unique note for each PAT")
-  )
-)
 
-```
 

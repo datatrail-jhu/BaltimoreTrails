@@ -23,13 +23,7 @@ gradethis::gradethis_setup()
 A resume is a crucial document when applying for a job. It provides a concise overview of your education, skills, and experience. A well-crafted resume can make a strong impression on potential employers. Let's learn about the key elements of an effective resume.
 
 ```{r ex1, echo=FALSE}
-quiz(
-  question("Which elements are typically included in a resume? (Select all that apply)",
-         answer("Contact Information", correct = TRUE),
-         answer("Education", correct = TRUE),
-         answer("Skills", correct = TRUE),
-         answer("Experience", correct = TRUE)
-))
+
 ```
 
 ### Cover Letters
@@ -38,13 +32,8 @@ In addition to your resume, you will often be required to submit a cover letter.
 
 
 ```{r ex2, echo=FALSE}
-quiz(
-  question("What should a cover letter accomplish? (Select all that apply)",
-         answer("Express interest in the job", correct = TRUE),
-         answer("Highlight qualifications", correct = TRUE),
-         answer("Explain job history in detail")
-)
-)
+
+
 ```
 
 Well done! A cover letter should express your interest and highlight your qualifications, but it should not go into extensive detail about your job history.
@@ -56,13 +45,7 @@ Well done! A cover letter should express your interest and highlight your qualif
 Having a personal website is a powerful way to showcase your work and enhance your online presence. It allows potential employers to learn more about you and your projects. Let's learn how to set up a personal website using GitHub.
 
 ```{r ex3, echo=FALSE}
-quiz(
-  question("What are the benefits of having a personal website? (Select all that apply)",
-         answer("Showcase your projects", correct = TRUE),
-         answer("Provide additional information beyond the resume", correct = TRUE),
-         answer("Demonstrate your technical skills", correct = TRUE)
-)
-)
+
 ```
 
 
@@ -71,13 +54,7 @@ quiz(
 In addition to a personal website, maintaining an active and professional presence on social media platforms is essential. LinkedIn, GitHub, and Twitter are particularly important for data scientists. Let's explore why each platform is valuable.
 
 ```{r ex4, echo=FALSE}
-quiz(
-  question("What are the benefits of maintaining an active presence on social media platforms as a data scientist? (Select all that apply)",
-         answer("Showcase your work and collaborations", correct = TRUE),
-         answer("Expand your professional network", correct = TRUE),
-         answer("Share knowledge and learn from others", correct = TRUE),
-         answer("Increase visibility in the industry", correct = TRUE))
-)
+
 ```
 
 Terrific! GitHub allows you to showcase your work and collaborations, LinkedIn provides a detailed professional profile, and Twitter is a great platform for sharing work and supporting others in the data science community.
@@ -129,22 +106,7 @@ Sharing Your Resume:
 - Make necessary edits and re-save until your resume is flawless.
 
 ```{r ex5, echo=FALSE}
-quiz(
-      question(
-        "What are the key features of a good data science resume?",
-        answer("Concise and well-formatted", correct=TRUE),
-        answer("Arranged in reverse chronological order", correct=TRUE),
-        answer("Truthful and accurate information", correct=TRUE),
-        answer("All of the above", correct=TRUE)
-      ),
-      question(
-    "Which of the following formatting guidelines should be followed for resumes?",
-    answer("Choose an easy-to-read font", correct=TRUE),
-    answer("Use an appropriate font size", correct=TRUE),
-    answer("Use colorful backgrounds"),
-    answer("Use inconsistent fonts")
-  )
-    )
+
 ```
 
 ## Chapter 85: Cover Letters
@@ -176,14 +138,7 @@ The content of the letter includes an introduction, body, closing, and a call-to
 
 
 ```{r ex6, echo=FALSE}
-quiz(
-  question("What should the introduction of a cover letter include?", 
-    answer("A unique opening line and a clear understanding of the company.", correct = TRUE),
-    answer("The hiring manager's name and address."),
-    answer("A summary of the entire letter."),
-    answer("A call to action.")
-  )
-)
+
 ```
 
 
@@ -192,14 +147,7 @@ quiz(
 When writing a cover letter, avoid hard-to-read fonts or colors, overused phrases, and plagiarism. Always proofread your letter to avoid any grammatical errors.
 
 ```{r ex7, echo=FALSE}
-quiz(
-question("What should be avoided when writing a cover letter?", 
-  answer("Using a unique opening line."),
-  answer("Using specific examples to back up statements."),
-  answer("Using hard-to-read fonts or colors.", correct = TRUE),
-  answer("Expressing enthusiasm and interest.")
-)
-)
+
 ```
 
 ## Chapter 86: Make Your Own Website
@@ -296,14 +244,7 @@ grade_code()
 ### Website Tabs
 
 ```{r ex10, echo=FALSE}
-quiz(
-question("What is the purpose of changing the 'weight' in each tab of your website?",
-  answer("To change the color of the tabs."),
-  answer("To change the order in which the tabs appear on your website.", correct = TRUE),
-  answer("To change the size of the tabs."),
-  answer("To hide the tabs from the website.")
-)
-)
+
 ```
 
 ### Website Appearance
@@ -311,14 +252,7 @@ question("What is the purpose of changing the 'weight' in each tab of your websi
 Let's talk about improving the overall appearance of your website. Widgets are a key aspect of your website's appearance.
 
 ```{r ex11, echo=FALSE}
-quiz(
-question("How do you remove a widget from your website?",
-  answer("By setting active = true in the corresponding .md file."),
-  answer("By deleting the corresponding .md file."),
-  answer("By setting active = false in the corresponding .md file.", correct = TRUE),
-  answer("By changing the weight of the widget in the corresponding .md file.")
-)
-)
+
 ```
 
 ### Skills
@@ -341,14 +275,7 @@ You can change the order in which different sections appear on your website by e
 Finally, you need to deploy your website. We will guide you through the process of deploying your website using GitHub Pages.
 
 ```{r ex12, echo=FALSE}
-quiz(
-question("Which files do you need to deploy your website?",
-  answer("Only the contents of /cloud/projects/public", correct = TRUE),
-  answer("All the files in your project."),
-  answer("Only the hidden files in your project."),
-  answer("Only the .md files in your project.")
-)
-)
+
 ```
 
 ## Chapter 87: Project Gallery
@@ -368,33 +295,16 @@ Your project gallery should display your abilities to find, wrangle, explore, an
 ### Let's practice!
 
 ```{r ex13, echo=FALSE}
-quiz(
-  question("Why is creating a project gallery essential when looking for a job in data science?",
-    answer("It helps potential employers to understand your skills and interests.", correct = TRUE),
-    answer("It is a requirement for all data science jobs.", correct = FALSE),
-    answer("It allows you to criticize the work of others.", correct = FALSE)
-  )
-)
+
 
 ```
 
 ```{r ex14, echo=FALSE}
-quiz(
-  question("What should a project gallery ideally include?",
-    answer("Detailed reports or blog posts about your projects", correct = TRUE),
-    answer("Visual cues for your projects", correct = TRUE),
-    answer("Criticisms of other people's work", correct = FALSE)
-  )
-)
+
 ```
 
 ```{r ex15, echo=FALSE}
-quiz(
-  question("What is the key idea in creating a blog post using R Markdown?",
-    answer("To simply copy and paste from other sources", correct = FALSE),
-    answer("To narrate your analysis in a structured way", correct = TRUE)
-  )
-)
+
 ```
 
 ### Project Content
@@ -402,14 +312,7 @@ quiz(
 In creating a data analysis blog post, it's crucial to think about its structure. A general framework could include sections such as: Introduction, Data Collection, Exploratory Data Analysis, Results, and Conclusion. This way, you can tell the story of your analysis clearly and coherently.
 
 ```{r ex16, echo=FALSE}
-quiz(
-  question("Which of the following is not typically a section in a data analysis blog post?",
-    answer("Introduction", correct = FALSE),
-    answer("Data Collection", correct = FALSE),
-    answer("Favorite Recipes", correct = TRUE),
-    answer("Conclusion", correct = FALSE)
-  )
-)
+
 ```
 
 
@@ -436,14 +339,6 @@ When you're satisfied, proofread your post for errors, and then push the changes
 Congratulations on completing this tutorial! You're now equipped with the knowledge to create a data analysis blog post using R Markdown. Happy blogging!
 
 ```{r ex17, echo=FALSE}
-quiz(
-  question("What is the purpose of YAML in an R Markdown document?",
-    answer("To structure the blog post", correct = FALSE),
-    answer("To provide a summary and images for the blog post", correct = TRUE),
-    answer("To proofread the document", correct = FALSE),
-    answer("To push changes to the website", correct = FALSE)
-  )
-)
 
 ```
 
@@ -471,18 +366,7 @@ Pin the six most interesting or skill-demonstrating projects on your GitHub prof
 One way of showcasing your skills and demonstrating that you are a good community member is by contributing to others' work on GitHub. This can be done by fixing typos or addressing issues on others' repos.
 
 ```{r ex18, echo=FALSE}
-quiz(
-  question("What information should you include in your GitHub profile?", 
-    answer("Name, Bio, URL", correct = TRUE),
-    answer("Only Name"),
-    answer("Only Bio"),
-    answer("Only URL")),
-  question("How many repositories can you pin to your GitHub profile?", 
-    answer("2"),
-    answer("4"),
-    answer("6", correct = TRUE),
-    answer("8"))
-)
+
 
 
 ```
@@ -503,18 +387,6 @@ Let's go through the steps to create an effective LinkedIn profile.
 You can start with uploading a professional-looking picture and crafting a concise headline that showcases your professional skills and interests.
 
 ```{r ex19, echo=FALSE}
-quiz(
-question("Why is a professional photo important in LinkedIn?",
-  answer("It doesn't matter.", correct = FALSE),
-  answer("It is essential for recruiters to identify you.", correct = TRUE)
-),
-
-question("What should the headline contain?",
-  answer("Your hobbies and interests", correct = FALSE),
-  answer("Your professional skills and interests", correct = TRUE)
-)
-
-)
 
 
 ```
@@ -524,13 +396,7 @@ question("What should the headline contain?",
 Provide your contact information and links to your other professional sites.
 
 ```{r ex20, echo=FALSE}
-quiz(
-question("Why should you provide your professional website link?",
-  answer("To redirect people to your personal blog.", correct = FALSE),
-  answer("To showcase your portfolio and work samples.", correct = TRUE)
-)
 
-)
 
 
 ```
@@ -540,13 +406,7 @@ question("Why should you provide your professional website link?",
 The education, experience, and skills section should reflect your resume, albeit with more detail. Remember, the information should be important and relevant to potential employers.
 
 ```{r ex21, echo=FALSE}
-quiz(
-question("What is the purpose of the Education, Experience, and Skills section?",
-  answer("To share your life story.", correct = FALSE),
-  answer("To provide recruiters with relevant information about your professional background.", correct = TRUE)
-)
 
-)
 ```
 
 ### Connecting to Others
@@ -554,13 +414,9 @@ question("What is the purpose of the Education, Experience, and Skills section?"
 inkedIn also allows you to connect with others in your field, helping you build a professional network.
 
 ```{r ex22, echo=FALSE}
-quiz(
-question("Why is networking on LinkedIn important?",
-  answer("To increase the number of connections.", correct = FALSE),
-  answer("To build a professional network.", correct = TRUE)
-)
 
-)
+
+
 ```
 
 

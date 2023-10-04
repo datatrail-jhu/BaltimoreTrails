@@ -69,20 +69,6 @@ In a presentation for a general audience, avoid diving too deep into:
 * The problems you encountered during your analysis.
 
 ```{r ex2, echo=FALSE}
-quiz(
-  question("What is the primary goal of presenting to a general audience?", 
-            answer("To explain the minute details of your analysis."),
-            answer("To show off your coding skills."),
-            answer("To provide a high-level overview of your work.", correct = TRUE),
-            answer("To demonstrate all the problems you encountered during your analysis.")
-  ),
-  question("What should you emphasize in your presentation?",
-            answer("The problems encountered during your analysis."),
-            answer("The specific question you set out to answer.", correct = TRUE),
-            answer("Your coding skills."),
-            answer("Every single detail of your analysis.")
-  )
-)
 ```
 
 #### Conclusion
@@ -116,20 +102,7 @@ In a technical presentation, you need to provide your audience with:
 In a technical talk, it's okay to de-emphasize certain background information that is common knowledge to everyone in the room. Instead, the bulk of your time and focus should be spent discussing the details of the analysis and its results.
 
 ```{r ex3, echo=FALSE}
-quiz(
-  question("What is the primary focus of a technical presentation?",
-  answer("The presenter's credentials"),
-  answer("Detailed summary of the data, the approach, the findings, analysis discussion, and conclusion", correct = TRUE),
-  answer("Background information"),
-  answer("The presenter's future plans")
-),
-  question("What information can be de-emphasized in a technical presentation?",
-  answer("The presenter's credentials"),
-  answer("Background information that is common knowledge", correct = TRUE),
-  answer("The findings"),
-  answer("The approach used in the analysis")
-)
-)
+
 ```
 
 ## Chapter 79: How to write a Blog Post
@@ -139,14 +112,6 @@ quiz(
 A blog post is a piece of writing that is shared on the internet. It does not have to be as formal or as polished as a published article or academic paper. It can vary in length and depth, ranging from a short, simple example to a longer, more in-depth, and polished piece.
 
 ```{r ex4, echo=FALSE}
-quiz(
-  question("What is a blog post?",
-    answer("A formal academic paper"),
-    answer("A piece of writing shared on the internet", correct = TRUE),
-    answer("A published article"),
-    answer("An email")
-  )
-)
 
 ```
 
@@ -163,14 +128,8 @@ There are many types of blog posts. Here, we will discuss four main types that a
 4. Workflow: These posts describe the author's workflow, offering insight into how they work on their computers and analyze data.
 
 ```{r ex5, echo=FALSE}
-quiz(
-  question("Which of these is NOT a common type of data science blog post?",
-    answer("Announcement"),
-    answer("How-To"),
-    answer("Analysis"),
-    answer("Recipe", correct = TRUE)
-  )
-)
+
+
 ```
 
 ### Why Write a Blog Post?
@@ -223,21 +182,7 @@ As a participant, your responsibilities include:
 3. If presenting, be mindful of time, be prepared, and guide the discussion effectively.
 
 ```{r ex6, echo=FALSE}
-quiz(
-question("What are the key steps to consider when hosting a meeting?",
-  answer("Deciding if a meeting is necessary"),
-  answer("Drafting and distributing an agenda"),
-  answer("Deciding the meeting's date, time, and venue"),
-  answer("Identifying and inviting the necessary participants"),
-  answer("All of the above", correct = TRUE)
-),
-question("What are the responsibilities of a participant in a meeting?",
-  answer("Paying attention and taking notes"),
-  answer("Participating actively and respectfully"),
-  answer("If presenting, being mindful of time, prepared, and guiding the discussion effectively"),
-  answer("All of the above", correct = TRUE)
-)
-)
+
 ```
 
 ## Chaper 81: How to Have a One-on-One Meeting
@@ -293,20 +238,7 @@ To ensure a productive meeting, use this checklist as a guide:
 * Determine the best approach for analysis.
 
 ```{r ex7, echo=FALSE}
-quiz(
-question("Which of the following is NOT a responsibility of a data scientist in a one-on-one meeting?",
-  answer("Being punctual and respectful."),
-  answer("Explaining the analysis clearly."),
-  answer("Changing the analysis to please a co-worker.", correct = TRUE),
-  answer("Acknowledging limitations of the analysis.")
-),
-question("What is the purpose of discussing prior knowledge in a one-on-one meeting?",
-  answer("To demonstrate expertise and knowledge."),
-  answer("To understand the person's level of understanding.", correct = TRUE),
-  answer("To avoid answering questions."),
-  answer("To limit the scope of the analysis.")
-)
-)
+
 ```
 
 

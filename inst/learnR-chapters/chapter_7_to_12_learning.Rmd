@@ -27,65 +27,34 @@ Through the completion of this section our goal is that you will be able to:
 ### 8.0.1 The Parts of a Data Science Project
 
 ```{r ex1, echo=FALSE}
-quiz(
-  question("What is the first part of a data science project?",
-    answer("Clean the data"),
-    answer("Form a question", correct = TRUE),
-    answer("Share results")
-  )
-)
 ```
 
 
 ### 8.0.2 A Data Science Project Example
 
 ```{r ex2, echo=FALSE}
-quiz(
-  question("What is Hilary Parker's question?",
-    answer("Is Hilary/Hillary really the most rapidly poisoned name in recorded American history?", correct = TRUE),
-    answer("What is the most popular baby name in recorded American history?"),
-    answer("How do baby name trends change over time?")
-  )
-)
+
 ```
 
 
 #### 8.0.2.3 Data Analysis
 
 ```{r ex3, echo=FALSE}
-quiz(
-  question("What is one purpose of exploring and plotting the data?",
-    answer("To understand the data better", correct = TRUE),
-    answer("To make the data look pretty"),
-    answer("To convince people that your analysis is correct")
-  )
-)
+
 ```
 
 
 #### 8.0.2.6 Get stats
 
 ```{r ex4, echo=FALSE}
-quiz(
-  question("In Hilary's analysis, what did she find in her preliminary results?",
-    answer("Hilary was the most poisoned name"),
-    answer("Hilary was the least poisoned name"),
-    answer("Hilary was sixth on the list of poisoned names", correct = TRUE)
-  )
-)
+
 ```
 
 
 #### 8.0.2.7 Interpret and communicate results
 
 ```{r ex5, echo=FALSE}
-quiz(
-  question("What is an important part of any data science project?",
-    answer("Effectively communicating the results", correct = TRUE),
-    answer("Using fancy visualization techniques"),
-    answer("Having a large dataset")
-  )
-)
+
 ```
 
 
@@ -94,13 +63,7 @@ quiz(
 #### 8.0.3.1 Prediction Risk of Opioid Overdoses in Providence, RI
 
 ```{r ex6, echo=FALSE}
-quiz(
-  question("What did the students at the University of Pennsylvania predict?",
-    answer("Risk of opioid overdoses in Providence, Rhode Island", correct = TRUE),
-    answer("Risk of traffic accidents in Providence, Rhode Island"),
-    answer("Risk of heart disease in Providence, Rhode Island")
-  )
-)
+
 ```
 
 
@@ -109,13 +72,8 @@ quiz(
 #### 8.0.4.1 Predicting movie ratings with IMDb data and R, by Dimiter Toshkov
 
 ```{r ex7, echo=FALSE}
-quiz(
-  question("What did Dimiter Toshkov predict using IMDb data?",
-    answer("Box office revenue"),
-    answer("Movie ratings", correct = TRUE),
-    answer("The number of awards a movie will win")
-  )
-)
+
+
 ```
 
 
@@ -125,66 +83,22 @@ quiz(
 ### 9.0.0 Introduction
 
 ```{r ex8, echo=FALSE}
-quiz(
-  question("Which type of data science question aims to find unknown relationships between different variables?",
-    answer("Descriptive"),
-    answer("Exploratory", correct = TRUE),
-    answer("Inferential"),
-    answer("Predictive"),
-    allow_retry = TRUE
-  ),
-    question("What is the term for a seemingly related relationship between two variables that are not actually causally related?",
-    answer("Casual correlation"),
-    answer("Strong correlation"),
-    answer("Spurious correlation", correct = TRUE),
-    answer("Direct correlation")
-  ),
-  question("What is the term for a seemingly related relationship between two variables that are not actually causally related?",
-    answer("Casual correlation"),
-    answer("Strong correlation"),
-    answer("Spurious correlation", correct = TRUE),
-    answer("Direct correlation")
-  )
-)
+
 ```
 
 
 ### 9.0.1 Examples of data science questions
 
 ```{r ex9, echo=FALSE}
-quiz(
-  question("What type of analysis is used for credit card fraud detection?",
-    answer("Descriptive analysis"),
-    answer("Exploratory analysis"),
-    answer("Inferential analysis"),
-    answer("Predictive analysis", correct = TRUE),
-    allow_retry = TRUE
-  )
-)
 ```
 
 
 ```{r ex10, echo=FALSE}
-quiz(
-  question("What type of analysis is used for analyzing YouTube comments?",
-    answer("Descriptive analysis", correct = TRUE),
-    answer("Exploratory analysis"),
-    answer("Inferential analysis"),
-    answer("Predictive analysis")
-  )
-)
 ```
 
 
 ```{r ex11, echo=FALSE}
-quiz(
-  question("What type of analysis is used for analyzing the relationship between watching Sesame Street and children's test scores?",
-    answer("Descriptive analysis"),
-    answer("Exploratory analysis"),
-    answer("Inferential analysis", correct = TRUE),
-    answer("Predictive analysis")
-  )
-)
+
 ```
 
 ## Chapters 10: How to Learn
@@ -211,22 +125,7 @@ Data science is best done as a part of a community! Asking questions and brainst
 
 
 ```{r ex12, echo=FALSE}
-quiz(
-  question("What is an important aspect of learning how to learn?",
-    answer("Memorizing functions", correct = FALSE),
-    answer("Embracing failure and having the right mindset", correct = TRUE),
-    answer("Never asking for help", correct = FALSE)
-  ),
-  question("Which statement is true?",
-    answer("There is only one correct way to solve a data science problem", correct = FALSE),
-    answer("There can be multiple ways to solve a data science problem", correct = TRUE)
-  ),
-  question("When should you ask for help?",
-    answer("Immediately without trying to solve the problem yourself", correct = FALSE),
-    answer("After spending some time trying to solve the problem and searching online for a solution", correct = TRUE),
-    answer("Never", correct = FALSE)
-  )
-)
+
 ```
 
 ## Chapter 11 RStudio and Projects
@@ -236,93 +135,28 @@ In this interactive tutorial, we will go through Chapter 11 of the course, focus
 ### Logging in to RStudio Cloud
 
 ```{r ex13, echo=FALSE}
-quiz(
-  question("What is RStudio Cloud?",
-    answer("A cloud-based version of RStudio", correct = TRUE),
-    answer("A cloud-based version of R"),
-    answer("A data storage service"),
-    answer("A data visualization tool"),
-    allow_retry = TRUE
-  ),
-  question("How do you log in to RStudio Cloud for this course?",
-    answer("Using your Google account", correct = TRUE),
-    answer("Using your GitHub account"),
-    answer("Using your Microsoft account"),
-    answer("Creating a new RStudio Cloud account")
-  ),
-  question("How do you create a new RStudio project?",
-    answer("Click on the 'New Project' button", correct = TRUE),
-    answer("Press Ctrl + N"),
-    answer("Go to File > New Project"),
-    answer("Right-click on the workspace and select 'New Project'")
-  ),
-  question("How do you open a new R script?",
-    answer("Go to File > New File > R Script", correct = TRUE),
-    answer("Press Ctrl + R"),
-    answer("Click on the 'New R Script' button"),
-    answer("Right-click on the workspace and select 'New R Script'")
-  ),
-  question("What is the purpose of the Console in RStudio?",
-    answer("To type and execute commands", correct = TRUE),
-    answer("To store your data"),
-    answer("To write and edit code"),
-    answer("To visualize your data")
-  )
-)
+
 ```
 
 
 ### Logging in to RStudio Cloud
 
 ```{r ex14, echo=FALSE}
-quiz(
-  question("What should you see in the Environment quadrant?",
-    answer("An object called 'example'", correct = TRUE),
-    answer("An object called 'matrix'"),
-    answer("An error message"),
-    answer("Nothing")
-  ),
-  question("Which tab in the Environment quadrant contains the commands that have been run in this session?",
-    answer("Data"),
-    answer("History", correct = TRUE),
-    answer("Packages"),
-    answer("Files")
-  )
-)
+
 ```
 
 
 ### Making a new folder
 
 ```{r ex15, echo=FALSE}
-quiz(
-  question("Where can you create a new folder in RStudio?",
-    answer("In the Source panel"),
-    answer("In the Console panel"),
-    answer("In the Environment panel"),
-    answer("In the Files pane", correct = TRUE)
-  )
-)
+
 ```
 
 
 ### Files/Help/Plots/Packages/Viewer
 
 ```{r ex16, echo=FALSE}
-quiz(
-  question("Where do generated plots appear in RStudio?",
-    answer("In the Source panel"),
-    answer("In the Console panel"),
-    answer("In the Environment panel"),
-    answer("In the Plots tab", correct = TRUE)
-  ),
-  question("Where can you find the documentation for R packages and functions?",
-    answer("In the Source panel"),
-    answer("In the Console panel"),
-    answer("In the Help tab", correct = TRUE),
-    answer("In the Viewer tab")
-  )
-)
+
 ```
 
 
@@ -330,57 +164,13 @@ quiz(
 
 
 ```{r ex17, echo=FALSE}
-quiz(
-  question("What does the swirl() function do?",
-    answer("It starts a swirl module", correct = TRUE),
-    answer("It installs the swirl package"),
-    answer("It creates a new project in RStudio"),
-    answer("It generates a plot")
-  ),
-  question("What is the keyboard shortcut to run a line of code in RStudio?",
-    answer("Alt + Enter"),
-    answer("Ctrl + Shift + Enter"),
-    answer("Ctrl + Enter", correct = TRUE),
-    answer("Shift + Enter")
-  )
-)
+
 ```
 
 ## Chapter 12: Your First Data Science Project
 
 ```{r ex18, echo=FALSE}
-quiz(
-  question("What is the first step in any data science project?",
-    answer("Collecting and cleaning data"),
-    answer("Creating models"),
-    answer("Asking a question that can be answered with data", correct = TRUE),
-    answer("Sharing the answer with other people")
-  ),
-  question("Which RStudio feature allows you to run a specific line or block of code?",
-    answer("Shift + Enter"),
-    answer("Ctrl + Enter", correct = TRUE),
-    answer("Alt + Enter"),
-    answer("Cmd + Enter")
-  ),
-  question("What is the correct file extension for an R Markdown file?",
-    answer(".R"),
-    answer(".Rmd", correct = TRUE),
-    answer(".html"),
-    answer(".md")
-  ),
-  question("Which file should you upload to your assignment folder?",
-    answer("first_project.R"),
-    answer("first_project.html"),
-    answer("Both first_project.R and first_project.html"),
-    answer("first_project.Rmd and first_project.nb.html", correct = TRUE)
-  ),
-  question("What is the purpose of the Conclusions section in a data science project?",
-    answer("To document the data collection process"),
-    answer("To write up responses to questions posed in the project and summarize findings", correct = TRUE),
-    answer("To create models to help understand and answer the question"),
-    answer("To share the code used in the project")
-  )
-)
+
 ```
 
 

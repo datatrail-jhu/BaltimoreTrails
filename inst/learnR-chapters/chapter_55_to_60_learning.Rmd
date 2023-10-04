@@ -19,7 +19,6 @@ knitr::opts_chunk$set(echo = TRUE)
 gradethis::gradethis_setup()
 ```
 
-
 ## Chapter 55: Overview of Inference
 
 Inferential Analysis allows analysts to draw conclusions about a larger population using a smaller sample. This tutorial will introduce you to some core concepts of inferential statistics including random sampling, uncertainty, and the importance of representative sampling.
@@ -87,7 +86,6 @@ grade_code()
 
 In this tutorial, we've introduced the basics of inferential statistics. We've discussed how it allows us to make conclusions about a larger population based on a smaller sample, introduced the concept of uncertainty in these conclusions, and discussed the importance of representative sampling. In the next lessons, we'll dive deeper into these concepts, using R to perform inferential analysis on real-world datasets.
 
-
 ## Chapter 56: Inference - Linear Regression
 
 Linear regression is one of the most commonly used statistical methods, allowing us to understand and predict the relationship between two variables. We'll use a dataset from the `ggplot2` package to explore this concept.
@@ -100,9 +98,9 @@ Linear regression can be used to describe the relationship between a dependent v
 
 In linear regression, the direction of the line can indicate the relationship between the variables:
 
-* __Positive relationship__: As the value of the independent variable increases, so does the value of the dependent variable.
+-   **Positive relationship**: As the value of the independent variable increases, so does the value of the dependent variable.
 
-* __Negative relationship__: As the value of the independent variable increases, the value of the dependent variable decreases.
+-   **Negative relationship**: As the value of the independent variable increases, the value of the dependent variable decreases.
 
 ### Strength of Relationship
 
@@ -143,9 +141,7 @@ fit <- lm(hwy ~ displ, data = mpg)
 grade_code()
 ```
 
-
 After we fit our model, we can inspect its summary for the estimates, standard error, and p-value.
-
 
 ```{r ex5, exercise=TRUE}
 # Your code here.
@@ -164,14 +160,13 @@ summary(fit)
 grade_code()
 ```
 
-
 The `summary()` function provides a wealth of information. It includes the beta estimates (coefficients), standard errors, and p-values for our model.
 
 The beta estimate (coefficient) for `mpg` tells us about the direction and strength of the relationship between miles per gallon and displacement. If the coefficient is positive, the relationship is positive, and if the coefficient is negative, the relationship is negative. The magnitude of the coefficient gives us an idea of the strength of the relationship.
 
 The standard error informs us about the uncertainty of the beta estimate. The smaller the standard error, the more confident we can be about the estimate.
 
-Finally, the p-value (found in the column Pr[>|t|]) tells us the probability of obtaining the observed data (or data more extreme) if the null hypothesis is true. In this context, the null hypothesis is that there is no relationship between miles per gallon and displacement. A small p-value (typically less than 0.05) suggests that we can reject the null hypothesis.
+Finally, the p-value (found in the column Pr[\>\|t\|]) tells us the probability of obtaining the observed data (or data more extreme) if the null hypothesis is true. In this context, the null hypothesis is that there is no relationship between miles per gallon and displacement. A small p-value (typically less than 0.05) suggests that we can reject the null hypothesis.
 
 ```{r ex6, echo=FALSE}
 # Quiz on interpreting the model
@@ -191,10 +186,7 @@ quiz(
 )
 ```
 
-
-
 That's it! You've just created a linear regression model using the `lm()` function, and learned how to interpret the output. Just remember, associations are correlations. They are not causal. The observation that cars with higher miles per gallon tend to have lower displacement does not imply that increasing a car's miles per gallon will decrease its displacement.
-
 
 ## Chapter 57: Inference - Examples
 
@@ -266,14 +258,13 @@ This summary provides the estimates (coefficients), standard errors, and p-value
 
 Let's interpret these results:
 
-* The coefficient for wt tells us about the direction and strength of the relationship between weight and fuel efficiency. If the coefficient is positive, the relationship is positive, and if it's negative, the relationship is negative.
+-   The coefficient for wt tells us about the direction and strength of the relationship between weight and fuel efficiency. If the coefficient is positive, the relationship is positive, and if it's negative, the relationship is negative.
 
-* The standard error informs us about the uncertainty of the coefficient estimate. The smaller the standard error, the more confident we can be about the estimate.
+-   The standard error informs us about the uncertainty of the coefficient estimate. The smaller the standard error, the more confident we can be about the estimate.
 
-* The p-value (found in the column Pr[>|t|]) tells us the probability of obtaining the observed data (or data more extreme) if the null hypothesis is true. In this context, the null hypothesis is that there is no relationship between weight and fuel efficiency. A small p-value (typically less than 0.05) suggests that we can reject the null hypothesis.
+-   The p-value (found in the column Pr[\>\|t\|]) tells us the probability of obtaining the observed data (or data more extreme) if the null hypothesis is true. In this context, the null hypothesis is that there is no relationship between weight and fuel efficiency. A small p-value (typically less than 0.05) suggests that we can reject the null hypothesis.
 
-
-### Case Study 2: Does Vehicle Size Affect Fuel Efficiency? 
+### Case Study 2: Does Vehicle Size Affect Fuel Efficiency?
 
 #### Research Question
 
@@ -300,7 +291,6 @@ data <- mpg[, c("displ", "hwy")]
 # View the first few rows of the new dataset
 head(data)
 ```
-
 
 #### Analysis
 
@@ -329,7 +319,6 @@ coef(model)["displ"]
 
 In this tutorial, we've used regression analysis to understand the impact of car size on fuel efficiency. This is just the start - remember that additional analyses and experiments would be needed to fully understand the relationship between these variables.
 
-
 ```{r ex9, echo=FALSE}
 # Final Quiz Question 1
 quiz(caption = "Quiz",
@@ -353,7 +342,6 @@ quiz(caption = "Quiz",
 
 Confounding is when a variable affects both your dependent and independent variables. Consider the example of diamond prices. The size (carat) of a diamond affects its price, but so does the quality of its cut. If we only analyze the price based on the carat size, we might overlook the effect of cut quality, which would be a confounder.
 
-
 ### Multiple Linear Regression
 
 Multiple linear regression can help us handle confounders by including them in our model. For example, if we are analyzing the price of a diamond based on its carat size, we might also include the quality of the cut to account for its effect.
@@ -374,7 +362,6 @@ fit <- lm(price ~ carat + cut, data = diamonds)
 summary(fit)
 
 ```
-
 
 ```{r ex10, echo=FALSE}
 quiz(
@@ -397,8 +384,7 @@ Linear regression is not the only statistical test available, but it is a fundam
 
 ### Coding Exercise
 
-Let's try a coding exercise. Write code to run a t-test to check if the average price of a diamond in the diamonds dataset is different from $4000.
-
+Let's try a coding exercise. Write code to run a t-test to check if the average price of a diamond in the diamonds dataset is different from \$4000.
 
 ```{r ex11, exercise=TRUE}
 # Replace ___ with appropriate code to run a t-test
@@ -429,7 +415,6 @@ Remember, always consider and check for confounding among the variables in your 
 
 In this interactive tutorial, we've learned about multiple linear regression, the concept of confounding, the difference between correlation and causation, and how to run a t-test. We also learned how to handle confounders in our data analysis and how to properly interpret the results of a multiple linear regression model.
 
-
 ## Chapter 59: Prediction and Machine Learning
 
 ### What is Machine Learning?
@@ -440,10 +425,10 @@ Machine learning refers to creating models from data patterns that can be used f
 
 To make predictions for the future using current data, there are four general steps:
 
-1. Data Splitting
-2. Variable Selection
-3. Model Selection
-4. Accuracy Assessment
+1.  Data Splitting
+2.  Variable Selection
+3.  Model Selection
+4.  Accuracy Assessment
 
 We will go through each of these steps in this tutorial using the mtcars dataset.
 
@@ -452,6 +437,7 @@ data(mtcars)
 ```
 
 ### Data Splitting
+
 For machine learning, we need data to train our model. We often use three datasets to build a predictive model: train, tune, and test. Let's split our mtcars dataset into these three sets.
 
 ```{r}
@@ -468,8 +454,8 @@ test_data <- mtcars[setdiff(tune_test_indices, tune_indices), ]
 
 ```
 
-
 ### Variable Selection
+
 The variables in the data on hand should be related to the outcome we're interested in predicting. Here, let's assume we want to predict mpg (miles per gallon) based on other car features.
 
 For simplicity, let's select cyl (number of cylinders), hp (horsepower), and wt (weight) as our predictor variables.
@@ -478,7 +464,6 @@ For simplicity, let's select cyl (number of cylinders), hp (horsepower), and wt 
 predictor_vars <- c("cyl", "hp", "wt")
 
 ```
-
 
 ### Model Selection
 
@@ -503,13 +488,11 @@ rmse
 
 ```
 
-
 ### Exercise 1. Predictive Modeling with Linear Regression
 
 In the above steps, we have built a predictive model using linear regression and assessed its accuracy on the tune dataset. Now, it's your turn to apply these steps to a new variable.
 
 In this exercise, you are asked to build a linear regression model to predict the `drat` variable (rear axle ratio) based on the `hp` variable (gross horsepower). Apply your model to the tune dataset and calculate the RMSE to evaluate its accuracy.
-
 
 ```{r ex12, exercise=TRUE}
 # Build the model
@@ -551,7 +534,6 @@ grade_code()
 
 ### Model Selection: Classification and Regression Trees (CART)
 
-
 hen it comes to predicting categorical outcomes, Classification and Regression Trees (CART) is a handy tool. A CART model generates a decision tree based on the patterns in the training data, which can then be used to predict future outcomes.
 
 Let's try to predict the `am` variable (transmission type: 0 = automatic, 1 = manual) in the `mtcars` dataset using a CART model. We'll use the `rpart` package to build our model.
@@ -587,9 +569,7 @@ accuracy
 
 ### Exercise 2. Predictive Modeling with CART
 
-Now, it's your turn to build a CART model. In this exercise, you are asked to predict the `vs` variable (engine shape: 0 = V-shaped, 1 = straight) based on the `hp `and `wt` variables. Apply your model to the tune dataset and calculate the accuracy.
-
-
+Now, it's your turn to build a CART model. In this exercise, you are asked to predict the `vs` variable (engine shape: 0 = V-shaped, 1 = straight) based on the `hp`and `wt` variables. Apply your model to the tune dataset and calculate the accuracy.
 
 ```{r ex13, exercise=TRUE}
 # Build the CART model
@@ -628,7 +608,6 @@ accuracy_ex2
 grade_code()
 ```
 
-
 ### Model Selection: Random Forest
 
 Random Forest is an ensemble learning method that operates by constructing a multitude of decision trees at training time and outputting the class that is the mode of the classes (classification) or mean prediction (regression) of the individual trees. It is a very powerful and versatile method, capable of handling both regression and classification tasks.
@@ -653,11 +632,9 @@ accuracy_rf <- sum(tune_data$am == tune_data$predicted_am_rf) / nrow(tune_data)
 accuracy_rf
 ```
 
-
 ### Exercise 3. Predictive Modeling with Random Forest
 
 Now, it's your turn to build a Random Forest model. In this exercise, you are asked to predict the `vs` variable based on the `hp` and `wt` variables. Apply your model to the tune dataset and calculate the accuracy.
-
 
 ```{r ex14, exercise=TRUE}
 # Your code here
@@ -704,8 +681,8 @@ Predictive analysis is a challenging task. Hence, it's crucial to evaluate the a
 
 To assess our predictive models' performance, we calculate error rates. The two common ways are:
 
-1. RMSE (Root-mean-square Error)
-2. Accuracy
+1.  RMSE (Root-mean-square Error)
+2.  Accuracy
 
 To assess error, you need the truth (the actual value) in addition to the predicted value. Thus, RMSE and Accuracy are assessed in the training and tuning data.
 
@@ -724,7 +701,6 @@ Now let's walk through two examples. One for prediction of a continuous variable
 #### Continuous Variable Prediction: Linear Regression
 
 For this example, we will use the `mpg` dataset from the ggplot2 package. We will attempt to use the data in the `mpg` dataset to predict `displ`.
-
 
 #### Data Splitting
 
@@ -746,7 +722,6 @@ str(mpg_train)
 str(mpg_tune)
 
 ```
-
 
 Next, we'll move onto predicting a categorical variable.
 
@@ -773,7 +748,6 @@ predictions_cart <- predict(fit.cart, iris_tune)
 table(iris_tune$Species, predictions_cart)
 ```
 
-
 ```{r ex15, echo=FALSE}
 # Create a quiz question using `learnr`'s `quiz` function
 quiz(
@@ -798,6 +772,3 @@ quiz(
 )
 
 ```
-
-
-
